@@ -121,14 +121,14 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 			console.error('Resend send failed', resp.status, err);
 			return json(
 				{ ok: false, error: 'We could not deliver your message. Please try again shortly.' },
-				502,
+				500,
 			);
 		}
 	} catch (e) {
 		console.error('Resend fetch threw', e);
 		return json(
 			{ ok: false, error: 'We could not deliver your message. Please try again shortly.' },
-			502,
+			500,
 		);
 	}
 
