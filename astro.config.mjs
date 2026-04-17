@@ -4,9 +4,9 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-	site: 'https://catamaran-for-sale.com',
+	site: 'https://www.catamaran-for-sale.com',
 	integrations: [mdx(), sitemap()],
 	image: {
-		domains: ['catamaran-for-sale.com'],
+		domains: ['www.catamaran-for-sale.com'],
 	},
 });

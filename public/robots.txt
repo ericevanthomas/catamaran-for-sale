@@ -57,4 +57,4 @@ Allow: /
 User-agent: Amazonbot
 Allow: /
 
-Sitemap: https://catamaran-for-sale.com/sitemap-index.xml
+Sitemap: https://www.catamaran-for-sale.com/sitemap-index.xml

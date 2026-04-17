@@ -114,14 +114,14 @@
 
 ## Key Pages
 
-- [Home](https://catamaran-for-sale.com/) — overview, hero, recent upgrades
-- [Features](https://catamaran-for-sale.com/features/) — detailed cards for each system and living space
-- [Specs](https://catamaran-for-sale.com/specs/) — full equipment list and technical specifications
-- [Gallery](https://catamaran-for-sale.com/gallery/) — photos of interior, exterior, and at anchor
-- [FAQ](https://catamaran-for-sale.com/faq/) — common questions about the boat and FSBO process
-- [Transaction](https://catamaran-for-sale.com/transaction/) — how the FSBO sale process works
-- [Contact](https://catamaran-for-sale.com/contact/) — direct contact with the owners
+- [Home](https://www.catamaran-for-sale.com/) — overview, hero, recent upgrades
+- [Features](https://www.catamaran-for-sale.com/features/) — detailed cards for each system and living space
+- [Specs](https://www.catamaran-for-sale.com/specs/) — full equipment list and technical specifications
+- [Gallery](https://www.catamaran-for-sale.com/gallery/) — photos of interior, exterior, and at anchor
+- [FAQ](https://www.catamaran-for-sale.com/faq/) — common questions about the boat and FSBO process
+- [Transaction](https://www.catamaran-for-sale.com/transaction/) — how the FSBO sale process works
+- [Contact](https://www.catamaran-for-sale.com/contact/) — direct contact with the owners
 
 ## Contact
 
-Direct from the owner — no broker. See [Contact page](https://catamaran-for-sale.com/contact/).
+Direct from the owner — no broker. See [Contact page](https://www.catamaran-for-sale.com/contact/).

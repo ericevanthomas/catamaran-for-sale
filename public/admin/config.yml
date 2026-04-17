@@ -7,8 +7,8 @@ backend:
 media_folder: public/images
 public_folder: /images
 
-site_url: https://catamaran-for-sale.com
-display_url: https://catamaran-for-sale.com
+site_url: https://www.catamaran-for-sale.com
+display_url: https://www.catamaran-for-sale.com
 
 collections:
   # Features — the core content collection (feature cards)
