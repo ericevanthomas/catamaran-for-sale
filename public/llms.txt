@@ -1,6 +1,6 @@
 # Tropicalia — 2010 Voyage 500 Catamaran For Sale By Owner
 
-> A cruise-ready 2010 Voyage 500 sailing catamaran (50ft, 3-Cabin Owner's Version) for sale by owner at $399,000 USD. Currently located in the US Virgin Islands. Extensively upgraded with new saildrives (2025), rebuilt propellers (2025), 1,300Ah lithium house bank, Rainman watermaker, Starlink, new life raft, and Raymarine Axiom chartplotter.
+> A cruise-ready 2010 Voyage 500 sailing catamaran (50ft, 3-Cabin Owner's Version) for sale by owner at $379,000 USD. Currently located in the US Virgin Islands. Extensively upgraded with new saildrives (2025), rebuilt propellers (2025), 1,280Ah lithium house bank, Rainman watermaker, Starlink, new life raft, and Raymarine Axiom chartplotter.
 
 ## Vessel Identity
 
@@ -12,7 +12,7 @@
 - **HIN**: VOY50040I910
 - **USCG Doc**: 1323515
 - **Location**: US Virgin Islands
-- **Asking Price**: $399,000 USD
+- **Asking Price**: $379,000 USD
 - **Sale Type**: For Sale By Owner — no brokers, no commissions
 
 ## Key Specs
@@ -31,7 +31,7 @@
 
 ## Electrical System
 
-- **House bank**: 1,300Ah LiFePO4 lithium (12V)
+- **House bank**: 1,280Ah LiFePO4 lithium (12V)
 - **Solar**: 800W (2× 400W panels) on bimini with EPEVER MPPT
 - **Wind**: D400 wind generator
 - **Inverter/Charger**: Victron 3000W (2024) + Victron MultiPlus 12/3000 (2022)
@@ -91,7 +91,7 @@
 ## Recent Upgrades (by Current Owners)
 
 - New SD60 saildrives and rebuilt Bruton props (2025)
-- New 1,300Ah LiFePO4 lithium house bank (Oct 2021)
+- New 1,280Ah LiFePO4 lithium house bank (Oct 2021)
 - New Victron inverter/charger (2024)
 - Rainman watermaker
 - Raymarine Axiom chartplotter

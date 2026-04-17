@@ -5,7 +5,7 @@ heroHeadline: Voyage 500 Catamaran For Sale by Owner
 heroSubheadline: A 50-foot bluewater catamaran with a long waterline, fiberglassed bulkheads, an owner's hull, and a galley that cooked our family a full Thanksgiving dinner. Cruise-ready and lived-in.
 heroImage: /images/hero-bow-edited.webp
 priceDisplay: $379,000 USD
-locationDisplay: Currently in the US Virgin Islands
+locationDisplay: US Virgin Islands · En route to St. Augustine, FL (arriving 06/01/2026)
 highlightsBullets:
   - 3-Cabin Owner's Version — entire starboard hull is the master
   - Extended rear deck — walk-around access with dinghy in chocks
@@ -13,7 +13,7 @@ highlightsBullets:
   - U-shaped galley with bar seating and a rotisserie oven
   - Washing machine + sheltered cockpit drying lines
   - New 40GPH Rainman watermaker (2026) — plumbed in, pickle-in-place
-  - New 1,300Ah lithium battery bank (2026) — professional install
+  - New 1,280Ah lithium battery bank (2026) — professional install
   - Brand-new SD60 saildrives + rebuilt Brunton auto props (2025)
   - 800W solar, 4kW generator, Victron 110V + 220V dual inverters
   - Mabru air conditioning (12V + 110V)

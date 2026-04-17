@@ -14,4 +14,4 @@ Solar is the difference between anchoring out for a weekend and anchoring out fo
 - Positioned to minimize shading from the boom, mast, and arch
 - EPEVER Tracer 4215BN 40A MPPT charge controller
 - MT50 remote display
-- Feeds the 1,300Ah LiFePO4 house bank directly
+- Feeds the 1,280Ah LiFePO4 house bank directly

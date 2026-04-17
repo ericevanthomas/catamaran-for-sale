@@ -4,4 +4,4 @@ export const SITE_DESCRIPTION =
 export const SITE_URL = 'https://www.catamaran-for-sale.com';
 export const BOAT_NAME = 'Voyage 500';
 export const CONTACT_PHONE = '';
-export const ASKING_PRICE = '$399,000 USD';
+export const ASKING_PRICE = '$379,000 USD';

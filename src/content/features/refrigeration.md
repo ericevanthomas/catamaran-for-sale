@@ -12,4 +12,4 @@ category: "Living Spaces"
 - 12V Adler Barbour freezer — air-cooled, digital control
 - 12V Adler Barbour refrigerator with digital controls
 - Cockpit refrigerator — separate, for drinks and quick-access
-- All refrigeration runs off 12V DC directly from the 1,300Ah lithium house bank
+- All refrigeration runs off 12V DC directly from the 1,280Ah lithium house bank

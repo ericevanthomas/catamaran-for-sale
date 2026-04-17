@@ -18,5 +18,5 @@ And we rigged permanent drying lines under the cockpit roof — clothes stay out
 
 - Samsung automatic washing machine — full cycle, plumbed in
 - Located in the port-hull corridor so it doesn't dominate a cabin
-- Runs on 120V shore or inverter power from the 1,300Ah lithium house bank
+- Runs on 120V shore or inverter power from the 1,280Ah lithium house bank
 - Dedicated drying lines mounted under the cockpit roof — dry in any weather

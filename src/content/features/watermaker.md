@@ -18,4 +18,4 @@ You can fill either water tank individually with production water, and when the 
 - Fill either tank individually with fresh production water
 - Pickle-in-place via the unit's own reservoir — add chemical, run, done
 - Supplements 211 gallons of tank capacity
-- Runs on generator or inverter power from the 1,300Ah lithium bank
+- Runs on generator or inverter power from the 1,280Ah lithium bank
