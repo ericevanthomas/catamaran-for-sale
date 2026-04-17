@@ -54,7 +54,7 @@ const description = homepage?.data.description ?? '';
 				loading="eager"
 				fetchpriority="high"
 				decoding="async"
-			/>
+			 quality={68}/>
 		</div>
 	</section>
 
@@ -108,13 +108,13 @@ const description = homepage?.data.description ?? '';
 	<section class="photos">
 		<div class="photos__grid">
 			<div class="photos__item photos__item--wide" data-photo-idx="0">
-				<Image src={boatStarboard} alt="Tropicalia at anchor, starboard view" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 42vw, 100vw" loading="lazy" />
+				<Image src={boatStarboard} alt="Tropicalia at anchor, starboard view" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 42vw, 100vw" loading="lazy"  quality={68}/>
 			</div>
 			<div class="photos__item" data-photo-idx="1">
-				<Image src={bowCrystalWater} alt="Crystal clear water at the bow" widths={[360, 540, 720, 960]} sizes="(min-width: 900px) 29vw, 100vw" loading="lazy" />
+				<Image src={bowCrystalWater} alt="Crystal clear water at the bow" widths={[360, 540, 720, 960]} sizes="(min-width: 900px) 29vw, 100vw" loading="lazy"  quality={68}/>
 			</div>
 			<div class="photos__item" data-photo-idx="2">
-				<Image src={caribbeanAnchorage} alt="Caribbean anchorage at sunset" widths={[360, 540, 720, 960]} sizes="(min-width: 900px) 29vw, 100vw" loading="lazy" />
+				<Image src={caribbeanAnchorage} alt="Caribbean anchorage at sunset" widths={[360, 540, 720, 960]} sizes="(min-width: 900px) 29vw, 100vw" loading="lazy"  quality={68}/>
 			</div>
 		</div>
 		<div class="photos__footer">
@@ -148,7 +148,7 @@ const description = homepage?.data.description ?? '';
 					<p>We spent a year searching for the right catamaran before we found Tropicalia. The Voyage 500 checked every box: the spacious 3-cabin Owner's Version layout, the proven Simonis Voogd hull design, and the fact that she was the last 500 ever built by the Voyage factory. Her original owner was an aerospace engineer who ensured she was built to the highest standard. Here are a few of the things that made us fall in love with her.</p>
 				</div>
 				<div class="features-intro__photo">
-					<Image src={kidsCockpit} alt="Our family aboard Tropicalia" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy" />
+					<Image src={kidsCockpit} alt="Our family aboard Tropicalia" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
 				</div>
 			</div>
 		</div>
@@ -160,7 +160,7 @@ const description = homepage?.data.description ?? '';
 		return (
 		<section class:list={['feat-row', { 'feat-row--reverse': i % 2 === 1 }]}>
 			<div class="feat-row__image">
-				{img && <Image src={img} alt={feature.data.title} widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy" />}
+				{img && <Image src={img} alt={feature.data.title} widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>}
 			</div>
 			<div class="feat-row__content">
 				<div class="feat-row__inner">
@@ -242,7 +242,7 @@ const description = homepage?.data.description ?? '';
 
 	<!-- FULL PHOTO -->
 	<section class="fullphoto">
-		<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[720, 1080, 1440, 1920]} sizes="100vw" loading="lazy" />
+		<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[720, 1080, 1440, 1920]} sizes="100vw" loading="lazy"  quality={68}/>
 	</section>
 
 	<!-- CTA — dark -->
