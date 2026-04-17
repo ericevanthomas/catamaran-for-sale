@@ -1,6 +1,6 @@
 ---
 title: "Mainsail"
-description: "Fully battened large-roach mainsail in 11.9oz High Modulus cross-cut Dacron. 2 reef points, 2-ply leech, Harken batt-car system for easy raising and lowering."
+description: "Full-batten mainsail with a large roach on a Harken Batt-Car track, a new stack pack from the Voyage factory, and full lazy-jack rigging."
 photos:
   - /images/mainsail-up.webp
 order: 28
@@ -9,9 +9,11 @@ cardSize: "medium"
 category: "Rigging & Sails"
 ---
 
-- Fully battened main with large roach
-- 11.9oz High Modulus cross-cut Dacron
-- 2-ply leech for chafe resistance
-- 2 reef points
-- Harken batt-car track system — low-friction hoist and drop
+The main is fully battened with a large roach, riding on a Harken Batt-Car track for low-friction hoisting and dropping. Two reef points. A factory-new stack pack from Voyage and lazy jacks handle everything when you drop the sail — no scramble on deck.
+
+- Full-batten mainsail with large roach
+- Harken Batt-Car track system — low-friction hoist and drop
+- New stack pack from the Voyage factory
+- Full lazy-jack rigging
+- Two reef points
 - Double-purchase main halyard
