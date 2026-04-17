@@ -8,6 +8,9 @@ order: 2
 featured: true
 cardSize: "medium"
 category: "Living Spaces"
+quote:
+  speaker: alex
+  text: "We cooked a proper Thanksgiving dinner aboard — hosted another family and felt like we had plenty of room. Plenty of space for all the food, the dishes, and the people."
 ---
 
 The galley on this boat is not an afterthought — which is more than you can say for most production catamaran layouts. It's a wrap-around U-shape with counter space on every wall, a separate vertical-door refrigerator, a two-door top-loading freezer deep enough to provision for a whole season, and a bar top with four stools so the cook isn't stuck alone while the rest of the family is in the cockpit.

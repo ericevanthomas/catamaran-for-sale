@@ -6,6 +6,9 @@ order: 21
 featured: false
 cardSize: "small"
 category: "Safety"
+quote:
+  speaker: eric
+  text: "If you have kids, this matters. The beacon auto-deploys when it hits the water — the child doesn't have to remember anything. It transmits their position back to the boat as an AIS target and you can go right to them."
 ---
 
 A brand-new life raft and EPIRB are the headline items, but the upgrade we care about most is a set of AIS-enabled man-overboard beacons built into each of our four life jackets.

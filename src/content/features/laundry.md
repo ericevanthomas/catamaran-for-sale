@@ -7,6 +7,9 @@ order: 14
 featured: false
 cardSize: "small"
 category: "Living Spaces"
+quote:
+  speaker: alex
+  text: "This is our second Caribbean cruise. The first was without a washing machine. The second has been with one. It just makes everything easier."
 ---
 
 This is our second long Caribbean cruise. Our first one was without a washing machine. Our second is with one. The difference is enormous — laundromat runs used to eat a whole day every week and forced us into marinas or towns we didn't want to be in. Now we anchor wherever we want, for as long as we want.

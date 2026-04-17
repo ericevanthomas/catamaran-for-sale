@@ -26,6 +26,12 @@ const features = defineCollection({
 			.optional(),
 		cardSize: z.enum(['large', 'medium', 'small']).default('medium'),
 		tags: z.array(z.string()).optional(),
+		quote: z
+			.object({
+				speaker: z.enum(['eric', 'alex']),
+				text: z.string(),
+			})
+			.optional(),
 	}),
 });
 

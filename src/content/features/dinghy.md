@@ -7,6 +7,9 @@ order: 13
 featured: false
 cardSize: "small"
 category: "Dinghy & Tender"
+quote:
+  speaker: eric
+  text: "Pull the dinghy right up to the back of the cat, connect the hose, and refill from a big aluminum tank onboard. Fill it once at the beginning of the season and you're set."
 ---
 
 The dinghy gets used hard on a cruising boat, and this one is set up accordingly. A full-size Zodiac 12.5' with center console and wheel, electric start, electric trim, and a 25hp 4-stroke with fewer than 100 hours on it — gets on plane, hauls four adults, and covers real distance.

@@ -6,6 +6,9 @@ order: 42
 featured: false
 cardSize: "small"
 category: "Living Spaces"
+quote:
+  speaker: eric
+  text: "The helm is in the cockpit, slightly elevated — not up out of sight. Whoever's driving still feels like part of everything. With kids aboard, that mattered more than we expected."
 ---
 
 Most of the catamarans we looked at put the cockpit right at water level or perched the helm way up on a flybridge — the first feels exposed, the second feels isolated. This design splits the difference. The cockpit is enclosed by proper combings and bolsters, wide side decks run all the way around, and the helm sits right there with everyone else, slightly elevated for sight lines but not up out of the conversation. Whoever's driving is still part of what's happening.

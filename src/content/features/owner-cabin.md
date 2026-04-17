@@ -7,6 +7,9 @@ order: 3
 featured: true
 cardSize: "medium"
 category: "Living Spaces"
+quote:
+  speaker: eric
+  text: "There's a secret hatch behind the mirror in the head. It opens into a whole utility room — tanks, tools, and spares, properly organized and out of the way. It's so nice."
 ---
 
 The entire starboard hull is the owner's suite. King-size bed up forward with two large overhead hatches for cross-ventilation, a dedicated desk for working while cruising, a separate seating area, and a head with a proper walk-in shower — the kind that actually feels like home and not like an apologetic corner of the boat.
