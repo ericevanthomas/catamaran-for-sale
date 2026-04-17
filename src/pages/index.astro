@@ -39,10 +39,12 @@ const description = homepage?.data.description ?? '';
 	<section class="hero">
 		<div class="hero__text">
 			<div class="hero__text-inner">
-				<p class="eyebrow">2010 Voyage 500 · S/V Tropicalia</p>
-				<h1>Voyage 500<br />Catamaran<br />For Sale</h1>
+				<p class="eyebrow">{homepage?.data.heroEyebrow}</p>
+				<h1>{(homepage?.data.heroHeadlineLines ?? ['Voyage 500', 'Catamaran', 'For Sale']).map((line: string, i: number, arr: string[]) => (
+					<>{line}{i < arr.length - 1 && <br />}</>
+				))}</h1>
 				<p class="hero__sub">{homepage?.data.priceDisplay}<br />{homepage?.data.locationDisplay}</p>
-				<a href="/contact/" class="btn btn--primary">Inquire About This Boat</a>
+				<a href={homepage?.data.heroCtaLink ?? '/contact/'} class="btn btn--primary">{homepage?.data.heroCtaText ?? 'Inquire About This Boat'}</a>
 			</div>
 		</div>
 		<div class="hero__image">
@@ -143,9 +145,9 @@ const description = homepage?.data.description ?? '';
 		<div class="wrap">
 			<div class="features-intro__grid">
 				<div class="features-intro__text">
-					<p class="eyebrow">From Our Family to Yours</p>
-					<h2>Why we chose this boat.</h2>
-					<p>We spent over a year looking at catamarans before we found Tropicalia. What made us say yes was a pattern: she's lower, sleeker, and has a longer waterline than most of the newer production cats we considered — so she has less windage, a better motion through waves, and enough bridgedeck clearance that she doesn't pound. The cockpit feels enclosed and safe with kids aboard. The galley is a real kitchen, not an afterthought. And the bulkheads are fiberglassed and tabbed into the hull — not glued and screwed — so nothing creaks or shifts. Her original owner was an aerospace engineer who specified her to a higher standard than the factory production spec, and she was the last 500 the Voyage factory ever built. Here are a few of the things we love most.</p>
+					<p class="eyebrow">{homepage?.data.whyChoseEyebrow}</p>
+					<h2>{homepage?.data.whyChoseHeading}</h2>
+					<p>{homepage?.data.whyChoseBody}</p>
 				</div>
 				<div class="features-intro__photo">
 					<Image src={kidsCockpit} alt="Our family aboard Tropicalia" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
@@ -181,52 +183,31 @@ const description = homepage?.data.description ?? '';
 	</section>
 
 	<!-- RECENT UPGRADES — dark -->
-	<section class="upgrades">
-		<div class="wrap">
-			<p class="upgrades__eyebrow">Installed by Current Owners</p>
-			<h2 class="upgrades__heading">Recent Upgrades</h2>
-			<div class="upgrades__grid">
-				<div class="upgrades__item">
-					<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-					<h3>New 1,280Ah Lithium Battery Bank</h3>
-					<p>Upgraded LiFePO4 house bank for full energy independence at anchor.</p>
-				</div>
-				<div class="upgrades__item">
-					<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-					<h3>New Rainman Watermaker</h3>
-					<p>Fresh water independence anywhere you anchor. No marina dependency.</p>
-				</div>
-				<div class="upgrades__item">
-					<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-					<h3>New Raymarine Axiom Chartplotter</h3>
-					<p>Full Caribbean and North America cartography.</p>
-				</div>
-				<div class="upgrades__item">
-					<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-					<h3>New Life Raft &amp; Safety Gear</h3>
-					<p>New EPIRB, ditch bag, personal beacons, and current flares.</p>
-				</div>
-				<div class="upgrades__item">
-					<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
-					<h3>New Victron Inverter/Charger</h3>
-					<p>3000W Victron with Cerbo GX monitoring, installed 2024.</p>
-				</div>
-				<div class="upgrades__item">
-					<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
-					<h3>New Starlink Internet</h3>
-					<p>Reliable broadband connectivity throughout the Caribbean.</p>
+	{homepage?.data.upgrades && homepage.data.upgrades.length > 0 && (
+		<section class="upgrades">
+			<div class="wrap">
+				<p class="upgrades__eyebrow">{homepage.data.upgradesEyebrow}</p>
+				<h2 class="upgrades__heading">{homepage.data.upgradesHeading}</h2>
+				<div class="upgrades__grid">
+					{homepage.data.upgrades.map((item: { title: string; body: string }) => (
+						<div class="upgrades__item">
+							<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+							<h3>{item.title}</h3>
+							<p>{item.body}</p>
+						</div>
+					))}
 				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+	)}
 
 	<!-- KEY EQUIPMENT — what cruisers look for -->
 	{homepage?.data.highlightsBullets && (
 		<section class="highlights">
 			<div class="wrap">
 				<div class="highlights__header">
-					<p class="eyebrow">Cruise-Ready</p>
-					<h2>Key Equipment</h2>
+					<p class="eyebrow">{homepage.data.highlightsEyebrow ?? 'Cruise-Ready'}</p>
+					<h2>{homepage.data.highlightsHeading ?? 'Key Equipment'}</h2>
 				</div>
 				<div class="highlights__grid">
 					{homepage.data.highlightsBullets.map((bullet: string) => (
@@ -248,11 +229,11 @@ const description = homepage?.data.description ?? '';
 	<!-- CTA — dark -->
 	<section class="cta">
 		<div class="wrap cta__inner">
-			<h2>Buy Direct from<br />the Owner</h2>
-			<p>No brokers, no commissions, no middlemen. You deal directly with the people who know this boat inside and out. We will answer every question honestly and make the process straightforward.</p>
+			<h2>{homepage?.data.ctaHeadline ?? 'Buy Direct from the Owner'}</h2>
+			<p>{homepage?.data.ctaBody}</p>
 			<div class="cta__buttons">
-				<a href="/contact/" class="btn btn--primary">Get in Touch</a>
-				<a href="/transaction/" class="btn btn--outline cta__outline">How Does a FSBO Sale Work?</a>
+				<a href={homepage?.data.ctaPrimaryLink ?? '/contact/'} class="btn btn--primary">{homepage?.data.ctaPrimaryText ?? 'Get in Touch'}</a>
+				<a href={homepage?.data.ctaSecondaryLink ?? '/transaction/'} class="btn btn--outline cta__outline">{homepage?.data.ctaSecondaryText ?? 'How Does a FSBO Sale Work?'}</a>
 			</div>
 		</div>
 	</section>

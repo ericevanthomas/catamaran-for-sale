@@ -97,6 +97,32 @@ const pages = defineCollection({
 		photoStripImages: z.array(z.string()).optional(),
 		photoStripCTA: z.string().optional(),
 		photoStripCTALink: z.string().optional(),
+		// Editable homepage copy blocks
+		heroEyebrow: z.string().optional(),
+		heroHeadlineLines: z.array(z.string()).optional(),
+		heroCtaText: z.string().optional(),
+		heroCtaLink: z.string().optional(),
+		whyChoseEyebrow: z.string().optional(),
+		whyChoseHeading: z.string().optional(),
+		whyChoseBody: z.string().optional(),
+		upgradesEyebrow: z.string().optional(),
+		upgradesHeading: z.string().optional(),
+		upgrades: z
+			.array(
+				z.object({
+					title: z.string(),
+					body: z.string(),
+				}),
+			)
+			.optional(),
+		highlightsEyebrow: z.string().optional(),
+		highlightsHeading: z.string().optional(),
+		ctaHeadline: z.string().optional(),
+		ctaBody: z.string().optional(),
+		ctaPrimaryText: z.string().optional(),
+		ctaPrimaryLink: z.string().optional(),
+		ctaSecondaryText: z.string().optional(),
+		ctaSecondaryLink: z.string().optional(),
 	}),
 });
 

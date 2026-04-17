@@ -137,23 +137,59 @@ collections:
         name: homepage
         file: src/content/pages/homepage.md
         fields:
-          - { label: Title, name: title, widget: string }
-          - { label: Meta Description, name: description, widget: string }
-          - { label: Hero Headline, name: heroHeadline, widget: string }
-          - { label: Hero Subheadline, name: heroSubheadline, widget: text }
-          - { label: Hero Image, name: heroImage, widget: image }
-          - { label: Price Display, name: priceDisplay, widget: string }
-          - { label: Location Display, name: locationDisplay, widget: string }
-          - label: Highlights
+          - { label: Page Title (SEO), name: title, widget: string }
+          - { label: Meta Description (SEO), name: description, widget: string }
+          # --- Hero ---
+          - { label: "Hero — Eyebrow (small text above headline)", name: heroEyebrow, widget: string, required: false }
+          - { label: "Hero — Headline (full, for SEO)", name: heroHeadline, widget: string }
+          - label: "Hero — Headline Lines (visible, one per line)"
+            name: heroHeadlineLines
+            widget: list
+            required: false
+            field: { label: Line, name: line, widget: string }
+          - { label: "Hero — Subheadline", name: heroSubheadline, widget: text }
+          - { label: "Hero — Image", name: heroImage, widget: image }
+          - { label: "Hero — CTA Button Text", name: heroCtaText, widget: string, required: false }
+          - { label: "Hero — CTA Button Link", name: heroCtaLink, widget: string, required: false }
+          # --- At A Glance ---
+          - { label: "At A Glance — Price Display", name: priceDisplay, widget: string }
+          - { label: "At A Glance — Location Display", name: locationDisplay, widget: string }
+          # --- Why We Chose This Boat ---
+          - { label: "Why We Chose — Eyebrow", name: whyChoseEyebrow, widget: string, required: false }
+          - { label: "Why We Chose — Heading", name: whyChoseHeading, widget: string, required: false }
+          - { label: "Why We Chose — Body", name: whyChoseBody, widget: text, required: false }
+          # --- Recent Upgrades ---
+          - { label: "Upgrades — Eyebrow", name: upgradesEyebrow, widget: string, required: false }
+          - { label: "Upgrades — Heading", name: upgradesHeading, widget: string, required: false }
+          - label: "Upgrades — Items"
+            name: upgrades
+            widget: list
+            required: false
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Body, name: body, widget: text }
+          # --- Key Equipment ---
+          - { label: "Key Equipment — Eyebrow", name: highlightsEyebrow, widget: string, required: false }
+          - { label: "Key Equipment — Heading", name: highlightsHeading, widget: string, required: false }
+          - label: "Key Equipment — Bullets"
             name: highlightsBullets
             widget: list
             field: { label: Bullet, name: bullet, widget: string }
-          - label: Photo Strip Images
+          # --- Photo Strip ---
+          - label: "Photo Strip — Images"
             name: photoStripImages
             widget: list
+            required: false
             field: { label: Photo, name: photo, widget: image }
-          - { label: Photo Strip CTA Text, name: photoStripCTA, widget: string }
-          - { label: Photo Strip CTA Link, name: photoStripCTALink, widget: string }
+          - { label: "Photo Strip — CTA Text", name: photoStripCTA, widget: string, required: false }
+          - { label: "Photo Strip — CTA Link", name: photoStripCTALink, widget: string, required: false }
+          # --- Bottom CTA ---
+          - { label: "Bottom CTA — Headline", name: ctaHeadline, widget: string, required: false }
+          - { label: "Bottom CTA — Body", name: ctaBody, widget: text, required: false }
+          - { label: "Bottom CTA — Primary Button Text", name: ctaPrimaryText, widget: string, required: false }
+          - { label: "Bottom CTA — Primary Button Link", name: ctaPrimaryLink, widget: string, required: false }
+          - { label: "Bottom CTA — Secondary Button Text", name: ctaSecondaryText, widget: string, required: false }
+          - { label: "Bottom CTA — Secondary Button Link", name: ctaSecondaryLink, widget: string, required: false }
 
       - label: About Us
         name: about
