@@ -4,7 +4,7 @@ description: "New 40 gallon-per-hour Rainman unit, plumbed into the boat so you 
 photos:
   - /images/placeholders/watermaker.webp
 order: 9
-featured: true
+featured: false
 cardSize: "medium"
 category: "Systems & Equipment"
 ---
