@@ -1,5 +1,5 @@
 ---
-import { CONTACT_EMAIL, CONTACT_PHONE } from '../consts';
+import { CONTACT_PHONE } from '../consts';
 ---
 
 <footer id="site-footer">
@@ -13,9 +13,8 @@ import { CONTACT_EMAIL, CONTACT_PHONE } from '../consts';
 			<div class="footer-col">
 				<h4 class="footer-heading">Contact</h4>
 				<ul class="footer-links">
-					<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
-					{CONTACT_PHONE && <li><a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a></li>}
 					<li><a href="/contact/">Send a Message</a></li>
+					{CONTACT_PHONE && <li><a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a></li>}
 				</ul>
 			</div>
 

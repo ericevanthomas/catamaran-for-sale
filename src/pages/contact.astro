@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { getCollection, render } from 'astro:content';
-import { CONTACT_EMAIL, CONTACT_PHONE } from '../consts';
+import { CONTACT_PHONE } from '../consts';
 
 const allPages = await getCollection('pages');
 const page = allPages.find((p) => p.id === 'contact');
@@ -31,8 +31,8 @@ const { Content } = page ? await render(page) : { Content: null };
 					<ContactForm />
 				</div>
 				<div class="contact-info-col">
-					<h3>Direct Contact</h3>
-					<p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+					<h3>Owner Direct</h3>
+					<p>No broker. No commission. You'll reach us directly through this form — usually within a day.</p>
 					{CONTACT_PHONE && <p><a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a></p>}
 				</div>
 			</div>
