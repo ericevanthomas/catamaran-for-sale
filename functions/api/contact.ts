@@ -1,11 +1,13 @@
 // Cloudflare Pages Function — POST /api/contact
-// Receives the contact form, validates, stores in KV, and forwards via MailChannels.
+// Receives the contact form, validates, stores in KV, and forwards via Resend.
+// Env vars required: RESEND_API_KEY, NOTIFY_EMAIL, FROM_EMAIL. Optional: CONTACT_SUBMISSIONS (KV).
 
 interface Env {
 	CONTACT_SUBMISSIONS?: KVNamespace;
+	RESEND_API_KEY: string;
 	NOTIFY_EMAIL: string;
 	FROM_EMAIL: string;
-	DOMAIN: string;
+	DOMAIN?: string;
 }
 
 interface ContactBody {
@@ -68,18 +70,20 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 	const id = crypto.randomUUID();
 	const record = { id, submittedAt, name, email, phone, message };
 
-	// Best-effort KV archive (set up the KV binding once; until then this no-ops)
+	// Best-effort KV archive — never blocks the email
 	if (env.CONTACT_SUBMISSIONS) {
 		try {
 			await env.CONTACT_SUBMISSIONS.put(`submission:${submittedAt}:${id}`, JSON.stringify(record));
 		} catch (e) {
-			// KV failure shouldn't block the email send
 			console.error('KV write failed', e);
 		}
 	}
 
-	// Send the notification via MailChannels. Requires SPF + DKIM + _mailchannels
-	// TXT records on the sending domain; those are configured in CF DNS (see README).
+	if (!env.RESEND_API_KEY || !env.NOTIFY_EMAIL || !env.FROM_EMAIL) {
+		console.error('Missing Resend env vars');
+		return json({ ok: false, error: 'Email delivery is not configured yet.' }, 500);
+	}
+
 	const subject = `New inquiry from ${name} — Catamaran For Sale`;
 	const textBody =
 		`New inquiry submitted ${submittedAt}\n\n` +
@@ -95,26 +99,35 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 		`<p><strong>Message:</strong></p>` +
 		`<p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`;
 
-	const mcResp = await fetch('https://api.mailchannels.net/tx/v1/send', {
-		method: 'POST',
-		headers: { 'content-type': 'application/json' },
-		body: JSON.stringify({
-			personalizations: [{ to: [{ email: env.NOTIFY_EMAIL }] }],
-			from: { email: env.FROM_EMAIL, name: 'Tropicalia Inquiries' },
-			reply_to: { email, name },
-			subject,
-			content: [
-				{ type: 'text/plain', value: textBody },
-				{ type: 'text/html', value: htmlBody },
-			],
-		}),
-	});
+	try {
+		const resp = await fetch('https://api.resend.com/emails', {
+			method: 'POST',
+			headers: {
+				'authorization': `Bearer ${env.RESEND_API_KEY}`,
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify({
+				from: `Tropicalia Inquiries <${env.FROM_EMAIL}>`,
+				to: [env.NOTIFY_EMAIL],
+				reply_to: email,
+				subject,
+				text: textBody,
+				html: htmlBody,
+			}),
+		});
 
-	if (!mcResp.ok) {
-		const err = await mcResp.text();
-		console.error('MailChannels send failed', mcResp.status, err);
+		if (!resp.ok) {
+			const err = await resp.text().catch(() => '');
+			console.error('Resend send failed', resp.status, err);
+			return json(
+				{ ok: false, error: 'We could not deliver your message. Please try again shortly.' },
+				502,
+			);
+		}
+	} catch (e) {
+		console.error('Resend fetch threw', e);
 		return json(
-			{ ok: false, error: 'We could not deliver your message. Please try again or check back later.' },
+			{ ok: false, error: 'We could not deliver your message. Please try again shortly.' },
 			502,
 		);
 	}
@@ -122,6 +135,6 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 	return json({ ok: true });
 };
 
-// Reject anything other than POST
+// Reject anything other than POST with a JSON 405
 export const onRequest: PagesFunction = () =>
 	json({ ok: false, error: 'Method not allowed' }, 405);
