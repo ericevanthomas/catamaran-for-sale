@@ -1,0 +1,13 @@
+{
+	"name": "Tropicalia — Voyage 500 Catamaran For Sale",
+	"short_name": "Tropicalia",
+	"description": "2010 Voyage 500 sailing catamaran for sale by owner.",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#d62128",
+	"icons": [
+		{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+		{ "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+	]
+}
