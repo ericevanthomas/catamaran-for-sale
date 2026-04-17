@@ -1,11 +1,11 @@
 ---
-title: "About Us"
-description: "Meet the family behind the Voyage 500. Our cruising history, captain credentials, and why we're selling."
+title: About Us
+description: Meet the family behind the Voyage 500. Our cruising history, captain credentials, and why we're selling.
 ---
 
 ## Our Story
 
-We are a family of four who spent several years cruising the Caribbean aboard Tropicalia, our Voyage 500 catamaran. This boat has been our home, our classroom, and the backdrop to some of the best years of our lives. We homeschooled our kids aboard, explored dozens of islands, and learned every system on this vessel by living with them daily.
+We are a family of four with two young children. We are just wrapping up our sabbatical cruise to the Caribbean aboard Tropicalia, our Voyage 500 catamaran. This is the second Caribbean cruise. This boat has been our home, our classroom, and the backdrop to some of the best years of our lives. We homeschooled our kids aboard, explored dozens of islands, and learned every system on this vessel by living with them daily.
 
 ## Why a Voyage 500
 
