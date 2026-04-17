@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+const allPages = await getCollection('pages');
+const page = allPages.find((p) => p.id === 'transaction');
+const { Content } = page ? await render(page) : { Content: null };
+---
+
+<BaseLayout
+	title={page?.data.title ?? 'The Transaction — Voyage 500'}
+	description={page?.data.description ?? 'How the purchase process works.'}
+>
+	<section class="page-header">
+		<div class="wrap">
+			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
+			<h1>{page?.data.title ?? 'How the Sale Works'}</h1>
+			<p class="page-header__sub">A transparent, straightforward buying process.</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap">
+			<div class="prose">
+				{Content && <Content />}
+			</div>
+		</div>
+	</section>
+
+	<section class="cta">
+		<div class="wrap cta__inner">
+			<h2>Ready to get started?</h2>
+			<p>Reach out anytime. We are happy to answer questions, share additional photos, or set up a video walkthrough.</p>
+			<a href="/contact/" class="btn btn--primary">Contact Us</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.page-header {
+		padding-top: 120px;
+		padding-bottom: var(--gap-l);
+		background: var(--color-bg-warm);
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+
+	.page-header__sub {
+		color: var(--color-text-muted);
+		font-size: var(--text-lg);
+	}
+
+	.wrap {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	.section {
+		padding: var(--space-3xl) 0;
+	}
+
+	/* CTA */
+	.cta {
+		background: var(--color-bg-dark);
+		padding: var(--size-12) 0;
+	}
+
+	.cta__inner {
+		text-align: center;
+	}
+
+	.cta__inner h2 {
+		color: #fff;
+		font-weight: 600;
+		margin-bottom: var(--gap-s);
+	}
+
+	.cta__inner p {
+		color: rgba(255,255,255,0.4);
+		font-size: var(--text-md);
+		max-width: 45ch;
+		margin: 0 auto var(--gap-m);
+	}
+
+	@media (max-width: 600px) {
+		.wrap {
+			padding-left: var(--gap-m);
+			padding-right: var(--gap-m);
+		}
+		.page-header {
+			padding-top: 80px;
+		}
+	}
+</style>

@@ -1,0 +1,70 @@
+---
+interface FAQItem {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	items: FAQItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-accordion">
+	{items.map((item) => (
+		<details class="faq-item">
+			<summary class="faq-question">{item.question}</summary>
+			<div class="faq-answer">
+				<p>{item.answer}</p>
+			</div>
+		</details>
+	))}
+</div>
+
+<style>
+	.faq-accordion {
+		max-width: 70ch;
+	}
+
+	.faq-item {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.faq-question {
+		font-family: var(--font-heading);
+		font-size: var(--size-lg);
+		font-weight: 600;
+		color: var(--color-heading);
+		padding: var(--space-md) 0;
+		cursor: pointer;
+		list-style: none;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.faq-question::after {
+		content: '+';
+		font-size: var(--size-xl);
+		font-weight: 300;
+		color: var(--color-text-muted);
+		transition: transform 0.2s ease;
+		flex-shrink: 0;
+		margin-left: var(--space-sm);
+	}
+
+	.faq-item[open] .faq-question::after {
+		content: '−';
+	}
+
+	.faq-answer {
+		padding-bottom: var(--space-md);
+		color: var(--color-text-muted);
+		line-height: 1.7;
+	}
+</style>

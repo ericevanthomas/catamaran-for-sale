@@ -1,0 +1,180 @@
+backend:
+  name: github
+  repo: ericevanthomas/catamaran-for-sale
+  branch: main
+  base_url: https://sveltia-cms-auth.emw-auth.workers.dev
+
+media_folder: public/images
+public_folder: /images
+
+site_url: https://catamaran-for-sale.com
+display_url: https://catamaran-for-sale.com
+
+collections:
+  # Features — the core content collection (feature cards)
+  - name: features
+    label: Feature Cards
+    label_singular: Feature Card
+    folder: src/content/features
+    create: true
+    slug: "{{slug}}"
+    sortable_fields:
+      fields: [order, title]
+      default:
+        field: order
+        direction: ascending
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: markdown }
+      - label: Photos
+        name: photos
+        widget: list
+        field: { label: Photo, name: photo, widget: image }
+      - { label: Video URL, name: video, widget: string, required: false,
+          hint: "Bunny Stream embed URL" }
+      - { label: Display Order, name: order, widget: number, value_type: int }
+      - { label: "Featured (What We Love)", name: featured, widget: boolean, default: false }
+      - label: Category
+        name: category
+        widget: select
+        required: false
+        options:
+          - Sailing Performance
+          - Living Spaces
+          - Systems & Equipment
+          - Safety
+          - Electrical
+          - Plumbing
+          - Navigation
+          - Rigging & Sails
+          - Dinghy & Tender
+          - Recent Upgrades
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Body, name: body, widget: markdown }
+
+  # FAQs
+  - name: faq
+    label: FAQs
+    label_singular: FAQ
+    folder: src/content/faq
+    create: true
+    slug: "{{slug}}"
+    sortable_fields:
+      fields: [order, question]
+      default:
+        field: order
+        direction: ascending
+    fields:
+      - { label: Question, name: question, widget: string }
+      - { label: Answer, name: answer, widget: text }
+      - { label: Display Order, name: order, widget: number, value_type: int }
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+        field: { label: Tag, name: tag, widget: string }
+
+  # Gallery
+  - name: gallery
+    label: Gallery
+    label_singular: Gallery Photo
+    folder: src/content/gallery
+    create: true
+    slug: "{{slug}}"
+    sortable_fields:
+      fields: [order, caption]
+      default:
+        field: order
+        direction: ascending
+    fields:
+      - { label: Image, name: image, widget: image }
+      - { label: Alt Text, name: alt, widget: string }
+      - { label: Caption, name: caption, widget: string, required: false }
+      - label: Category
+        name: category
+        widget: select
+        required: false
+        options: [Exterior, Interior, Sailing, Aerials, Systems, Lifestyle]
+      - { label: Display Order, name: order, widget: number, value_type: int }
+
+  # Specifications
+  - name: specs
+    label: Specifications
+    label_singular: Spec
+    folder: src/content/specs
+    create: true
+    slug: "{{slug}}"
+    sortable_fields:
+      fields: [order, label]
+      default:
+        field: order
+        direction: ascending
+    fields:
+      - { label: Label, name: label, widget: string }
+      - { label: Value, name: value, widget: string }
+      - label: Group
+        name: group
+        widget: select
+        options:
+          - Dimensions
+          - Performance
+          - Engines & Propulsion
+          - Tankage
+          - Accommodations
+          - Construction
+      - { label: Display Order, name: order, widget: number, value_type: int }
+
+  # Pages (file-based)
+  - name: pages
+    label: Pages
+    label_singular: Page
+    files:
+      - label: Homepage
+        name: homepage
+        file: src/content/pages/homepage.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Meta Description, name: description, widget: string }
+          - { label: Hero Headline, name: heroHeadline, widget: string }
+          - { label: Hero Subheadline, name: heroSubheadline, widget: text }
+          - { label: Hero Image, name: heroImage, widget: image }
+          - { label: Price Display, name: priceDisplay, widget: string }
+          - { label: Location Display, name: locationDisplay, widget: string }
+          - label: Highlights
+            name: highlightsBullets
+            widget: list
+            field: { label: Bullet, name: bullet, widget: string }
+          - label: Photo Strip Images
+            name: photoStripImages
+            widget: list
+            field: { label: Photo, name: photo, widget: image }
+          - { label: Photo Strip CTA Text, name: photoStripCTA, widget: string }
+          - { label: Photo Strip CTA Link, name: photoStripCTALink, widget: string }
+
+      - label: About Us
+        name: about
+        file: src/content/pages/about.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Meta Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - label: The Transaction
+        name: transaction
+        file: src/content/pages/transaction.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Meta Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }
+
+      - label: Contact
+        name: contact
+        file: src/content/pages/contact.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Meta Description, name: description, widget: string }
+          - { label: Body, name: body, widget: markdown }

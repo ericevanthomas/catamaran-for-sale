@@ -1,0 +1,80 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	photos?: string[];
+	video?: string;
+	featured?: boolean;
+}
+
+const { title, description, photos = [], video, featured = false } = Astro.props;
+const heroPhoto = photos[0];
+---
+
+<article class:list={['feature-card', { 'feature-card--featured': featured, 'feature-card--no-image': !heroPhoto }]}>
+	{heroPhoto && (
+		<div class="feature-card__image">
+			<img src={heroPhoto} alt={title} loading="lazy" />
+		</div>
+	)}
+	<div class="feature-card__content">
+		{featured && <span class="eyebrow">What We Love</span>}
+		<h3 class="feature-card__title">{title}</h3>
+		<p class="feature-card__description">{description}</p>
+	</div>
+</article>
+
+<style>
+	.feature-card {
+		display: grid;
+		grid-template-columns: 1.1fr 1fr;
+		gap: var(--space-2xl);
+		align-items: center;
+	}
+
+	.feature-card:nth-child(even) {
+		direction: rtl;
+	}
+
+	.feature-card:nth-child(even) > * {
+		direction: ltr;
+	}
+
+	.feature-card--no-image {
+		grid-template-columns: 1fr;
+		max-width: 600px;
+	}
+
+	.feature-card__image img {
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+	}
+
+	.feature-card__content {
+		padding: var(--space-lg) 0;
+	}
+
+	.feature-card__title {
+		font-size: var(--size-2xl);
+		margin-bottom: var(--space-sm);
+		margin-top: var(--space-xs);
+	}
+
+	.feature-card__description {
+		color: var(--color-text-muted);
+		line-height: 1.8;
+		font-size: var(--size-sm);
+	}
+
+	@media (max-width: 768px) {
+		.feature-card {
+			grid-template-columns: 1fr;
+			gap: var(--space-md);
+		}
+
+		.feature-card:nth-child(even) {
+			direction: ltr;
+		}
+	}
+</style>

@@ -1,0 +1,210 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allFaqs = await getCollection('faq');
+const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
+
+// Group by category
+const categoryOrder = ['About the Boat', 'Condition & History', 'Systems & Equipment', 'The Sale', 'Viewing & Location', 'Ownership & Documentation'];
+const grouped = faqs.reduce((acc, faq) => {
+	const cat = faq.data.category || 'General';
+	if (!acc[cat]) acc[cat] = [];
+	acc[cat].push(faq.data);
+	return acc;
+}, {} as Record<string, Array<{ question: string; answer: string }>>);
+
+const sortedCategories = Object.entries(grouped).sort(([a], [b]) => {
+	const ai = categoryOrder.indexOf(a);
+	const bi = categoryOrder.indexOf(b);
+	return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+});
+
+// FAQPage schema for SEO
+const allItems = faqs.map(f => f.data);
+const faqSchema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	"mainEntity": allItems.map((f) => ({
+		"@type": "Question",
+		"name": f.question,
+		"acceptedAnswer": {
+			"@type": "Answer",
+			"text": f.answer,
+		},
+	})),
+};
+---
+
+<BaseLayout
+	title="FAQ — Voyage 500 Catamaran For Sale"
+	description="Frequently asked questions about the 2010 Voyage 500 catamaran S/V Tropicalia. Condition, pricing, viewing, and purchase process."
+	schema={faqSchema}
+>
+	<section class="page-header">
+		<div class="wrap">
+			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
+			<h1>Frequently Asked Questions</h1>
+			<p class="page-header__sub">Everything you need to know about the boat, the sale, and the process.</p>
+		</div>
+	</section>
+
+	<section class="faq-section">
+		<div class="wrap">
+			{sortedCategories.map(([category, items]) => (
+				<div class="faq-group">
+					<h2 class="faq-group__title">{category}</h2>
+					{items.map((item) => (
+						<details class="faq-item">
+							<summary class="faq-item__q">
+								{item.question}
+								<span class="faq-item__icon">+</span>
+							</summary>
+							<div class="faq-item__a">
+								<p>{item.answer}</p>
+							</div>
+						</details>
+					))}
+				</div>
+			))}
+		</div>
+	</section>
+
+	<section class="faq-cta">
+		<div class="wrap faq-cta__inner">
+			<h2>Still have questions?</h2>
+			<p>We are happy to answer anything about the boat, the sale process, or arrange a video call to walk through the details.</p>
+			<a href="/contact/" class="btn btn--primary">Contact Us</a>
+		</div>
+	</section>
+
+</BaseLayout>
+
+<style>
+	.wrap {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	.page-header {
+		padding-top: 120px;
+		padding-bottom: var(--gap-l);
+		background: var(--color-bg-warm);
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+
+	.page-header__sub {
+		font-size: var(--text-md);
+		color: var(--color-text-muted);
+		max-width: 50ch;
+		margin: 0;
+	}
+
+	/* FAQ sections */
+	.faq-section {
+		padding: var(--gap-l) 0 var(--size-12);
+	}
+
+	.faq-group {
+		margin-bottom: var(--gap-l);
+	}
+
+	.faq-group:last-child {
+		margin-bottom: 0;
+	}
+
+	.faq-group__title {
+		font-size: var(--text-xl);
+		font-weight: 600;
+		color: var(--color-heading);
+		padding-bottom: var(--gap-s);
+		border-bottom: 2px solid var(--color-accent);
+		margin-bottom: 0;
+	}
+
+	/* Accordion items */
+	.faq-item {
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.faq-item__q {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: var(--size-4) 0;
+		cursor: pointer;
+		font-family: var(--font-body);
+		font-size: var(--text-base);
+		font-weight: 600;
+		color: var(--color-heading);
+		list-style: none;
+		transition: color 0.2s;
+	}
+
+	.faq-item__q::-webkit-details-marker { display: none; }
+
+	.faq-item__q:hover {
+		color: var(--color-accent);
+	}
+
+	.faq-item__icon {
+		font-size: var(--text-xl);
+		font-weight: 300;
+		color: var(--color-text-muted);
+		transition: transform 0.2s;
+		flex-shrink: 0;
+		margin-left: var(--gap-m);
+	}
+
+	.faq-item[open] .faq-item__icon {
+		transform: rotate(45deg);
+	}
+
+	.faq-item__a {
+		padding: 0 0 var(--size-4);
+	}
+
+	.faq-item__a p {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.7;
+		max-width: 65ch;
+		margin: 0;
+	}
+
+	/* CTA */
+	.faq-cta {
+		background: var(--color-bg-dark);
+		padding: var(--size-12) 0;
+	}
+
+	.faq-cta__inner {
+		text-align: center;
+	}
+
+	.faq-cta__inner h2 {
+		color: #fff;
+		font-weight: 600;
+		margin-bottom: var(--gap-s);
+	}
+
+	.faq-cta__inner p {
+		color: rgba(255,255,255,0.4);
+		font-size: var(--text-md);
+		max-width: 45ch;
+		margin: 0 auto var(--gap-m);
+	}
+
+	@media (max-width: 600px) {
+		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
+		.page-header { padding-top: 80px; }
+	}
+</style>

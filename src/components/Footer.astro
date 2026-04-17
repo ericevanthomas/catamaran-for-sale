@@ -1,0 +1,140 @@
+---
+import { CONTACT_EMAIL, CONTACT_PHONE } from '../consts';
+---
+
+<footer id="site-footer">
+	<div class="footer-inner">
+		<div class="footer-grid">
+			<div class="footer-col footer-col--brand">
+				<span class="footer-logo">TROPICALIA</span>
+				<p class="footer-tagline">Voyage 500 Catamaran<br />For Sale by Owner</p>
+			</div>
+
+			<div class="footer-col">
+				<h4 class="footer-heading">Contact</h4>
+				<ul class="footer-links">
+					<li><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></li>
+					{CONTACT_PHONE && <li><a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a></li>}
+					<li><a href="/contact/">Send a Message</a></li>
+				</ul>
+			</div>
+
+			<div class="footer-col">
+				<h4 class="footer-heading">Resources</h4>
+				<ul class="footer-links">
+					<li><a href="/gallery/">Photo Gallery</a></li>
+					<li><a href="/specs/">Specifications</a></li>
+					<li><a href="/transaction/">How the Sale Works</a></li>
+					<li><a href="https://www.voyagecatamarans.com/" target="_blank" rel="noopener">Voyage Catamarans</a></li>
+					<li><a href="https://sailingtropicalia.com/" target="_blank" rel="noopener">Sailing Tropicalia Blog</a></li>
+					<li><a href="/contact/">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer-disclaimer">
+			<p>As the owners, we have made a good-faith effort to provide accurate and honest information about this vessel. All specifications and descriptions are believed to be correct but are not guaranteed. Buyers are encouraged to conduct their own independent survey and inspection.</p>
+		</div>
+
+		<div class="footer-bottom">
+			<p>&copy; {new Date().getFullYear()} Tropicalia. All rights reserved.</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	#site-footer {
+		background-color: var(--color-bg-dark);
+		color: rgba(255, 255, 255, 0.55);
+		padding: var(--space-3xl) 0 var(--space-lg);
+	}
+
+	.footer-inner {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	.footer-grid {
+		display: grid;
+		grid-template-columns: 1.5fr 1fr 1fr;
+		gap: var(--space-2xl);
+		margin-bottom: var(--space-2xl);
+	}
+
+	.footer-logo {
+		font-family: var(--font-display);
+		font-size: 1.4rem;
+		font-weight: 400;
+		letter-spacing: 5px;
+		color: #ffffff;
+		display: block;
+		margin-bottom: var(--space-xs);
+	}
+
+	.footer-tagline {
+		font-size: var(--size-sm);
+		line-height: 1.6;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.footer-heading {
+		font-family: var(--font-body);
+		font-size: var(--size-xs);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: var(--space-sm);
+	}
+
+	.footer-links {
+		list-style: none;
+		padding: 0;
+	}
+
+	.footer-links li {
+		margin-bottom: 8px;
+	}
+
+	.footer-links a {
+		color: rgba(255, 255, 255, 0.5);
+		font-size: var(--size-sm);
+		transition: color var(--transition);
+	}
+
+	.footer-links a:hover {
+		color: #ffffff;
+	}
+
+	.footer-disclaimer {
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		padding-top: var(--space-lg);
+		margin-bottom: var(--space-lg);
+	}
+
+	.footer-disclaimer p {
+		font-size: var(--size-xs);
+		line-height: 1.7;
+		max-width: 70ch;
+		color: rgba(255, 255, 255, 0.3);
+	}
+
+	.footer-bottom {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: var(--space-sm);
+	}
+
+	.footer-bottom p {
+		font-size: var(--size-xs);
+		color: rgba(255, 255, 255, 0.25);
+	}
+
+	@media (max-width: 768px) {
+		.footer-grid {
+			grid-template-columns: 1fr;
+			gap: var(--space-xl);
+		}
+	}
+</style>

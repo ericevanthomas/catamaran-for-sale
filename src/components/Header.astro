@@ -1,0 +1,246 @@
+---
+const pathname = Astro.url.pathname;
+
+const navItems = [
+	{ label: 'Home', href: '/' },
+	{ label: 'Features', href: '/features/' },
+	{ label: 'Specs', href: '/specs/' },
+	{ label: 'Gallery', href: '/gallery/' },
+	{ label: 'About', href: '/about/' },
+	{ label: 'FAQ', href: '/faq/' },
+];
+---
+
+<header id="main-header" class:list={[{ 'header--hero': pathname === '/' }]}>
+	<div class="header__inner">
+		<nav class="header__nav">
+			{navItems.map(item => (
+				<a
+					href={item.href}
+					class:list={['header__link', { 'header__link--active': pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) }]}
+				>
+					{item.label}
+				</a>
+			))}
+			<a href="/contact/" class="header__cta">Inquire</a>
+		</nav>
+		<button class="header__toggle" aria-label="Toggle navigation" aria-expanded="false">
+			<span></span>
+			<span></span>
+		</button>
+	</div>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobile-menu">
+	<nav>
+		{navItems.map(item => (
+			<a href={item.href}>{item.label}</a>
+		))}
+		<a href="/contact/" class="mobile-menu__cta">Inquire</a>
+	</nav>
+</div>
+
+<style>
+	#main-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+		transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease);
+	}
+
+	/* Scrolled state — added via JS */
+	#main-header.scrolled {
+		background: rgba(250, 248, 245, 0.95);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+	}
+
+	.header__inner {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 14px var(--gap-l);
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	/* Nav links */
+	.header__nav {
+		display: flex;
+		align-items: center;
+		gap: var(--gap-m);
+	}
+
+	/* Default: dark text for interior pages */
+	.header__link {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-text-muted);
+		text-decoration: none;
+		transition: color 0.2s;
+	}
+
+	.header__link:hover,
+	.header__link--active {
+		color: var(--color-heading);
+	}
+
+	/* CTA — outline */
+	.header__cta {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-heading);
+		background: none;
+		border: 1.5px solid var(--color-border);
+		padding: 8px 20px;
+		text-decoration: none;
+		margin-left: var(--gap-s);
+		transition: all 0.2s;
+	}
+
+	.header__cta:hover {
+		background: var(--color-heading);
+		color: #fff;
+		border-color: var(--color-heading);
+	}
+
+	/* Homepage hero: white text before scroll */
+	.header--hero:not(.scrolled) .header__link {
+		color: rgba(255,255,255,0.7);
+	}
+
+	.header--hero:not(.scrolled) .header__link:hover,
+	.header--hero:not(.scrolled) .header__link--active {
+		color: #fff;
+	}
+
+	.header--hero:not(.scrolled) .header__cta {
+		color: #fff;
+		border-color: rgba(255,255,255,0.35);
+	}
+
+	.header--hero:not(.scrolled) .header__cta:hover {
+		background: rgba(255,255,255,0.15);
+		border-color: rgba(255,255,255,0.6);
+	}
+
+	/* Scrolled on any page: always dark */
+	.scrolled .header__link {
+		color: var(--color-text-muted);
+	}
+
+	.scrolled .header__link:hover,
+	.scrolled .header__link--active {
+		color: var(--color-heading);
+	}
+
+	.scrolled .header__cta {
+		color: var(--color-heading);
+		border-color: var(--color-border);
+	}
+
+	/* Mobile toggle */
+	.header__toggle {
+		display: none;
+		flex-direction: column;
+		gap: 5px;
+		padding: 8px;
+		background: none;
+		border: none;
+		cursor: pointer;
+	}
+
+	.header__toggle span {
+		display: block;
+		width: 20px;
+		height: 2px;
+		background: var(--color-heading);
+		transition: background 0.2s;
+	}
+
+	.header--hero:not(.scrolled) .header__toggle span {
+		background: #fff;
+	}
+
+	/* Mobile menu */
+	#mobile-menu {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 99;
+		background: rgba(255,255,255,0.98);
+		backdrop-filter: blur(16px);
+		padding: var(--size-12) var(--gap-l) var(--gap-l);
+	}
+
+	#mobile-menu.open {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	#mobile-menu nav {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--gap-m);
+	}
+
+	#mobile-menu a {
+		font-family: var(--font-display);
+		font-size: var(--text-3xl);
+		font-weight: 500;
+		color: var(--color-heading);
+		text-decoration: none;
+	}
+
+	.mobile-menu__cta {
+		color: var(--color-accent) !important;
+		font-family: var(--font-body) !important;
+		font-size: var(--text-base) !important;
+		font-weight: 600 !important;
+		margin-top: var(--gap-m);
+	}
+
+	@media (max-width: 900px) {
+		.header__nav {
+			display: none;
+		}
+
+		.header__toggle {
+			display: flex;
+		}
+	}
+</style>
+
+<script>
+	const header = document.getElementById('main-header');
+	const toggle = document.querySelector('.header__toggle');
+	const menu = document.getElementById('mobile-menu');
+
+	// Scroll detection
+	function checkScroll() {
+		if (window.scrollY > 50) {
+			header?.classList.add('scrolled');
+		} else {
+			header?.classList.remove('scrolled');
+		}
+	}
+	window.addEventListener('scroll', checkScroll, { passive: true });
+	checkScroll();
+
+	// Mobile menu
+	toggle?.addEventListener('click', () => {
+		const isOpen = menu?.classList.toggle('open');
+		toggle.setAttribute('aria-expanded', String(isOpen));
+	});
+</script>

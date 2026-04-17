@@ -1,0 +1,598 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allSpecs = await getCollection('specs');
+
+const groupOrder = ['Dimensions', 'Engines & Propulsion', 'Tankage', 'Accommodations', 'Performance', 'Construction'];
+
+const specsByGroup = allSpecs
+	.sort((a, b) => a.data.order - b.data.order)
+	.reduce((groups, spec) => {
+		const group = spec.data.group;
+		if (!groups[group]) groups[group] = [];
+		groups[group].push(spec.data);
+		return groups;
+	}, {} as Record<string, Array<{ label: string; value: string }>>);
+
+const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
+	const ai = groupOrder.indexOf(a);
+	const bi = groupOrder.indexOf(b);
+	return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+});
+---
+
+<BaseLayout title="Specifications & Equipment — Voyage 500 For Sale" description="Complete specifications and equipment inventory for the 2010 Voyage 500 catamaran S/V Tropicalia. Every system, every item, documented.">
+
+	<section class="page-header">
+		<div class="wrap">
+			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
+			<h1>Specifications &amp; Equipment</h1>
+			<p class="page-header__sub">Complete inventory of every system and item aboard. Updated with current owner upgrades where noted.</p>
+			<a href="/specs-sheet.pdf" class="btn btn--outline specs-download" download>
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+				Download Specifications Sheet
+			</a>
+		</div>
+	</section>
+
+	<!-- Quick-jump nav -->
+	<nav class="s-jump">
+		<div class="s-jump__inner">
+			<a href="#specs">Specs</a>
+			<a href="#interior">Interior</a>
+			<a href="#master">Master Cabin</a>
+			<a href="#guest">Guest Cabins</a>
+			<a href="#galley">Galley</a>
+			<a href="#deck">Deck</a>
+			<a href="#electronics">Electronics</a>
+			<a href="#ac-electrical">AC Electrical</a>
+			<a href="#dc-electrical">DC Electrical</a>
+			<a href="#plumbing">Plumbing</a>
+			<a href="#safety">Safety</a>
+		</div>
+	</nav>
+
+	<!-- SPECS TABLES -->
+	<section class="s-specs" id="specs">
+		<div class="wrap s-specs__inner">
+			{sortedGroups.map(([group, specs]) => (
+				<div class="s-specs__group">
+					<h2 class="s-specs__group-title">{group}</h2>
+					<table class="s-specs__table">
+						<tbody>
+							{specs.map((spec) => (
+								<tr>
+									<td class="s-specs__label">{spec.label}</td>
+									<td class="s-specs__value">{spec.value}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			))}
+		</div>
+	</section>
+
+	<!-- EQUIPMENT INVENTORY -->
+	<section class="s-equip">
+		<div class="wrap s-equip__inner">
+
+			<!-- INTERIOR / SALON -->
+			<div class="s-equip__section" id="interior">
+				<h2>Interior / Salon</h2>
+				<p class="s-equip__note">3-Cabin Owner's Version. 6'3" minimum headroom throughout. Custom upholstery and interior finishings.</p>
+				<ul>
+					<li>Mabru Air Conditioner 12,000 BTU plumbed to Master Cabin and Salon — High Efficiency 12V DC, Soft Start (May 2022)</li>
+					<li>Mabru Air Conditioner 17,000 BTU 120V plumbed to Port hull and Salon (June 2024) <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Samsung Automatic Washing Machine</li>
+					<li>Samsung Smart TV with 12v Boost Antenna</li>
+					<li>BOSS 12v Radio / Sound System with CD, USB and Bluetooth</li>
+					<li>Amplifier (Feb 2023)</li>
+					<li>2 x BOSS 6x9 Saloon Speakers</li>
+					<li>2 x Skar Speakers Facing Stern (Feb 2023)</li>
+					<li>2 x JBL Wake Tower Speakers added to Mast Spreader (Oct 2023)</li>
+					<li>2 x Skar 6" Cockpit Speakers in Travelers Arch (Feb 2023)</li>
+					<li>Re-upholstered couches and bar stools throughout vessel</li>
+					<li>10 x Seating Blue Sunbrella Upholstered Settee (Feb 2022)</li>
+					<li>4 x Movable Blue Sunbrella Upholstered Bar Stools (Feb 2022)</li>
+					<li>3 x Movable Blue Sunbrella Upholstered Lower Stools (Feb 2022)</li>
+					<li>Coffee Table with Corian Worktop</li>
+					<li>Bar top with stool seating for 4</li>
+					<li>Corian Work Surfaces</li>
+					<li>Storage Underneath Settee Seating</li>
+					<li>4 x Storage cabinets with Sliding Door — Smoked Perspex</li>
+					<li>NAV / Chart Table with storage underneath</li>
+					<li>A/C Breaker and Indicator Panels at NAV Station</li>
+					<li>Steering System, 12V and AC Component Access Panels Below NAV station</li>
+					<li>Escape hatch located in Main Center Forward Salon</li>
+					<li>Overhead and Bulkhead Mounted LED Spot Lights (White or Red)</li>
+					<li>New Salon Lighting/Fixtures</li>
+				</ul>
+			</div>
+
+			<!-- MASTER CABIN -->
+			<div class="s-equip__section" id="master">
+				<h2>Master Cabin (Starboard Hull)</h2>
+				<ul>
+					<li>Queen Bed with New Serta Mattress (2022) — enough space for a King mattress if desired <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Hanging and Storage Cupboards with Shelves</li>
+					<li>Bedside Bookshelf / Storage Locker</li>
+					<li>Full Length Dressing Mirror</li>
+					<li>LED Reading and Overhead Lights</li>
+					<li>2 x Circulation Fans</li>
+					<li>2 x Overhead Opening Hatches</li>
+					<li>Stainless Steel Clothes and Towel Rail</li>
+					<li>Remote VHF command Microphone / Speaker</li>
+					<li>Remote Generator Start / Stop</li>
+					<li>Large Head with spacious separate shower stall</li>
+					<li>Composting Toilet</li>
+				</ul>
+			</div>
+
+			<!-- GUEST CABINS -->
+			<div class="s-equip__section" id="guest">
+				<h2>Guest Cabins (Port Hull)</h2>
+				<ul>
+					<li>2 x Queen size Custom Beds with Split mattresses</li>
+					<li>2 x Ensuite Heads with Jabsco Quiet Flush Electric Toilets</li>
+					<li>2 x Pressurized Hot and Cold fresh water Showers and Sinks</li>
+					<li>2 x Integrated hand basins with Extendable Mixer</li>
+					<li>2 x Vanity Cabinet with Mirror and Stainless Steel Towel Rails</li>
+					<li>2 x Toiletries Storage Cupboards</li>
+					<li>2 x Dressing Mirrors</li>
+					<li>Hanging and Storage Cupboards with Shelves</li>
+					<li>Storage/Book Shelves</li>
+					<li>LED Overhead Lights</li>
+					<li>Red LED night lights in Heads</li>
+					<li>LED Bulkhead Mounted Reading Lights</li>
+					<li>12v Ventilation Fans</li>
+					<li>Large Overhead Opening Hatches with Nicro Solar Ventilation Fans</li>
+				</ul>
+			</div>
+
+			<!-- GALLEY -->
+			<div class="s-equip__section" id="galley">
+				<h2>Galley</h2>
+				<ul>
+					<li>12v Adler Barbour Freezer, Air Cooled, Digital Control</li>
+					<li>12v Adler Barbour Refrigerator with Digital Controls</li>
+					<li>Alpes Inox Propane Stove — 4 burner stainless steel</li>
+					<li>Alpes Inox Propane Oven with Fan Driven Air Circulation</li>
+					<li>Sharp Convection Microwave</li>
+					<li>Corian Work Surfaces with Stainless Steel Rails and Fiddles</li>
+					<li>Pressurized Hot and Cold fresh Water</li>
+					<li>Charcoal Freshwater Filtration System — under sink (Feb 2023)</li>
+					<li>Salt Water spigot</li>
+					<li>Hand Operated Emergency Water Pump</li>
+					<li>Large Recessed Draining / Drip Sink</li>
+					<li>Stainless Steel Waste Chute w/ Countertop Lid</li>
+					<li>4 x Cutlery Drawers</li>
+					<li>Crockery Storage Cupboard</li>
+					<li>Pots and Pans Storage Cupboard</li>
+					<li>Grocery Stowage Cupboards</li>
+					<li>All Stainless Hardware has been removed and refurbished</li>
+				</ul>
+			</div>
+
+			<!-- DECK & EQUIPMENT -->
+			<div class="s-equip__section" id="deck">
+				<h2>Deck &amp; Equipment</h2>
+				<ul>
+					<li>Windlass LOFRANS 3x 12v 1700W (2014)</li>
+					<li>2 x Andersen 52ST Winch — 12V Electric</li>
+					<li>2 x Andersen 46ST Winch — 12V Electric</li>
+					<li>11 x 11" Aluminum Mooring Cleats and Bollard</li>
+					<li>Teak Walkway Between Trampolines with Integral Anchor Chain Guide System</li>
+					<li>Teak Aft Platform with Integral Dinghy Chokes</li>
+					<li>Harken mast Hardware — Track, Cars, and Blocks</li>
+					<li>Spinlock Clutches</li>
+					<li>Trampolines — Offshore 3/8th Polyester Open Net by Sunrise Yacht Products (2017)</li>
+					<li>Boom Extension for Dinghy Lift Halyard — acts as secondary Main Halyard</li>
+					<li>Refurbished Dinghy, and Serviced Yamaha Motor (Dec 2022)</li>
+					<li>New weather shield for area between top of Saloon and Bimini (2022)</li>
+					<li>All new outdoor cockpit cushions (Feb 2022)</li>
+					<li>All Holds in floor of cockpit sanded, repainted, grate flooring added, drainage plumbing replaced/repaired</li>
+					<li>Aft platform extended at considerable cost by first owners — walk past dinghy and large swim platform</li>
+					<li>All New Graphics on both Port and Starboard bows</li>
+					<li>Carbon Fiber Vinyl Wrap around front Windows</li>
+					<li>Carbon Fiber Vinyl Wrap on Bow and Stern Aluminum Crossbeams</li>
+					<li>Custom Vessel Name Plates — backlit with LED lights on a dimmer</li>
+					<li>Underwater Light on Starboard Sugar Scoop</li>
+					<li>New Starboard Nav Light (fwd)</li>
+					<li>New Steaming Light (Mast)</li>
+					<li>New Deck Light (Mast)</li>
+					<li>New VHF Antenna (Mast)</li>
+				</ul>
+
+				<h3>Steering System</h3>
+				<ul>
+					<li>Lewmar Stainless Steel Wheel Helm with Wheel Disconnect Feature</li>
+					<li>2 x Dual Chain and LewMar Cable-in-Conduit System</li>
+					<li>2 x Lewmar Steering Quadrants</li>
+				</ul>
+			</div>
+
+			<!-- ELECTRONICS -->
+			<div class="s-equip__section" id="electronics">
+				<h2>Electronics &amp; Navigation</h2>
+				<p class="s-equip__note">Note: Raymarine Axiom MFD chartplotter with full Caribbean and North America cartography installed new by current owners, replacing the C120W.</p>
+				<ul>
+					<li>Raymarine Axiom MFD Chartplotter — North America + Caribbean cartography <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Garmin Chartplotter w/ Pantopix Forward Looking Sonar and Side Sonar (Feb 2023)</li>
+					<li>Raymarine RD418HD Radome (Fall 2023)</li>
+					<li>Raymarine ST60 Tridata and Wind Indicator</li>
+					<li>Raymarine ST7002 Autopilot with WHITLOCI Rotary Drive</li>
+					<li>Raymarine ST7002 Autopilot with LewMar Rotary Drive</li>
+					<li>Raymarine X3 Autopilot Corepack</li>
+					<li>Raymarine ST70 Multi-Repeater (At Interior Navigation Station)</li>
+					<li>Raymarine RAY55E VHF Radio with remote Speaker in Salon</li>
+					<li>Raymarine VHF Remote Control Command Mic in Master Cabin</li>
+					<li>Suunto Bulkhead mount Magnetic Compass</li>
+					<li>2 x Raymarine GPS with External Antenna</li>
+					<li>Raymarine GPS Unit</li>
+					<li>Raymarine AIS650 Class B Transponder with dedicated antenna</li>
+					<li>Handheld Raymarine and Icom VHF Radios</li>
+					<li>Masthead Windex</li>
+					<li>Windlass Remote and Chain Counter at helm</li>
+					<li>Starlink satellite internet <strong>(installed by current owners)</strong></li>
+				</ul>
+			</div>
+
+			<!-- AC ELECTRICAL -->
+			<div class="s-equip__section" id="ac-electrical">
+				<h2>AC Electrical (220VAC/120VAC)</h2>
+				<ul>
+					<li>Original "As Built" Schematic, Wiring and Cabling Diagrams</li>
+					<li>Onan 4kW Genset</li>
+					<li>Victron Inverter / Charger 3000 Watt 230V (2024) <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Victron Multiplus 12/3000 120/50 Inverter (New 2022) <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Cerbo GX Touch 50 Power Management Display and control (New 2022) <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>30amp AC Shore Power Receptacle and Cable</li>
+					<li>Numerous AC Outlets in Cabins, Midships, Galley and Salon</li>
+					<li>Offshore Marine G170 Galvanic Isolator</li>
+					<li>AC Distribution Panel, Switches and Current Breakers</li>
+					<li>New 120 volt converter in addition to the 230v</li>
+					<li>115v Plugs placed and/or converted throughout the vessel</li>
+				</ul>
+			</div>
+
+			<!-- DC ELECTRICAL -->
+			<div class="s-equip__section" id="dc-electrical">
+				<h2>DC Electrical &amp; Battery Bank</h2>
+				<p class="s-equip__note">Battery bank upgraded from 1,100Ah to 1,300Ah by current owners.</p>
+				<ul>
+					<li>LiFePO4 Lithium 1,300Ah 12v House Battery Bank — 16 x Cells <span class="s-equip__badge s-equip__badge--upgraded">Upgraded</span></li>
+					<li>2 x 400W (800W total) Solar Panels Mounted on Bimini (2022)</li>
+					<li>EPEVER Tracer421SBN MPPT 40 Amp Solar Regulator with MT50 Remote Meter (2022)</li>
+					<li>2x Engine Start Batteries 12V 65Ah</li>
+					<li>House Bank / Engine Start batteries can be linked via Crossover Switch</li>
+					<li>2 x 120amp AMPLE Alternators with Smart Regulators (Rebuilt July 2023)</li>
+					<li>3 x Battery Isolator Switches</li>
+					<li>Mastervolt Masterview Easy MK11 Battery Management System</li>
+					<li>4 x 200AMP BMS — Programmable w/Bluetooth (Oct 2021)</li>
+					<li>500Amp Over Volt Battery Protection Relay (Oct 2021)</li>
+					<li>Mastershunt 500 12v Shunt and Mass Combi 100amp Battery Charger</li>
+					<li>D400 12v Wind Generator</li>
+					<li>Wind Generator Stop/Run Control Regulator and Dump Resistor</li>
+					<li>Photocell Auto Anchor Light (On/Off Control)</li>
+					<li>12v Distribution Panel, Circuit Breakers, and Fuses</li>
+					<li>Thermostat Controlled 12v Cooling/Ventilation Fans</li>
+					<li>12v LED Masthead Anchor, Tri Color Navigation Lights</li>
+					<li>12v LED Lights in Cabin / Salon as well as Cockpit (Both Red and White)</li>
+				</ul>
+			</div>
+
+			<!-- PLUMBING -->
+			<div class="s-equip__section" id="plumbing">
+				<h2>Plumbing &amp; Water Systems</h2>
+				<ul>
+					<li>Rainman Watermaker <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>211 gallon fresh water tankage</li>
+					<li>Pressurized hot and cold fresh water throughout</li>
+					<li>Composting toilet in owner's head</li>
+					<li>2 x Jabsco Quiet Flush Electric Toilets in guest heads</li>
+					<li>Charcoal Freshwater Filtration System — under galley sink (Feb 2023)</li>
+					<li>Salt water spigot at galley</li>
+					<li>Hand Operated Emergency Water Pump</li>
+				</ul>
+			</div>
+
+			<!-- SAFETY -->
+			<div class="s-equip__section" id="safety">
+				<h2>Safety Equipment</h2>
+				<p class="s-equip__note">All safety equipment replaced or updated by current owners.</p>
+				<ul>
+					<li>New life raft <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>New EPIRB <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>New ditch bag <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Personal locator beacons <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Current flares <span class="s-equip__badge s-equip__badge--new">New</span></li>
+					<li>Fire extinguishers</li>
+					<li>Carbon monoxide detectors</li>
+				</ul>
+			</div>
+
+		</div>
+	</section>
+
+	<section class="s-cta-link">
+		<div class="wrap s-cta-link__inner">
+			<p>For photos, videos, and detailed write-ups on each system, see the Features page.</p>
+			<a href="/features/" class="btn btn--primary">View Features &amp; Systems</a>
+		</div>
+	</section>
+
+</BaseLayout>
+
+<style>
+	.wrap {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	.page-header {
+		padding-top: 120px;
+		padding-bottom: var(--gap-l);
+		background: var(--color-bg-warm);
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+
+	.page-header__sub {
+		font-size: var(--text-md);
+		color: var(--color-text-muted);
+		max-width: 60ch;
+		margin: 0;
+	}
+
+	/* =============================================
+	   JUMP NAV
+	   ============================================= */
+	.s-jump {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: rgba(255,255,255,0.92);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.s-jump__inner {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 14px var(--gap-l);
+		-webkit-overflow-scrolling: touch;
+		display: flex;
+		gap: 24px;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.s-jump__inner::-webkit-scrollbar {
+		display: none;
+	}
+
+	.s-jump__inner a {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-text-muted);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color 0.2s;
+	}
+
+	.s-jump__inner a:hover {
+		color: var(--color-heading);
+	}
+
+	/* =============================================
+	   SPECS TABLES
+	   ============================================= */
+	.s-specs {
+		padding: var(--gap-l) 0;
+	}
+
+	.s-specs__inner {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--gap-m);
+	}
+
+	.s-specs__group {
+		background: var(--color-bg);
+		border: 1px solid var(--color-border-light);
+		overflow: hidden;
+	}
+
+	.s-specs__group-title {
+		font-family: var(--font-display);
+		font-size: var(--text-xl);
+		font-weight: 600;
+		color: var(--color-heading);
+		padding: var(--gap-m);
+		margin: 0;
+		border-bottom: 2px solid var(--color-accent);
+	}
+
+	.s-specs__table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	.s-specs__table tr {
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.s-specs__table tr:last-child {
+		border-bottom: none;
+	}
+
+	.s-specs__label {
+		padding: 12px var(--gap-m);
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		font-weight: 500;
+		width: 40%;
+		vertical-align: top;
+	}
+
+	.s-specs__value {
+		padding: 12px var(--gap-m);
+		font-size: var(--text-sm);
+		color: var(--color-heading);
+		font-weight: 600;
+	}
+
+	/* =============================================
+	   EQUIPMENT LISTS
+	   ============================================= */
+	.s-equip {
+		padding: 0;
+	}
+
+	.s-equip__section {
+		padding: var(--space-2xl) 0;
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.s-equip__section:last-child {
+		border-bottom: none;
+	}
+
+	.s-equip__section h2 {
+		font-size: clamp(1.6rem, 2.5vw, 2rem);
+		font-weight: 600;
+		margin-bottom: var(--space-sm);
+	}
+
+	.s-equip__section h3 {
+		font-size: var(--text-xl);
+		font-weight: 600;
+		margin-top: var(--space-xl);
+		margin-bottom: var(--space-sm);
+	}
+
+	.s-equip__note {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		font-style: italic;
+		margin-bottom: var(--space-lg);
+		max-width: 70ch;
+	}
+
+	.s-equip__section ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		columns: 2;
+		column-gap: var(--space-2xl);
+	}
+
+	.s-equip__section li {
+		padding: 10px 0 10px 20px;
+		position: relative;
+		break-inside: avoid;
+		font-size: var(--text-sm);
+		color: var(--color-text);
+		line-height: 1.5;
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.s-equip__section li::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 17px;
+		width: 5px;
+		height: 5px;
+		border-radius: 50%;
+		background: var(--color-accent);
+	}
+
+	/* Item badges */
+	.s-equip__badge {
+		display: inline-block;
+		font-family: var(--font-body);
+		font-size: 0.6rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		padding: 2px 8px;
+		border-radius: 100px;
+		margin-left: 8px;
+		vertical-align: middle;
+	}
+
+	.s-equip__badge--new {
+		background: var(--color-accent);
+		color: #fff;
+	}
+
+	.s-equip__badge--upgraded {
+		background: var(--color-gold);
+		color: #fff;
+	}
+
+	.specs-download {
+		margin-top: var(--gap-m);
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.specs-download svg {
+		flex-shrink: 0;
+	}
+
+	/* =============================================
+	   CTA LINK
+	   ============================================= */
+	.s-cta-link {
+		padding: var(--gap-l) 0;
+	}
+
+	.s-cta-link__inner {
+		background: var(--color-bg-warm);
+		padding: 60px;
+		text-align: center;
+	}
+
+	.s-cta-link__inner p {
+		font-size: var(--text-md);
+		color: var(--color-text-muted);
+		margin-bottom: var(--space-lg);
+	}
+
+	/* =============================================
+	   RESPONSIVE
+	   ============================================= */
+	@media (max-width: 768px) {
+		.s-page-header {
+			padding-top: 100px;
+			padding-bottom: 40px;
+		}
+
+		.s-specs__inner {
+			grid-template-columns: 1fr;
+		}
+
+		.s-equip__section ul {
+			columns: 1;
+		}
+
+		.s-cta-link__inner {
+			padding: 40px 24px;
+		}
+	}
+</style>

@@ -1,0 +1,65 @@
+---
+interface Spec {
+	label: string;
+	value: string;
+}
+
+interface Props {
+	group: string;
+	specs: Spec[];
+}
+
+const { group, specs } = Astro.props;
+---
+
+<div class="specs-group">
+	<h3 class="specs-group__title">{group}</h3>
+	<table class="specs-table">
+		<tbody>
+			{specs.map((spec) => (
+				<tr>
+					<td class="specs-table__label">{spec.label}</td>
+					<td class="specs-table__value">{spec.value}</td>
+				</tr>
+			))}
+		</tbody>
+	</table>
+</div>
+
+<style>
+	.specs-group {
+		margin-bottom: var(--space-2xl);
+	}
+
+	.specs-group__title {
+		font-size: var(--size-xl);
+		margin-bottom: var(--space-sm);
+		padding-bottom: var(--space-xs);
+		border-bottom: 2px solid var(--color-accent);
+	}
+
+	.specs-table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	.specs-table tr {
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.specs-table td {
+		padding: var(--space-xs) 0;
+	}
+
+	.specs-table__label {
+		font-weight: 500;
+		color: var(--color-heading);
+		width: 50%;
+	}
+
+	.specs-table__value {
+		color: var(--color-text-muted);
+		font-family: var(--font-mono);
+		font-size: var(--size-sm);
+	}
+</style>

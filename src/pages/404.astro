@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found — Voyage 500" description="The page you're looking for doesn't exist.">
+	<section class="not-found">
+		<div class="wrap">
+			<h1>404</h1>
+			<p>This page doesn't exist. Maybe it drifted off course.</p>
+			<a href="/" class="btn btn--primary">Back to Home</a>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.wrap {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	.not-found {
+		text-align: center;
+		padding: var(--size-12) 0;
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.not-found .wrap {
+		width: 100%;
+	}
+
+	.not-found h1 {
+		font-size: 8rem;
+		color: var(--color-border);
+		line-height: 1;
+		margin-bottom: var(--gap-s);
+	}
+
+	.not-found p {
+		color: var(--color-text-muted);
+		font-size: var(--text-lg);
+		margin-bottom: var(--gap-m);
+	}
+
+	@media (max-width: 600px) {
+		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
+		.not-found h1 { font-size: 5rem; }
+	}
+</style>

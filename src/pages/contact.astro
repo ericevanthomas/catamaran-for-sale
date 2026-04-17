@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { getCollection, render } from 'astro:content';
+import { CONTACT_EMAIL, CONTACT_PHONE } from '../consts';
+
+const allPages = await getCollection('pages');
+const page = allPages.find((p) => p.id === 'contact');
+const { Content } = page ? await render(page) : { Content: null };
+---
+
+<BaseLayout
+	title={page?.data.title ?? 'Contact — Voyage 500'}
+	description={page?.data.description ?? 'Get in touch about the Voyage 500.'}
+>
+	<section class="page-header">
+		<div class="wrap">
+			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
+			<h1>{page?.data.title ?? 'Contact'}</h1>
+			<p class="page-header__sub">We would love to hear from you.</p>
+		</div>
+	</section>
+
+	<section class="section">
+		<div class="wrap">
+			<div class="contact-layout">
+				<div class="contact-form-col">
+					<div class="prose">
+						{Content && <Content />}
+					</div>
+					<ContactForm />
+				</div>
+				<div class="contact-info-col">
+					<h3>Direct Contact</h3>
+					<p><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
+					{CONTACT_PHONE && <p><a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a></p>}
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>
+
+<style>
+	.page-header {
+		padding-top: 120px;
+		padding-bottom: var(--gap-l);
+		background: var(--color-bg-warm);
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+
+	.page-header__sub {
+		font-size: var(--text-md);
+		color: var(--color-text-muted);
+		max-width: 50ch;
+		margin: 0;
+	}
+
+	.wrap {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	.section {
+		padding: var(--space-3xl) 0;
+	}
+
+	.contact-layout {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: var(--space-3xl);
+	}
+
+	.contact-info-col h3 {
+		margin-bottom: var(--space-sm);
+	}
+
+	.contact-info-col p {
+		margin-bottom: var(--space-xs);
+	}
+
+	@media (max-width: 768px) {
+		.contact-layout {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.wrap {
+			padding-left: var(--gap-m);
+			padding-right: var(--gap-m);
+		}
+		.page-header {
+			padding-top: 80px;
+		}
+	}
+</style>

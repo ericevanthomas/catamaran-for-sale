@@ -1,0 +1,745 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+const allFeatures = await getCollection('features');
+const features = allFeatures.sort((a, b) => a.data.order - b.data.order);
+
+// Pre-render markdown bodies for modals
+const featureEntries = await Promise.all(
+	features.map(async (f) => {
+		const rendered = f.body ? await render(f) : null;
+		return { ...f, RenderedContent: rendered?.Content ?? null };
+	})
+);
+
+// Group features by category, preserving order
+const categoryOrder = [
+	'Living Spaces',
+	'Systems & Equipment',
+	'Navigation',
+	'Electrical',
+	'Sailing Performance',
+	'Recent Upgrades',
+	'Safety',
+	'Dinghy & Tender',
+];
+const grouped = new Map<string, typeof features>();
+for (const cat of categoryOrder) {
+	const items = features.filter(f => f.data.category === cat);
+	if (items.length) grouped.set(cat, items);
+}
+// Catch any uncategorized
+const uncategorized = features.filter(f => !f.data.category || !categoryOrder.includes(f.data.category));
+if (uncategorized.length) grouped.set('Other', uncategorized);
+
+function slugify(s: string) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
+
+const title = 'Features & Systems — Voyage 500 For Sale';
+const description = 'Detailed breakdown of every system, feature, and upgrade aboard S/V Tropicalia. Photos, videos, and specs for each.';
+---
+
+<BaseLayout title={title} description={description}>
+
+	<section class="page-header">
+		<div class="wrap">
+			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
+			<h1>Features &amp; Systems</h1>
+			<p class="page-header__sub">Everything aboard, documented in detail. Click any item for full photos, video, and equipment lists.</p>
+		</div>
+	</section>
+
+	<!-- Sticky category nav — scrolls to sections -->
+	<nav class="catnav" id="catnav">
+		<div class="wrap catnav__inner">
+			{[...grouped.keys()].map((cat) => (
+				<a href={`#${slugify(cat)}`} class="catnav__link">{cat}</a>
+			))}
+		</div>
+	</nav>
+
+	<!-- Feature sections grouped by category -->
+	<div class="features-page">
+		{[...grouped.entries()].map(([category, items]) => (
+			<section class="cat-section" id={slugify(category)}>
+				<div class="wrap">
+					<h2 class="cat-section__title">{category}</h2>
+					<div class="cat-section__grid">
+						{items.map((feature) => (
+							<article class="fcard" data-modal-trigger={feature.id}>
+								{feature.data.photos?.[0] && (
+									<div class="fcard__img">
+										<img src={feature.data.photos[0]} alt={feature.data.title} loading="lazy" />
+										{feature.data.video && (
+											<span class="fcard__play">
+												<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20"/></svg>
+											</span>
+										)}
+										{feature.data.photos.length > 1 && (
+											<span class="fcard__photo-count">{feature.data.photos.length}</span>
+										)}
+									</div>
+								)}
+								<div class="fcard__body">
+									<h3 class="fcard__title">{feature.data.title}</h3>
+									<p class="fcard__desc">{feature.data.description}</p>
+									<span class="fcard__more">View details →</span>
+								</div>
+							</article>
+						))}
+					</div>
+				</div>
+			</section>
+		))}
+	</div>
+
+	<!-- Modals -->
+	{featureEntries.map((entry) => {
+		const related = featureEntries.filter(f => f.id !== entry.id && f.data.category === entry.data.category);
+		const ContentComponent = entry.RenderedContent;
+		return (
+			<dialog class="modal" id={`modal-${entry.id}`}>
+				<div class="modal__inner">
+					<button class="modal__close" aria-label="Close">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+					</button>
+					<div class:list={['modal__layout', { 'modal__layout--no-image': !entry.data.photos?.[0] }]}>
+						{entry.data.photos?.[0] && (
+							<div class="modal__media" data-photos={JSON.stringify(entry.data.photos)}>
+								<div class="modal__hero">
+									<img src={entry.data.photos[0]} alt={entry.data.title} />
+								</div>
+								{entry.data.photos.length > 1 && (
+									<>
+										<button class="modal__arrow modal__arrow--prev" aria-label="Previous photo">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+										</button>
+										<button class="modal__arrow modal__arrow--next" aria-label="Next photo">
+											<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
+										</button>
+										<span class="modal__counter">1 / {entry.data.photos.length}</span>
+									</>
+								)}
+							</div>
+						)}
+						<div class="modal__content">
+							<div class="modal__header">
+								{entry.data.category && <span class="card__cat">{entry.data.category}</span>}
+								<h2>{entry.data.title}</h2>
+								<p class="modal__desc">{entry.data.description}</p>
+							</div>
+							{entry.data.video && (
+								<div class="modal__section">
+									<h3 class="modal__label">Video</h3>
+									<div class="modal__video">
+										<iframe src={entry.data.video} allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+									</div>
+								</div>
+							)}
+							{ContentComponent && (
+								<div class="modal__section">
+									<h3 class="modal__label">Details</h3>
+									<div class="modal__prose">
+										<ContentComponent />
+									</div>
+								</div>
+							)}
+							{related.length > 0 && (
+								<div class="modal__section">
+									<h3 class="modal__label">Related</h3>
+									<div class="modal__related">
+										{related.map((rel) => (
+											<button class="modal__rel-card" data-modal-trigger={rel.id}>
+												<span>{rel.data.title}</span>
+											</button>
+										))}
+									</div>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			</dialog>
+		);
+	})}
+
+</BaseLayout>
+
+<style>
+	.wrap {
+		max-width: 1280px;
+		margin: 0 auto;
+		padding-left: var(--gap-l);
+		padding-right: var(--gap-l);
+	}
+
+	/* Page header */
+	.page-header {
+		padding-top: 120px;
+		padding-bottom: var(--gap-l);
+		background: var(--color-bg-warm);
+	}
+
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+
+	.page-header__sub {
+		font-size: var(--text-md);
+		color: var(--color-text-muted);
+		max-width: 50ch;
+		margin: 0;
+	}
+
+	/* =============================================
+	   STICKY CATEGORY NAV
+	   ============================================= */
+	.catnav {
+		position: sticky;
+		top: 72px;
+		z-index: 90;
+		background: rgba(250, 248, 245, 0.95);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.catnav__inner {
+		display: flex;
+		gap: var(--gap-m);
+		padding-top: 14px;
+		padding-bottom: 14px;
+		overflow-x: auto;
+		scrollbar-width: none;
+	}
+
+	.catnav__inner::-webkit-scrollbar { display: none; }
+
+	/* Fade hint when scrollable */
+	.catnav {
+		-webkit-mask-image: linear-gradient(to right, black calc(100% - 40px), transparent);
+		mask-image: linear-gradient(to right, black calc(100% - 40px), transparent);
+	}
+
+	.catnav:not(.catnav--scrollable) {
+		-webkit-mask-image: none;
+		mask-image: none;
+	}
+
+	.catnav__link {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-text-muted);
+		text-decoration: none;
+		white-space: nowrap;
+		transition: color 0.2s;
+		padding-bottom: 2px;
+		border-bottom: 2px solid transparent;
+	}
+
+	.catnav__link:hover {
+		color: var(--color-heading);
+	}
+
+	.catnav__link--active {
+		color: var(--color-heading);
+		font-weight: 600;
+		border-bottom-color: var(--color-accent);
+	}
+
+	/* =============================================
+	   CATEGORY SECTIONS
+	   ============================================= */
+	.features-page {
+		padding-bottom: var(--size-12);
+	}
+
+	.cat-section {
+		padding-top: var(--gap-l);
+		scroll-margin-top: 100px;
+	}
+
+	.cat-section__title {
+		font-size: var(--text-2xl);
+		font-weight: 600;
+		color: var(--color-heading);
+		padding-bottom: var(--gap-s);
+		border-bottom: 2px solid var(--color-accent);
+		margin-bottom: var(--gap-m);
+	}
+
+	/* =============================================
+	   FEATURE CARDS — horizontal, image-compact
+	   ============================================= */
+	.cat-section__grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--gap-m);
+	}
+
+	.fcard {
+		display: grid;
+		grid-template-columns: 160px 1fr;
+		gap: var(--gap-m);
+		align-items: start;
+		cursor: pointer;
+		padding: var(--gap-m);
+		background: var(--color-bg);
+		border: 1px solid var(--color-border-light);
+		transition: box-shadow 0.2s var(--ease), border-color 0.2s var(--ease);
+	}
+
+	.fcard:hover {
+		box-shadow: var(--shadow-card);
+		border-color: var(--color-border);
+	}
+
+	.fcard__img {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.fcard__img img {
+		width: 100%;
+		aspect-ratio: 1;
+		object-fit: cover;
+		transition: transform 0.3s var(--ease);
+	}
+
+	.fcard:hover .fcard__img img {
+		transform: scale(1.04);
+	}
+
+	.fcard__play {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0,0,0,0.55);
+		color: #fff;
+		border-radius: 50%;
+		transition: background 0.2s var(--ease), transform 0.2s var(--ease);
+		padding-left: 2px;
+	}
+
+	.fcard:hover .fcard__play {
+		background: var(--color-accent);
+		transform: translate(-50%, -50%) scale(1.1);
+	}
+
+	.fcard__photo-count {
+		position: absolute;
+		bottom: 6px;
+		right: 6px;
+		font-family: var(--font-body);
+		font-size: 0.65rem;
+		font-weight: 600;
+		color: #fff;
+		background: rgba(0,0,0,0.5);
+		padding: 2px 6px;
+		letter-spacing: 0.5px;
+	}
+
+	.fcard__body {
+		padding-top: 2px;
+	}
+
+	.fcard__title {
+		font-size: var(--text-lg);
+		font-weight: 600;
+		color: var(--color-heading);
+		line-height: 1.25;
+		margin-bottom: 6px;
+	}
+
+	.fcard__desc {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.6;
+		margin: 0 0 var(--gap-s);
+		max-width: 55ch;
+	}
+
+	.fcard__more {
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-accent);
+	}
+
+	/* =============================================
+	   MODAL — centered overlay, two-column
+	   ============================================= */
+	.modal {
+		border: none;
+		background: var(--color-bg);
+		padding: 0;
+		width: 90vw;
+		max-width: 900px;
+		max-height: 85vh;
+		margin: auto;
+		box-shadow: var(--shadow-modal);
+	}
+
+	.modal::backdrop {
+		background: rgba(15, 25, 35, 0.7);
+	}
+
+	.modal__inner {
+		position: relative;
+		overflow-y: auto;
+		max-height: 85vh;
+	}
+
+	.modal__close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		z-index: 10;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255,255,255,0.9);
+		border: 1px solid var(--color-border-light);
+		border-radius: 50%;
+		cursor: pointer;
+		color: var(--color-heading);
+		transition: transform 0.2s var(--ease);
+	}
+
+	.modal__close:hover { transform: scale(1.08); }
+
+	.modal__layout {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		min-height: 0;
+	}
+
+	.modal__layout--no-image {
+		grid-template-columns: 1fr;
+	}
+
+	.modal__media {
+		position: sticky;
+		top: 0;
+		align-self: start;
+		max-height: 85vh;
+		overflow: hidden;
+	}
+
+	.modal__hero {
+		width: 100%;
+		height: 100%;
+	}
+
+	.modal__hero img {
+		width: 100%;
+		height: 100%;
+		min-height: 400px;
+		object-fit: cover;
+		transition: opacity 0.25s var(--ease);
+		cursor: pointer;
+	}
+
+	.modal__arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 5;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0,0,0,0.35);
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		opacity: 0;
+		transition: opacity 0.2s;
+	}
+
+	.modal__media:hover .modal__arrow { opacity: 1; }
+	.modal__arrow:hover { background: rgba(0,0,0,0.6); }
+	.modal__arrow--prev { left: 8px; }
+	.modal__arrow--next { right: 8px; }
+
+	.modal__counter {
+		position: absolute;
+		bottom: 10px;
+		left: 10px;
+		z-index: 5;
+		font-family: var(--font-body);
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: #fff;
+		background: rgba(0,0,0,0.45);
+		padding: 3px 8px;
+		letter-spacing: 0.5px;
+	}
+
+	.modal__content {
+		padding: var(--gap-m);
+		overflow-y: auto;
+		max-height: 85vh;
+	}
+
+	.modal__header {
+		margin-bottom: var(--gap-m);
+		padding-bottom: var(--gap-m);
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.modal__header h2 {
+		font-size: var(--text-2xl);
+		font-weight: 600;
+		margin-bottom: 4px;
+	}
+
+	.card__cat {
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-text-muted);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+	}
+
+	.modal__desc {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.65;
+		margin: 0;
+	}
+
+	.modal__section {
+		margin-bottom: var(--gap-m);
+		padding-bottom: var(--gap-m);
+		border-bottom: 1px solid var(--color-border-light);
+	}
+
+	.modal__section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+	.modal__label {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		color: var(--color-accent);
+		margin-bottom: var(--gap-s);
+	}
+
+	.modal__video { aspect-ratio: 16/9; }
+	.modal__video iframe { width: 100%; height: 100%; border: none; }
+
+	.modal__prose :global(p) {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.7;
+		margin-bottom: var(--gap-s);
+	}
+
+	.modal__prose :global(strong) { color: var(--color-heading); font-weight: 600; }
+
+	.modal__prose :global(ul) { list-style: none; padding: 0; margin: 0; }
+
+	.modal__prose :global(li) {
+		padding: 6px 0 6px 16px;
+		position: relative;
+		border-bottom: 1px solid var(--color-border-light);
+		font-size: var(--text-sm);
+		color: var(--color-text);
+		line-height: 1.45;
+	}
+
+	.modal__prose :global(li)::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 14px;
+		width: 4px;
+		height: 4px;
+		border-radius: 50%;
+		background: var(--color-accent);
+	}
+
+	.modal__prose :global(li:last-child) { border-bottom: none; }
+
+	.modal__related { display: flex; flex-wrap: wrap; gap: var(--gap-s); }
+
+	.modal__rel-card {
+		background: none;
+		border: 1px solid var(--color-border-light);
+		cursor: pointer;
+		text-align: left;
+		padding: 6px 14px;
+		transition: all 0.2s var(--ease);
+	}
+
+	.modal__rel-card:hover { border-color: var(--color-accent); }
+
+	.modal__rel-card span {
+		font-family: var(--font-body);
+		font-size: var(--text-sm);
+		font-weight: 500;
+		color: var(--color-heading);
+	}
+
+	.modal__rel-card:hover span { color: var(--color-accent); }
+
+	/* =============================================
+	   RESPONSIVE
+	   ============================================= */
+	@media (max-width: 900px) {
+		.modal { width: 95vw; max-height: 90vh; }
+		.modal__inner { max-height: 90vh; }
+		.modal__layout { grid-template-columns: 1fr; }
+		.modal__media { position: relative; max-height: 35vh; }
+		.modal__hero img { min-height: 200px; max-height: 35vh; }
+		.modal__arrow { opacity: 1; }
+		.modal__content { max-height: none; }
+	}
+
+	@media (max-width: 1024px) {
+		.cat-section__grid { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 640px) {
+		.page-header { padding-top: 80px; }
+		.wrap, .wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
+		.fcard {
+			grid-template-columns: 100px 1fr;
+			gap: var(--gap-s);
+			padding: var(--gap-s);
+		}
+		.fcard__title { font-size: var(--text-base); }
+		.fcard__desc { display: none; }
+	}
+</style>
+
+<script>
+	// Smooth scroll is handled by `html { scroll-behavior: smooth }` in global.css.
+	// `scroll-padding-top` on :root accounts for the sticky header offset.
+
+	// === Scroll spy — highlight active category ===
+	const catSections = document.querySelectorAll('.cat-section');
+	const catLinks = document.querySelectorAll('.catnav__link');
+
+	function updateActiveNav() {
+		let current = '';
+		catSections.forEach(section => {
+			const rect = section.getBoundingClientRect();
+			if (rect.top <= 110) current = section.id;
+		});
+		catLinks.forEach(link => {
+			const href = (link as HTMLAnchorElement).getAttribute('href');
+			if (href === `#${current}`) {
+				link.classList.add('catnav__link--active');
+			} else {
+				link.classList.remove('catnav__link--active');
+			}
+		});
+	}
+
+	window.addEventListener('scroll', updateActiveNav, { passive: true });
+	updateActiveNav();
+
+	// === Modal open/close ===
+	document.querySelectorAll('[data-modal-trigger]').forEach(btn => {
+		btn.addEventListener('click', () => {
+			document.querySelectorAll('.modal').forEach(d => {
+				if ((d as HTMLDialogElement).open) (d as HTMLDialogElement).close();
+			});
+			const id = (btn as HTMLElement).dataset.modalTrigger;
+			const modal = document.getElementById(`modal-${id}`) as HTMLDialogElement;
+			if (modal) {
+				modal.showModal();
+				modal.querySelector('.modal__inner')?.scrollTo(0, 0);
+				resetGallery(modal);
+			}
+		});
+	});
+
+	document.querySelectorAll('.modal__close').forEach(btn => {
+		btn.addEventListener('click', () => {
+			(btn.closest('dialog') as HTMLDialogElement)?.close();
+		});
+	});
+
+	document.querySelectorAll('.modal').forEach(dialog => {
+		dialog.addEventListener('click', e => {
+			if (e.target === dialog) (dialog as HTMLDialogElement).close();
+		});
+	});
+
+	// === Photo gallery (arrows + counter + click-to-advance) ===
+	function getPhotos(modal: HTMLDialogElement): string[] {
+		const media = modal.querySelector('.modal__media') as HTMLElement;
+		if (!media?.dataset.photos) return [];
+		try { return JSON.parse(media.dataset.photos); } catch { return []; }
+	}
+
+	function showPhoto(modal: HTMLDialogElement, index: number) {
+		const photos = getPhotos(modal);
+		if (!photos.length) return;
+		const idx = ((index % photos.length) + photos.length) % photos.length;
+		const heroImg = modal.querySelector('.modal__hero img') as HTMLImageElement;
+		const counter = modal.querySelector('.modal__counter');
+		if (heroImg) {
+			heroImg.style.opacity = '0';
+			setTimeout(() => {
+				heroImg.src = photos[idx];
+				heroImg.style.opacity = '1';
+			}, 120);
+		}
+		if (counter) counter.textContent = `${idx + 1} / ${photos.length}`;
+		modal.dataset.currentPhoto = String(idx);
+	}
+
+	function resetGallery(modal: HTMLDialogElement) {
+		modal.dataset.currentPhoto = '0';
+		const photos = getPhotos(modal);
+		const heroImg = modal.querySelector('.modal__hero img') as HTMLImageElement;
+		const counter = modal.querySelector('.modal__counter');
+		if (heroImg && photos[0]) heroImg.src = photos[0];
+		if (counter) counter.textContent = `1 / ${photos.length}`;
+	}
+
+	document.querySelectorAll('.modal__arrow--next').forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const modal = btn.closest('dialog') as HTMLDialogElement;
+			const current = Number(modal.dataset.currentPhoto || 0);
+			showPhoto(modal, current + 1);
+		});
+	});
+
+	document.querySelectorAll('.modal__arrow--prev').forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const modal = btn.closest('dialog') as HTMLDialogElement;
+			const current = Number(modal.dataset.currentPhoto || 0);
+			showPhoto(modal, current - 1);
+		});
+	});
+
+	document.querySelectorAll('.modal__hero img').forEach(img => {
+		img.addEventListener('click', () => {
+			const modal = img.closest('dialog') as HTMLDialogElement;
+			const photos = getPhotos(modal);
+			if (photos.length < 2) return;
+			const current = Number(modal.dataset.currentPhoto || 0);
+			showPhoto(modal, current + 1);
+		});
+	});
+</script>
