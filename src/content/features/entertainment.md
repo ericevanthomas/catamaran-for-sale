@@ -1,6 +1,6 @@
 ---
 title: "Entertainment & Audio"
-description: "BOSS 12v sound system with Bluetooth, amplifier, salon speakers, cockpit speakers, stern speakers, and mast-mounted JBL wake tower speakers."
+description: "New Fire TV in the salon connected to Starlink, a second TV in the owner's cabin, and speakers wired literally everywhere — indoors, cockpit, stern, and up the mast — driven by a salon amplifier."
 photos:
   - /images/cockpit-speakers.webp
 order: 12
@@ -9,10 +9,14 @@ cardSize: "small"
 category: "Living Spaces"
 ---
 
-- Samsung Smart TV with 12v Boost Antenna
-- BOSS 12v Radio / Sound System with CD, USB and Bluetooth
-- Amplifier (Feb 2023)
-- 2 x BOSS 6x9 Saloon Speakers
-- 2 x Skar Speakers Facing Stern (Feb 2023)
-- 2 x JBL Wake Tower Speakers added to Mast Spreader (Oct 2023)
-- 2 x Skar 6" Cockpit Speakers in Travelers Arch (Feb 2023)
+The whole boat is wired for sound — speakers in the salon, cockpit, stern, and wake-tower speakers on the mast spreader — all driven by a proper amplifier. Family movie nights happen in the salon on a new flat-screen Fire TV that's connected to Starlink, so you can stream whatever you would at home. There's also a TV in the owner's cabin on the same Wi-Fi, and a local antenna for broadcast if you'd rather.
+
+- New Fire TV in the salon — connected to Starlink, streams whatever you want
+- Second flat-screen TV in the owner's cabin — also on Wi-Fi
+- Local TV antenna available for over-the-air broadcast
+- BOSS 12V radio / sound system with CD, USB, and Bluetooth
+- Salon amplifier (Feb 2023)
+- 2× BOSS 6×9 salon speakers
+- 2× Skar speakers facing stern (Feb 2023)
+- 2× Skar 6" cockpit speakers in traveler arch (Feb 2023)
+- 2× JBL wake-tower speakers on mast spreader (Oct 2023)

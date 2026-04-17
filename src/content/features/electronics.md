@@ -1,6 +1,6 @@
 ---
 title: "Electronics & Navigation"
-description: "New Raymarine Axiom chartplotter with full Caribbean and North America cartography, integrated Raymarine system, AIS, radar, autopilot, and Garmin sonar."
+description: "New Raymarine Axiom 12\" chartplotter with full Caribbean and North America cartography, plus an Orca navigation display that's removable from the nav station and can move to the helm. Forward-looking and side-scan sonar. Predict Wind Hub for position tracking via Starlink."
 photos:
   - /images/garmin-chartplotter-helm.webp
   - /images/helm-station.webp
@@ -10,10 +10,16 @@ cardSize: "large"
 category: "Navigation"
 ---
 
-The navigation electronics are a complete integrated Raymarine system, with a new Axiom MFD chartplotter installed by the current owners.
+Everything you need to navigate is new, and everything is integrated. The core is a Raymarine Axiom 12" chartplotter with a complete Navionics cartography package — the US east coast, the Caribbean, and down into South America. On top of that we added an Orca nav display mounted at the nav station but detachable, so you can carry it out to the helm when you want instruments in your hands. It's interfaced with the Raymarine system for redundancy and works as either a chartplotter or an instrument display.
 
-**New (installed by current owners):**
-- Raymarine Axiom MFD Chartplotter with North America + Caribbean cartography
+We also installed a Predict Wind Hub, which uploads our position via Starlink in real time — friends and family could follow our boat on our blog without us having to lift a finger.
+
+**New electronics (installed by us):**
+- Raymarine Axiom 12" MFD chartplotter — with North America + Caribbean + South America cartography
+- Orca navigation display — removable from the nav station, can move to the helm; interfaced with Raymarine
+- Forward-looking sonar
+- New control pad for the autopilot
+- Predict Wind Hub — position tracking via Starlink
 
 **Existing Raymarine integrated system:**
 - Raymarine RD418HD Radome (Fall 2023)
@@ -21,15 +27,15 @@ The navigation electronics are a complete integrated Raymarine system, with a ne
 - Raymarine ST7002 Autopilot with WHITLOCI Rotary Drive
 - Raymarine ST7002 Autopilot with LewMar Rotary Drive
 - Raymarine X3 Autopilot Corepack
-- Raymarine ST70 Multi-Repeater (At Interior Navigation Station)
-- Raymarine RAY55E VHF Radio with remote Speaker in Salon
-- Raymarine VHF Remote Control Command Mic in Master Cabin
+- Raymarine ST70 Multi-Repeater at the nav station
+- Raymarine RAY55E VHF Radio with remote speaker in salon
+- Raymarine VHF remote-control command mic in the master cabin
 - Raymarine AIS650 Class B Transponder with dedicated antenna
-- 2 x Raymarine GPS with External Antenna
-- Handheld Raymarine and Icom VHF Radios
+- 2× Raymarine GPS with external antennas
+- Handheld Raymarine and Icom VHF radios
 
 **Sonar & other:**
-- Garmin Chartplotter w/ Pantopix Forward Looking Sonar and Side Sonar (Feb 2023)
-- Suunto Bulkhead mount Magnetic Compass
+- Garmin chartplotter with Panoptix forward-looking sonar and side-scan sonar (Feb 2023)
+- Suunto bulkhead-mount magnetic compass
 - Masthead Windex
-- Windlass Remote and Chain Counter at helm
+- Windlass remote and chain counter at the helm

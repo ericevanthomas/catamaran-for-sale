@@ -1,6 +1,6 @@
 ---
-title: "Exterior & Cosmetics"
-description: "Carbon fiber vinyl wrap on windows and crossbeams, custom backlit name plates, underwater light, new navigation and deck lights."
+title: "Extended Rear Deck, Sugar Scoops & Exterior"
+description: "Original owners nearly doubled the standard rear deck — you can walk all the way around when the dinghy is in its chocks. Hot and cold showers in both sugar scoops, deep lockers sized for dive tanks, and a sleek, low-windage profile."
 photos:
   - /images/boat-full-starboard.webp
   - /images/boat-full-profile.webp
@@ -11,13 +11,18 @@ cardSize: "small"
 category: "Recent Upgrades"
 ---
 
-- All New Graphics on both Port and Starboard bows
-- Carbon Fiber Vinyl Wrap around front Windows
-- Carbon Fiber Vinyl Wrap on Bow and Stern Aluminum Crossbeams
-- Custom Vessel Name Plates — backlit with LED lights on a dimmer
-- Underwater Light on Starboard Sugar Scoop
-- New Starboard Nav Light (fwd)
-- New Steaming Light (Mast)
-- New Deck Light (Mast)
-- New VHF Antenna (Mast)
-- New weather shield for area between top of Saloon and Bimini (2022)
+The original owners were aerospace-engineer types who specified this boat to a higher standard than the production spec sheet. The rear deck was extended nearly double — meaning you can still walk from one sugar scoop to the other even with the dinghy in its chocks. It becomes its own back porch: a place to sit, dry gear, and relax without ever having to move the tender.
+
+Each sugar scoop has hot-and-cold freshwater showers right where you come back aboard from the beach, and the stern lockers are deep enough to double as dive-tank storage.
+
+- Rear deck extended by nearly 2× standard — walk-around access with dinghy in chocks
+- Hot and cold freshwater showers in both sugar scoops
+- Deep stern storage lockers — rated for dive tanks
+- All new graphics on both bows
+- Carbon fiber vinyl wrap around front windows
+- Carbon fiber vinyl wrap on bow and stern aluminum crossbeams
+- Custom backlit vessel name plates on an LED dimmer
+- Underwater light on starboard sugar scoop
+- New starboard nav light (forward)
+- New steaming light, deck light, and VHF antenna (all mast)
+- New weather shield between top of salon and bimini (2022)

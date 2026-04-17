@@ -1,6 +1,6 @@
 ---
 title: "Guest Heads (×2)"
-description: "Two ensuite guest heads in the port hull — each with Jabsco Quiet Flush electric toilets, pressurized hot and cold showers, and private ventilation."
+description: "Two ensuite guest heads in the port hull — each with electric flush toilets (one new), pressurized hot and cold water, and a new overboard discharge pump for the holding tank."
 photos: []
 order: 16
 featured: false
@@ -8,13 +8,14 @@ cardSize: "small"
 category: "Living Spaces"
 ---
 
-Each port-side guest cabin has its own private ensuite head. Port hull plumbing was overhauled and the keel tank was converted to blackwater storage.
+Each port-side guest cabin has its own private ensuite head. The plumbing in the port hull has been fully overhauled — one of the electric flush toilets is brand new, and a new overboard discharge pump was installed on the holding tank.
 
-- 2× Jabsco Quiet Flush electric toilets
-- 2× pressurized hot and cold fresh water showers and sinks
+- 2× electric flush toilets — one of them new
+- New overboard discharge pump on the holding tank
+- 2× pressurized hot and cold freshwater showers and sinks
 - 2× integrated hand basins with extendable mixer
-- 2× vanity cabinets with mirror and stainless steel towel rails
+- 2× vanity cabinets with mirror and stainless towel rails
 - 2× toiletries storage cupboards
 - Red LED night lights in each head
-- 2× IsoTemp water heaters (fully serviced in 2023)
-- Port hull blackwater keel tank (converted from prior configuration)
+- 2× IsoTemp water heaters (fully serviced 2023)
+- Port hull blackwater keel tank

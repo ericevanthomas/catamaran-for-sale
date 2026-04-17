@@ -1,6 +1,6 @@
 ---
-title: "AC Electrical System"
-description: "220VAC/120VAC system with Onan 4kW genset, Victron 3000W inverter/charger, Cerbo GX monitoring, and 30-amp shore power."
+title: "AC Electrical — Dual 110V / 220V Global System"
+description: "Wired for both 110V and 220V with two shore power inlets and separate Victron inverter/chargers for each — so you can plug in at any marina in the world and run any appliance aboard."
 photos:
   - /images/nav-station-ac-panels.webp
 order: 7
@@ -9,14 +9,15 @@ cardSize: "medium"
 category: "Electrical"
 ---
 
-- Original "As Built" Schematic, Wiring and Cabling Diagrams
-- Onan 4kW Genset
-- Victron Inverter / Charger 3000Watt 230V (2024)
-- Victron Multiplus 12/3000 120/50 Inverter (New 2022)
-- Cerbo GX Touch 50 Power Management Display and control (New 2022)
-- 30amp AC Shore Power Receptacle and Cable
-- Numerous AC Outlets in Cabins, Midships, Galley and Salon
-- Offshore Marine G170 Galvanic Isolator
-- AC Distribution Panel, Switches and Current Breakers
-- New 120 volt converter in addition to the 230v
-- 115v Plugs placed and/or converted throughout the vessel
+The boat is wired for both 110V and 220V and has two shore power inlets, so wherever you tie up — US, Caribbean, Europe — you can plug in. On top of that, there are separate Victron inverter/chargers for each voltage: a 3000W 230V unit and a Multiplus 12/3000 120/50. That means any appliance you bring aboard from any region just works, and the charger side keeps the lithium bank topped up from shore or generator.
+
+- Dual 110V and 220V wiring with two shore power inlets
+- Onan 4kW genset — fully gone over, new hoses and parts
+- Victron 3000W 230V inverter / charger (2024)
+- Victron Multiplus 12/3000 120/50 inverter / charger (new 2022)
+- Cerbo GX Touch 50 power management display and control (new 2022)
+- 30A AC shore power receptacle and cable
+- AC outlets throughout cabins, galley, salon, and midships
+- Offshore Marine G170 galvanic isolator
+- AC distribution panel, switches, and breakers
+- Original "as built" schematic, wiring, and cabling diagrams on board

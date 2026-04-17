@@ -1,6 +1,6 @@
 ---
-title: "Air Conditioning"
-description: "Dual-zone Mabru AC: 12,000 BTU (12V DC, soft start) to master cabin and salon, 17,000 BTU (120V) to port hull and salon."
+title: "Air Conditioning — 12V and 110V Mabru"
+description: "Two Mabru AC units in a smart split: 12V DC for running off the lithium bank at anchor, and 120V for staying cool at the dock without burning house power."
 photos:
   - /images/ac-thermostat.webp
 order: 5
@@ -9,5 +9,7 @@ cardSize: "small"
 category: "Systems & Equipment"
 ---
 
-- Mabru Air Conditioner 12,000 BTU plumbed to Master Cabin and Salon — High Efficiency 12V DC, Soft Start (May 2022)
-- Mabru Air Conditioner 17,000 BTU 120V plumbed to Port hull and Salon (June 2024)
+Two Mabru units, one on each voltage, so the boat is comfortable whether you're at anchor or at a marina. The 12V unit runs straight off the lithium bank — no inverter needed, no generator to fire up just to cool down for an hour. The 110V unit is for when you're on shore power and want to keep the batteries fully topped up.
+
+- Mabru 12,000 BTU, 12V DC, soft-start — runs off the 1,300Ah lithium bank. Master cabin and salon (May 2022)
+- Mabru 17,000 BTU, 120V — port hull and salon. Runs on shore power or generator (June 2024)

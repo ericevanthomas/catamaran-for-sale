@@ -7,9 +7,15 @@ description: Meet the family behind the Voyage 500. Our cruising history, captai
 
 We are a family of four with two young children. We are just wrapping up our sabbatical cruise to the Caribbean aboard Tropicalia, our Voyage 500 catamaran. This is the second Caribbean cruise. This boat has been our home, our classroom, and the backdrop to some of the best years of our lives. We homeschooled our kids aboard, explored dozens of islands, and learned every system on this vessel by living with them daily.
 
-## Why a Voyage 500
+## Why This Particular Boat
 
-We spent over a year searching for the right catamaran before finding Tropicalia. The Voyage 500 stood out for several reasons: the proven Simonis Voogd hull design, the spacious 3-cabin Owner's Version layout, and the build quality of the South African factory. Tropicalia was the last Voyage 500 ever built, and her original owner was an aerospace engineer who specified her to the highest standard.
+We spent over a year searching for the right catamaran before finding Tropicalia. The Voyage 500 stood out for several reasons: the proven Simonis Voogd hull design, the spacious 3-cabin Owner's Version layout, and the build quality of the South African factory. Tropicalia was the last Voyage 500 ever built, and her original owner was an aerospace engineer who specified her to the highest standard — including an extended rear deck, hot-and-cold showers in both sugar scoops, a bonded auxiliary dinghy gas tank, and other custom details you don't see on production hulls.
+
+## Why the Hull and Build Quality Matter
+
+Compared to the newer production catamarans we looked at, this one is lower, sleeker, and built more like a boat than like flat-pack furniture. The bulkheads are fiberglassed and tabbed into the hull — not glued and screwed — so the whole structure is one piece. You don't get the creaking and flex that so many modern boats develop after a few seasons. You also get less windage, a better motion through waves (the 50-foot waterline really moves), and more bridgedeck clearance so you don't get that severe pounding under way.
+
+The interior is clean and practical — not a fussy show boat. No dark wood to absorb moisture or get tired. It's held up beautifully and is easy to keep clean with kids aboard.
 
 ## Captain's Credentials
 
