@@ -1,28 +1,28 @@
 ---
-title: "Guest Cabins"
-description: "Two private port-hull cabins, each with a queen bed, ensuite head with an electric-flush toilet, pressurized hot and cold water, hanging locker, and big overhead hatches for ventilation."
+title: Guest Cabins
+description: Two port-side cabins, each with queen beds, en suite heads with electric flush toilets, and full ventilation.
 photos:
   - /images/guest-cabin-queen.webp
+video: ''
 order: 4
 featured: false
-cardSize: "medium"
-category: "Living Spaces"
+category: Living Spaces
+cardSize: medium
 ---
 
-Both guest cabins are in the port hull, each with its own ensuite head and plenty of closet space. Good headroom, big overhead hatches for cross-flow, and solid hanging lockers mean your guests actually unpack and stay a while.
+Both guest cabins are in the port hull, each with their own en suite head.
 
-- 2× queen-size custom beds with split mattresses
-- 2× ensuite heads with electric flush toilets (one new)
-- New overboard discharge pump on the holding tank
-- 2× pressurized hot and cold freshwater showers and sinks
-- 2× integrated hand basins with extendable mixer
-- 2× vanity cabinets with mirrors and stainless steel towel rails
-- 2× toiletries storage cupboards
-- 2× dressing mirrors
-- Hanging and storage cupboards with shelves
-- Storage / book shelves
-- LED overhead lights
-- Red LED night lights in heads
-- LED bulkhead-mounted reading lights
-- 12V ventilation fans
-- Large overhead opening hatches with Nicro solar ventilation fans
+- 2 x Queen size Custom Beds with Split mattresses
+- 2 x Ensuite Heads with Jabsco Quiet Flush Electric Toilets
+- 2 x Pressurized Hot and Cold fresh water Showers and Sinks
+- 2 x Integrated hand basins with Extendable Mixer
+- 2 x Vanity Cabinet with Mirror and Stainless Steel Towel Rails
+- 2 x Toiletries Storage Cupboards
+- 2 x Dressing Mirrors
+- Hanging and Storage Cupboards with Shelves
+- Storage/Book Shelves
+- LED Overhead Lights
+- Red LED night lights in Heads
+- LED Bulkhead Mounted Reading Lights
+- 12v Ventilation Fans
+- Large Overhead Opening Hatches with Nicro Solar Ventilation Fans
