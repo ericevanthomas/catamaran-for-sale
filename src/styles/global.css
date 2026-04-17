@@ -9,8 +9,8 @@
 @import 'open-props/shadows.min.css';
 @import 'open-props/easings.min.css';
 
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Raleway:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Self-hosted Google Fonts — served from our origin, not fonts.googleapis.com. */
+@import './fonts.css';
 
 @font-face {
 	font-family: 'Fiona';
