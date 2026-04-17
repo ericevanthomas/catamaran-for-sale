@@ -1,35 +1,31 @@
 ---
-title: "Galley That Lives Like a Kitchen"
-description: "Wrap-around U-shape with a proper vertical fridge, two-door top-loading freezer, European gas oven with rotisserie, deep drying sink, and bar seating for four — designed for real cooking, not an afterthought."
+title: Full Galley
+description: Alpes Inox propane stove and oven, 12v Adler Barbour fridge and freezer, Sharp convection microwave, and Corian surfaces.
 photos:
   - /images/galley-wide.webp
   - /images/galley-stove.webp
+video: ''
 order: 2
 featured: true
-cardSize: "medium"
-category: "Living Spaces"
-quote:
-  speaker: alex
-  text: "We cooked a proper Thanksgiving dinner aboard — hosted another family and felt like we had plenty of room. Plenty of space for all the food, the dishes, and the people."
+category: Living Spaces
+cardSize: medium
 ---
 
-The galley on this boat is not an afterthought — which is more than you can say for most production catamaran layouts. It's a wrap-around U-shape with counter space on every wall, a separate vertical-door refrigerator, a two-door top-loading freezer deep enough to provision for a whole season, and a bar top with four stools so the cook isn't stuck alone while the rest of the family is in the cockpit.
+The galley is designed for serious cooking underway or at anchor.
 
-We cooked a proper Thanksgiving dinner aboard this boat — with another family on — and never felt cramped.
-
-- Wrap-around U-shape galley with counter space on all sides
-- Two-door top-opening freezer — deep enough to provision for a whole season
-- Separate vertical-door refrigerator (not a combined unit)
-- European Alpes Inox gas oven and cooktop — with a rotisserie
-- Double deep sinks
-- Deep drying area with its own drain — works underway, dishes don't slide
-- Bar top with four stools, so the cook stays part of the party
-- Sharp convection microwave
-- Corian work surfaces with stainless fiddle rails
-- Pressurized hot and cold fresh water
-- Charcoal freshwater filtration under the sink (Feb 2023)
-- Saltwater spigot for dishwashing at anchor
-- Hand-operated emergency freshwater pump
-- Stainless waste chute with countertop lid
-- Four cutlery drawers, dedicated crockery and pots-and-pans cupboards
-- All stainless hardware removed and refurbished
+- 12v Adler Barbour Freezer (Dual Compressors), Air Cooled, Digital Control
+- 12v Adler Barbour Refrigerator with Digital Controls
+- Alpes Inox Propane Stove — 4 burner stainless steel
+- Alpes Inox Propane Oven with Fan Driven Air Circulation and Electric Rotisserie
+- Sharp Convection Microwave
+- Corian Work Surfaces with Stainless Steel Rails and Fiddles
+- Pressurized Hot and Cold Fresh Water
+- Salt Water spigot
+- Hand Operated Emergency Water Pump
+- Large Recessed Draining / Drip Sink
+- Stainless Steel Waste Chute w/ Countertop Lid
+- 2 x Cutlery Drawers
+- Crockery Storage Cupboard
+- Pots and Pans Storage Cupboard
+- Grocery Stowage Cupboards
+- All Stainless Hardware has been removed and refurbished
