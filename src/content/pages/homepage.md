@@ -1,24 +1,25 @@
 ---
-title: "Voyage 500 Catamaran For Sale"
-description: "Well-equipped Voyage 500 catamaran for sale by owner. Cruise-ready with extensive upgrades. View specs, photos, and video tours."
-heroHeadline: "Voyage 500 Catamaran For Sale by Owner"
-heroSubheadline: "50 feet of proven bluewater cruiser — spacious, well-equipped, and ready for her next adventure."
-heroImage: "/images/hero-bow-edited.webp"
-priceDisplay: "$399,000 USD"
-locationDisplay: "Currently in the US Virgin Islands"
+title: Voyage 500 Catamaran For Sale
+description: Well-equipped Voyage 500 catamaran for sale by owner. Cruise-ready with extensive upgrades. View specs, photos, and video tours.
+heroHeadline: Voyage 500 Catamaran For Sale by Owner
+heroSubheadline: 50 feet of proven bluewater cruiser — spacious, well-equipped, and ready for her next adventure.
+heroImage: /images/hero-bow-edited.webp
+priceDisplay: $379,000 USD
+locationDisplay: Currently in the US Virgin Islands
 highlightsBullets:
-  - "3-Cabin Owner's Version layout"
-  - "Rainman watermaker — no marina dependency"
-  - "800W solar + D400 wind generator"
-  - "Onan 4kW generator"
-  - "Dual-zone Mabru air conditioning"
-  - "Dual 110V/220V electrical — global compatibility"
-  - "Raymarine integrated electronics with new Axiom MFD"
-  - "Garmin forward-looking and side-scan sonar"
-  - "Starlink satellite internet"
-  - "Zodiac 12.5' dinghy with Suzuki 25hp 4-stroke"
-  - "LOFRANS windlass, Andersen electric winches"
-  - "1,300Ah lithium battery bank"
-photoStripCTA: "View Full Gallery"
-photoStripCTALink: "/gallery"
+  - 3-Cabin Owner's Version Layout
+  - New 40GPH Rainman Water Maker (2026)
+  - New 1,300Ah Lithium Battery Bank (2026)
+  - 800W Solar
+  - Onan 4kW Generator
+  - 12-Volt Mabru Air Conditioning
+  - Dual 110V/220V Global Electrical System
+  - New Raymarine Axiom Chart Plotter (2026)
+  - Garmin Forward-Looking and Side-Scan Sonar
+  - Starlink Satellite Internet
+  - Zodiac 12.5' dinghy with Suzuki 25hp 4-stroke
+  - LOFRANS windlass, Andersen electric winches
+  - USCG Documented & Duty Paid - En Route to St. Augustine FL
+photoStripCTA: View Full Gallery
+photoStripCTALink: /gallery
 ---
