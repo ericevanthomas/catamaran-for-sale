@@ -2,9 +2,8 @@
 title: "Deck & Ground Tackle"
 description: "LOFRANS windlass, Andersen electric winches, Harken hardware, extended swim platform, teak walkways, and new outdoor cushions."
 photos:
-  - /images/windlass-chain-stopper.webp
-  - /images/stern-tropicalia.webp
-  - /images/aerial-1.webp
+  - /images/gallery/PXL_20251120_122621550.webp
+  - /images/gallery/PXL_20260421_170257749.webp
 order: 10
 featured: false
 cardSize: "medium"

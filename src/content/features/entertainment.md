@@ -2,7 +2,7 @@
 title: "Entertainment & Audio"
 description: "New Fire TV in the salon connected to Starlink, a second TV in the owner's cabin, and speakers wired literally everywhere — indoors, cockpit, stern, and up the mast — driven by a salon amplifier."
 photos:
-  - /images/cockpit-speakers.webp
+  - /images/gallery/PXL_20260419_203836247.RAW-01.COVER.webp
 order: 12
 featured: false
 cardSize: "small"

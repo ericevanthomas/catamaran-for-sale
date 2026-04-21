@@ -1,7 +1,10 @@
 ---
 title: "Headsails: Genoa + Self-Tacking Jib"
 description: "130% furling genoa plus a small self-tacking furling jib for heavy wind or slowing things down at night. Both on Profurl furlers. Shorthanded-ready."
-photos: []
+photos:
+  - /images/gallery/PXL_20251219_143447444.webp
+  - /images/gallery/PXL_20260419_220056328.RAW-01.COVER.webp
+
 order: 29
 featured: false
 cardSize: "small"

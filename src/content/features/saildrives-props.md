@@ -2,7 +2,9 @@
 title: "New Saildrives & Rebuilt Props (2025)"
 description: "Brand-new SD60 saildrives and fully rebuilt Bruton 18-inch self-pitching auto propellers — both installed in 2025. Zero deferred drivetrain maintenance."
 photos:
-  - /images/bronze-autoprop.webp
+  - /images/gallery/PXL_20260421_165328735.webp
+  - /images/gallery/PXL_20260421_164854616.webp
+  - /images/gallery/PXL_20260419_214105542.RAW-01.COVER.webp
 order: 24
 featured: false
 cardSize: "medium"

@@ -2,7 +2,10 @@
 title: "Yanmar Diesels + 2025 Saildrives & Auto Props"
 description: "Reliable Yanmars paired with brand-new SD60 saildrives (2025) and rebuilt Brunton Auto Props. Seven knots at 1,500 RPM in flat water. Can cross an ocean on one engine at a time."
 photos:
-  - /images/yanmar-engine.webp
+  - /images/gallery/PXL_20260421_164327039.webp
+  - /images/gallery/PXL_20260421_164904088.webp
+  - /images/gallery/PXL_20260421_165444847.webp
+  - /images/gallery/PXL_20260421_164559033.webp
 order: 23
 featured: false
 cardSize: "medium"

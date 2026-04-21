@@ -2,7 +2,8 @@
 title: "Rainman Modular AC-140 Watermaker"
 description: "Rainman Modular AC-140 HighOutput — up to 37 GPH (26–37 depending on water temp) from two 40\" Dow Filmtec RO membranes. Properly plumbed into the boat so you can fill each tank individually and pickle in place without buckets or hose gymnastics."
 photos:
-  - /images/placeholders/watermaker.webp
+  - /images/gallery/PXL_20260421_143222305.webp
+  - /images/gallery/PXL_20260421_142747891.webp
 order: 9
 featured: false
 cardSize: "medium"

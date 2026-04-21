@@ -1,7 +1,9 @@
 ---
 title: "Safety Gear — With AIS Man-Overboard Beacons"
 description: "New life raft, new EPIRB, stocked ditch bag, in-date flares, and AIS man-overboard beacons on every life jacket. The beacons auto-deploy when they hit water — critical if your kid is the one in the drink."
-photos: []
+photos:
+  - /images/gallery/PXL_20260419_213927774.RAW-01.COVER.webp
+
 order: 21
 featured: false
 cardSize: "small"

@@ -2,7 +2,9 @@
 title: "Laundry Aboard — With Sheltered Drying Lines"
 description: "Samsung automatic washing machine plumbed in, plus drying lines mounted under the cockpit roof so your clothes stay dry through a squall. This is the upgrade that changes how long a family can stay out."
 photos:
-  - /images/laundry-corridor.webp
+  - /images/gallery/PXL_20260421_142617563.webp
+  - /images/gallery/PXL_20260420_211047929.webp
+  - /images/gallery/PXL_20260421_142559846.webp
 order: 14
 featured: false
 cardSize: "small"

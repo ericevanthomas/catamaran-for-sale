@@ -2,8 +2,10 @@
 title: "DC Electrical & Lithium Battery Bank"
 description: "1,280Ah LiFePO4 lithium house bank — professionally installed by marine electricians in St. Augustine with extra safety cutoffs. 800W of well-positioned solar, secondary high-output alternators, and days of capacity under normal loads."
 photos:
-  - /images/solar-panels-bimini.webp
-  - /images/victron-cerbo-display.webp
+  - /images/gallery/PXL_20260419_213702396.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213951875.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_214216056.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213727367.RAW-01.COVER.webp
 order: 8
 featured: false
 cardSize: "large"

@@ -1,0 +1,996 @@
+{
+  "trampolines-foredeck": [
+    {
+      "filename": "IMG_0459.webp",
+      "category": "foredeck",
+      "subject": "Foredeck trampolines and mast base at sunset",
+      "feature_card_candidate": "trampolines-foredeck"
+    },
+    {
+      "filename": "IMG_9775.webp",
+      "category": "people-lifestyle",
+      "subject": "Two kids celebrating on the foredeck trampoline",
+      "feature_card_candidate": "trampolines-foredeck"
+    },
+    {
+      "filename": "PXL_20260419_220008817.RAW-01.COVER.webp",
+      "category": "foredeck",
+      "subject": "Foredeck view with Voyage-branded sail bag and trampolines",
+      "feature_card_candidate": "trampolines-foredeck"
+    },
+    {
+      "filename": "PXL_20260419_225658384.RAW-01.COVER.webp",
+      "category": "foredeck",
+      "subject": "Foredeck trampolines with mast and bean bag",
+      "feature_card_candidate": "trampolines-foredeck"
+    }
+  ],
+  "exterior": [
+    {
+      "filename": "IMG_0780.webp",
+      "category": "exterior-profile",
+      "subject": "Port-side profile at anchor in tropical bay",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "IMG_0784.webp",
+      "category": "exterior-profile",
+      "subject": "Bow-on view at anchor in clear water",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "IMG_0791.webp",
+      "category": "exterior-profile",
+      "subject": "Starboard profile at anchor with mountain backdrop",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "IMG_0804.webp",
+      "category": "exterior-profile",
+      "subject": "Stern-quarter view at anchor in turquoise water",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "IMG_0813.webp",
+      "category": "exterior-profile",
+      "subject": "Port-quarter profile showing hull lines at anchor",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172145319.webp",
+      "category": "exterior-profile",
+      "subject": "Bow-on retouched hero shot at anchor",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172152808.webp",
+      "category": "exterior-profile",
+      "subject": "Port-quarter retouched profile at anchor",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172206063.webp",
+      "category": "exterior-detail",
+      "subject": "Hull graphic and Tropicalia name with portholes",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172209435.webp",
+      "category": "exterior-detail",
+      "subject": "Close-up of hull side, portlights, and bimini",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172219476.webp",
+      "category": "exterior-profile",
+      "subject": "Bow-quarter view at anchor with bimini and flags",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172251547.webp",
+      "category": "exterior-profile",
+      "subject": "Stern-quarter view at anchor showing davits and wind gen",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172258916.webp",
+      "category": "exterior-profile",
+      "subject": "Starboard beam profile at anchor",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172315588.webp",
+      "category": "exterior-profile",
+      "subject": "Port beam profile at anchor",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260416_172336494.webp",
+      "category": "exterior-profile",
+      "subject": "Bow-on view at anchor with superyacht in background",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260419_215615486.RAW-01.COVER.webp",
+      "category": "exterior-profile",
+      "subject": "Bow-on view at dock with wind generator",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260419_215710160.RAW-01.COVER.webp",
+      "category": "exterior-profile",
+      "subject": "Stern three-quarter view docked in harbor",
+      "feature_card_candidate": "exterior"
+    },
+    {
+      "filename": "PXL_20260419_224841143.RAW-01.COVER.webp",
+      "category": "exterior-profile",
+      "subject": "Port side profile at dock with mast",
+      "feature_card_candidate": "exterior"
+    }
+  ],
+  "ground-tackle": [
+    {
+      "filename": "IMG_0787.webp",
+      "category": "anchorage",
+      "subject": "Catamaran anchored off lush green hillside",
+      "feature_card_candidate": "ground-tackle"
+    },
+    {
+      "filename": "PXL_20260419_213841593.RAW-01.COVER.webp",
+      "category": "engine-room",
+      "subject": "Windlass chain and sprocket mechanism with wiring",
+      "feature_card_candidate": "ground-tackle"
+    },
+    {
+      "filename": "PXL_20260419_220033315.RAW-01.COVER.webp",
+      "category": "detail-shot",
+      "subject": "Bow anchor deployed over turquoise water at sunset",
+      "feature_card_candidate": "ground-tackle"
+    },
+    {
+      "filename": "PXL_20260421_170251466.webp",
+      "category": "deck-equipment",
+      "subject": "Chrome Lofrans windlass with anchor chain on foredeck",
+      "feature_card_candidate": "ground-tackle"
+    },
+    {
+      "filename": "PXL_20260421_170257749.webp",
+      "category": "deck-equipment",
+      "subject": "Quick windlass remote control at helm station",
+      "feature_card_candidate": "ground-tackle"
+    },
+    {
+      "filename": "PXL_20260421_170306753.webp",
+      "category": "deck-equipment",
+      "subject": "Anchor chain locker with chain pile and snubber",
+      "feature_card_candidate": "ground-tackle"
+    }
+  ],
+  "spacious-salon": [
+    {
+      "filename": "IMG_0886.webp",
+      "category": "salon",
+      "subject": "U-shaped salon dinette with navy cushions and table",
+      "feature_card_candidate": "spacious-salon"
+    },
+    {
+      "filename": "PXL_20260419_202850473.RAW-01.COVER.webp",
+      "category": "salon",
+      "subject": "Salon dinette with bar stools and wrap-around settee",
+      "feature_card_candidate": "spacious-salon"
+    },
+    {
+      "filename": "PXL_20260419_203159996.RAW-01.COVER.webp",
+      "category": "salon",
+      "subject": "Salon settee, dinette and galley bar from aft",
+      "feature_card_candidate": "spacious-salon"
+    },
+    {
+      "filename": "PXL_20260419_221354380.RAW-01.COVER.webp",
+      "category": "salon",
+      "subject": "Salon U-shape settee with oval dining table",
+      "feature_card_candidate": "spacious-salon"
+    },
+    {
+      "filename": "PXL_20260419_221503549.RAW-01.COVER.webp",
+      "category": "salon",
+      "subject": "Salon bar-top looking out to cockpit and marina",
+      "feature_card_candidate": "spacious-salon"
+    },
+    {
+      "filename": "PXL_20260419_221851378.RAW-01.COVER.webp",
+      "category": "salon",
+      "subject": "U-shaped salon dinette with panoramic windows",
+      "feature_card_candidate": "spacious-salon"
+    },
+    {
+      "filename": "PXL_20260419_224440268.RAW-01.COVER.webp",
+      "category": "salon",
+      "subject": "Salon settee with table and nav chair",
+      "feature_card_candidate": "spacious-salon"
+    }
+  ],
+  "dinghy": [
+    {
+      "filename": "IMG_9220.webp",
+      "category": "people-lifestyle",
+      "subject": "Kid riding towable tube behind the boat",
+      "feature_card_candidate": "dinghy"
+    },
+    {
+      "filename": "PXL_20260419_195052100.RAW-01.COVER.webp",
+      "category": "dinghy",
+      "subject": "Dinghy with Suzuki outboard on davits at dock",
+      "feature_card_candidate": "dinghy"
+    },
+    {
+      "filename": "PXL_20260419_224922809.RAW-01.COVER.webp",
+      "category": "exterior-profile",
+      "subject": "Stern quarter with dinghy on davits",
+      "feature_card_candidate": "dinghy"
+    }
+  ],
+  "gallery-only": [
+    {
+      "filename": "IMG_9375.webp",
+      "category": "sunset-scenic",
+      "subject": "Deckhand on bow approaching anchorage at sunset",
+      "feature_card_candidate": "gallery-only"
+    },
+    {
+      "filename": "IMG_9832.webp",
+      "category": "sunset-scenic",
+      "subject": "Moody sunset view from foredeck over turquoise water",
+      "feature_card_candidate": "gallery-only"
+    },
+    {
+      "filename": "PXL_20260331_141833141.webp",
+      "category": "anchorage",
+      "subject": "Sailboats anchored in protected Caribbean bay",
+      "feature_card_candidate": "gallery-only"
+    },
+    {
+      "filename": "PXL_20260421_142936328.webp",
+      "category": "detail-shot",
+      "subject": "Waste discharge pump and plumbing",
+      "feature_card_candidate": "gallery-only"
+    },
+    {
+      "filename": "PXL_20260421_143108603.webp",
+      "category": "detail-shot",
+      "subject": "Thru-hull and seacock manifold box",
+      "feature_card_candidate": "gallery-only"
+    },
+    {
+      "filename": "PXL_20260421_170703907.webp",
+      "category": "storage",
+      "subject": "Storage locker with rope coil and utility bucket",
+      "feature_card_candidate": "gallery-only"
+    }
+  ],
+  "deck-equipment": [
+    {
+      "filename": "PXL_20251120_122621550.webp",
+      "category": "exterior-detail",
+      "subject": "Tropicalia name decal with winch and horseshoe buoy",
+      "feature_card_candidate": "deck-equipment"
+    }
+  ],
+  "headsails": [
+    {
+      "filename": "PXL_20251219_143447444.webp",
+      "category": "sails-under-sail",
+      "subject": "View forward under sail with jib and mainsail set",
+      "feature_card_candidate": "headsails"
+    },
+    {
+      "filename": "PXL_20260419_220056328.RAW-01.COVER.webp",
+      "category": "detail-shot",
+      "subject": "ProFurl manual furler with blue halyard coiled",
+      "feature_card_candidate": "headsails"
+    }
+  ],
+  "mainsail": [
+    {
+      "filename": "PXL_20251221_132503993.webp",
+      "category": "sails-under-sail",
+      "subject": "Jib and boom sailing downwind in light breeze",
+      "feature_card_candidate": "mainsail"
+    }
+  ],
+  "mast-rigging": [
+    {
+      "filename": "PXL_20260416_172319024.webp",
+      "category": "exterior-profile",
+      "subject": "Port beam profile with mast and rigging visible",
+      "feature_card_candidate": "mast-rigging"
+    }
+  ],
+  "cockpit-comfort": [
+    {
+      "filename": "PXL_20260419_194708255.RAW-01.COVER.webp",
+      "category": "cockpit",
+      "subject": "Cockpit with dining table, helm seat and bimini",
+      "feature_card_candidate": "cockpit-comfort"
+    },
+    {
+      "filename": "PXL_20260419_195404010.RAW-01.COVER.webp",
+      "category": "helm",
+      "subject": "Helm station with wheel and padded bench seat",
+      "feature_card_candidate": "cockpit-comfort"
+    },
+    {
+      "filename": "PXL_20260419_195711723.RAW-01.COVER.webp",
+      "category": "cockpit",
+      "subject": "Cockpit table view toward dinghy and dock",
+      "feature_card_candidate": "cockpit-comfort"
+    },
+    {
+      "filename": "PXL_20260419_221712663.RAW-01.COVER.webp",
+      "category": "cockpit",
+      "subject": "Aft cockpit table with teak sole at dock",
+      "feature_card_candidate": "cockpit-comfort"
+    },
+    {
+      "filename": "PXL_20260419_221745703.RAW-01.COVER.webp",
+      "category": "cockpit",
+      "subject": "Cockpit helm seat and wheel under bimini",
+      "feature_card_candidate": "cockpit-comfort"
+    },
+    {
+      "filename": "PXL_20260419_225038107.RAW-01.COVER.webp",
+      "category": "cockpit",
+      "subject": "Cockpit looking forward into salon at dusk",
+      "feature_card_candidate": "cockpit-comfort"
+    }
+  ],
+  "electronics": [
+    {
+      "filename": "PXL_20260419_200035726.RAW-01.COVER.webp",
+      "category": "helm",
+      "subject": "Helm electronics with dual chartplotters and Yanmar gauges",
+      "feature_card_candidate": "electronics"
+    },
+    {
+      "filename": "PXL_20260419_213859560.RAW-01.COVER.webp",
+      "category": "electronics",
+      "subject": "PredictWind DataHub weather and connectivity unit",
+      "feature_card_candidate": "electronics"
+    },
+    {
+      "filename": "PXL_20260419_213923924.RAW-01.COVER.webp",
+      "category": "electronics",
+      "subject": "Raymarine ACU-200 autopilot actuator control unit",
+      "feature_card_candidate": "electronics"
+    },
+    {
+      "filename": "PXL_20260419_225313912.RAW-01.COVER.webp",
+      "category": "helm",
+      "subject": "Helm station with wheel chartplotter and MFDs",
+      "feature_card_candidate": "electronics"
+    },
+    {
+      "filename": "PXL_20260419_225335142.RAW-01.COVER.webp",
+      "category": "helm",
+      "subject": "Helm electronics closeup chartplotter and gauges",
+      "feature_card_candidate": "electronics"
+    }
+  ],
+  "galley": [
+    {
+      "filename": "PXL_20260419_202944158.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley bar with LED-lit counter and stool seating",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_213232411.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley with gas cooktop, oven and stainless sink",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_213315748.RAW-01.COVER.webp",
+      "category": "storage",
+      "subject": "Dish storage cubby with plates behind glass",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_213404497.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Sharp microwave oven built into galley cabinetry with drawers",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_213429829.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Granite galley countertop with trash chute and cutting board",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_213802075.RAW-01.COVER.webp",
+      "category": "storage",
+      "subject": "Blue glassware and stemware stored in galley cabinet",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_214726424.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley with gas range, oven, double sink, microwave",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_214907153.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Wide galley view with counters and appliances",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_220141945.RAW-01.COVER.webp",
+      "category": "storage",
+      "subject": "Propane locker with red and blue gas cylinders",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_221328530.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley overhead angle showing stove, sinks, microwave",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_221335611.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley looking aft with overhead hatch open",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_221342338.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Wrap-around U-shape galley with bar-top counter",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_221437611.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley with stainless oven, range, and skylight hatches",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_221625679.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley with counter and bar stool seating",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_224355167.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley stove sinks and overhead hatch",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_224414601.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley looking forward with stove and bar",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260419_225418683.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley and bar with purple accent lighting",
+      "feature_card_candidate": "galley"
+    },
+    {
+      "filename": "PXL_20260421_141444215.webp",
+      "category": "storage",
+      "subject": "Galley pantry cabinet with snacks and vacuum hose",
+      "feature_card_candidate": "galley"
+    }
+  ],
+  "electrical-dc": [
+    {
+      "filename": "PXL_20260419_203705241.RAW-01.COVER.webp",
+      "category": "nav-station",
+      "subject": "Nav station with chartplotter, breaker panel and desk",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_213702396.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Victron Energy GX touch display showing system status",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_213727367.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Victron MultiPlus inverter/charger with heavy cabling",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_213849178.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "DC terminal block wiring bus with numbered circuits",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_213951875.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Lithium battery bank with heavy red DC cabling",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_213959069.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Schneider DC breaker panel labeled for cabin circuits",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_214135176.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "DC negative bus bar with ring terminals",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_214152414.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "DC breakers with heavy battery cables",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260419_214216056.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Victron Cerbo GX system controller",
+      "feature_card_candidate": "electrical-dc"
+    },
+    {
+      "filename": "PXL_20260420_213808172.webp",
+      "category": "electrical-panel",
+      "subject": "USB and DC power outlet with AC receptacle",
+      "feature_card_candidate": "electrical-dc"
+    }
+  ],
+  "entertainment": [
+    {
+      "filename": "PXL_20260419_203836247.RAW-01.COVER.webp",
+      "category": "nav-station",
+      "subject": "Nav desk with TV screen showing Netflix and stereo",
+      "feature_card_candidate": "entertainment"
+    }
+  ],
+  "refrigeration": [
+    {
+      "filename": "PXL_20260419_213332019.RAW-01.COVER.webp",
+      "category": "fridge-freezer",
+      "subject": "Closed top-loading refrigerator hatch door",
+      "feature_card_candidate": "refrigeration"
+    },
+    {
+      "filename": "PXL_20260419_213348796.RAW-01.COVER.webp",
+      "category": "fridge-freezer",
+      "subject": "Open top-loading fridge stocked with provisions",
+      "feature_card_candidate": "refrigeration"
+    },
+    {
+      "filename": "PXL_20260419_213531483.RAW-01.COVER.webp",
+      "category": "fridge-freezer",
+      "subject": "Top-loading fridge and freezer compartments under galley counter",
+      "feature_card_candidate": "refrigeration"
+    },
+    {
+      "filename": "PXL_20260419_213539234.RAW-01.COVER.webp",
+      "category": "galley",
+      "subject": "Galley sink and counter with top-loading refrigeration",
+      "feature_card_candidate": "refrigeration"
+    },
+    {
+      "filename": "PXL_20260421_141600748.webp",
+      "category": "fridge-freezer",
+      "subject": "Inkbird freezer controller with compressor below",
+      "feature_card_candidate": "refrigeration"
+    }
+  ],
+  "electrical-ac": [
+    {
+      "filename": "PXL_20260419_213712574.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "AC circuit breaker panel with overhead speaker",
+      "feature_card_candidate": "electrical-ac"
+    },
+    {
+      "filename": "PXL_20260419_213937290.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Victron VDI-32A galvanic isolator protecting shore power",
+      "feature_card_candidate": "electrical-ac"
+    },
+    {
+      "filename": "PXL_20260419_214016534.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Schneider shore power breakers with earth leakage protection",
+      "feature_card_candidate": "electrical-ac"
+    },
+    {
+      "filename": "PXL_20260419_214112666.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Victron inverter/charger mounted in engine space",
+      "feature_card_candidate": "electrical-ac"
+    },
+    {
+      "filename": "PXL_20260419_214125932.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "AC neutral bus bars and breaker wiring",
+      "feature_card_candidate": "electrical-ac"
+    }
+  ],
+  "solar-array": [
+    {
+      "filename": "PXL_20260419_213721961.RAW-01.COVER.webp",
+      "category": "electrical-panel",
+      "subject": "Victron SmartSolar MPPT 150/85 charge controller",
+      "feature_card_candidate": "solar-array"
+    },
+    {
+      "filename": "PXL_20260419_215945609.RAW-01.COVER.webp",
+      "category": "aerial",
+      "subject": "Overhead view of solar panels on coachroof",
+      "feature_card_candidate": "solar-array"
+    }
+  ],
+  "emergency-beacons": [
+    {
+      "filename": "PXL_20260419_213927774.RAW-01.COVER.webp",
+      "category": "electronics",
+      "subject": "Raymarine AIS650 Class B transceiver with MMSI",
+      "feature_card_candidate": "emergency-beacons"
+    }
+  ],
+  "generator": [
+    {
+      "filename": "PXL_20260419_214029310.RAW-01.COVER.webp",
+      "category": "generator",
+      "subject": "Cummins Onan marine generator control panel",
+      "feature_card_candidate": "generator"
+    },
+    {
+      "filename": "PXL_20260421_164509946.webp",
+      "category": "generator",
+      "subject": "Cummins Onan marine generator in sound-insulated compartment",
+      "feature_card_candidate": "generator"
+    }
+  ],
+  "saildrives-props": [
+    {
+      "filename": "PXL_20260419_214105542.RAW-01.COVER.webp",
+      "category": "engine-room",
+      "subject": "Saildrive leg with chain drive linkage in engine compartment",
+      "feature_card_candidate": "saildrives-props"
+    },
+    {
+      "filename": "PXL_20260421_164854616.webp",
+      "category": "engine-room",
+      "subject": "Saildrive leg base with hoses and fire extinguisher",
+      "feature_card_candidate": "saildrives-props"
+    },
+    {
+      "filename": "PXL_20260421_165328735.webp",
+      "category": "detail-shot",
+      "subject": "Yanmar SD60 saildrive nameplate and housing",
+      "feature_card_candidate": "saildrives-props"
+    }
+  ],
+  "guest-cabins": [
+    {
+      "filename": "PXL_20260419_221536620.RAW-01.COVER.webp",
+      "category": "guest-cabin",
+      "subject": "Companionway steps down to guest cabin",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260420_211011201.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin vestibule with berth and private head",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260420_211451476.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin berth with floral bedding and hatch",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260420_211509516.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin storage steps and berth",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260420_211543813.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin with hatch, fan, and cabinetry",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260420_211646801.webp",
+      "category": "guest-cabin",
+      "subject": "Guest hull passageway to head",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260421_151534879.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin double berth with overhead hatch",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260421_151607184.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin bed foot view with hatch",
+      "feature_card_candidate": "guest-cabins"
+    },
+    {
+      "filename": "PXL_20260421_151913048.webp",
+      "category": "guest-cabin",
+      "subject": "Guest cabin foot view with vent and hatches",
+      "feature_card_candidate": "guest-cabins"
+    }
+  ],
+  "owner-cabin": [
+    {
+      "filename": "PXL_20260419_221608270.RAW-01.COVER.webp",
+      "category": "owner-cabin",
+      "subject": "Hallway to private head in hull cabin",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_140901397.webp",
+      "category": "owner-cabin",
+      "subject": "Owner cabin with bed, hatch, and ensuite view",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_140908958.webp",
+      "category": "owner-cabin",
+      "subject": "Owner cabin hull with berth and ensuite access",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_141026778.webp",
+      "category": "owner-cabin",
+      "subject": "Owner cabin berth with red pillow and door",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_151555088.webp",
+      "category": "owner-cabin",
+      "subject": "Owner cabin queen berth with TV",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_151648267.webp",
+      "category": "owner-cabin",
+      "subject": "Owner cabin bed with hatch and mounted TV",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_151655764.webp",
+      "category": "owner-cabin",
+      "subject": "Owner cabin steps down to ensuite head",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_151739315.webp",
+      "category": "storage",
+      "subject": "Walk-in closet with hanging clothes and shelves",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_151758165.webp",
+      "category": "storage",
+      "subject": "Closet shelves with woven storage baskets",
+      "feature_card_candidate": "owner-cabin"
+    },
+    {
+      "filename": "PXL_20260421_151835060.webp",
+      "category": "storage",
+      "subject": "Hanging locker with shelves and clothes rail",
+      "feature_card_candidate": "owner-cabin"
+    }
+  ],
+  "master-head": [
+    {
+      "filename": "PXL_20260420_203359126.webp",
+      "category": "owner-head",
+      "subject": "Owner head with granite vanity and shower stall",
+      "feature_card_candidate": "master-head"
+    },
+    {
+      "filename": "PXL_20260421_141239247.webp",
+      "category": "owner-head",
+      "subject": "Master head with sink, mirror, and toilet",
+      "feature_card_candidate": "master-head"
+    },
+    {
+      "filename": "PXL_20260421_142707024.webp",
+      "category": "detail-shot",
+      "subject": "Granite vanity with hidden sink",
+      "feature_card_candidate": "master-head"
+    }
+  ],
+  "guest-heads": [
+    {
+      "filename": "PXL_20260420_203506948.webp",
+      "category": "guest-head",
+      "subject": "Guest head with vanity and separate shower",
+      "feature_card_candidate": "guest-heads"
+    },
+    {
+      "filename": "PXL_20260420_211125377.webp",
+      "category": "guest-head",
+      "subject": "White head compartment with sink and storage",
+      "feature_card_candidate": "guest-heads"
+    },
+    {
+      "filename": "PXL_20260421_142827698.webp",
+      "category": "guest-head",
+      "subject": "Guest head corridor with vanity",
+      "feature_card_candidate": "guest-heads"
+    }
+  ],
+  "storage": [
+    {
+      "filename": "PXL_20260420_204124965.webp",
+      "category": "storage",
+      "subject": "Forepeak storage locker with hanging rod",
+      "feature_card_candidate": "storage"
+    },
+    {
+      "filename": "PXL_20260421_172112032.webp",
+      "category": "storage",
+      "subject": "Clean storage compartment with parts organizer and tool case",
+      "feature_card_candidate": "storage"
+    }
+  ],
+  "laundry": [
+    {
+      "filename": "PXL_20260420_211047929.webp",
+      "category": "washing-machine",
+      "subject": "Washer/dryer with closet and fire extinguisher",
+      "feature_card_candidate": "laundry"
+    },
+    {
+      "filename": "PXL_20260421_142559846.webp",
+      "category": "guest-head",
+      "subject": "Hallway with washer, sink, and head beyond",
+      "feature_card_candidate": "laundry"
+    },
+    {
+      "filename": "PXL_20260421_142617563.webp",
+      "category": "washing-machine",
+      "subject": "Samsung top-load washer open",
+      "feature_card_candidate": "laundry"
+    }
+  ],
+  "workspaces": [
+    {
+      "filename": "PXL_20260420_212045887.webp",
+      "category": "nav-station",
+      "subject": "Hallway leading to nav station and cabin",
+      "feature_card_candidate": "workspaces"
+    },
+    {
+      "filename": "PXL_20260420_212136257.webp",
+      "category": "nav-station",
+      "subject": "Nav station desk with laptop and monitor",
+      "feature_card_candidate": "workspaces"
+    },
+    {
+      "filename": "PXL_20260420_212308479.webp",
+      "category": "nav-station",
+      "subject": "Nav station with opening port and bench seating",
+      "feature_card_candidate": "workspaces"
+    },
+    {
+      "filename": "PXL_20260420_213737332.webp",
+      "category": "nav-station",
+      "subject": "Workstation desk with dual screens and stool",
+      "feature_card_candidate": "workspaces"
+    },
+    {
+      "filename": "PXL_20260420_213753089.webp",
+      "category": "nav-station",
+      "subject": "Workspace desk, bookshelf, and laptop setup",
+      "feature_card_candidate": "workspaces"
+    }
+  ],
+  "air-conditioning": [
+    {
+      "filename": "PXL_20260421_141424506.webp",
+      "category": "AC",
+      "subject": "Mabru marine air conditioner unit label",
+      "feature_card_candidate": "air-conditioning"
+    },
+    {
+      "filename": "PXL_20260421_141431707.webp",
+      "category": "AC",
+      "subject": "Mabru AC compressor and refrigerant lines",
+      "feature_card_candidate": "air-conditioning"
+    }
+  ],
+  "fresh-water": [
+    {
+      "filename": "PXL_20260421_142644654.webp",
+      "category": "electrical-panel",
+      "subject": "Wema tank level gauges panel",
+      "feature_card_candidate": "fresh-water"
+    },
+    {
+      "filename": "PXL_20260421_143236485.webp",
+      "category": "detail-shot",
+      "subject": "Freshwater tank selector manifold and flow meter",
+      "feature_card_candidate": "fresh-water"
+    },
+    {
+      "filename": "PXL_20260421_170549620.webp",
+      "category": "storage",
+      "subject": "Fuel tank plumbing with hoses and valves in bilge",
+      "feature_card_candidate": "fresh-water"
+    },
+    {
+      "filename": "PXL_20260421_171817700.webp",
+      "category": "storage",
+      "subject": "Aluminum water tanks with hose connections in locker",
+      "feature_card_candidate": "fresh-water"
+    }
+  ],
+  "watermaker": [
+    {
+      "filename": "PXL_20260421_142747891.webp",
+      "category": "watermaker",
+      "subject": "Rainman watermaker pump and filter",
+      "feature_card_candidate": "watermaker"
+    },
+    {
+      "filename": "PXL_20260421_143222305.webp",
+      "category": "watermaker",
+      "subject": "Rainman RO membranes and control panel",
+      "feature_card_candidate": "watermaker"
+    }
+  ],
+  "engines": [
+    {
+      "filename": "PXL_20260421_164327039.webp",
+      "category": "engine-room",
+      "subject": "Yanmar diesel engine in engine compartment",
+      "feature_card_candidate": "engines"
+    },
+    {
+      "filename": "PXL_20260421_164335200.webp",
+      "category": "engine-room",
+      "subject": "Engine bay with ventilation ducting and mounted equipment",
+      "feature_card_candidate": "engines"
+    },
+    {
+      "filename": "PXL_20260421_164559033.webp",
+      "category": "engine-room",
+      "subject": "Marine diesel engine belts, pulleys, and oil filter",
+      "feature_card_candidate": "engines"
+    },
+    {
+      "filename": "PXL_20260421_164904088.webp",
+      "category": "engine-room",
+      "subject": "Clean engine bay with insulated sound shielding",
+      "feature_card_candidate": "engines"
+    },
+    {
+      "filename": "PXL_20260421_164916499.webp",
+      "category": "engine-room",
+      "subject": "Engine top view with coolant reservoir and hoses",
+      "feature_card_candidate": "engines"
+    },
+    {
+      "filename": "PXL_20260421_165444847.webp",
+      "category": "engine-room",
+      "subject": "Overhead view of marine diesel engine installation",
+      "feature_card_candidate": "engines"
+    }
+  ]
+}

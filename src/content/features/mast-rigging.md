@@ -2,7 +2,7 @@
 title: "Mast & Standing Rigging"
 description: "Anodized aluminum triple-spreader mast with full Harken hardware. Pulled and stored on the hard every hurricane season for inspection — rigger has replaced elements as needed over the boat's life."
 photos:
-  - /images/mast-standing-rigging.webp
+  - /images/gallery/PXL_20260416_172319024.webp
 order: 31
 featured: false
 cardSize: "medium"

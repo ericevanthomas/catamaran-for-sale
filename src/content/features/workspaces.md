@@ -2,8 +2,10 @@
 title: "Five Remote-Work Spaces"
 description: "Private office in the owner's cabin, a proper nav station, a full salon dinette, a 4-seat bar with stools, and an outdoor cockpit table. Real workspaces — built for a family that homeschooled and worked from the water."
 photos:
-  - /images/captains-quarters-desk.webp
-  - /images/interior-1.webp
+  - /images/gallery/PXL_20260420_213737332.webp
+  - /images/gallery/PXL_20260420_212136257.webp
+  - /images/gallery/PXL_20260420_213753089.webp
+  - /images/gallery/PXL_20260419_203705241.RAW-01.COVER.webp
 order: 11
 featured: false
 cardSize: "medium"

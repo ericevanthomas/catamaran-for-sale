@@ -2,7 +2,10 @@
 title: Spacious Salon
 description: 3-cabin Owner's Version with panoramic views, 6'3" headroom, dedicated nav station, and re-upholstered seating throughout.
 photos:
-  - /images/interior-1.webp
+  - /images/gallery/PXL_20260419_221851378.RAW-01.COVER.webp
+  - /images/gallery/IMG_0886.webp
+  - /images/gallery/PXL_20260419_202850473.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_221354380.RAW-01.COVER.webp
 video: ''
 order: 1
 featured: true

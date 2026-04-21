@@ -1,7 +1,10 @@
 ---
 title: "800W Solar — Positioned to Actually Work"
 description: "Two 400W panels mounted on the coach roof and bimini where they avoid most of the usual shading traps, so they routinely put out close to their rated output. Covers daily house loads at anchor."
-photos: []
+photos:
+  - /images/gallery/PXL_20260419_215945609.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213721961.RAW-01.COVER.webp
+
 order: 26
 featured: false
 cardSize: "small"

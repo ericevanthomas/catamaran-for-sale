@@ -1,7 +1,11 @@
 ---
 title: "Guest Heads (×2)"
 description: "Two ensuite guest heads in the port hull — each with electric flush toilets (one new), pressurized hot and cold water, and a new overboard discharge pump for the holding tank."
-photos: []
+photos:
+  - /images/gallery/PXL_20260420_203506948.webp
+  - /images/gallery/PXL_20260420_211125377.webp
+  - /images/gallery/PXL_20260421_142827698.webp
+
 order: 16
 featured: false
 cardSize: "small"

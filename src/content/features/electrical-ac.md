@@ -2,7 +2,10 @@
 title: "AC Electrical — Dual 110V / 220V Global System"
 description: "Wired for both 110V and 220V with two shore power inlets and separate Victron inverter/chargers for each — so you can plug in at any marina in the world and run any appliance aboard."
 photos:
-  - /images/nav-station-ac-panels.webp
+  - /images/gallery/PXL_20260419_214016534.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213712574.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_214112666.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213937290.RAW-01.COVER.webp
 order: 7
 featured: false
 cardSize: "medium"

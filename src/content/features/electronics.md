@@ -2,8 +2,10 @@
 title: "Electronics & Navigation"
 description: "New Raymarine Axiom 12\" chartplotter with full Caribbean and North America cartography, plus an Orca navigation display that's removable from the nav station and can move to the helm. Forward-looking and side-scan sonar. Predict Wind Hub for position tracking via Starlink."
 photos:
-  - /images/garmin-chartplotter-helm.webp
-  - /images/helm-station.webp
+  - /images/gallery/PXL_20260419_200035726.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_225313912.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213923924.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213859560.RAW-01.COVER.webp
 order: 6
 featured: false
 cardSize: "large"

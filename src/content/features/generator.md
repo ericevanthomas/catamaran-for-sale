@@ -1,7 +1,10 @@
 ---
 title: "Onan 4kW Genset — Gone-Over, Remote-Controlled"
 description: "4kW diesel generator, fully torn down and serviced with new hoses and parts. Directly powers the watermaker and washing machine. Start/stop in the owner's cabin plus a remote electronic panel at the nav station."
-photos: []
+photos:
+  - /images/gallery/PXL_20260421_164509946.webp
+  - /images/gallery/PXL_20260419_214029310.RAW-01.COVER.webp
+
 order: 25
 featured: false
 cardSize: "small"

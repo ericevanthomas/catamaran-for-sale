@@ -2,8 +2,11 @@
 title: Full Galley
 description: Alpes Inox propane stove and oven, 12v Adler Barbour fridge and freezer, Sharp convection microwave, and Corian surfaces.
 photos:
-  - /images/galley-wide.webp
-  - /images/galley-stove.webp
+  - /images/gallery/PXL_20260419_221342338.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_213232411.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_202944158.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_214726424.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_221437611.RAW-01.COVER.webp
 video: ''
 order: 2
 featured: true

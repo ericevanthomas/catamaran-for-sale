@@ -1,7 +1,12 @@
 ---
 title: "A Cockpit That Feels Safe"
 description: "Deep combings and bolsters enclose the seating area, wide side decks wrap all the way around, and the helm sits within the cockpit — slightly elevated for visibility but not up in the sky. Parents will understand immediately."
-photos: []
+photos:
+  - /images/gallery/PXL_20260419_194708255.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_221745703.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_225038107.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_195711723.RAW-01.COVER.webp
+
 order: 42
 featured: false
 cardSize: "small"

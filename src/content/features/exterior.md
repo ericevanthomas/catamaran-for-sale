@@ -2,9 +2,11 @@
 title: "Extended Rear Deck, Sugar Scoops & Exterior"
 description: "Original owners nearly doubled the standard rear deck — you can walk all the way around when the dinghy is in its chocks. Hot and cold showers in both sugar scoops, deep lockers sized for dive tanks, and a sleek, low-windage profile."
 photos:
-  - /images/boat-full-starboard.webp
-  - /images/boat-full-profile.webp
-  - /images/bow-crystal-water.webp
+  - /images/gallery/PXL_20260416_172145319.webp
+  - /images/gallery/PXL_20260416_172258916.webp
+  - /images/gallery/IMG_0791.webp
+  - /images/gallery/IMG_0804.webp
+  - /images/gallery/PXL_20260416_172219476.webp
 order: 11
 featured: false
 cardSize: "small"

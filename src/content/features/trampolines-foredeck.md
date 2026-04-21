@@ -2,7 +2,10 @@
 title: "Trampolines & Teak Walkway"
 description: "Offshore 3/8in polyester trampolines (2017) with a teak walkway between them and an integral chain guide. The foredeck is its own outdoor living room at anchor."
 photos:
-  - /images/trampolines-foredeck.webp
+  - /images/gallery/IMG_0459.webp
+  - /images/gallery/IMG_9775.webp
+  - /images/gallery/PXL_20260419_225658384.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_220008817.RAW-01.COVER.webp
 order: 41
 featured: false
 cardSize: "medium"

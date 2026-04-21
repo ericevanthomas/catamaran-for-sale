@@ -2,7 +2,10 @@
 title: "Primary Ground Tackle"
 description: "Rocna 40kg with 200ft of re-galvanized 10mm G4 chain on a Lofrans X3 windlass. The kind of setup you can actually sleep on in a blow."
 photos:
-  - /images/anchor-chain-stopper.webp
+  - /images/gallery/PXL_20260421_170251466.webp
+  - /images/gallery/PXL_20260419_220033315.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260421_170306753.webp
+  - /images/gallery/IMG_0787.webp
 order: 32
 featured: false
 cardSize: "medium"

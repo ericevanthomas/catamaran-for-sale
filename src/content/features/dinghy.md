@@ -2,7 +2,9 @@
 title: "Dinghy & Tender"
 description: "Zodiac 12.5' YL380DL center console with new Hypalon tubes, Suzuki 25hp 4-stroke (<100 hours), and a built-in dinghy refill system — an onboard aluminum gas tank in the starboard sugar scoop with a hose to fill the dinghy without ever going ashore."
 photos:
-  - /images/dinghy-in-water.webp
+  - /images/gallery/PXL_20260419_195052100.RAW-01.COVER.webp
+  - /images/gallery/PXL_20260419_224922809.RAW-01.COVER.webp
+  - /images/gallery/IMG_9220.webp
 order: 13
 featured: false
 cardSize: "small"

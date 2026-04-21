@@ -2,7 +2,10 @@
 title: Owner's Cabin
 description: Starboard hull with king-size mattress (new 2025), large head with separate shower, new electric toilet, and walk-in closet.
 photos:
-  - /images/master-cabin-queen.webp
+  - /images/gallery/PXL_20260421_151648267.webp
+  - /images/gallery/PXL_20260421_140901397.webp
+  - /images/gallery/PXL_20260421_151655764.webp
+  - /images/gallery/PXL_20260421_151739315.webp
 video: ''
 order: 3
 featured: true

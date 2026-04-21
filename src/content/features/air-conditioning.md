@@ -2,7 +2,8 @@
 title: "Air Conditioning — 12V and 110V Mabru"
 description: "Two Mabru AC units in a smart split: 12V DC for running off the lithium bank at anchor, and 120V for staying cool at the dock without burning house power."
 photos:
-  - /images/ac-thermostat.webp
+  - /images/gallery/PXL_20260421_141424506.webp
+  - /images/gallery/PXL_20260421_141431707.webp
 order: 5
 featured: false
 cardSize: "small"

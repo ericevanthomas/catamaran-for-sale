@@ -2,7 +2,7 @@
 title: "Mainsail"
 description: "Full-batten mainsail with a large roach on a Harken Batt-Car track, a new stack pack from the Voyage factory, and full lazy-jack rigging."
 photos:
-  - /images/mainsail-up.webp
+  - /images/gallery/PXL_20251221_132503993.webp
 order: 28
 featured: false
 cardSize: "medium"

@@ -2,7 +2,9 @@
 title: "Fresh Water System"
 description: "211 gallons in two tanks, 2× IsoTemp water heaters (serviced 2023), charcoal filter at the galley, emergency hand pump, and all engine-room plumbing replaced."
 photos:
-  - /images/plumbing-manifold.webp
+  - /images/gallery/PXL_20260421_171817700.webp
+  - /images/gallery/PXL_20260421_143236485.webp
+  - /images/gallery/PXL_20260421_142644654.webp
 order: 39
 featured: false
 cardSize: "small"

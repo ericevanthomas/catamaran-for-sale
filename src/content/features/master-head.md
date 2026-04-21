@@ -2,7 +2,9 @@
 title: "Master Head & Shower"
 description: "Large head in the owner's cabin with a separate spacious shower stall and a composting toilet — dry, odor-free, and zero blackwater plumbing in the starboard hull."
 photos:
-  - /images/composting-toilet.webp
+  - /images/gallery/PXL_20260421_141239247.webp
+  - /images/gallery/PXL_20260420_203359126.webp
+  - /images/gallery/PXL_20260421_142707024.webp
 order: 15
 featured: false
 cardSize: "small"
