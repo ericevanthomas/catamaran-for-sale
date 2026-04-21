@@ -190,6 +190,9 @@ const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean
 		max-width: 100vw;
 		max-height: 100vh;
 		z-index: 200;
+	}
+
+	.lightbox[open] {
 		display: flex;
 		align-items: center;
 		justify-content: center;
