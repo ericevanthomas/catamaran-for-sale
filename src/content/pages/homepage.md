@@ -16,11 +16,11 @@ glance:
   priceDisplay: $379,000 USD
   locationDisplay: Currently in the US Virgin Islands · Arriving St. Augustine, FL June 1, 2026
 topPhotos:
-  - image: /images/gallery/IMG_0791.webp
+  - image: /images/tropicalia/PXL_20260419_213232411.RAW-01.COVER.webp
     alt: Tropicalia at anchor, starboard profile
-  - image: /images/gallery/IMG_0784.webp
+  - image: /images/tropicalia/IMG_0784.webp
     alt: Bow-on view of Tropicalia at anchor
-  - image: /images/gallery/IMG_0787.webp
+  - image: /images/tropicalia/IMG_0787.webp
     alt: Tropicalia at anchor in a Caribbean bay
 whyChose:
   eyebrow: From Our Family to Yours
@@ -50,7 +50,7 @@ alternatingSections:
   - eyebrow: Comfort
     heading: Room to live your best cruising life.
     body: At 27 feet of beam, the main salon feels big, open, and airy. The salon and galley flow into the cockpit so meals, movie nights, and long evenings at anchor all happen in the same open space. The galley is a full kitchen with a proper gas cooktop and oven, and there is a 4-seat bar for casual meals and entertaining. The entire starboard hull is the owner's suite—king berth, private head with a large stall shower, office area, a walk-in closet, and real storage everywhere. The port hull features two queen cabins with private heads and a laundry area. Underway, the long waterline gives her an easy, level motion that lets everyone keep functioning in bigger seas. On deck, she carries a 12.5-foot Zodiac with a 25hp outboard, so shore runs and snorkel trips are quick and dry.
-    image: /images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp
+    image: /images/tropicalia/PXL_20260419_203159996.RAW-01.COVER.webp
   - eyebrow: Capability
     heading: Tropicalia is a well-equipped cruising machine.
     body: Tropicalia was custom built by Voyage Yachts in South Africa with bulkheads and furniture fiberglassed into the hull—one solid structure that doesn't creak or shift underway. She is energy- and water-independent, with 800 watts of solar panels, new 1,280ah lithium batteries, a 4kW Onan generator, a reliable new watermaker, and ample tankage. She has lots of cruising comforts, like a dedicated laundry room, an office, a giant two-door chest freezer, a separate refrigerator, and dual-zone Mabru air conditioning, including a 12V unit that can be run on the batteries, and all-electric winches. Dual 110v and 220v Victron chargers/inverters and dual shore power inlets mean she can cruise anywhere in the world. She carries a new 6-person offshore life raft, a new EPIRB, AIS man-overboard beacons on every life jacket, and a full Raymarine radar, Axiom chartplotter (2025), and autopilot suite (2025), for offshore navigation.
