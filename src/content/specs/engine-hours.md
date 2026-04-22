@@ -1,6 +1,6 @@
 ---
 label: "Engine Hours"
-value: "~2,800 (at time of purchase, 2025)"
+value: "Port 3,323 hrs · Starboard 3,213 hrs"
 group: "Engines & Propulsion"
 order: 14
 ---
