@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import fs from 'fs';
 
-const SRC = '/Users/ericthomas/Documents/Personal/Boat Trip/Voyage 500 Gods Grace/Blog/cropped-logo-red-round.png';
+const SRC = '/tmp/logo-teal-round.png';
 const targets = [
 	{ name: 'favicon-16.png', size: 16 },
 	{ name: 'favicon-32.png', size: 32 },
