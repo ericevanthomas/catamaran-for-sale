@@ -1,6 +1,6 @@
 ---
 label: "Generator"
-value: "Onan 4kW Genset"
+value: "Cummins Onan 4kW marine genset, 220V, 4,830 hrs"
 group: "Engines & Propulsion"
 order: 15
 ---

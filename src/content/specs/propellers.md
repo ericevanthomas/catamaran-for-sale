@@ -1,6 +1,6 @@
 ---
 label: "Propellers"
-value: "3-blade bronze"
+value: "Brunton Autoprop — bronze, folding (rebuilt 2025)"
 group: "Engines & Propulsion"
 order: 13
 ---
