@@ -7,6 +7,7 @@ photos:
   - /images/gallery/PXL_20260421_142559846.webp
 order: 14
 featured: false
+draft: true
 cardSize: "small"
 category: "Living Spaces"
 quote:

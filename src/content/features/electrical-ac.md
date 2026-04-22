@@ -8,6 +8,7 @@ photos:
   - /images/gallery/PXL_20260419_213937290.RAW-01.COVER.webp
 order: 7
 featured: false
+draft: true
 cardSize: "medium"
 category: "Electrical"
 ---

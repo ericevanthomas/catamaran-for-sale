@@ -4,6 +4,7 @@ description: "Large overhead opening hatches throughout, Nicro solar-powered ven
 photos: []
 order: 17
 featured: false
+draft: true
 cardSize: "small"
 category: "Living Spaces"
 ---

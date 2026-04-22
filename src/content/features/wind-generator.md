@@ -5,6 +5,7 @@ photos:
   - /images/wind-generator-d400.webp
 order: 27
 featured: false
+draft: true
 cardSize: "small"
 category: "Electrical"
 ---

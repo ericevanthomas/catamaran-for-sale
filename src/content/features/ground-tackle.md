@@ -8,6 +8,7 @@ photos:
   - /images/gallery/IMG_0787.webp
 order: 32
 featured: false
+draft: true
 cardSize: "medium"
 category: "Systems & Equipment"
 ---

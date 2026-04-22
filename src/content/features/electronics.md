@@ -8,6 +8,7 @@ photos:
   - /images/gallery/PXL_20260419_213859560.RAW-01.COVER.webp
 order: 6
 featured: false
+draft: true
 cardSize: "large"
 category: "Navigation"
 ---

@@ -7,6 +7,7 @@ photos:
 
 order: 29
 featured: false
+draft: true
 cardSize: "small"
 category: "Rigging & Sails"
 ---

@@ -7,6 +7,7 @@ photos:
   - /images/gallery/PXL_20260419_214105542.RAW-01.COVER.webp
 order: 24
 featured: false
+draft: true
 cardSize: "medium"
 category: "Recent Upgrades"
 ---

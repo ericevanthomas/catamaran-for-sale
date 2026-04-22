@@ -9,6 +9,7 @@ photos:
 video: ''
 order: 4
 featured: false
+draft: true
 category: Living Spaces
 cardSize: medium
 ---

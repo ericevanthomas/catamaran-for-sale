@@ -7,6 +7,7 @@ photos:
   - /images/gallery/IMG_9220.webp
 order: 13
 featured: false
+draft: true
 cardSize: "small"
 category: "Dinghy & Tender"
 quote:

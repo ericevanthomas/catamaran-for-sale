@@ -8,6 +8,7 @@ photos:
   - /images/gallery/PXL_20260419_203705241.RAW-01.COVER.webp
 order: 11
 featured: false
+draft: true
 cardSize: "medium"
 category: "Living Spaces"
 ---

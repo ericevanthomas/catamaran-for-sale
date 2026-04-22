@@ -6,6 +6,7 @@ photos:
   - /images/gallery/PXL_20260421_142747891.webp
 order: 9
 featured: false
+draft: true
 cardSize: "medium"
 category: "Systems & Equipment"
 ---

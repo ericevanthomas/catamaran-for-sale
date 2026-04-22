@@ -9,6 +9,7 @@ photos:
   - /images/gallery/PXL_20260416_172219476.webp
 order: 11
 featured: false
+draft: true
 cardSize: "small"
 category: "Recent Upgrades"
 ---

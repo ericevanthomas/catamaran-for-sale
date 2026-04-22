@@ -4,6 +4,7 @@ description: "Mar Pro Premium antifouling (Jan 2023, touch-ups Feb 2025). Last h
 photos: []
 order: 40
 featured: false
+draft: true
 cardSize: "small"
 category: "Recent Upgrades"
 ---

@@ -4,6 +4,7 @@ description: "LED everything — multi-color selectable spreader lights, red/whi
 photos: []
 order: 18
 featured: false
+draft: true
 cardSize: "small"
 category: "Living Spaces"
 ---

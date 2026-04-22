@@ -8,6 +8,7 @@ photos:
 
 order: 16
 featured: false
+draft: true
 cardSize: "small"
 category: "Living Spaces"
 ---

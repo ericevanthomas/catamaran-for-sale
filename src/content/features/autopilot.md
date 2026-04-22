@@ -4,6 +4,7 @@ description: "Two independent Raymarine ST7002 autopilot heads on two different 
 photos: []
 order: 34
 featured: false
+draft: true
 cardSize: "small"
 category: "Navigation"
 ---

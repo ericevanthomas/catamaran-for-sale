@@ -4,6 +4,7 @@ description: "Fireboy XINTEX automatic fire extinguisher in the engine rooms plu
 photos: []
 order: 22
 featured: false
+draft: true
 cardSize: "small"
 category: "Safety"
 ---

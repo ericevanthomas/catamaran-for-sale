@@ -4,6 +4,7 @@ description: "Spare Delta 40kg with chain and rode, plus a Fortress FX37 aluminu
 photos: []
 order: 33
 featured: false
+draft: true
 cardSize: "small"
 category: "Systems & Equipment"
 ---

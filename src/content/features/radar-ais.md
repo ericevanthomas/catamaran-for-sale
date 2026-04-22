@@ -4,6 +4,7 @@ description: "Raymarine RD418HD digital radome (Fall 2023) plus AIS650 Class B t
 photos: []
 order: 35
 featured: false
+draft: true
 cardSize: "small"
 category: "Navigation"
 ---

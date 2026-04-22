@@ -6,6 +6,7 @@ photos:
   - /images/gallery/PXL_20260421_170257749.webp
 order: 10
 featured: false
+draft: true
 cardSize: "medium"
 category: "Sailing Performance"
 ---

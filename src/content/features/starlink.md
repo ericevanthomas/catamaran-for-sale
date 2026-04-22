@@ -4,6 +4,7 @@ description: "Motorized Starlink dish (tilts and rotates for best signal) mounte
 photos: []
 order: 37
 featured: false
+draft: true
 cardSize: "medium"
 category: "Recent Upgrades"
 ---

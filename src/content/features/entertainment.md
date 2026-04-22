@@ -5,6 +5,7 @@ photos:
   - /images/gallery/PXL_20260419_203836247.RAW-01.COVER.webp
 order: 12
 featured: false
+draft: true
 cardSize: "small"
 category: "Living Spaces"
 ---

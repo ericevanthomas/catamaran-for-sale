@@ -4,6 +4,7 @@ description: "Pantopix forward-looking and side-scan sonar (installed Feb 2023) 
 photos: []
 order: 36
 featured: false
+draft: true
 cardSize: "small"
 category: "Navigation"
 ---

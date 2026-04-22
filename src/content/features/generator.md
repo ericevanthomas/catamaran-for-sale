@@ -7,6 +7,7 @@ photos:
 
 order: 25
 featured: false
+draft: true
 cardSize: "small"
 category: "Electrical"
 ---

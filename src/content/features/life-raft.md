@@ -4,6 +4,7 @@ description: "Brand-new offshore life raft, replaced by current owners. Cradle-m
 photos: []
 order: 20
 featured: false
+draft: true
 cardSize: "small"
 category: "Safety"
 ---

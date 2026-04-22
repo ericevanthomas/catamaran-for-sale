@@ -7,6 +7,7 @@ photos:
   - /images/gallery/PXL_20260421_142644654.webp
 order: 39
 featured: false
+draft: true
 cardSize: "small"
 category: "Plumbing"
 ---

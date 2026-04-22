@@ -4,6 +4,7 @@ description: "A new Raymarine Axiom multifunction display added by the current o
 photos: []
 order: 38
 featured: false
+draft: true
 cardSize: "small"
 category: "Recent Upgrades"
 ---

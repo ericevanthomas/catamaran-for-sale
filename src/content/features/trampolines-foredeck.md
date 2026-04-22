@@ -8,6 +8,7 @@ photos:
   - /images/gallery/PXL_20260419_220008817.RAW-01.COVER.webp
 order: 41
 featured: false
+draft: true
 cardSize: "medium"
 category: "Sailing Performance"
 ---

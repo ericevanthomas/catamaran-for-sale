@@ -6,6 +6,7 @@ photos:
 
 order: 21
 featured: false
+draft: true
 cardSize: "small"
 category: "Safety"
 quote:

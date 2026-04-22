@@ -5,6 +5,7 @@ photos:
   - /images/spinnaker-sailing.webp
 order: 30
 featured: false
+draft: true
 cardSize: "small"
 category: "Rigging & Sails"
 ---

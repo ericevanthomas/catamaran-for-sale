@@ -5,6 +5,7 @@ photos:
   - /images/gallery/PXL_20260416_172319024.webp
 order: 31
 featured: false
+draft: true
 cardSize: "medium"
 category: "Rigging & Sails"
 ---
