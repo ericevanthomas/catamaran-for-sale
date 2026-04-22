@@ -22,17 +22,17 @@ glance:
       value: 50 ft
     - label: Asking Price
       value: $379,000
-    - label: Yanmar 3JH5e 39hp Engines
-      value: 3,323 & 3,213 hours, new SD60 Sail Drives
-    - label: Layout
-      value: 3 Cabin Owner's Version
     - label: Location
       value: US Virgin Islands · En route to St. Augustine, FL (06/01/2026)
+    - label: Layout
+      value: 3 Cabin Owner's Version
     - label: New Batteries
       value: 1,280Ah Lithium
+    - label: Yanmar 3JH5e 39hp Engines
+      value: 3,323 & 3,213 hours, new SD60 Sail Drives
     - label: New Equipment
       value: Watermaker, chartplotter, life raft, safety gear
-  note: Recent upgrades include new lithium batteries (1,280Ah), Rainman watermaker, Raymarine Axiom chartplotter, life raft, and all safety equipment.
+  note: Recent upgrades include new Yanmar SD-60 saildrives, new lithium batteries (1,280Ah), new Rainman 37GPH watermaker, new Raymarine Axiom+ 12 MFD Chartplotter, new Raymarine Evolution EV-200 Sail Autopilot, new 6-person Offshore Commander life raft, new Orca Display and Orca Core, new ACR GlobalFix V5 AIS RLS EPIRB Survival Kit, new Dometic Masterflush electric head, 4 new German easyOne auto-deploy AIS offshore personal beacons, new Predictwind Hub, and other gear.
   linkText: Full Specs & Equipment
   linkUrl: /specs/
 topPhotos:
