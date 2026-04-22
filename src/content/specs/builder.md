@@ -1,6 +1,6 @@
 ---
 label: "Builder"
-value: "Voyage Yachts"
+value: "Voyage Yachts (South Africa)"
 group: "Construction"
 order: 42
 ---
