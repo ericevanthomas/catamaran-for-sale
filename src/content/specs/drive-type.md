@@ -1,6 +1,6 @@
 ---
 label: "Drive Type"
-value: "Sail Drive"
+value: "Yanmar SD60 saildrives (new 2025)"
 group: "Engines & Propulsion"
 order: 12
 ---
