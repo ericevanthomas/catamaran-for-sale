@@ -8,7 +8,7 @@ hero:
     - Voyage 500
     - Catamaran
     - For Sale
-  subheadline: A 50-foot bluewater catamaran with a long waterline, fiberglassed bulkheads, an owner's hull, and a galley that cooked our family a full Thanksgiving dinner. Cruise-ready and lived-in.
+  subheadline: A 50-foot bluewater catamaran with a long waterline, fiberglassed bulkheads, an owner's hull, and a galley that cooked our family a full Thanksgiving dinner.
   image: /images/hero-bow-edited.webp
   ctaText: Inquire About This Boat
   ctaLink: /contact/
@@ -38,7 +38,7 @@ upgradesSection:
 alternatingSections:
   - eyebrow: Value
     heading: A 50-foot bluewater catamaran with a new lithium bank, watermaker, chartplotter, and safety package.
-    body: Tropicalia is a full-size, three-cabin owner's version with the range and payload to go anywhere. Fifty feet gives her real storage capacity — water, fuel, tools, spares, bikes, dive gear, the dinghy, the kids' stuff — without running out of room or waterline. She's been our family's home for four full cruising seasons, maintained every week and upgraded to the standard we wanted with our own kids aboard. Every major system has been replaced or refreshed, and there are no deferred projects waiting for you.
+    body: Tropicalia is a full-size, three-cabin owner's version with the range and payload to cruise anywhere. Fifty feet gives her real storage — water, fuel, tools, spares, bikes, dive gear, the dinghy, and the kids' stuff all fit, and she carries the weight well. Under sail she has a long waterline and a full-batten main on a Harken batt-car system. At anchor, 800W of solar, a 4kW generator, Mabru air conditioning on both voltages, a washing machine, and Starlink Maritime keep daily life easy.
     image: /images/home/home-why-value.webp
   - eyebrow: Comfort
     heading: Room to live, not just to sleep.
@@ -46,7 +46,7 @@ alternatingSections:
     image: /images/home/home-why-built.webp
   - eyebrow: Safety
     heading: Built solid and equipped for the ocean.
-    body: "Tropicalia was built in South Africa with fiberglassed bulkheads tabbed into the hull — one solid structure that doesn't creak or shift underway. Fifty feet gives her a long waterline and real reserve buoyancy, which translate to a sea-kindly motion and bigger safety margins when the weather isn't cooperating. She's outfitted for real offshore work: new life raft, new EPIRB, AIS man-overboard beacons on every life jacket, full Raymarine radar-chartplotter-autopilot suite, and redundant navigation. Every piece of safety gear has been checked, refreshed, or replaced this year."
+    body: Tropicalia was built in South Africa with fiberglassed bulkheads tabbed into the hull — one solid structure that doesn't creak or shift underway. Fifty feet gives her a long waterline and real reserve buoyancy, which translate to a sea-kindly motion and bigger safety margins when the weather isn't cooperating. She carries a new life raft, a new EPIRB, AIS man-overboard beacons on every life jacket, and a full Raymarine radar, chartplotter, and autopilot suite for offshore navigation.
     image: /images/home/home-why-ready.webp
 highlights:
   eyebrow: Cruise-Ready
