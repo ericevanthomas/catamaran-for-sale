@@ -19,8 +19,8 @@ whyChoseBody: We spent over a year looking at catamarans before we found Tropica
 upgradesEyebrow: Installed by Current Owners
 upgradesHeading: Recent Upgrades
 upgrades:
-  - title: 1,280Ah Lithium Battery Bank (2025)
-    body: LiFePO4 house bank, professionally installed by marine electricians in St. Augustine with extra safety cutoffs. Days of capacity under normal loads.
+  - title: 1,280Ah LiFePO4 Battery Bank (2025)
+    body: Four LiTime 12V 320Ah Mini Bluetooth lithium batteries (~16.4 kWh) wired in parallel. Professionally installed by marine electricians in St. Augustine with extra safety cutoffs. Each battery has a 200A BMS and a Bluetooth 5.0 app for real-time monitoring. Days of capacity under normal loads.
   - title: Rainman Modular AC-140 Watermaker (2025)
     body: Top-tier 220v AC unit—up to 37 GPH from two 40" Dow Filmtec membranes. Plumbed directly into the boat's freshwater system. Fill either tank individually; pickle in place via the unit's own reservoir.
   - title: Raymarine Axiom 12" Chartplotter (2025)
@@ -31,6 +31,19 @@ upgrades:
     body: 3000W 230V Victron inverter/charger (2024) + Multiplus 12/3000 120/50 (2022). Two shore inlets — plug in at any marina in the world.
   - title: Starlink Maritime
     body: Bimini-mounted, runs on 12V direct from the house bank. Full broadband at anchor, underway, or offshore — no generator required.
+alternatingSections:
+  - eyebrow: Value & Comfort
+    heading: A 50-foot catamaran that cruises like a bigger boat — at a price that doesn't.
+    body: "At 50 feet of length and 27 feet of beam, Tropicalia gives you space, stability, and motion-through-water that newer production cats at this size sell for $700K and up. The long waterline keeps her easy in a seaway. The generous beam keeps life below deck genuinely spacious — the salon, galley, and cockpit all feel like rooms in a house, not compartments to squeeze through. You don't pay the premium of a new boat. You do get the scale, the performance, and the room to actually live aboard."
+    imageKey: home-why-value
+  - eyebrow: Built to Last
+    heading: Sixteen years in and the interior still looks practically new.
+    body: "The Voyage factory in South Africa built these cats with fiberglassed, tabbed bulkheads instead of glued-and-screwed flat-pack furniture — so the whole structure is one solid piece, and nothing creaks or shifts at sea. Her original owner was an aerospace engineer who specified her to a higher standard than the production norm, and it shows. The cabinetry, the headliner, the upholstery — all still fresh, all easy to keep clean. This is a boat designed to hold up to another decade of daily cruising life."
+    imageKey: home-why-built
+  - eyebrow: Cruise-Ready
+    heading: Every system a cruiser needs — plus a few thoughtful upgrades.
+    body: "She didn't go on the market and then get prepped. She's been our home across four full cruising seasons, and everything works because we use it every week. New 1,280Ah LiTime lithium bank, new Rainman AC-140 watermaker plumbed properly, new Raymarine Axiom chartplotter, motorized Starlink, Mabru air conditioning on both voltages, Victron dual 110V/220V system, new SD60 saildrives and rebuilt auto-props, AIS beacons on every life jacket. You can sail her straight out of St. Augustine this summer."
+    imageKey: home-why-ready
 highlightsEyebrow: Cruise-Ready
 highlightsHeading: Key Equipment
 highlightsBullets:
