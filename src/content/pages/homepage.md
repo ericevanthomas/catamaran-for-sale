@@ -19,7 +19,7 @@ whyChoseBody: "We spent over a year looking at catamarans before we found Tropic
 upgradesEyebrow: Installed by Current Owners
 upgradesHeading: Recent Upgrades
 upgrades:
-  - title: 1,280Ah Lithium Battery Bank (2026)
+  - title: 1,280Ah Lithium Battery Bank (2025)
     body: LiFePO4 house bank, professionally installed by marine electricians in St. Augustine with extra safety cutoffs. Days of capacity under normal loads.
   - title: Rainman Modular AC-140 Watermaker (2026)
     body: Top-tier AC unit — up to 37 GPH from two 40" Dow Filmtec membranes. Plumbed directly into the boat's freshwater system. Fill either tank individually; pickle in place via the unit's own reservoir.
