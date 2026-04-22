@@ -189,26 +189,6 @@ const description = homepage?.data.description ?? '';
 		</section>
 	)}
 
-	<!-- KEY EQUIPMENT — what cruisers look for -->
-	{highlights?.bullets && (
-		<section class="highlights">
-			<div class="wrap">
-				<div class="highlights__header">
-					<p class="eyebrow">{highlights.eyebrow ?? 'Cruise-Ready'}</p>
-					<h2>{highlights.heading ?? 'Key Equipment'}</h2>
-				</div>
-				<div class="highlights__grid">
-					{highlights.bullets.map((bullet: string) => (
-						<div class="highlights__item">
-							<svg class="highlights__check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-							<span>{bullet}</span>
-						</div>
-					))}
-				</div>
-			</div>
-		</section>
-	)}
-
 	<!-- BOTTOM PHOTO STRIP -->
 	<section class="bottom-photos">
 		<div class="wrap">
@@ -231,6 +211,26 @@ const description = homepage?.data.description ?? '';
 			</div>
 		</div>
 	</section>
+
+	<!-- KEY EQUIPMENT — what cruisers look for -->
+	{highlights?.bullets && (
+		<section class="highlights">
+			<div class="wrap">
+				<div class="highlights__header">
+					<p class="eyebrow">{highlights.eyebrow ?? 'Cruise-Ready'}</p>
+					<h2>{highlights.heading ?? 'Key Equipment'}</h2>
+				</div>
+				<div class="highlights__grid">
+					{highlights.bullets.map((bullet: string) => (
+						<div class="highlights__item">
+							<svg class="highlights__check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+							<span>{bullet}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</section>
+	)}
 
 	<!-- CTA — dark -->
 	<section class="cta">
