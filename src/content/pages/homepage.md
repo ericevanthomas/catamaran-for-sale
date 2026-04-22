@@ -36,17 +36,17 @@ upgradesSection:
     - title: Starlink Maritime
       body: Bimini-mounted, runs on 12V direct from the house bank. Full broadband at anchor, underway, or offshore — no generator required.
 alternatingSections:
-  - eyebrow: Size & Stance
-    heading: A true 50-footer — without the bulk of a modern production cat.
-    body: Tropicalia is a real 50-footer, but she was built before the era of tall, boxy production cats. Her profile is lower, her waterline longer, and her motion in a seaway is noticeably better than a modern 50 fighting all that windage. You still get the 27-foot beam, three cabins, and a salon and galley that feel like rooms in a house — at well below the price of a new boat.
+  - eyebrow: Value
+    heading: A complete cruiser, ready the day you step aboard.
+    body: Tropicalia is a full-size bluewater catamaran with the range, systems, and space to take you anywhere. Everything important is new or recent — lithium house bank, watermaker, chartplotter, safety gear, saildrives, air conditioning. She's been our family's cruising home for four full seasons, maintained week in and week out to the standard we'd want with our own kids aboard. What you're buying is a turnkey cruiser with a known history and a long list of fresh upgrades.
     image: /images/home/home-why-value.webp
-  - eyebrow: Built to Last
-    heading: Sixteen years in and the interior still looks practically new.
-    body: The Voyage factory in South Africa built these cats with fiberglassed, tabbed bulkheads instead of glued-and-screwed flat-pack furniture — so the whole structure is one solid piece, and nothing creaks or shifts at sea. Her original owner was an aerospace engineer who specified her to a higher standard than the production norm, and it shows. The cabinetry, the headliner, the upholstery — all still fresh, all easy to keep clean. This is a boat designed to hold up to another decade of daily cruising life.
+  - eyebrow: Comfort
+    heading: Room to live, not just to sleep.
+    body: At 27 feet of beam, the whole boat feels bigger than it measures. The entire starboard hull is the owner's suite — queen berth, private head, real storage. The salon and galley flow into the cockpit so meals, movie nights, and long evenings at anchor all happen in the same open space. The galley is a real kitchen — full-size oven, gas rotisserie, enough counter for two cooks — and the cockpit is enclosed and shaded. After four seasons aboard, it still feels like a home.
     image: /images/home/home-why-built.webp
-  - eyebrow: Cruise-Ready
-    heading: Every system a cruiser needs — plus a few thoughtful upgrades.
-    body: She didn't go on the market and then get prepped. She's been our home across four full cruising seasons, and everything works because we use it every week. New 1,280Ah LiTime lithium bank, new Rainman AC-140 watermaker plumbed properly, new Raymarine Axiom chartplotter, motorized Starlink, Mabru air conditioning on both voltages, Victron dual 110V/220V system, new SD60 saildrives and rebuilt auto-props, AIS beacons on every life jacket. You can sail her straight out of St. Augustine this summer.
+  - eyebrow: Safety
+    heading: Built solid and equipped for the ocean.
+    body: "Tropicalia was built in South Africa with fiberglassed bulkheads tabbed into the hull — one solid structure that doesn't creak or shift underway. Her long waterline gives her an easy, predictable motion in a seaway. She's outfitted for real offshore passages: new life raft, new EPIRB, AIS man-overboard beacons on every life jacket, full Raymarine radar-chartplotter-autopilot suite, and redundant navigation. Every piece of safety gear has been checked, refreshed, or replaced this year."
     image: /images/home/home-why-ready.webp
 highlights:
   eyebrow: Cruise-Ready
