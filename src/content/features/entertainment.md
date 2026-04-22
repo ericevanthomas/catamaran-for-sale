@@ -15,8 +15,8 @@ The whole boat is wired for sound — speakers in the salon, cockpit, stern, and
 - New Fire TV in the salon — connected to Starlink, streams whatever you want
 - Second flat-screen TV in the owner's cabin — also on Wi-Fi
 - Local TV antenna available for over-the-air broadcast
-- Fusion marine audio system with USB and Bluetooth
-- Salon amplifier (Feb 2023)
+- Infinity marine audio system with USB and Bluetooth
+- Skar 500W RMS amplifier
 - 2× BOSS 6×9 salon speakers
 - 2× Skar speakers facing stern (Feb 2023)
 - 2× Skar 6" cockpit speakers in traveler arch (Feb 2023)
