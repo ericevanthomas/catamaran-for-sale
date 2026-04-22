@@ -66,7 +66,7 @@ alternatingSections:
   - eyebrow: Value
     heading: A 50-foot bluewater owner's version catamaran.
     body: Tropicalia is a three-cabin owner's version with the range and capacity to cruise anywhere. Fifty feet gives her real storage—water, food, fuel, tools, spares, dive equipment, and all the rest of your gear. Under sail she has a long waterline and a full-batten main on a Harken batt-car system. At anchor, 800W of solar, a 4kW generator, Mabru air conditioning, a washing machine, and Starlink keep daily life easy.
-    image: /images/gallery/PXL_20260419_221712663.RAW-01.COVER.webp
+    image: /images/gallery/PXL_20260419_214907153.RAW-01.COVER.webp
   - eyebrow: Comfort
     heading: Room to live your best cruising life.
     body: At 27 feet of beam, the main salon feels big, open, and airy. The salon and galley flow into the cockpit so meals, movie nights, and long evenings at anchor all happen in the same open space. The galley is a full kitchen with a proper gas cooktop and oven, and there is a 4-seat bar for casual meals and entertaining. The entire starboard hull is the owner's suite—king berth, private head with a large stall shower, office area, a walk-in closet, and real storage everywhere. The port hull features two queen cabins with private heads and a laundry area. Underway, the long waterline gives her an easy, level motion that lets everyone keep functioning in bigger seas. On deck, she carries a 12.5-foot Zodiac with a 25hp outboard, so shore runs and snorkel trips are quick and dry.
