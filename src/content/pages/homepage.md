@@ -36,7 +36,7 @@ glance:
   linkText: Full Specs & Equipment
   linkUrl: /specs/
 topPhotos:
-  - image: /images/gallery/IMG_0804.webp
+  - image: /images/gallery/PXL_20260416_172251547.webp
     alt: Bow-on view of Tropicalia at anchor
   - image: /images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp
     alt: Tropicalia at anchor, starboard profile
