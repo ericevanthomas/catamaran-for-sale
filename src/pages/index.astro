@@ -12,9 +12,6 @@ import bowCrystalWater from '../assets/home/bow-crystal-water.webp';
 import caribbeanAnchorage from '../assets/home/caribbean-anchorage.webp';
 import kidsCockpit from '../assets/home/kids-cockpit.webp';
 import tropicaliaAnchor from '../assets/home/tropicalia-anchor.webp';
-import homeWhyValue from '../assets/home/home-why-value.webp';
-import homeWhyBuilt from '../assets/home/home-why-built.webp';
-import homeWhyReady from '../assets/home/home-why-ready.webp';
 import galleyWide from '../assets/home/galley-wide.webp';
 import masterCabinQueen from '../assets/home/master-cabin-queen.webp';
 import interior1 from '../assets/home/interior-1.webp';
@@ -22,12 +19,12 @@ import interior1 from '../assets/home/interior-1.webp';
 const allPages = await getCollection('pages');
 const homepage = allPages.find((p) => p.id === 'homepage');
 
-const imageMap: Record<string, ImageMetadata> = {
-	'home-why-value': homeWhyValue,
-	'home-why-built': homeWhyBuilt,
-	'home-why-ready': homeWhyReady,
-};
-
+const hero = homepage?.data.hero;
+const glance = homepage?.data.glance;
+const whyChose = homepage?.data.whyChose;
+const upgradesSection = homepage?.data.upgradesSection;
+const highlights = homepage?.data.highlights;
+const bottomCta = homepage?.data.bottomCta;
 const alternatingSections = homepage?.data.alternatingSections ?? [];
 
 const title = 'Voyage 500 Catamaran For Sale by Owner';
@@ -40,12 +37,12 @@ const description = homepage?.data.description ?? '';
 	<section class="hero">
 		<div class="hero__text">
 			<div class="hero__text-inner">
-				<p class="eyebrow">{homepage?.data.heroEyebrow}</p>
-				<h1>{(homepage?.data.heroHeadlineLines ?? ['Voyage 500', 'Catamaran', 'For Sale']).map((line: string, i: number, arr: string[]) => (
+				<p class="eyebrow">{hero?.eyebrow}</p>
+				<h1>{(hero?.headlineLines ?? ['Voyage 500', 'Catamaran', 'For Sale']).map((line: string, i: number, arr: string[]) => (
 					<>{line}{i < arr.length - 1 && <br />}</>
 				))}</h1>
-				<p class="hero__sub">{homepage?.data.priceDisplay}<br />{homepage?.data.locationDisplay}</p>
-				<a href={homepage?.data.heroCtaLink ?? '/contact/'} class="btn btn--primary">{homepage?.data.heroCtaText ?? 'Inquire About This Boat'}</a>
+				<p class="hero__sub">{glance?.priceDisplay}<br />{glance?.locationDisplay}</p>
+				<a href={hero?.ctaLink ?? '/contact/'} class="btn btn--primary">{hero?.ctaText ?? 'Inquire About This Boat'}</a>
 			</div>
 		</div>
 		<div class="hero__image">
@@ -146,9 +143,9 @@ const description = homepage?.data.description ?? '';
 		<div class="wrap">
 			<div class="features-intro__grid">
 				<div class="features-intro__text">
-					<p class="eyebrow">{homepage?.data.whyChoseEyebrow}</p>
-					<h2>{homepage?.data.whyChoseHeading}</h2>
-					<p set:html={md(homepage?.data.whyChoseBody)}></p>
+					<p class="eyebrow">{whyChose?.eyebrow}</p>
+					<h2>{whyChose?.heading}</h2>
+					<p set:html={md(whyChose?.body)}></p>
 				</div>
 				<div class="features-intro__photo">
 					<Image src={kidsCockpit} alt="Our family aboard Tropicalia" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
@@ -158,12 +155,10 @@ const description = homepage?.data.description ?? '';
 	</section>
 
 	<!-- ALTERNATING STORY SECTIONS — full-bleed -->
-	{alternatingSections.map((section: { eyebrow: string; heading: string; body: string; imageKey: string }, i: number) => {
-		const img = imageMap[section.imageKey];
-		return (
+	{alternatingSections.map((section: { eyebrow: string; heading: string; body: string; image: string }, i: number) => (
 		<section class:list={['feat-row', { 'feat-row--reverse': i % 2 === 1 }]}>
 			<div class="feat-row__image">
-				{img && <Image src={img} alt={section.heading} widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy" quality={68}/>}
+				{section.image && <img src={section.image} alt={section.heading} loading="lazy" />}
 			</div>
 			<div class="feat-row__content">
 				<div class="feat-row__inner">
@@ -173,8 +168,7 @@ const description = homepage?.data.description ?? '';
 				</div>
 			</div>
 		</section>
-		);
-	})}
+	))}
 
 	<section class="features-cta">
 		<div class="wrap" style="text-align: center; padding-top: var(--gap-l); padding-bottom: var(--gap-l);">
@@ -183,13 +177,13 @@ const description = homepage?.data.description ?? '';
 	</section>
 
 	<!-- RECENT UPGRADES — dark -->
-	{homepage?.data.upgrades && homepage.data.upgrades.length > 0 && (
+	{upgradesSection?.items && upgradesSection.items.length > 0 && (
 		<section class="upgrades">
 			<div class="wrap">
-				<p class="upgrades__eyebrow">{homepage.data.upgradesEyebrow}</p>
-				<h2 class="upgrades__heading">{homepage.data.upgradesHeading}</h2>
+				<p class="upgrades__eyebrow">{upgradesSection.eyebrow}</p>
+				<h2 class="upgrades__heading">{upgradesSection.heading}</h2>
 				<div class="upgrades__grid">
-					{homepage.data.upgrades.map((item: { title: string; body: string }) => (
+					{upgradesSection.items.map((item: { title: string; body: string }) => (
 						<div class="upgrades__item">
 							<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
 							<h3>{item.title}</h3>
@@ -202,15 +196,15 @@ const description = homepage?.data.description ?? '';
 	)}
 
 	<!-- KEY EQUIPMENT — what cruisers look for -->
-	{homepage?.data.highlightsBullets && (
+	{highlights?.bullets && (
 		<section class="highlights">
 			<div class="wrap">
 				<div class="highlights__header">
-					<p class="eyebrow">{homepage.data.highlightsEyebrow ?? 'Cruise-Ready'}</p>
-					<h2>{homepage.data.highlightsHeading ?? 'Key Equipment'}</h2>
+					<p class="eyebrow">{highlights.eyebrow ?? 'Cruise-Ready'}</p>
+					<h2>{highlights.heading ?? 'Key Equipment'}</h2>
 				</div>
 				<div class="highlights__grid">
-					{homepage.data.highlightsBullets.map((bullet: string) => (
+					{highlights.bullets.map((bullet: string) => (
 						<div class="highlights__item">
 							<svg class="highlights__check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
 							<span>{bullet}</span>
@@ -247,11 +241,11 @@ const description = homepage?.data.description ?? '';
 	<!-- CTA — dark -->
 	<section class="cta">
 		<div class="wrap cta__inner">
-			<h2>{homepage?.data.ctaHeadline ?? 'Buy Direct from the Owner'}</h2>
-			<p set:html={md(homepage?.data.ctaBody)}></p>
+			<h2>{bottomCta?.headline ?? 'Buy Direct from the Owner'}</h2>
+			<p set:html={md(bottomCta?.body)}></p>
 			<div class="cta__buttons">
-				<a href={homepage?.data.ctaPrimaryLink ?? '/contact/'} class="btn btn--primary">{homepage?.data.ctaPrimaryText ?? 'Get in Touch'}</a>
-				<a href={homepage?.data.ctaSecondaryLink ?? '/transaction/'} class="btn btn--outline cta__outline">{homepage?.data.ctaSecondaryText ?? 'How Does a FSBO Sale Work?'}</a>
+				<a href={bottomCta?.primaryLink ?? '/contact/'} class="btn btn--primary">{bottomCta?.primaryText ?? 'Get in Touch'}</a>
+				<a href={bottomCta?.secondaryLink ?? '/transaction/'} class="btn btn--outline cta__outline">{bottomCta?.secondaryText ?? 'How Does a FSBO Sale Work?'}</a>
 			</div>
 		</div>
 	</section>

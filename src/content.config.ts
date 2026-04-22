@@ -88,32 +88,39 @@ const pages = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string(),
-		heroHeadline: z.string().optional(),
-		heroSubheadline: z.string().optional(),
-		heroImage: z.string().optional(),
-		priceDisplay: z.string().optional(),
-		locationDisplay: z.string().optional(),
-		highlightsBullets: z.array(z.string()).optional(),
-		photoStripImages: z.array(z.string()).optional(),
-		photoStripCTA: z.string().optional(),
-		photoStripCTALink: z.string().optional(),
-		// Editable homepage copy blocks
-		heroEyebrow: z.string().optional(),
-		heroHeadlineLines: z.array(z.string()).optional(),
-		heroCtaText: z.string().optional(),
-		heroCtaLink: z.string().optional(),
-		whyChoseEyebrow: z.string().optional(),
-		whyChoseHeading: z.string().optional(),
-		whyChoseBody: z.string().optional(),
-		upgradesEyebrow: z.string().optional(),
-		upgradesHeading: z.string().optional(),
-		upgrades: z
-			.array(
-				z.object({
-					title: z.string(),
-					body: z.string(),
-				}),
-			)
+		// Grouped homepage sections
+		hero: z
+			.object({
+				eyebrow: z.string().optional(),
+				headline: z.string().optional(),
+				headlineLines: z.array(z.string()).optional(),
+				subheadline: z.string().optional(),
+				image: z.string().optional(),
+				ctaText: z.string().optional(),
+				ctaLink: z.string().optional(),
+			})
+			.optional(),
+		glance: z
+			.object({
+				priceDisplay: z.string().optional(),
+				locationDisplay: z.string().optional(),
+			})
+			.optional(),
+		whyChose: z
+			.object({
+				eyebrow: z.string().optional(),
+				heading: z.string().optional(),
+				body: z.string().optional(),
+			})
+			.optional(),
+		upgradesSection: z
+			.object({
+				eyebrow: z.string().optional(),
+				heading: z.string().optional(),
+				items: z
+					.array(z.object({ title: z.string(), body: z.string() }))
+					.optional(),
+			})
 			.optional(),
 		alternatingSections: z
 			.array(
@@ -121,18 +128,27 @@ const pages = defineCollection({
 					eyebrow: z.string(),
 					heading: z.string(),
 					body: z.string(),
-					imageKey: z.string(),
+					image: z.string(),
 				}),
 			)
 			.optional(),
-		highlightsEyebrow: z.string().optional(),
-		highlightsHeading: z.string().optional(),
-		ctaHeadline: z.string().optional(),
-		ctaBody: z.string().optional(),
-		ctaPrimaryText: z.string().optional(),
-		ctaPrimaryLink: z.string().optional(),
-		ctaSecondaryText: z.string().optional(),
-		ctaSecondaryLink: z.string().optional(),
+		highlights: z
+			.object({
+				eyebrow: z.string().optional(),
+				heading: z.string().optional(),
+				bullets: z.array(z.string()).optional(),
+			})
+			.optional(),
+		bottomCta: z
+			.object({
+				headline: z.string().optional(),
+				body: z.string().optional(),
+				primaryText: z.string().optional(),
+				primaryLink: z.string().optional(),
+				secondaryText: z.string().optional(),
+				secondaryLink: z.string().optional(),
+			})
+			.optional(),
 	}),
 });
 

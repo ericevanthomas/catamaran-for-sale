@@ -139,52 +139,92 @@ collections:
         fields:
           - { label: Page Title (SEO), name: title, widget: string }
           - { label: Meta Description (SEO), name: description, widget: string }
-          # --- Hero ---
-          - { label: "Hero — Eyebrow (small text above headline)", name: heroEyebrow, widget: string, required: false }
-          - { label: "Hero — Headline (full, for SEO)", name: heroHeadline, widget: string }
-          - label: "Hero — Headline Lines (visible, one per line)"
-            name: heroHeadlineLines
-            widget: list
-            required: false
-            field: { label: Line, name: line, widget: string }
-          - { label: "Hero — Subheadline", name: heroSubheadline, widget: text }
-          - { label: "Hero — Image", name: heroImage, widget: image }
-          - { label: "Hero — CTA Button Text", name: heroCtaText, widget: string, required: false }
-          - { label: "Hero — CTA Button Link", name: heroCtaLink, widget: string, required: false }
-          # --- At A Glance ---
-          - { label: "At A Glance — Price Display", name: priceDisplay, widget: string }
-          - { label: "At A Glance — Location Display", name: locationDisplay, widget: string }
-          # --- Why We Chose This Boat ---
-          - { label: "Why We Chose — Eyebrow", name: whyChoseEyebrow, widget: string, required: false }
-          - { label: "Why We Chose — Heading", name: whyChoseHeading, widget: string, required: false }
-          - label: "Why We Chose — Body"
-            name: whyChoseBody
-            widget: markdown
-            required: false
-            modes: ["rich_text", "raw"]
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
-          # --- Recent Upgrades ---
-          - { label: "Upgrades — Eyebrow", name: upgradesEyebrow, widget: string, required: false }
-          - { label: "Upgrades — Heading", name: upgradesHeading, widget: string, required: false }
-          - label: "Upgrades — Items"
-            name: upgrades
-            widget: list
-            required: false
+
+          # ═════════════════════════════════════════════
+          # HERO SECTION
+          # ═════════════════════════════════════════════
+          - label: "Hero Section"
+            name: hero
+            widget: object
+            collapsed: true
+            summary: "{{fields.headline}}"
             fields:
-              - { label: Title, name: title, widget: string }
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false,
+                  hint: "Small text above the headline" }
+              - { label: Headline (full, SEO), name: headline, widget: string,
+                  hint: "Used in page metadata and SEO" }
+              - label: "Headline Lines (visible, one per line)"
+                name: headlineLines
+                widget: list
+                required: false
+                field: { label: Line, name: line, widget: string }
+              - { label: Subheadline, name: subheadline, widget: text }
+              - { label: Hero Image, name: image, widget: image }
+              - { label: CTA Button Text, name: ctaText, widget: string, required: false }
+              - { label: CTA Button Link, name: ctaLink, widget: string, required: false }
+
+          # ═════════════════════════════════════════════
+          # AT A GLANCE
+          # ═════════════════════════════════════════════
+          - label: "At A Glance"
+            name: glance
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Price Display, name: priceDisplay, widget: string }
+              - { label: Location Display, name: locationDisplay, widget: string }
+
+          # ═════════════════════════════════════════════
+          # WHY WE CHOSE THIS BOAT (intro)
+          # ═════════════════════════════════════════════
+          - label: "Why We Chose This Boat (intro block)"
+            name: whyChose
+            widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
               - label: Body
                 name: body
                 widget: markdown
+                required: false
                 modes: ["rich_text", "raw"]
                 buttons: ["bold", "italic", "link"]
-                editor_components: []
-          # --- Alternating Story Sections ---
-          - label: "Alternating Sections — 'Why We Chose The Boat' stories (3 sections)"
+
+          # ═════════════════════════════════════════════
+          # RECENT UPGRADES
+          # ═════════════════════════════════════════════
+          - label: "Recent Upgrades Section"
+            name: upgradesSection
+            widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - label: "Upgrade Items"
+                name: items
+                widget: list
+                required: false
+                collapsed: true
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - label: Body
+                    name: body
+                    widget: markdown
+                    modes: ["rich_text", "raw"]
+                    buttons: ["bold", "italic", "link"]
+
+          # ═════════════════════════════════════════════
+          # ALTERNATING STORY SECTIONS
+          # ═════════════════════════════════════════════
+          - label: "Alternating Story Sections (3 'Why We Chose' stories)"
             name: alternatingSections
             widget: list
             required: false
-            collapsed: false
+            collapsed: true
             summary: "{{fields.heading}}"
             fields:
               - { label: Eyebrow, name: eyebrow, widget: string }
@@ -194,40 +234,45 @@ collections:
                 widget: markdown
                 modes: ["rich_text", "raw"]
                 buttons: ["bold", "italic", "link"]
-                editor_components: []
-              - label: "Image Key"
-                name: imageKey
-                widget: select
-                options: [home-why-value, home-why-built, home-why-ready]
-                hint: "Must match an image in src/assets/home/ — pick one of the predefined keys"
-          # --- Key Equipment ---
-          - { label: "Key Equipment — Eyebrow", name: highlightsEyebrow, widget: string, required: false }
-          - { label: "Key Equipment — Heading", name: highlightsHeading, widget: string, required: false }
-          - label: "Key Equipment — Bullets"
-            name: highlightsBullets
-            widget: list
-            field: { label: Bullet, name: bullet, widget: string }
-          # --- Photo Strip ---
-          - label: "Photo Strip — Images"
-            name: photoStripImages
-            widget: list
-            required: false
-            field: { label: Photo, name: photo, widget: image }
-          - { label: "Photo Strip — CTA Text", name: photoStripCTA, widget: string, required: false }
-          - { label: "Photo Strip — CTA Link", name: photoStripCTALink, widget: string, required: false }
-          # --- Bottom CTA ---
-          - { label: "Bottom CTA — Headline", name: ctaHeadline, widget: string, required: false }
-          - label: "Bottom CTA — Body"
-            name: ctaBody
-            widget: markdown
-            required: false
-            modes: ["rich_text", "raw"]
-            buttons: ["bold", "italic", "link"]
-            editor_components: []
-          - { label: "Bottom CTA — Primary Button Text", name: ctaPrimaryText, widget: string, required: false }
-          - { label: "Bottom CTA — Primary Button Link", name: ctaPrimaryLink, widget: string, required: false }
-          - { label: "Bottom CTA — Secondary Button Text", name: ctaSecondaryText, widget: string, required: false }
-          - { label: "Bottom CTA — Secondary Button Link", name: ctaSecondaryLink, widget: string, required: false }
+              - { label: Image, name: image, widget: image,
+                  hint: "Pick any image from the media library — square works best" }
+
+          # ═════════════════════════════════════════════
+          # KEY EQUIPMENT (bullet list)
+          # ═════════════════════════════════════════════
+          - label: "Key Equipment"
+            name: highlights
+            widget: object
+            collapsed: true
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string, required: false }
+              - { label: Heading, name: heading, widget: string, required: false }
+              - label: Bullets
+                name: bullets
+                widget: list
+                field: { label: Bullet, name: bullet, widget: string }
+
+          # ═════════════════════════════════════════════
+          # BOTTOM CTA
+          # ═════════════════════════════════════════════
+          - label: "Bottom CTA"
+            name: bottomCta
+            widget: object
+            collapsed: true
+            summary: "{{fields.headline}}"
+            fields:
+              - { label: Headline, name: headline, widget: string, required: false }
+              - label: Body
+                name: body
+                widget: markdown
+                required: false
+                modes: ["rich_text", "raw"]
+                buttons: ["bold", "italic", "link"]
+              - { label: Primary Button Text, name: primaryText, widget: string, required: false }
+              - { label: Primary Button Link, name: primaryLink, widget: string, required: false }
+              - { label: Secondary Button Text, name: secondaryText, widget: string, required: false }
+              - { label: Secondary Button Link, name: secondaryLink, widget: string, required: false }
 
       - label: About Us
         name: about
