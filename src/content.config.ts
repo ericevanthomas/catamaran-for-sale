@@ -64,6 +64,7 @@ const gallery = defineCollection({
 			.optional(),
 		order: z.number(),
 		alt: z.string(),
+		inGallery: z.boolean().default(true),
 	}),
 });
 

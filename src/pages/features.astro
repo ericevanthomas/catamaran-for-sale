@@ -5,6 +5,20 @@ import { getCollection, render } from 'astro:content';
 const allFeatures = await getCollection('features', ({ data }) => !data.draft);
 const features = allFeatures.sort((a, b) => a.data.order - b.data.order);
 
+// Build photo-metadata lookup from the Photo Library collection.
+// Key: image path (e.g., /images/gallery/foo.webp) → { caption, alt }
+const photoMeta = new Map<string, { caption: string; alt: string }>();
+for (const p of await getCollection('gallery')) {
+	photoMeta.set(p.data.image, {
+		caption: p.data.caption ?? '',
+		alt: p.data.alt ?? '',
+	});
+}
+
+function captionsFor(paths: string[] | undefined): string[] {
+	return (paths ?? []).map((p) => photoMeta.get(p)?.caption ?? '');
+}
+
 // Pre-render markdown bodies for modals
 const featureEntries = await Promise.all(
 	features.map(async (f) => {
@@ -105,10 +119,13 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 					</button>
 					<div class:list={['modal__layout', { 'modal__layout--no-image': !entry.data.photos?.[0] }]}>
 						{entry.data.photos?.[0] && (
-							<div class="modal__media" data-photos={JSON.stringify(entry.data.photos)}>
+							<div class="modal__media" data-photos={JSON.stringify(entry.data.photos)} data-captions={JSON.stringify(captionsFor(entry.data.photos))}>
 								<div class="modal__hero">
-									<img src={entry.data.photos[0]} alt={entry.data.title} />
+									<img src={entry.data.photos[0]} alt={photoMeta.get(entry.data.photos[0])?.alt || entry.data.title} />
 								</div>
+								{photoMeta.get(entry.data.photos[0])?.caption && (
+									<p class="modal__caption">{photoMeta.get(entry.data.photos[0])?.caption}</p>
+								)}
 								{entry.data.photos.length > 1 && (
 									<>
 										<button class="modal__arrow modal__arrow--prev" aria-label="Previous photo">
@@ -452,6 +469,23 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 		overflow: hidden;
 	}
 
+	.modal__caption {
+		position: absolute;
+		bottom: var(--gap-s);
+		left: var(--gap-s);
+		right: var(--gap-s);
+		margin: 0;
+		padding: 10px 14px;
+		background: rgba(0, 0, 0, 0.6);
+		color: #fff;
+		font-size: var(--text-sm);
+		line-height: 1.4;
+		border-radius: 4px;
+		backdrop-filter: blur(6px);
+		z-index: 2;
+		pointer-events: none;
+	}
+
 	.modal__hero {
 		width: 100%;
 		height: 100%;
@@ -772,6 +806,26 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 		try { return JSON.parse(media.dataset.photos); } catch { return []; }
 	}
 
+	function getCaptions(modal: HTMLDialogElement): string[] {
+		const media = modal.querySelector('.modal__media') as HTMLElement;
+		if (!media?.dataset.captions) return [];
+		try { return JSON.parse(media.dataset.captions); } catch { return []; }
+	}
+
+	function updateCaption(modal: HTMLDialogElement, idx: number) {
+		const captions = getCaptions(modal);
+		let el = modal.querySelector('.modal__caption') as HTMLElement | null;
+		const caption = captions[idx] || '';
+		if (!caption) { if (el) el.remove(); return; }
+		if (!el) {
+			el = document.createElement('p');
+			el.className = 'modal__caption';
+			const hero = modal.querySelector('.modal__hero');
+			hero?.parentElement?.insertBefore(el, hero.nextSibling);
+		}
+		el.textContent = caption;
+	}
+
 	function showPhoto(modal: HTMLDialogElement, index: number) {
 		const photos = getPhotos(modal);
 		if (!photos.length) return;
@@ -783,7 +837,10 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 			setTimeout(() => {
 				heroImg.src = photos[idx];
 				heroImg.style.opacity = '1';
+				updateCaption(modal, idx);
 			}, 120);
+		} else {
+			updateCaption(modal, idx);
 		}
 		if (counter) counter.textContent = `${idx + 1} / ${photos.length}`;
 		modal.dataset.currentPhoto = String(idx);
@@ -796,6 +853,7 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 		const counter = modal.querySelector('.modal__counter');
 		if (heroImg && photos[0]) heroImg.src = photos[0];
 		if (counter) counter.textContent = `1 / ${photos.length}`;
+		updateCaption(modal, 0);
 	}
 
 	document.querySelectorAll('.modal__arrow--next').forEach(btn => {

@@ -3,7 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allGallery = await getCollection('gallery');
-const photos = allGallery.sort((a, b) => a.data.order - b.data.order);
+const photos = allGallery
+	.filter((p) => p.data.inGallery !== false)
+	.sort((a, b) => a.data.order - b.data.order);
 
 const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean))];
 ---
@@ -35,6 +37,7 @@ const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean
 				{photos.map((photo, i) => (
 					<figure class="gallery__item" data-category={photo.data.category} data-index={i}>
 						<img src={photo.data.image} alt={photo.data.alt} loading="lazy" />
+						{photo.data.caption && <figcaption class="gallery__caption">{photo.data.caption}</figcaption>}
 					</figure>
 				))}
 			</div>
@@ -172,6 +175,27 @@ const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean
 		height: 100%;
 		object-fit: cover;
 		transition: transform 0.4s var(--ease);
+	}
+
+	.gallery__caption {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0;
+		padding: 24px 14px 12px;
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0));
+		color: #fff;
+		font-size: 0.8rem;
+		line-height: 1.35;
+		opacity: 0;
+		transition: opacity 0.25s var(--ease);
+		pointer-events: none;
+	}
+
+	.gallery__item:hover .gallery__caption,
+	.gallery__item:focus-within .gallery__caption {
+		opacity: 1;
 	}
 
 	.gallery__item:hover img {

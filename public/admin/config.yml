@@ -88,22 +88,32 @@ collections:
         required: false
         field: { label: Tag, name: tag, widget: string }
 
-  # Gallery
+  # Photo Library — one entry per photo in the media folder.
+  # Source of truth for caption + alt text surfaced on gallery page and feature cards.
   - name: gallery
-    label: Gallery
-    label_singular: Gallery Photo
+    label: Photo Library
+    label_singular: Photo
     folder: src/content/gallery
     create: true
     slug: "{{slug}}"
+    summary: "{{caption | default(alt)}}{{inGallery | ternary('', ' — hidden from gallery')}}"
     sortable_fields:
-      fields: [order, caption]
+      fields: [order, caption, inGallery]
       default:
         field: order
         direction: ascending
+    view_filters:
+      - { label: "Shown on gallery page", field: inGallery, pattern: true }
+      - { label: "Hidden from gallery page", field: inGallery, pattern: false }
+      - { label: "Missing caption", field: caption, pattern: '^$' }
     fields:
-      - { label: Image, name: image, widget: image }
-      - { label: Alt Text, name: alt, widget: string }
-      - { label: Caption, name: caption, widget: string, required: false }
+      - { label: Image, name: image, widget: image, hint: "The photo file in the media library" }
+      - { label: Caption, name: caption, widget: string, required: false,
+          hint: "Brief description surfaced on the gallery page and in feature-card photo slideshows" }
+      - { label: Alt Text, name: alt, widget: string,
+          hint: "Screen-reader description — can be similar to caption" }
+      - { label: "Show on /gallery page", name: inGallery, widget: boolean, default: true,
+          hint: "Toggle off to keep metadata but hide from the public gallery page" }
       - label: Category
         name: category
         widget: select
