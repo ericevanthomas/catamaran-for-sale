@@ -17,13 +17,13 @@ glance:
   locationDisplay: Currently in the US Virgin Islands · Arriving St. Augustine, FL June 1, 2026
   items:
     - label: Year
-      value: "2010"
+      value: '2010'
     - label: Length
       value: 50 ft
     - label: Asking Price
       value: $379,000
-    - label: Sale Type
-      value: By Owner
+    - label: Yanmar 3JH5e 39hp Engines
+      value: 3,323 & 3,213 hours, new SD60 Sail Drives
     - label: Layout
       value: 3 Cabin Owner's Version
     - label: Location
