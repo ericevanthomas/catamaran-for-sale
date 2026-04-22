@@ -37,8 +37,8 @@ upgradesSection:
       body: Bimini-mounted, runs on 12V direct from the house bank. Full broadband at anchor, underway, or offshore — no generator required.
 alternatingSections:
   - eyebrow: Value
-    heading: A complete cruiser, ready the day you step aboard.
-    body: Tropicalia is a full-size bluewater catamaran with the range, systems, and space to take you anywhere. Everything important is new or recent — lithium house bank, watermaker, chartplotter, safety gear, saildrives, air conditioning. She's been our family's cruising home for four full seasons, maintained week in and week out to the standard we'd want with our own kids aboard. What you're buying is a turnkey cruiser with a known history and a long list of fresh upgrades.
+    heading: A 50-foot bluewater catamaran with a new lithium bank, watermaker, chartplotter, and safety package.
+    body: Tropicalia is a full-size, three-cabin owner's version with the range, systems, and space to cruise anywhere. She's been our family's home for four full cruising seasons, maintained every week and upgraded to the standard we wanted with our own kids aboard. Every major system has been replaced or refreshed in the last two years, and the maintenance trail is documented. You're stepping onto a cruiser with a known history and no deferred projects waiting for you.
     image: /images/home/home-why-value.webp
   - eyebrow: Comfort
     heading: Room to live, not just to sleep.
