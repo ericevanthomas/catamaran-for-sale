@@ -108,7 +108,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 			},
 			body: JSON.stringify({
 				from: `Tropicalia Inquiries <${env.FROM_EMAIL}>`,
-				to: [env.NOTIFY_EMAIL],
+				to: env.NOTIFY_EMAIL.split(',').map((addr) => addr.trim()).filter(Boolean),
 				reply_to: email,
 				subject,
 				text: textBody,
