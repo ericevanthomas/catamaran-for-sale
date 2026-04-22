@@ -20,7 +20,7 @@ topPhotos:
     alt: Tropicalia at anchor, starboard profile
   - image: /images/tropicalia/IMG_0784.webp
     alt: Bow-on view of Tropicalia at anchor
-  - image: /images/tropicalia/IMG_0787.webp
+  - image: /images/tropicalia/PXL_20260419_214907153.RAW-01.COVER.webp
     alt: Tropicalia at anchor in a Caribbean bay
 whyChose:
   eyebrow: From Our Family to Yours
