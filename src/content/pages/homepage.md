@@ -16,11 +16,11 @@ glance:
   priceDisplay: $379,000 USD
   locationDisplay: Currently in the US Virgin Islands · Arriving St. Augustine, FL June 1, 2026
 topPhotos:
-  - image: /images/tropicalia/PXL_20260419_213232411.RAW-01.COVER.webp
-    alt: Tropicalia at anchor, starboard profile
-  - image: /images/tropicalia/IMG_0784.webp
+  - image: /images/gallery/IMG_0804.webp
     alt: Bow-on view of Tropicalia at anchor
-  - image: /images/tropicalia/PXL_20260419_214907153.RAW-01.COVER.webp
+  - image: /images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp
+    alt: Tropicalia at anchor, starboard profile
+  - image: /images/gallery/PXL_20260416_172152808.webp
     alt: Tropicalia at anchor in a Caribbean bay
 whyChose:
   eyebrow: From Our Family to Yours
