@@ -36,12 +36,12 @@ glance:
   linkText: Full Specs & Equipment
   linkUrl: /specs/
 topPhotos:
-  - image: /images/gallery/PXL_20260416_172251547.webp
-    alt: Stern quarter view of Tropicalia at anchor
-  - image: /images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp
-    alt: Interior of Voyage 500 Catamaran "Tropicalia"
   - image: /images/gallery/PXL_20260416_172152808.webp
     alt: Tropicalia at anchor, starboard profile
+  - image: /images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp
+    alt: Interior of Voyage 500 Catamaran "Tropicalia"
+  - image: /images/gallery/PXL_20260416_172251547.webp
+    alt: Stern quarter view of Tropicalia at anchor
 whyChose:
   eyebrow: From Our Family to Yours
   heading: Why we chose this boat.
