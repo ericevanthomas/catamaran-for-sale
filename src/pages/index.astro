@@ -226,16 +226,16 @@ const description = homepage?.data.description ?? '';
 		<div class="wrap">
 			<div class="bottom-photos__grid">
 				<div class="bottom-photos__item">
-					<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+					<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 				<div class="bottom-photos__item">
-					<Image src={galleyWide} alt="U-shaped galley with bar seating" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+					<Image src={galleyWide} alt="U-shaped galley with bar seating" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 				<div class="bottom-photos__item">
-					<Image src={masterCabinQueen} alt="Owner's cabin with queen berth" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+					<Image src={masterCabinQueen} alt="Owner's cabin with queen berth" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 				<div class="bottom-photos__item">
-					<Image src={interior1} alt="Salon interior" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+					<Image src={interior1} alt="Salon interior" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 			</div>
 			<div class="bottom-photos__footer">
@@ -706,9 +706,9 @@ const description = homepage?.data.description ?? '';
 	}
 
 	.bottom-photos__grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: var(--gap-s);
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-m);
 	}
 
 	.bottom-photos__item {
@@ -717,8 +717,8 @@ const description = homepage?.data.description ?? '';
 
 	.bottom-photos__item img {
 		width: 100%;
-		aspect-ratio: 4 / 5;
-		object-fit: cover;
+		height: auto;
+		display: block;
 		transition: transform 0.5s var(--ease);
 	}
 
@@ -800,7 +800,6 @@ const description = homepage?.data.description ?? '';
 		.upgrades__grid { grid-template-columns: 1fr; }
 		.highlights__grid { grid-template-columns: repeat(2, 1fr); }
 		.cta__buttons { flex-direction: column; align-items: center; }
-		.bottom-photos__grid { grid-template-columns: repeat(2, 1fr); }
 	}
 
 	@media (max-width: 600px) {
