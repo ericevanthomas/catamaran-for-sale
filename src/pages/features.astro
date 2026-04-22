@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 
-const allFeatures = await getCollection('features');
+const allFeatures = await getCollection('features', ({ data }) => !data.draft);
 const features = allFeatures.sort((a, b) => a.data.order - b.data.order);
 
 // Pre-render markdown bodies for modals

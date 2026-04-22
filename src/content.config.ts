@@ -10,6 +10,7 @@ const features = defineCollection({
 		video: z.string().optional(),
 		order: z.number(),
 		featured: z.boolean().default(false),
+		draft: z.boolean().default(false),
 		category: z
 			.enum([
 				'Sailing Performance',

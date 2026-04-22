@@ -34,6 +34,8 @@ collections:
           hint: "Bunny Stream embed URL" }
       - { label: Display Order, name: order, widget: number, value_type: int }
       - { label: "Featured (What We Love)", name: featured, widget: boolean, default: false }
+      - { label: "Draft (hide from live site)", name: draft, widget: boolean, default: false,
+          hint: "Toggle on to unpublish this card. It stays in Sveltia but won't render on the site." }
       - label: Category
         name: category
         widget: select
