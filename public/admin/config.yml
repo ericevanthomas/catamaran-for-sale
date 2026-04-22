@@ -18,11 +18,19 @@ collections:
     folder: src/content/features
     create: true
     slug: "{{slug}}"
+    summary: "{{title}}{{draft | ternary(' — DRAFT', '')}}"
     sortable_fields:
-      fields: [order, title]
+      fields: [order, title, draft]
       default:
         field: order
         direction: ascending
+    view_filters:
+      - { label: "Published only", field: draft, pattern: false }
+      - { label: "Drafts only", field: draft, pattern: true }
+      - { label: "Featured only", field: featured, pattern: true }
+    view_groups:
+      - { label: "Status (Published / Draft)", field: draft }
+      - { label: Category, field: category }
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: markdown }
