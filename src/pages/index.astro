@@ -9,25 +9,20 @@ import bowCrystalWater from '../assets/home/bow-crystal-water.webp';
 import caribbeanAnchorage from '../assets/home/caribbean-anchorage.webp';
 import kidsCockpit from '../assets/home/kids-cockpit.webp';
 import tropicaliaAnchor from '../assets/home/tropicalia-anchor.webp';
-import galleyWide from '../assets/home/galley-wide.webp';
-import masterCabin from '../assets/home/master-cabin-queen.webp';
-import salon from '../assets/home/interior-1.webp';
-import watermakerImg from '../assets/home/watermaker.webp';
+import homeWhyValue from '../assets/home/home-why-value.webp';
+import homeWhyBuilt from '../assets/home/home-why-built.webp';
+import homeWhyReady from '../assets/home/home-why-ready.webp';
 
 const allPages = await getCollection('pages');
 const homepage = allPages.find((p) => p.id === 'homepage');
 
-const allFeatures = await getCollection('features');
-const featuredFeatures = allFeatures
-	.filter((f) => f.data.featured)
-	.sort((a, b) => a.data.order - b.data.order);
-
-const featureImageMap: Record<string, ImageMetadata> = {
-	'galley': galleyWide,
-	'owner-cabin': masterCabin,
-	'spacious-salon': salon,
-	'watermaker': watermakerImg,
+const imageMap: Record<string, ImageMetadata> = {
+	'home-why-value': homeWhyValue,
+	'home-why-built': homeWhyBuilt,
+	'home-why-ready': homeWhyReady,
 };
+
+const alternatingSections = homepage?.data.alternatingSections ?? [];
 
 const title = 'Voyage 500 Catamaran For Sale by Owner';
 const description = homepage?.data.description ?? '';
@@ -156,20 +151,19 @@ const description = homepage?.data.description ?? '';
 		</div>
 	</section>
 
-	<!-- FEATURED FEATURES — full-bleed alternating -->
-	{featuredFeatures.map((feature, i) => {
-		const img = featureImageMap[feature.id];
+	<!-- ALTERNATING STORY SECTIONS — full-bleed -->
+	{alternatingSections.map((section: { eyebrow: string; heading: string; body: string; imageKey: string }, i: number) => {
+		const img = imageMap[section.imageKey];
 		return (
 		<section class:list={['feat-row', { 'feat-row--reverse': i % 2 === 1 }]}>
 			<div class="feat-row__image">
-				{img && <Image src={img} alt={feature.data.title} widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>}
+				{img && <Image src={img} alt={section.heading} widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy" quality={68}/>}
 			</div>
 			<div class="feat-row__content">
 				<div class="feat-row__inner">
-					{feature.data.category && <span class="card__cat">{feature.data.category}</span>}
-					<h3>{feature.data.title}</h3>
-					<p>{feature.data.description}</p>
-					<a href="/features/" class="card__more">Learn more →</a>
+					<span class="card__cat">{section.eyebrow}</span>
+					<h3>{section.heading}</h3>
+					<p>{section.body}</p>
 				</div>
 			</div>
 		</section>

@@ -168,6 +168,20 @@ collections:
             fields:
               - { label: Title, name: title, widget: string }
               - { label: Body, name: body, widget: text }
+          # --- Alternating Story Sections ---
+          - label: "Alternating Sections — Items (3 'Why We Chose The Boat' stories)"
+            name: alternatingSections
+            widget: list
+            required: false
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Heading, name: heading, widget: string }
+              - { label: Body, name: body, widget: text }
+              - label: "Image Key"
+                name: imageKey
+                widget: select
+                options: [home-why-value, home-why-built, home-why-ready]
+                hint: "Must match an image in src/assets/home/ — pick one of the predefined keys"
           # --- Key Equipment ---
           - { label: "Key Equipment — Eyebrow", name: highlightsEyebrow, widget: string, required: false }
           - { label: "Key Equipment — Heading", name: highlightsHeading, widget: string, required: false }

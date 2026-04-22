@@ -4,170 +4,174 @@
   body { font-family: -apple-system, sans-serif; background: #111; color: #fff; margin: 0; padding: 1rem; }
   h1 { margin: 0 0 0.5rem; font-size: 1.4rem; font-weight: 500; color: #fff; }
   .info { font-size: 0.9rem; color: #888; margin: 0 0 1rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
-  .tile { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #222; border-radius: 4px; }
-  .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .grid { column-count: 5; column-gap: 0.75rem; }
+  @media (max-width: 1800px) { .grid { column-count: 4; } }
+  @media (max-width: 1200px) { .grid { column-count: 3; } }
+  @media (max-width: 800px) { .grid { column-count: 2; } }
+  @media (max-width: 500px) { .grid { column-count: 1; } }
+  .tile { position: relative; break-inside: avoid; margin-bottom: 0.75rem; background: #222; border-radius: 4px; overflow: hidden; }
+  .tile img { width: 100%; height: auto; display: block; }
   .num { position: absolute; top: 0; left: 0; background: rgba(0,0,0,0.8); color: #0e918c; font-weight: 700; font-size: 1.6rem; padding: 0.35rem 0.7rem; border-bottom-right-radius: 4px; }
   .fn { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.75); color: #bbb; font-size: 0.68rem; padding: 0.25rem 0.5rem; font-family: ui-monospace, monospace; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 </style>
 </head><body>
 <h1>Tropicalia — All 155 Photos</h1>
-<p class="info">Tell me the numbers for each feature card. Same order as the live gallery. Filenames shown for your reference.</p>
+<p class="info">Actual aspect ratios. Tell me the numbers for each feature card.</p>
 <div class="grid">
-<div class="tile"><div class="num">1</div><img src="public/images/gallery/IMG_0780.webp" loading="lazy" alt=""><div class="fn">IMG_0780.webp</div></div>
-<div class="tile"><div class="num">2</div><img src="public/images/gallery/IMG_0784.webp" loading="lazy" alt=""><div class="fn">IMG_0784.webp</div></div>
-<div class="tile"><div class="num">3</div><img src="public/images/gallery/IMG_0787.webp" loading="lazy" alt=""><div class="fn">IMG_0787.webp</div></div>
-<div class="tile"><div class="num">4</div><img src="public/images/gallery/IMG_0791.webp" loading="lazy" alt=""><div class="fn">IMG_0791.webp</div></div>
-<div class="tile"><div class="num">5</div><img src="public/images/gallery/IMG_0804.webp" loading="lazy" alt=""><div class="fn">IMG_0804.webp</div></div>
-<div class="tile"><div class="num">6</div><img src="public/images/gallery/IMG_0813.webp" loading="lazy" alt=""><div class="fn">IMG_0813.webp</div></div>
-<div class="tile"><div class="num">7</div><img src="public/images/gallery/IMG_9220.webp" loading="lazy" alt=""><div class="fn">IMG_9220.webp</div></div>
-<div class="tile"><div class="num">8</div><img src="public/images/gallery/IMG_9375.webp" loading="lazy" alt=""><div class="fn">IMG_9375.webp</div></div>
-<div class="tile"><div class="num">9</div><img src="public/images/gallery/IMG_9775.webp" loading="lazy" alt=""><div class="fn">IMG_9775.webp</div></div>
-<div class="tile"><div class="num">10</div><img src="public/images/gallery/IMG_9832.webp" loading="lazy" alt=""><div class="fn">IMG_9832.webp</div></div>
-<div class="tile"><div class="num">11</div><img src="public/images/gallery/PXL_20251120_122621550.webp" loading="lazy" alt=""><div class="fn">PXL_20251120_122621550.webp</div></div>
-<div class="tile"><div class="num">12</div><img src="public/images/gallery/PXL_20251219_143447444.webp" loading="lazy" alt=""><div class="fn">PXL_20251219_143447444.webp</div></div>
-<div class="tile"><div class="num">13</div><img src="public/images/gallery/PXL_20251221_132503993.webp" loading="lazy" alt=""><div class="fn">PXL_20251221_132503993.webp</div></div>
-<div class="tile"><div class="num">14</div><img src="public/images/gallery/PXL_20260331_141833141.webp" loading="lazy" alt=""><div class="fn">PXL_20260331_141833141.webp</div></div>
-<div class="tile"><div class="num">15</div><img src="public/images/gallery/PXL_20260416_172145319.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172145319.webp</div></div>
-<div class="tile"><div class="num">16</div><img src="public/images/gallery/PXL_20260416_172152808.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172152808.webp</div></div>
-<div class="tile"><div class="num">17</div><img src="public/images/gallery/PXL_20260416_172206063.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172206063.webp</div></div>
-<div class="tile"><div class="num">18</div><img src="public/images/gallery/PXL_20260416_172209435.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172209435.webp</div></div>
-<div class="tile"><div class="num">19</div><img src="public/images/gallery/PXL_20260416_172219476.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172219476.webp</div></div>
-<div class="tile"><div class="num">20</div><img src="public/images/gallery/PXL_20260416_172251547.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172251547.webp</div></div>
-<div class="tile"><div class="num">21</div><img src="public/images/gallery/PXL_20260416_172258916.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172258916.webp</div></div>
-<div class="tile"><div class="num">22</div><img src="public/images/gallery/PXL_20260416_172315588.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172315588.webp</div></div>
-<div class="tile"><div class="num">23</div><img src="public/images/gallery/PXL_20260416_172319024.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172319024.webp</div></div>
-<div class="tile"><div class="num">24</div><img src="public/images/gallery/PXL_20260416_172336494.webp" loading="lazy" alt=""><div class="fn">PXL_20260416_172336494.webp</div></div>
-<div class="tile"><div class="num">25</div><img src="public/images/gallery/PXL_20260419_195052100.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_195052100.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">26</div><img src="public/images/gallery/PXL_20260419_215615486.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_215615486.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">27</div><img src="public/images/gallery/PXL_20260419_215710160.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_215710160.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">28</div><img src="public/images/gallery/PXL_20260419_215945609.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_215945609.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">29</div><img src="public/images/gallery/PXL_20260419_224841143.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_224841143.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">30</div><img src="public/images/gallery/PXL_20260419_224922809.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_224922809.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">31</div><img src="public/images/gallery/IMG_0459.webp" loading="lazy" alt=""><div class="fn">IMG_0459.webp</div></div>
-<div class="tile"><div class="num">32</div><img src="public/images/gallery/PXL_20260419_194708255.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_194708255.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">33</div><img src="public/images/gallery/PXL_20260419_195404010.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_195404010.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">34</div><img src="public/images/gallery/PXL_20260419_195711723.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_195711723.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">35</div><img src="public/images/gallery/PXL_20260419_200035726.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_200035726.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">36</div><img src="public/images/gallery/PXL_20260419_220008817.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_220008817.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">37</div><img src="public/images/gallery/PXL_20260419_221712663.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221712663.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">38</div><img src="public/images/gallery/PXL_20260419_221745703.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221745703.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">39</div><img src="public/images/gallery/PXL_20260419_225038107.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_225038107.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">40</div><img src="public/images/gallery/PXL_20260419_225313912.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_225313912.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">41</div><img src="public/images/gallery/PXL_20260419_225335142.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_225335142.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">42</div><img src="public/images/gallery/PXL_20260419_225658384.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_225658384.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">43</div><img src="public/images/gallery/IMG_0886.webp" loading="lazy" alt=""><div class="fn">IMG_0886.webp</div></div>
-<div class="tile"><div class="num">44</div><img src="public/images/gallery/PXL_20260419_202850473.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_202850473.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">45</div><img src="public/images/gallery/PXL_20260419_202944158.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_202944158.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">46</div><img src="public/images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_203159996.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">47</div><img src="public/images/gallery/PXL_20260419_203705241.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_203705241.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">48</div><img src="public/images/gallery/PXL_20260419_203836247.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_203836247.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">49</div><img src="public/images/gallery/PXL_20260419_213232411.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213232411.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">50</div><img src="public/images/gallery/PXL_20260419_213404497.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213404497.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">51</div><img src="public/images/gallery/PXL_20260419_213429829.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213429829.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">52</div><img src="public/images/gallery/PXL_20260419_213539234.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213539234.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">53</div><img src="public/images/gallery/PXL_20260419_214726424.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214726424.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">54</div><img src="public/images/gallery/PXL_20260419_214907153.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214907153.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">55</div><img src="public/images/gallery/PXL_20260419_221328530.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221328530.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">56</div><img src="public/images/gallery/PXL_20260419_221335611.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221335611.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">57</div><img src="public/images/gallery/PXL_20260419_221342338.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221342338.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">58</div><img src="public/images/gallery/PXL_20260419_221354380.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221354380.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">59</div><img src="public/images/gallery/PXL_20260419_221437611.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221437611.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">60</div><img src="public/images/gallery/PXL_20260419_221503549.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221503549.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">61</div><img src="public/images/gallery/PXL_20260419_221536620.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221536620.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">62</div><img src="public/images/gallery/PXL_20260419_221608270.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221608270.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">63</div><img src="public/images/gallery/PXL_20260419_221625679.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221625679.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">64</div><img src="public/images/gallery/PXL_20260419_221851378.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_221851378.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">65</div><img src="public/images/gallery/PXL_20260419_224355167.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_224355167.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">66</div><img src="public/images/gallery/PXL_20260419_224414601.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_224414601.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">67</div><img src="public/images/gallery/PXL_20260419_224440268.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_224440268.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">68</div><img src="public/images/gallery/PXL_20260419_225418683.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_225418683.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">69</div><img src="public/images/gallery/PXL_20260420_203359126.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_203359126.webp</div></div>
-<div class="tile"><div class="num">70</div><img src="public/images/gallery/PXL_20260420_203506948.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_203506948.webp</div></div>
-<div class="tile"><div class="num">71</div><img src="public/images/gallery/PXL_20260420_211011201.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211011201.webp</div></div>
-<div class="tile"><div class="num">72</div><img src="public/images/gallery/PXL_20260420_211125377.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211125377.webp</div></div>
-<div class="tile"><div class="num">73</div><img src="public/images/gallery/PXL_20260420_211451476.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211451476.webp</div></div>
-<div class="tile"><div class="num">74</div><img src="public/images/gallery/PXL_20260420_211509516.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211509516.webp</div></div>
-<div class="tile"><div class="num">75</div><img src="public/images/gallery/PXL_20260420_211543813.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211543813.webp</div></div>
-<div class="tile"><div class="num">76</div><img src="public/images/gallery/PXL_20260420_211646801.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211646801.webp</div></div>
-<div class="tile"><div class="num">77</div><img src="public/images/gallery/PXL_20260420_212045887.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_212045887.webp</div></div>
-<div class="tile"><div class="num">78</div><img src="public/images/gallery/PXL_20260420_212136257.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_212136257.webp</div></div>
-<div class="tile"><div class="num">79</div><img src="public/images/gallery/PXL_20260420_212308479.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_212308479.webp</div></div>
-<div class="tile"><div class="num">80</div><img src="public/images/gallery/PXL_20260420_213737332.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_213737332.webp</div></div>
-<div class="tile"><div class="num">81</div><img src="public/images/gallery/PXL_20260420_213753089.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_213753089.webp</div></div>
-<div class="tile"><div class="num">82</div><img src="public/images/gallery/PXL_20260421_140901397.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_140901397.webp</div></div>
-<div class="tile"><div class="num">83</div><img src="public/images/gallery/PXL_20260421_140908958.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_140908958.webp</div></div>
-<div class="tile"><div class="num">84</div><img src="public/images/gallery/PXL_20260421_141026778.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_141026778.webp</div></div>
-<div class="tile"><div class="num">85</div><img src="public/images/gallery/PXL_20260421_141239247.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_141239247.webp</div></div>
-<div class="tile"><div class="num">86</div><img src="public/images/gallery/PXL_20260421_142559846.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142559846.webp</div></div>
-<div class="tile"><div class="num">87</div><img src="public/images/gallery/PXL_20260421_142827698.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142827698.webp</div></div>
-<div class="tile"><div class="num">88</div><img src="public/images/gallery/PXL_20260421_151534879.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151534879.webp</div></div>
-<div class="tile"><div class="num">89</div><img src="public/images/gallery/PXL_20260421_151555088.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151555088.webp</div></div>
-<div class="tile"><div class="num">90</div><img src="public/images/gallery/PXL_20260421_151607184.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151607184.webp</div></div>
-<div class="tile"><div class="num">91</div><img src="public/images/gallery/PXL_20260421_151648267.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151648267.webp</div></div>
-<div class="tile"><div class="num">92</div><img src="public/images/gallery/PXL_20260421_151655764.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151655764.webp</div></div>
-<div class="tile"><div class="num">93</div><img src="public/images/gallery/PXL_20260421_151913048.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151913048.webp</div></div>
-<div class="tile"><div class="num">94</div><img src="public/images/gallery/PXL_20260419_213332019.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213332019.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">95</div><img src="public/images/gallery/PXL_20260419_213348796.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213348796.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">96</div><img src="public/images/gallery/PXL_20260419_213531483.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213531483.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">97</div><img src="public/images/gallery/PXL_20260420_211047929.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_211047929.webp</div></div>
-<div class="tile"><div class="num">98</div><img src="public/images/gallery/PXL_20260421_141424506.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_141424506.webp</div></div>
-<div class="tile"><div class="num">99</div><img src="public/images/gallery/PXL_20260421_141431707.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_141431707.webp</div></div>
-<div class="tile"><div class="num">100</div><img src="public/images/gallery/PXL_20260421_141600748.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_141600748.webp</div></div>
-<div class="tile"><div class="num">101</div><img src="public/images/gallery/PXL_20260421_142617563.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142617563.webp</div></div>
-<div class="tile"><div class="num">102</div><img src="public/images/gallery/PXL_20260421_142747891.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142747891.webp</div></div>
-<div class="tile"><div class="num">103</div><img src="public/images/gallery/PXL_20260421_143222305.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_143222305.webp</div></div>
-<div class="tile"><div class="num">104</div><img src="public/images/gallery/PXL_20260419_213315748.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213315748.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">105</div><img src="public/images/gallery/PXL_20260419_213702396.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213702396.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">106</div><img src="public/images/gallery/PXL_20260419_213712574.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213712574.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">107</div><img src="public/images/gallery/PXL_20260419_213721961.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213721961.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">108</div><img src="public/images/gallery/PXL_20260419_213727367.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213727367.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">109</div><img src="public/images/gallery/PXL_20260419_213802075.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213802075.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">110</div><img src="public/images/gallery/PXL_20260419_213841593.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213841593.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">111</div><img src="public/images/gallery/PXL_20260419_213849178.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213849178.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">112</div><img src="public/images/gallery/PXL_20260419_213937290.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213937290.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">113</div><img src="public/images/gallery/PXL_20260419_213951875.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213951875.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">114</div><img src="public/images/gallery/PXL_20260419_213959069.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213959069.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">115</div><img src="public/images/gallery/PXL_20260419_214016534.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214016534.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">116</div><img src="public/images/gallery/PXL_20260419_214029310.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214029310.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">117</div><img src="public/images/gallery/PXL_20260419_214105542.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214105542.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">118</div><img src="public/images/gallery/PXL_20260419_214112666.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214112666.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">119</div><img src="public/images/gallery/PXL_20260419_214125932.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214125932.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">120</div><img src="public/images/gallery/PXL_20260419_214135176.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214135176.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">121</div><img src="public/images/gallery/PXL_20260419_214152414.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214152414.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">122</div><img src="public/images/gallery/PXL_20260419_214216056.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_214216056.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">123</div><img src="public/images/gallery/PXL_20260419_220141945.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_220141945.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">124</div><img src="public/images/gallery/PXL_20260420_204124965.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_204124965.webp</div></div>
-<div class="tile"><div class="num">125</div><img src="public/images/gallery/PXL_20260420_213808172.webp" loading="lazy" alt=""><div class="fn">PXL_20260420_213808172.webp</div></div>
-<div class="tile"><div class="num">126</div><img src="public/images/gallery/PXL_20260421_141444215.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_141444215.webp</div></div>
-<div class="tile"><div class="num">127</div><img src="public/images/gallery/PXL_20260421_142644654.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142644654.webp</div></div>
-<div class="tile"><div class="num">128</div><img src="public/images/gallery/PXL_20260421_151739315.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151739315.webp</div></div>
-<div class="tile"><div class="num">129</div><img src="public/images/gallery/PXL_20260421_151758165.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151758165.webp</div></div>
-<div class="tile"><div class="num">130</div><img src="public/images/gallery/PXL_20260421_151835060.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_151835060.webp</div></div>
-<div class="tile"><div class="num">131</div><img src="public/images/gallery/PXL_20260421_164327039.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164327039.webp</div></div>
-<div class="tile"><div class="num">132</div><img src="public/images/gallery/PXL_20260421_164335200.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164335200.webp</div></div>
-<div class="tile"><div class="num">133</div><img src="public/images/gallery/PXL_20260421_164509946.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164509946.webp</div></div>
-<div class="tile"><div class="num">134</div><img src="public/images/gallery/PXL_20260421_164559033.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164559033.webp</div></div>
-<div class="tile"><div class="num">135</div><img src="public/images/gallery/PXL_20260421_164854616.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164854616.webp</div></div>
-<div class="tile"><div class="num">136</div><img src="public/images/gallery/PXL_20260421_164904088.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164904088.webp</div></div>
-<div class="tile"><div class="num">137</div><img src="public/images/gallery/PXL_20260421_164916499.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_164916499.webp</div></div>
-<div class="tile"><div class="num">138</div><img src="public/images/gallery/PXL_20260421_165444847.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_165444847.webp</div></div>
-<div class="tile"><div class="num">139</div><img src="public/images/gallery/PXL_20260421_170549620.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_170549620.webp</div></div>
-<div class="tile"><div class="num">140</div><img src="public/images/gallery/PXL_20260421_170703907.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_170703907.webp</div></div>
-<div class="tile"><div class="num">141</div><img src="public/images/gallery/PXL_20260421_171817700.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_171817700.webp</div></div>
-<div class="tile"><div class="num">142</div><img src="public/images/gallery/PXL_20260421_172112032.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_172112032.webp</div></div>
-<div class="tile"><div class="num">143</div><img src="public/images/gallery/PXL_20260419_213859560.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213859560.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">144</div><img src="public/images/gallery/PXL_20260419_213923924.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213923924.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">145</div><img src="public/images/gallery/PXL_20260419_213927774.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_213927774.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">146</div><img src="public/images/gallery/PXL_20260419_220033315.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_220033315.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">147</div><img src="public/images/gallery/PXL_20260419_220056328.RAW-01.COVER.webp" loading="lazy" alt=""><div class="fn">PXL_20260419_220056328.RAW-01.COVER.webp</div></div>
-<div class="tile"><div class="num">148</div><img src="public/images/gallery/PXL_20260421_142707024.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142707024.webp</div></div>
-<div class="tile"><div class="num">149</div><img src="public/images/gallery/PXL_20260421_142936328.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_142936328.webp</div></div>
-<div class="tile"><div class="num">150</div><img src="public/images/gallery/PXL_20260421_143108603.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_143108603.webp</div></div>
-<div class="tile"><div class="num">151</div><img src="public/images/gallery/PXL_20260421_143236485.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_143236485.webp</div></div>
-<div class="tile"><div class="num">152</div><img src="public/images/gallery/PXL_20260421_165328735.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_165328735.webp</div></div>
-<div class="tile"><div class="num">153</div><img src="public/images/gallery/PXL_20260421_170251466.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_170251466.webp</div></div>
-<div class="tile"><div class="num">154</div><img src="public/images/gallery/PXL_20260421_170257749.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_170257749.webp</div></div>
-<div class="tile"><div class="num">155</div><img src="public/images/gallery/PXL_20260421_170306753.webp" loading="lazy" alt=""><div class="fn">PXL_20260421_170306753.webp</div></div>
+<div class="tile"><div class="num">1</div><img src="public/images/gallery/IMG_0780.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0780.webp</div></div>
+<div class="tile"><div class="num">2</div><img src="public/images/gallery/IMG_0784.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0784.webp</div></div>
+<div class="tile"><div class="num">3</div><img src="public/images/gallery/IMG_0787.webp" width="2000" height="2667" loading="lazy" alt=""><div class="fn">IMG_0787.webp</div></div>
+<div class="tile"><div class="num">4</div><img src="public/images/gallery/IMG_0791.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0791.webp</div></div>
+<div class="tile"><div class="num">5</div><img src="public/images/gallery/IMG_0804.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0804.webp</div></div>
+<div class="tile"><div class="num">6</div><img src="public/images/gallery/IMG_0813.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0813.webp</div></div>
+<div class="tile"><div class="num">7</div><img src="public/images/gallery/IMG_9220.webp" width="2000" height="2667" loading="lazy" alt=""><div class="fn">IMG_9220.webp</div></div>
+<div class="tile"><div class="num">8</div><img src="public/images/gallery/IMG_9375.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_9375.webp</div></div>
+<div class="tile"><div class="num">9</div><img src="public/images/gallery/IMG_9775.webp" width="2000" height="2667" loading="lazy" alt=""><div class="fn">IMG_9775.webp</div></div>
+<div class="tile"><div class="num">10</div><img src="public/images/gallery/IMG_9832.webp" width="2000" height="2667" loading="lazy" alt=""><div class="fn">IMG_9832.webp</div></div>
+<div class="tile"><div class="num">11</div><img src="public/images/gallery/PXL_20251120_122621550.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20251120_122621550.webp</div></div>
+<div class="tile"><div class="num">12</div><img src="public/images/gallery/PXL_20251219_143447444.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20251219_143447444.webp</div></div>
+<div class="tile"><div class="num">13</div><img src="public/images/gallery/PXL_20251221_132503993.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20251221_132503993.webp</div></div>
+<div class="tile"><div class="num">14</div><img src="public/images/gallery/PXL_20260331_141833141.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260331_141833141.webp</div></div>
+<div class="tile"><div class="num">15</div><img src="public/images/gallery/PXL_20260416_172145319.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172145319.webp</div></div>
+<div class="tile"><div class="num">16</div><img src="public/images/gallery/PXL_20260416_172152808.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172152808.webp</div></div>
+<div class="tile"><div class="num">17</div><img src="public/images/gallery/PXL_20260416_172206063.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172206063.webp</div></div>
+<div class="tile"><div class="num">18</div><img src="public/images/gallery/PXL_20260416_172209435.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172209435.webp</div></div>
+<div class="tile"><div class="num">19</div><img src="public/images/gallery/PXL_20260416_172219476.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172219476.webp</div></div>
+<div class="tile"><div class="num">20</div><img src="public/images/gallery/PXL_20260416_172251547.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172251547.webp</div></div>
+<div class="tile"><div class="num">21</div><img src="public/images/gallery/PXL_20260416_172258916.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172258916.webp</div></div>
+<div class="tile"><div class="num">22</div><img src="public/images/gallery/PXL_20260416_172315588.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172315588.webp</div></div>
+<div class="tile"><div class="num">23</div><img src="public/images/gallery/PXL_20260416_172319024.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172319024.webp</div></div>
+<div class="tile"><div class="num">24</div><img src="public/images/gallery/PXL_20260416_172336494.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260416_172336494.webp</div></div>
+<div class="tile"><div class="num">25</div><img src="public/images/gallery/PXL_20260419_195052100.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_195052100.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">26</div><img src="public/images/gallery/PXL_20260419_215615486.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_215615486.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">27</div><img src="public/images/gallery/PXL_20260419_215710160.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_215710160.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">28</div><img src="public/images/gallery/PXL_20260419_215945609.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_215945609.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">29</div><img src="public/images/gallery/PXL_20260419_224841143.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_224841143.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">30</div><img src="public/images/gallery/PXL_20260419_224922809.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_224922809.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">31</div><img src="public/images/gallery/IMG_0459.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0459.webp</div></div>
+<div class="tile"><div class="num">32</div><img src="public/images/gallery/PXL_20260419_194708255.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_194708255.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">33</div><img src="public/images/gallery/PXL_20260419_195404010.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_195404010.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">34</div><img src="public/images/gallery/PXL_20260419_195711723.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_195711723.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">35</div><img src="public/images/gallery/PXL_20260419_200035726.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_200035726.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">36</div><img src="public/images/gallery/PXL_20260419_220008817.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_220008817.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">37</div><img src="public/images/gallery/PXL_20260419_221712663.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221712663.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">38</div><img src="public/images/gallery/PXL_20260419_221745703.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221745703.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">39</div><img src="public/images/gallery/PXL_20260419_225038107.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_225038107.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">40</div><img src="public/images/gallery/PXL_20260419_225313912.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_225313912.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">41</div><img src="public/images/gallery/PXL_20260419_225335142.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_225335142.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">42</div><img src="public/images/gallery/PXL_20260419_225658384.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_225658384.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">43</div><img src="public/images/gallery/IMG_0886.webp" width="2000" height="1500" loading="lazy" alt=""><div class="fn">IMG_0886.webp</div></div>
+<div class="tile"><div class="num">44</div><img src="public/images/gallery/PXL_20260419_202850473.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_202850473.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">45</div><img src="public/images/gallery/PXL_20260419_202944158.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_202944158.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">46</div><img src="public/images/gallery/PXL_20260419_203159996.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_203159996.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">47</div><img src="public/images/gallery/PXL_20260419_203705241.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_203705241.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">48</div><img src="public/images/gallery/PXL_20260419_203836247.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_203836247.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">49</div><img src="public/images/gallery/PXL_20260419_213232411.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_213232411.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">50</div><img src="public/images/gallery/PXL_20260419_213404497.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_213404497.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">51</div><img src="public/images/gallery/PXL_20260419_213429829.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213429829.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">52</div><img src="public/images/gallery/PXL_20260419_213539234.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213539234.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">53</div><img src="public/images/gallery/PXL_20260419_214726424.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_214726424.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">54</div><img src="public/images/gallery/PXL_20260419_214907153.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214907153.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">55</div><img src="public/images/gallery/PXL_20260419_221328530.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221328530.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">56</div><img src="public/images/gallery/PXL_20260419_221335611.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_221335611.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">57</div><img src="public/images/gallery/PXL_20260419_221342338.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221342338.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">58</div><img src="public/images/gallery/PXL_20260419_221354380.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221354380.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">59</div><img src="public/images/gallery/PXL_20260419_221437611.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221437611.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">60</div><img src="public/images/gallery/PXL_20260419_221503549.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221503549.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">61</div><img src="public/images/gallery/PXL_20260419_221536620.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_221536620.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">62</div><img src="public/images/gallery/PXL_20260419_221608270.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_221608270.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">63</div><img src="public/images/gallery/PXL_20260419_221625679.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221625679.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">64</div><img src="public/images/gallery/PXL_20260419_221851378.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_221851378.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">65</div><img src="public/images/gallery/PXL_20260419_224355167.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_224355167.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">66</div><img src="public/images/gallery/PXL_20260419_224414601.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_224414601.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">67</div><img src="public/images/gallery/PXL_20260419_224440268.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_224440268.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">68</div><img src="public/images/gallery/PXL_20260419_225418683.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_225418683.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">69</div><img src="public/images/gallery/PXL_20260420_203359126.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_203359126.webp</div></div>
+<div class="tile"><div class="num">70</div><img src="public/images/gallery/PXL_20260420_203506948.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_203506948.webp</div></div>
+<div class="tile"><div class="num">71</div><img src="public/images/gallery/PXL_20260420_211011201.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260420_211011201.webp</div></div>
+<div class="tile"><div class="num">72</div><img src="public/images/gallery/PXL_20260420_211125377.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_211125377.webp</div></div>
+<div class="tile"><div class="num">73</div><img src="public/images/gallery/PXL_20260420_211451476.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260420_211451476.webp</div></div>
+<div class="tile"><div class="num">74</div><img src="public/images/gallery/PXL_20260420_211509516.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_211509516.webp</div></div>
+<div class="tile"><div class="num">75</div><img src="public/images/gallery/PXL_20260420_211543813.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_211543813.webp</div></div>
+<div class="tile"><div class="num">76</div><img src="public/images/gallery/PXL_20260420_211646801.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_211646801.webp</div></div>
+<div class="tile"><div class="num">77</div><img src="public/images/gallery/PXL_20260420_212045887.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_212045887.webp</div></div>
+<div class="tile"><div class="num">78</div><img src="public/images/gallery/PXL_20260420_212136257.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260420_212136257.webp</div></div>
+<div class="tile"><div class="num">79</div><img src="public/images/gallery/PXL_20260420_212308479.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_212308479.webp</div></div>
+<div class="tile"><div class="num">80</div><img src="public/images/gallery/PXL_20260420_213737332.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_213737332.webp</div></div>
+<div class="tile"><div class="num">81</div><img src="public/images/gallery/PXL_20260420_213753089.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_213753089.webp</div></div>
+<div class="tile"><div class="num">82</div><img src="public/images/gallery/PXL_20260421_140901397.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_140901397.webp</div></div>
+<div class="tile"><div class="num">83</div><img src="public/images/gallery/PXL_20260421_140908958.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_140908958.webp</div></div>
+<div class="tile"><div class="num">84</div><img src="public/images/gallery/PXL_20260421_141026778.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_141026778.webp</div></div>
+<div class="tile"><div class="num">85</div><img src="public/images/gallery/PXL_20260421_141239247.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_141239247.webp</div></div>
+<div class="tile"><div class="num">86</div><img src="public/images/gallery/PXL_20260421_142559846.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_142559846.webp</div></div>
+<div class="tile"><div class="num">87</div><img src="public/images/gallery/PXL_20260421_142827698.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_142827698.webp</div></div>
+<div class="tile"><div class="num">88</div><img src="public/images/gallery/PXL_20260421_151534879.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_151534879.webp</div></div>
+<div class="tile"><div class="num">89</div><img src="public/images/gallery/PXL_20260421_151555088.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_151555088.webp</div></div>
+<div class="tile"><div class="num">90</div><img src="public/images/gallery/PXL_20260421_151607184.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_151607184.webp</div></div>
+<div class="tile"><div class="num">91</div><img src="public/images/gallery/PXL_20260421_151648267.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_151648267.webp</div></div>
+<div class="tile"><div class="num">92</div><img src="public/images/gallery/PXL_20260421_151655764.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_151655764.webp</div></div>
+<div class="tile"><div class="num">93</div><img src="public/images/gallery/PXL_20260421_151913048.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_151913048.webp</div></div>
+<div class="tile"><div class="num">94</div><img src="public/images/gallery/PXL_20260419_213332019.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_213332019.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">95</div><img src="public/images/gallery/PXL_20260419_213348796.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_213348796.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">96</div><img src="public/images/gallery/PXL_20260419_213531483.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213531483.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">97</div><img src="public/images/gallery/PXL_20260420_211047929.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_211047929.webp</div></div>
+<div class="tile"><div class="num">98</div><img src="public/images/gallery/PXL_20260421_141424506.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_141424506.webp</div></div>
+<div class="tile"><div class="num">99</div><img src="public/images/gallery/PXL_20260421_141431707.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_141431707.webp</div></div>
+<div class="tile"><div class="num">100</div><img src="public/images/gallery/PXL_20260421_141600748.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_141600748.webp</div></div>
+<div class="tile"><div class="num">101</div><img src="public/images/gallery/PXL_20260421_142617563.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_142617563.webp</div></div>
+<div class="tile"><div class="num">102</div><img src="public/images/gallery/PXL_20260421_142747891.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_142747891.webp</div></div>
+<div class="tile"><div class="num">103</div><img src="public/images/gallery/PXL_20260421_143222305.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_143222305.webp</div></div>
+<div class="tile"><div class="num">104</div><img src="public/images/gallery/PXL_20260419_213315748.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213315748.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">105</div><img src="public/images/gallery/PXL_20260419_213702396.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213702396.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">106</div><img src="public/images/gallery/PXL_20260419_213712574.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213712574.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">107</div><img src="public/images/gallery/PXL_20260419_213721961.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213721961.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">108</div><img src="public/images/gallery/PXL_20260419_213727367.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213727367.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">109</div><img src="public/images/gallery/PXL_20260419_213802075.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213802075.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">110</div><img src="public/images/gallery/PXL_20260419_213841593.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213841593.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">111</div><img src="public/images/gallery/PXL_20260419_213849178.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213849178.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">112</div><img src="public/images/gallery/PXL_20260419_213937290.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213937290.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">113</div><img src="public/images/gallery/PXL_20260419_213951875.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213951875.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">114</div><img src="public/images/gallery/PXL_20260419_213959069.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213959069.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">115</div><img src="public/images/gallery/PXL_20260419_214016534.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214016534.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">116</div><img src="public/images/gallery/PXL_20260419_214029310.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214029310.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">117</div><img src="public/images/gallery/PXL_20260419_214105542.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214105542.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">118</div><img src="public/images/gallery/PXL_20260419_214112666.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214112666.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">119</div><img src="public/images/gallery/PXL_20260419_214125932.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_214125932.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">120</div><img src="public/images/gallery/PXL_20260419_214135176.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214135176.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">121</div><img src="public/images/gallery/PXL_20260419_214152414.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_214152414.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">122</div><img src="public/images/gallery/PXL_20260419_214216056.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_214216056.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">123</div><img src="public/images/gallery/PXL_20260419_220141945.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_220141945.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">124</div><img src="public/images/gallery/PXL_20260420_204124965.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_204124965.webp</div></div>
+<div class="tile"><div class="num">125</div><img src="public/images/gallery/PXL_20260420_213808172.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260420_213808172.webp</div></div>
+<div class="tile"><div class="num">126</div><img src="public/images/gallery/PXL_20260421_141444215.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_141444215.webp</div></div>
+<div class="tile"><div class="num">127</div><img src="public/images/gallery/PXL_20260421_142644654.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_142644654.webp</div></div>
+<div class="tile"><div class="num">128</div><img src="public/images/gallery/PXL_20260421_151739315.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_151739315.webp</div></div>
+<div class="tile"><div class="num">129</div><img src="public/images/gallery/PXL_20260421_151758165.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_151758165.webp</div></div>
+<div class="tile"><div class="num">130</div><img src="public/images/gallery/PXL_20260421_151835060.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_151835060.webp</div></div>
+<div class="tile"><div class="num">131</div><img src="public/images/gallery/PXL_20260421_164327039.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_164327039.webp</div></div>
+<div class="tile"><div class="num">132</div><img src="public/images/gallery/PXL_20260421_164335200.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_164335200.webp</div></div>
+<div class="tile"><div class="num">133</div><img src="public/images/gallery/PXL_20260421_164509946.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_164509946.webp</div></div>
+<div class="tile"><div class="num">134</div><img src="public/images/gallery/PXL_20260421_164559033.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_164559033.webp</div></div>
+<div class="tile"><div class="num">135</div><img src="public/images/gallery/PXL_20260421_164854616.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_164854616.webp</div></div>
+<div class="tile"><div class="num">136</div><img src="public/images/gallery/PXL_20260421_164904088.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_164904088.webp</div></div>
+<div class="tile"><div class="num">137</div><img src="public/images/gallery/PXL_20260421_164916499.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_164916499.webp</div></div>
+<div class="tile"><div class="num">138</div><img src="public/images/gallery/PXL_20260421_165444847.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_165444847.webp</div></div>
+<div class="tile"><div class="num">139</div><img src="public/images/gallery/PXL_20260421_170549620.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_170549620.webp</div></div>
+<div class="tile"><div class="num">140</div><img src="public/images/gallery/PXL_20260421_170703907.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_170703907.webp</div></div>
+<div class="tile"><div class="num">141</div><img src="public/images/gallery/PXL_20260421_171817700.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_171817700.webp</div></div>
+<div class="tile"><div class="num">142</div><img src="public/images/gallery/PXL_20260421_172112032.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_172112032.webp</div></div>
+<div class="tile"><div class="num">143</div><img src="public/images/gallery/PXL_20260419_213859560.RAW-01.COVER.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260419_213859560.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">144</div><img src="public/images/gallery/PXL_20260419_213923924.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213923924.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">145</div><img src="public/images/gallery/PXL_20260419_213927774.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_213927774.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">146</div><img src="public/images/gallery/PXL_20260419_220033315.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_220033315.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">147</div><img src="public/images/gallery/PXL_20260419_220056328.RAW-01.COVER.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260419_220056328.RAW-01.COVER.webp</div></div>
+<div class="tile"><div class="num">148</div><img src="public/images/gallery/PXL_20260421_142707024.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_142707024.webp</div></div>
+<div class="tile"><div class="num">149</div><img src="public/images/gallery/PXL_20260421_142936328.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_142936328.webp</div></div>
+<div class="tile"><div class="num">150</div><img src="public/images/gallery/PXL_20260421_143108603.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_143108603.webp</div></div>
+<div class="tile"><div class="num">151</div><img src="public/images/gallery/PXL_20260421_143236485.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_143236485.webp</div></div>
+<div class="tile"><div class="num">152</div><img src="public/images/gallery/PXL_20260421_165328735.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_165328735.webp</div></div>
+<div class="tile"><div class="num">153</div><img src="public/images/gallery/PXL_20260421_170251466.webp" width="2000" height="1506" loading="lazy" alt=""><div class="fn">PXL_20260421_170251466.webp</div></div>
+<div class="tile"><div class="num">154</div><img src="public/images/gallery/PXL_20260421_170257749.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_170257749.webp</div></div>
+<div class="tile"><div class="num">155</div><img src="public/images/gallery/PXL_20260421_170306753.webp" width="2000" height="2656" loading="lazy" alt=""><div class="fn">PXL_20260421_170306753.webp</div></div>
 </div>
 </body></html>

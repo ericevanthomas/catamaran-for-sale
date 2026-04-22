@@ -115,6 +115,16 @@ const pages = defineCollection({
 				}),
 			)
 			.optional(),
+		alternatingSections: z
+			.array(
+				z.object({
+					eyebrow: z.string(),
+					heading: z.string(),
+					body: z.string(),
+					imageKey: z.string(),
+				}),
+			)
+			.optional(),
 		highlightsEyebrow: z.string().optional(),
 		highlightsHeading: z.string().optional(),
 		ctaHeadline: z.string().optional(),
