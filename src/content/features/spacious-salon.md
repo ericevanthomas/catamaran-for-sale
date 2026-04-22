@@ -13,7 +13,7 @@ category: Living Spaces
 cardSize: large
 ---
 
-The Voyage 500's salon is one of the most spacious in her class. The desirable Owner's Version layout with three cabins gives you a dedicated owner's suite in the starboard hull with its own head and shower.
+The Voyage 500's salon is one of the most spacious in her class.
 
 - 10 x Seating Blue Sunbrella Upholstered Settee (Feb 2022)
 - 4 x Movable Blue Sunbrella Upholstered Bar Stools (Feb 2022)
