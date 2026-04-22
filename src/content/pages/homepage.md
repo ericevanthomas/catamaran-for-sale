@@ -15,6 +15,26 @@ hero:
 glance:
   priceDisplay: $379,000 USD
   locationDisplay: Currently in the US Virgin Islands · Arriving St. Augustine, FL June 1, 2026
+  items:
+    - label: Year
+      value: "2010"
+    - label: Length
+      value: 50 ft
+    - label: Asking Price
+      value: $379,000
+    - label: Sale Type
+      value: By Owner
+    - label: Layout
+      value: 3 Cabin Owner's Version
+    - label: Location
+      value: US Virgin Islands · En route to St. Augustine, FL (06/01/2026)
+    - label: New Batteries
+      value: 1,280Ah Lithium
+    - label: New Equipment
+      value: Watermaker, chartplotter, life raft, safety gear
+  note: Recent upgrades include new lithium batteries (1,280Ah), Rainman watermaker, Raymarine Axiom chartplotter, life raft, and all safety equipment.
+  linkText: Full Specs & Equipment
+  linkUrl: /specs/
 topPhotos:
   - image: /images/gallery/IMG_0804.webp
     alt: Bow-on view of Tropicalia at anchor

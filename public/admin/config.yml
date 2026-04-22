@@ -171,8 +171,20 @@ collections:
             widget: object
             collapsed: true
             fields:
-              - { label: Price Display, name: priceDisplay, widget: string }
-              - { label: Location Display, name: locationDisplay, widget: string }
+              - { label: "Price Display (used in hero)", name: priceDisplay, widget: string }
+              - { label: "Location Display (used in hero)", name: locationDisplay, widget: string }
+              - label: "Grid Items (8 boxes in the spec grid)"
+                name: items
+                widget: list
+                collapsed: true
+                summary: "{{fields.label}}: {{fields.value}}"
+                fields:
+                  - { label: Label, name: label, widget: string, hint: "e.g., Year, Length, Asking Price" }
+                  - { label: Value, name: value, widget: string, hint: "e.g., 2010, 50 ft, $379,000" }
+              - { label: "Footer Note", name: note, widget: text, required: false,
+                  hint: "Short sentence under the grid summarizing upgrades" }
+              - { label: "Footer Link Text", name: linkText, widget: string, required: false }
+              - { label: "Footer Link URL", name: linkUrl, widget: string, required: false }
 
           # ═════════════════════════════════════════════
           # TOP PHOTO STRIP (3 photos under the hero)

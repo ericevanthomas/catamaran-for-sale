@@ -104,6 +104,12 @@ const pages = defineCollection({
 			.object({
 				priceDisplay: z.string().optional(),
 				locationDisplay: z.string().optional(),
+				items: z
+					.array(z.object({ label: z.string(), value: z.string() }))
+					.optional(),
+				note: z.string().optional(),
+				linkText: z.string().optional(),
+				linkUrl: z.string().optional(),
 			})
 			.optional(),
 		topPhotos: z

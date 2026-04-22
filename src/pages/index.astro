@@ -60,45 +60,23 @@ const description = homepage?.data.description ?? '';
 	<section class="glance">
 		<div class="wrap">
 			<div class="glance__grid">
-				<div class="glance__item">
-					<span class="glance__label">Year</span>
-					<span class="glance__value">2010</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">Length</span>
-					<span class="glance__value">50 ft</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">Asking Price</span>
-					<span class="glance__value">$379,000</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">Sale Type</span>
-					<span class="glance__value">By Owner</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">Layout</span>
-					<span class="glance__value">3 Cabin Owner's Version</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">Location</span>
-					<span class="glance__value">US Virgin Islands · En route to St. Augustine, FL (06/01/2026)</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">New Batteries</span>
-					<span class="glance__value">1,280Ah Lithium</span>
-				</div>
-				<div class="glance__item">
-					<span class="glance__label">New Equipment</span>
-					<span class="glance__value">Watermaker, chartplotter, life raft, safety gear</span>
-				</div>
+				{(glance?.items ?? []).map((item: { label: string; value: string }) => (
+					<div class="glance__item">
+						<span class="glance__label">{item.label}</span>
+						<span class="glance__value">{item.value}</span>
+					</div>
+				))}
 			</div>
-			<div class="glance__footer">
-				<p class="glance__note">Recent upgrades include new lithium batteries (1,280Ah), Rainman watermaker, Raymarine Axiom chartplotter, life raft, and all safety equipment.</p>
-				<div class="glance__links">
-					<a href="/specs/">Full Specs &amp; Equipment →</a>
+			{(glance?.note || glance?.linkText) && (
+				<div class="glance__footer">
+					{glance?.note && <p class="glance__note">{glance.note}</p>}
+					{glance?.linkText && glance?.linkUrl && (
+						<div class="glance__links">
+							<a href={glance.linkUrl}>{glance.linkText} →</a>
+						</div>
+					)}
 				</div>
-			</div>
+			)}
 		</div>
 	</section>
 
