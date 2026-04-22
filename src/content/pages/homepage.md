@@ -32,7 +32,7 @@ glance:
       value: 3,323 & 3,213 hours, new SD60 Sail Drives
     - label: New Equipment
       value: Watermaker, chartplotter, life raft, safety gear
-  note: Recent upgrades include new Yanmar SD-60 saildrives, new lithium batteries (1,280Ah), new Rainman 37GPH watermaker, new Raymarine Axiom+ 12 MFD Chartplotter, new Raymarine Evolution EV-200 Sail Autopilot, new 6-person Offshore Commander life raft, new Orca Display and Orca Core, new ACR GlobalFix V5 AIS RLS EPIRB Survival Kit, new Dometic Masterflush electric head, 4 new German easyOne auto-deploy AIS offshore personal beacons, new Predictwind Hub, and other gear.
+  note: Recent upgrades include new Yanmar SD-60 saildrives, new lithium batteries (1,280Ah), new Rainman 37GPH watermaker, new Raymarine Axiom+ 12 MFD Chartplotter, new Raymarine Evolution EV-200 Sail Autopilot, new 6-person Offshore Commander life raft, new Orca Display and Orca Core, new ACR GlobalFix V5 AIS RLS EPIRB Survival Kit, new Dometic Masterflush electric head, 4 new German easyOne auto-deploy AIS offshore personal beacons, new Predictwind Hub, and other new gear.
   linkText: Full Specs & Equipment
   linkUrl: /specs/
 topPhotos:
