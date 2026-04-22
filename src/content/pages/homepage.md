@@ -65,7 +65,7 @@ upgradesSection:
 alternatingSections:
   - eyebrow: Value
     heading: A 50-foot bluewater owner's version catamaran.
-    body: Tropicalia is a three-cabin owner's version with the range and capacity to cruise anywhere. Fifty feet gives her real storage—water, food, fuel, tools, spares, dive equipment, and all the rest of your gear. Under sail she has a long waterline and a full-batten main on a Harken batt-car system. At anchor, 800W of solar, a 4kW generator, Mabru air conditioning, a washing machine, and Starlink keep daily life easy.
+    body: Tropicalia is a three-cabin owner's version with the range and capacity to cruise anywhere. Fifty feet gives her real storage—water, food, fuel, tools, spares, dive equipment, and all the rest of your gear. Under sail she has a long waterline and a full-batten main on a Harken Battcar system. At anchor, 800W of solar, a 4kW Onan sound-insulated generator, Mabru air conditioning, a washing machine, and Starlink keep daily life easy.
     image: /images/gallery/PXL_20260419_214907153.RAW-01.COVER.webp
   - eyebrow: Comfort
     heading: Room to live your best cruising life.
