@@ -7,9 +7,6 @@ import { marked } from 'marked';
 const md = (s?: string) => s ? marked.parseInline(s, { async: false }) as string : '';
 
 import heroBow from '../assets/home/hero-bow-edited.webp';
-import boatStarboard from '../assets/home/boat-full-starboard.webp';
-import bowCrystalWater from '../assets/home/bow-crystal-water.webp';
-import caribbeanAnchorage from '../assets/home/caribbean-anchorage.webp';
 import kidsCockpit from '../assets/home/kids-cockpit.webp';
 import tropicaliaAnchor from '../assets/home/tropicalia-anchor.webp';
 import galleyWide from '../assets/home/galley-wide.webp';
@@ -26,6 +23,7 @@ const upgradesSection = homepage?.data.upgradesSection;
 const highlights = homepage?.data.highlights;
 const bottomCta = homepage?.data.bottomCta;
 const alternatingSections = homepage?.data.alternatingSections ?? [];
+const topPhotos = homepage?.data.topPhotos ?? [];
 
 const title = 'Voyage 500 Catamaran For Sale by Owner';
 const description = homepage?.data.description ?? '';
@@ -107,15 +105,11 @@ const description = homepage?.data.description ?? '';
 	<!-- PHOTOS -->
 	<section class="photos">
 		<div class="photos__grid">
-			<div class="photos__item photos__item--wide" data-photo-idx="0">
-				<Image src={boatStarboard} alt="Tropicalia at anchor, starboard view" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 42vw, 100vw" loading="lazy"  quality={68}/>
-			</div>
-			<div class="photos__item" data-photo-idx="1">
-				<Image src={bowCrystalWater} alt="Crystal clear water at the bow" widths={[360, 540, 720, 960]} sizes="(min-width: 900px) 29vw, 100vw" loading="lazy"  quality={68}/>
-			</div>
-			<div class="photos__item" data-photo-idx="2">
-				<Image src={caribbeanAnchorage} alt="Caribbean anchorage at sunset" widths={[360, 540, 720, 960]} sizes="(min-width: 900px) 29vw, 100vw" loading="lazy"  quality={68}/>
-			</div>
+			{topPhotos.map((photo: { image: string; alt: string }, i: number) => (
+				<div class:list={['photos__item', { 'photos__item--wide': i === 0 }]} data-photo-idx={i}>
+					<img src={photo.image} alt={photo.alt} loading="lazy" />
+				</div>
+			))}
 		</div>
 		<div class="photos__footer">
 			<a href="/gallery/" class="photos__more">View More Photos →</a>

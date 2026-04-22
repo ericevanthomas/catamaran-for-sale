@@ -106,6 +106,14 @@ const pages = defineCollection({
 				locationDisplay: z.string().optional(),
 			})
 			.optional(),
+		topPhotos: z
+			.array(
+				z.object({
+					image: z.string(),
+					alt: z.string(),
+				}),
+			)
+			.optional(),
 		whyChose: z
 			.object({
 				eyebrow: z.string().optional(),

@@ -175,6 +175,22 @@ collections:
               - { label: Location Display, name: locationDisplay, widget: string }
 
           # ═════════════════════════════════════════════
+          # TOP PHOTO STRIP (3 photos under the hero)
+          # ═════════════════════════════════════════════
+          - label: "Top Photo Strip (3 photos under the hero)"
+            name: topPhotos
+            widget: list
+            required: false
+            collapsed: true
+            summary: "{{fields.alt}}"
+            max: 3
+            min: 3
+            fields:
+              - { label: Image, name: image, widget: image }
+              - { label: Alt Text, name: alt, widget: string,
+                  hint: "What the photo shows (for screen readers and SEO)" }
+
+          # ═════════════════════════════════════════════
           # WHY WE CHOSE THIS BOAT (intro)
           # ═════════════════════════════════════════════
           - label: "Why We Chose This Boat (intro block)"
