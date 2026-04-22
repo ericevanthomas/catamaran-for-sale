@@ -36,9 +36,9 @@ upgradesSection:
     - title: Starlink Maritime
       body: Bimini-mounted, runs on 12V direct from the house bank. Full broadband at anchor, underway, or offshore — no generator required.
 alternatingSections:
-  - eyebrow: Value & Comfort
-    heading: A 50-foot catamaran that cruises like a bigger boat — at a price that doesn't.
-    body: At 50 feet of length and 27 feet of beam, Tropicalia gives you space, stability, and motion-through-water that newer production cats at this size sell for $700K and up. The long waterline keeps her easy in a seaway. The generous beam keeps life below deck genuinely spacious — the salon, galley, and cockpit all feel like rooms in a house, not compartments to squeeze through. You don't pay the premium of a new boat. You do get the scale, the performance, and the room to actually live aboard.
+  - eyebrow: Size & Stance
+    heading: A true 50-footer — without the bulk of a modern production cat.
+    body: Tropicalia is a real 50-footer, but she was built before the era of tall, boxy production cats. Her profile is lower, her waterline longer, and her motion in a seaway is noticeably better than a modern 50 fighting all that windage. You still get the 27-foot beam, three cabins, and a salon and galley that feel like rooms in a house — at well below the price of a new boat.
     image: /images/home/home-why-value.webp
   - eyebrow: Built to Last
     heading: Sixteen years in and the interior still looks practically new.
