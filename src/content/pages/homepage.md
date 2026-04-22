@@ -38,15 +38,15 @@ upgradesSection:
 alternatingSections:
   - eyebrow: Value
     heading: A 50-foot bluewater catamaran with a new lithium bank, watermaker, chartplotter, and safety package.
-    body: Tropicalia is a full-size, three-cabin owner's version with the range, systems, and space to cruise anywhere. She's been our family's home for four full cruising seasons, maintained every week and upgraded to the standard we wanted with our own kids aboard. Every major system has been replaced or refreshed in the last two years, and the maintenance trail is documented. You're stepping onto a cruiser with a known history and no deferred projects waiting for you.
+    body: Tropicalia is a full-size, three-cabin owner's version with the range and payload to go anywhere. Fifty feet gives her real storage capacity — water, fuel, tools, spares, bikes, dive gear, the dinghy, the kids' stuff — without running out of room or waterline. She's been our family's home for four full cruising seasons, maintained every week and upgraded to the standard we wanted with our own kids aboard. Every major system has been replaced or refreshed, and there are no deferred projects waiting for you.
     image: /images/home/home-why-value.webp
   - eyebrow: Comfort
     heading: Room to live, not just to sleep.
-    body: At 27 feet of beam, the whole boat feels bigger than it measures. The entire starboard hull is the owner's suite — queen berth, private head, real storage. The salon and galley flow into the cockpit so meals, movie nights, and long evenings at anchor all happen in the same open space. The galley is a real kitchen — full-size oven, gas rotisserie, enough counter for two cooks — and the cockpit is enclosed and shaded. After four seasons aboard, it still feels like a home.
+    body: At 27 feet of beam, the whole boat feels bigger than it measures. The entire starboard hull is the owner's suite — queen berth, private head, real storage. The salon and galley flow into the cockpit so meals, movie nights, and long evenings at anchor all happen in the same open space. The galley is a full kitchen with a proper oven, a gas rotisserie, and counter room for two cooks. Underway, the long waterline gives her an easy, level motion — the kind that lets everyone keep functioning in bigger seas. On deck, she carries a 12.5-foot Zodiac with a 25hp outboard, so shore runs and snorkel trips are quick and dry.
     image: /images/home/home-why-built.webp
   - eyebrow: Safety
     heading: Built solid and equipped for the ocean.
-    body: "Tropicalia was built in South Africa with fiberglassed bulkheads tabbed into the hull — one solid structure that doesn't creak or shift underway. Her long waterline gives her an easy, predictable motion in a seaway. She's outfitted for real offshore passages: new life raft, new EPIRB, AIS man-overboard beacons on every life jacket, full Raymarine radar-chartplotter-autopilot suite, and redundant navigation. Every piece of safety gear has been checked, refreshed, or replaced this year."
+    body: "Tropicalia was built in South Africa with fiberglassed bulkheads tabbed into the hull — one solid structure that doesn't creak or shift underway. Fifty feet gives her a long waterline and real reserve buoyancy, which translate to a sea-kindly motion and bigger safety margins when the weather isn't cooperating. She's outfitted for real offshore work: new life raft, new EPIRB, AIS man-overboard beacons on every life jacket, full Raymarine radar-chartplotter-autopilot suite, and redundant navigation. Every piece of safety gear has been checked, refreshed, or replaced this year."
     image: /images/home/home-why-ready.webp
 highlights:
   eyebrow: Cruise-Ready
