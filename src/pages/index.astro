@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+const md = (s?: string) => s ? marked.parseInline(s, { async: false }) as string : '';
 
 import heroBow from '../assets/home/hero-bow-edited.webp';
 import boatStarboard from '../assets/home/boat-full-starboard.webp';
@@ -12,6 +15,9 @@ import tropicaliaAnchor from '../assets/home/tropicalia-anchor.webp';
 import homeWhyValue from '../assets/home/home-why-value.webp';
 import homeWhyBuilt from '../assets/home/home-why-built.webp';
 import homeWhyReady from '../assets/home/home-why-ready.webp';
+import galleyWide from '../assets/home/galley-wide.webp';
+import masterCabinQueen from '../assets/home/master-cabin-queen.webp';
+import interior1 from '../assets/home/interior-1.webp';
 
 const allPages = await getCollection('pages');
 const homepage = allPages.find((p) => p.id === 'homepage');
@@ -142,7 +148,7 @@ const description = homepage?.data.description ?? '';
 				<div class="features-intro__text">
 					<p class="eyebrow">{homepage?.data.whyChoseEyebrow}</p>
 					<h2>{homepage?.data.whyChoseHeading}</h2>
-					<p>{homepage?.data.whyChoseBody}</p>
+					<p set:html={md(homepage?.data.whyChoseBody)}></p>
 				</div>
 				<div class="features-intro__photo">
 					<Image src={kidsCockpit} alt="Our family aboard Tropicalia" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
@@ -163,7 +169,7 @@ const description = homepage?.data.description ?? '';
 				<div class="feat-row__inner">
 					<span class="card__cat">{section.eyebrow}</span>
 					<h3>{section.heading}</h3>
-					<p>{section.body}</p>
+					<p set:html={md(section.body)}></p>
 				</div>
 			</div>
 		</section>
@@ -187,7 +193,7 @@ const description = homepage?.data.description ?? '';
 						<div class="upgrades__item">
 							<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
 							<h3>{item.title}</h3>
-							<p>{item.body}</p>
+							<p set:html={md(item.body)}></p>
 						</div>
 					))}
 				</div>
@@ -215,16 +221,34 @@ const description = homepage?.data.description ?? '';
 		</section>
 	)}
 
-	<!-- FULL PHOTO -->
-	<section class="fullphoto">
-		<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[720, 1080, 1440, 1920]} sizes="100vw" loading="lazy"  quality={68}/>
+	<!-- BOTTOM PHOTO STRIP -->
+	<section class="bottom-photos">
+		<div class="wrap">
+			<div class="bottom-photos__grid">
+				<div class="bottom-photos__item">
+					<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+				</div>
+				<div class="bottom-photos__item">
+					<Image src={galleyWide} alt="U-shaped galley with bar seating" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+				</div>
+				<div class="bottom-photos__item">
+					<Image src={masterCabinQueen} alt="Owner's cabin with queen berth" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+				</div>
+				<div class="bottom-photos__item">
+					<Image src={interior1} alt="Salon interior" widths={[360, 540, 720]} sizes="(min-width: 900px) 24vw, 50vw" loading="lazy" quality={68}/>
+				</div>
+			</div>
+			<div class="bottom-photos__footer">
+				<a href="/gallery/" class="bottom-photos__more">View More Photos →</a>
+			</div>
+		</div>
 	</section>
 
 	<!-- CTA — dark -->
 	<section class="cta">
 		<div class="wrap cta__inner">
 			<h2>{homepage?.data.ctaHeadline ?? 'Buy Direct from the Owner'}</h2>
-			<p>{homepage?.data.ctaBody}</p>
+			<p set:html={md(homepage?.data.ctaBody)}></p>
 			<div class="cta__buttons">
 				<a href={homepage?.data.ctaPrimaryLink ?? '/contact/'} class="btn btn--primary">{homepage?.data.ctaPrimaryText ?? 'Get in Touch'}</a>
 				<a href={homepage?.data.ctaSecondaryLink ?? '/transaction/'} class="btn btn--outline cta__outline">{homepage?.data.ctaSecondaryText ?? 'How Does a FSBO Sale Work?'}</a>
@@ -674,16 +698,43 @@ const description = homepage?.data.description ?? '';
 	}
 
 	/* =============================================
-	   FULL PHOTO
+	   BOTTOM PHOTO STRIP
 	   ============================================= */
-	.fullphoto {
-		line-height: 0;
+	.bottom-photos {
+		padding: var(--size-11) 0;
+		background: var(--color-bg-warm);
 	}
 
-	.fullphoto img {
+	.bottom-photos__grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: var(--gap-s);
+	}
+
+	.bottom-photos__item {
+		overflow: hidden;
+	}
+
+	.bottom-photos__item img {
 		width: 100%;
-		height: 500px;
+		aspect-ratio: 4 / 5;
 		object-fit: cover;
+		transition: transform 0.5s var(--ease);
+	}
+
+	.bottom-photos__item:hover img {
+		transform: scale(1.03);
+	}
+
+	.bottom-photos__footer {
+		text-align: right;
+		padding-top: var(--gap-m);
+	}
+
+	.bottom-photos__more {
+		font-size: var(--text-sm);
+		font-weight: 600;
+		color: var(--color-accent);
 	}
 
 	/* =============================================
@@ -749,6 +800,7 @@ const description = homepage?.data.description ?? '';
 		.upgrades__grid { grid-template-columns: 1fr; }
 		.highlights__grid { grid-template-columns: repeat(2, 1fr); }
 		.cta__buttons { flex-direction: column; align-items: center; }
+		.bottom-photos__grid { grid-template-columns: repeat(2, 1fr); }
 	}
 
 	@media (max-width: 600px) {

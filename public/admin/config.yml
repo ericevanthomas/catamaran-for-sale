@@ -157,7 +157,8 @@ collections:
           # --- Why We Chose This Boat ---
           - { label: "Why We Chose — Eyebrow", name: whyChoseEyebrow, widget: string, required: false }
           - { label: "Why We Chose — Heading", name: whyChoseHeading, widget: string, required: false }
-          - { label: "Why We Chose — Body", name: whyChoseBody, widget: text, required: false }
+          - { label: "Why We Chose — Body", name: whyChoseBody, widget: markdown, required: false,
+              minimal: true, modes: [rich-text], buttons: [bold, italic, link], editor_components: [] }
           # --- Recent Upgrades ---
           - { label: "Upgrades — Eyebrow", name: upgradesEyebrow, widget: string, required: false }
           - { label: "Upgrades — Heading", name: upgradesHeading, widget: string, required: false }
@@ -167,16 +168,20 @@ collections:
             required: false
             fields:
               - { label: Title, name: title, widget: string }
-              - { label: Body, name: body, widget: text }
+              - { label: Body, name: body, widget: markdown,
+                  minimal: true, modes: [rich-text], buttons: [bold, italic, link], editor_components: [] }
           # --- Alternating Story Sections ---
-          - label: "Alternating Sections — Items (3 'Why We Chose The Boat' stories)"
+          - label: "Alternating Sections — 'Why We Chose The Boat' stories (3 sections)"
             name: alternatingSections
             widget: list
             required: false
+            collapsed: false
+            summary: "{{fields.heading}}"
             fields:
               - { label: Eyebrow, name: eyebrow, widget: string }
               - { label: Heading, name: heading, widget: string }
-              - { label: Body, name: body, widget: text }
+              - { label: Body, name: body, widget: markdown,
+                  minimal: true, modes: [rich-text], buttons: [bold, italic, link], editor_components: [] }
               - label: "Image Key"
                 name: imageKey
                 widget: select
@@ -199,7 +204,8 @@ collections:
           - { label: "Photo Strip — CTA Link", name: photoStripCTALink, widget: string, required: false }
           # --- Bottom CTA ---
           - { label: "Bottom CTA — Headline", name: ctaHeadline, widget: string, required: false }
-          - { label: "Bottom CTA — Body", name: ctaBody, widget: text, required: false }
+          - { label: "Bottom CTA — Body", name: ctaBody, widget: markdown, required: false,
+              minimal: true, modes: [rich-text], buttons: [bold, italic, link], editor_components: [] }
           - { label: "Bottom CTA — Primary Button Text", name: ctaPrimaryText, widget: string, required: false }
           - { label: "Bottom CTA — Primary Button Link", name: ctaPrimaryLink, widget: string, required: false }
           - { label: "Bottom CTA — Secondary Button Text", name: ctaSecondaryText, widget: string, required: false }
