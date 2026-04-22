@@ -15,7 +15,7 @@ priceDisplay: $379,000 USD
 locationDisplay: Currently in the US Virgin Islands · Arriving St. Augustine, FL June 1, 2026
 whyChoseEyebrow: From Our Family to Yours
 whyChoseHeading: Why we chose this boat.
-whyChoseBody: "We spent over a year looking at catamarans before we found Tropicalia. What made us say yes was a pattern: she's sleeker and has a longer waterline than most of the newer production cats we considered — so she has less windage, a better motion through waves, and good bridgedeck clearance. The cockpit feels enclosed and safe with kids aboard. The galley is a real kitchen, not an afterthought. And the bulkheads and furniture are fiberglassed into the hull—not just glued—so nothing creaks or shifts. Her original owner was an aerospace engineer who specified her to a higher standard than the factory production spec, and she was the last 500 the Voyage factory ever built. Here are a few of the things we love most."
+whyChoseBody: We spent over a year looking at catamarans before we found Tropicalia. She's sleeker and has a longer waterline than most of the newer production cats we considered — so she has less windage, a better motion through waves, and good bridgedeck clearance. The cockpit feels enclosed and safe with kids aboard. The galley is a real kitchen, not an afterthought. And the bulkheads and furniture are fiberglassed into the hull—not just glued—so nothing creaks or shifts. Her original owner was an aerospace engineer who specified her to a higher standard than the factory production spec, and she was the last 500 the Voyage factory ever built.
 upgradesEyebrow: Installed by Current Owners
 upgradesHeading: Recent Upgrades
 upgrades:
