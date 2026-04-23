@@ -1,6 +1,9 @@
 ---
-question: "What is the condition of the rigging?"
-answer: "A professional rigging inspection was performed in 2025. The [rigging report is available for download](/documents/rigging-report.pdf). Standing rigging is original to the 2010 build."
+question: What is the condition of the rigging?
+answer: |-
+  When we purchased the boat in 2025, we had a professional rigging survey conducted. 
+
+  A professional rigging inspection was performed in 2025. The rigging report is available for review.
 order: 12
-category: "Condition & History"
+category: Condition & History
 ---
