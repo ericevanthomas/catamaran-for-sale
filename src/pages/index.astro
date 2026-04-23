@@ -156,7 +156,7 @@ const description = homepage?.data.description ?? '';
 	))}
 
 	<section class="features-cta">
-		<div class="wrap" style="text-align: center; padding-top: var(--gap-l); padding-bottom: var(--gap-l);">
+		<div class="wrap features-cta__inner">
 			<a href="/features/" class="btn btn--outline">View All Features &amp; Systems</a>
 		</div>
 	</section>
@@ -376,7 +376,8 @@ const description = homepage?.data.description ?? '';
 	   PHOTOS
 	   ============================================= */
 	.photos {
-		padding: 0;
+		padding: var(--size-9) 0;
+		background: var(--color-bg);
 	}
 
 	.photos__grid {
@@ -596,7 +597,12 @@ const description = homepage?.data.description ?? '';
 	}
 
 	.features-cta {
-		background: var(--color-bg-warm);
+		background: var(--color-bg);
+		padding: 0 0 var(--size-10);
+	}
+
+	.features-cta__inner {
+		text-align: center;
 	}
 
 	/* =============================================
