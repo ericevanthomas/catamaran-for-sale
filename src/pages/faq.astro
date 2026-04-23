@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+const mdInline = (s: string) => marked.parseInline(s, { async: false }) as string;
 
 const allFaqs = await getCollection('faq');
 const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
@@ -61,7 +64,7 @@ const faqSchema = {
 								<span class="faq-item__icon">+</span>
 							</summary>
 							<div class="faq-item__a">
-								<p>{item.answer}</p>
+								<p set:html={mdInline(item.answer)}></p>
 							</div>
 						</details>
 					))}
@@ -178,6 +181,13 @@ const faqSchema = {
 		line-height: 1.7;
 		max-width: 65ch;
 		margin: 0;
+	}
+
+	.faq-item__a a {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		text-decoration-thickness: 1px;
 	}
 
 	/* CTA */
