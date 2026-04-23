@@ -1,6 +1,6 @@
 ---
-question: "When was the boat last hauled out?"
-answer: "The boat was last hauled for survey and bottom paint prior to our purchase in 2025. Bottom condition details and the survey report from that haul are available upon request."
+question: When was the boat last hauled out?
+answer: The boat was last out of the water at the St. Augustine Marine Center November 2025. As we wrap up our sailing sabbatical, we are heading back there for a June 17 haulout date.
 order: 11
-category: "Condition & History"
+category: Condition & History
 ---
