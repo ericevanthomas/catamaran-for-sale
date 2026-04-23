@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { getCollection } from 'astro:content';
+import { marked } from 'marked';
+
+const md = (s?: string) => (s ? (marked.parseInline(s, { async: false }) as string) : '');
 
 const allGallery = await getCollection('gallery');
 const photos = allGallery
@@ -48,7 +51,7 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 							fetchpriority={i === 0 ? 'high' : undefined}
 							decoding={i < 4 ? 'sync' : 'async'}
 						/>
-						{photo.data.caption && <figcaption class="gallery__caption">{photo.data.caption}</figcaption>}
+						{photo.data.caption && <figcaption class="gallery__caption" set:html={md(photo.data.caption)} />}
 					</figure>
 				))}
 			</div>
@@ -365,7 +368,7 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 		const caption = item.querySelector('figcaption');
 		lbImg.src = img.dataset.full || img.currentSrc || img.src;
 		lbImg.alt = img.alt;
-		lbCaption.textContent = caption?.textContent || '';
+		lbCaption.innerHTML = caption?.innerHTML || '';
 		lbCounter.textContent = `${currentIndex + 1} / ${visible.length}`;
 	}
 

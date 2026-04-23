@@ -108,8 +108,15 @@ collections:
       - { label: "Missing caption", field: caption, pattern: '^$' }
     fields:
       - { label: Image, name: image, widget: image, hint: "The photo file in the media library" }
-      - { label: Caption, name: caption, widget: string, required: false,
-          hint: "Brief description surfaced on the gallery page and in feature-card photo slideshows" }
+      - label: Caption
+        name: caption
+        widget: markdown
+        required: false
+        modes: ["rich_text"]
+        buttons: ["bold", "italic", "link"]
+        editor_components: []
+        minimal: true
+        hint: "Shown on the gallery page and in feature-card photo slideshows. Links welcome."
       - { label: Alt Text, name: alt, widget: string,
           hint: "Screen-reader description — can be similar to caption" }
       - { label: "Show on /gallery page", name: inGallery, widget: boolean, default: true,

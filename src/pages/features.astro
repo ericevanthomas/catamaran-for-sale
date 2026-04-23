@@ -3,6 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import imgManifest from '../generated/image-manifest.json';
 import { getCollection, render } from 'astro:content';
+import { marked } from 'marked';
+
+const mdInline = (s?: string) => (s ? (marked.parseInline(s, { async: false }) as string) : '');
 
 type Variant = { w: number; h: number; src: string };
 type ManifestEntry = { width: number; height: number; variants: Variant[] };
@@ -37,7 +40,7 @@ for (const p of await getCollection('gallery')) {
 }
 
 function captionsFor(paths: string[] | undefined): string[] {
-	return (paths ?? []).map((p) => photoMeta.get(p)?.caption ?? '');
+	return (paths ?? []).map((p) => mdInline(photoMeta.get(p)?.caption ?? ''));
 }
 
 // Pre-render markdown bodies for modals
@@ -169,7 +172,7 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 									)}
 								</div>
 								{photoMeta.get(entry.data.photos[0])?.caption && (
-									<p class="modal__caption">{photoMeta.get(entry.data.photos[0])?.caption}</p>
+									<p class="modal__caption" set:html={mdInline(photoMeta.get(entry.data.photos[0])?.caption)} />
 								)}
 							</div>
 
@@ -971,21 +974,21 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 
 	function updateCaption(modal: HTMLDialogElement, idx: number) {
 		const captions = getCaptions(modal);
-		const caption = captions[idx] || '';
+		const captionHtml = captions[idx] || '';
 		let el = modal.querySelector('.modal__caption') as HTMLElement | null;
-		if (caption) {
+		if (captionHtml) {
 			if (!el) {
 				el = document.createElement('p');
 				el.className = 'modal__caption';
 				const media = modal.querySelector('.modal__media');
 				media?.appendChild(el);
 			}
-			el.textContent = caption;
+			el.innerHTML = captionHtml;
 		} else if (el) {
 			el.remove();
 		}
 		const lbCap = modal.querySelector('.modal__lightbox-caption') as HTMLElement | null;
-		if (lbCap) lbCap.textContent = caption;
+		if (lbCap) lbCap.innerHTML = captionHtml;
 	}
 
 	function showPhoto(modal: HTMLDialogElement, index: number) {
