@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 
@@ -85,7 +86,12 @@ const description = homepage?.data.description ?? '';
 		<div class="photos__grid">
 			{topPhotos.map((photo: { image: string; alt: string }, i: number) => (
 				<div class:list={['photos__item', { 'photos__item--wide': i === 0 }]} data-photo-idx={i}>
-					<img src={photo.image} alt={photo.alt} loading="lazy" />
+					<ResponsiveImage
+						src={photo.image}
+						alt={photo.alt}
+						sizes={i === 0 ? '(min-width: 900px) 66vw, 100vw' : '(min-width: 900px) 33vw, 100vw'}
+						loading="lazy"
+					/>
 				</div>
 			))}
 		</div>
@@ -130,7 +136,14 @@ const description = homepage?.data.description ?? '';
 	{alternatingSections.map((section: { eyebrow: string; heading: string; body: string; image: string }, i: number) => (
 		<section class:list={['feat-row', { 'feat-row--reverse': i % 2 === 1 }]}>
 			<div class="feat-row__image">
-				{section.image && <img src={section.image} alt={section.heading} loading="lazy" />}
+				{section.image && (
+					<ResponsiveImage
+						src={section.image}
+						alt={section.heading}
+						sizes="(min-width: 900px) 50vw, 100vw"
+						loading="lazy"
+					/>
+				)}
 			</div>
 			<div class="feat-row__content">
 				<div class="feat-row__inner">

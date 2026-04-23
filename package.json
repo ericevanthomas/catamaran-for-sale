@@ -6,8 +6,11 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "predev": "node scripts/optimize-images.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/optimize-images.mjs",
     "build": "astro build",
+    "optimize-images": "node scripts/optimize-images.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

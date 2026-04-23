@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { getCollection } from 'astro:content';
-import sharp from 'sharp';
-import path from 'node:path';
 
 const allGallery = await getCollection('gallery');
 const photos = allGallery
@@ -11,17 +10,8 @@ const photos = allGallery
 
 const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean))];
 
-const dims = await Promise.all(
-	photos.map(async (p) => {
-		try {
-			const abs = path.join(process.cwd(), 'public', p.data.image.replace(/^\//, ''));
-			const m = await sharp(abs).metadata();
-			return { w: m.width ?? 1600, h: m.height ?? 1200 };
-		} catch {
-			return { w: 1600, h: 1200 };
-		}
-	}),
-);
+// Gallery columns at breakpoints: 4 → 3 → 2 → 1. Max column ~= viewport/cols.
+const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1100px) 33vw, 25vw';
 ---
 
 <BaseLayout title="Photo Gallery — Voyage 500 For Sale" description="Browse photos of S/V Tropicalia, a 2010 Voyage 500 catamaran for sale by owner.">
@@ -50,11 +40,10 @@ const dims = await Promise.all(
 			<div class="gallery">
 				{photos.map((photo, i) => (
 					<figure class="gallery__item" data-category={photo.data.category} data-index={i}>
-						<img
+						<ResponsiveImage
 							src={photo.data.image}
 							alt={photo.data.alt}
-							width={dims[i].w}
-							height={dims[i].h}
+							sizes={GALLERY_SIZES}
 							loading={i < 4 ? 'eager' : 'lazy'}
 							fetchpriority={i === 0 ? 'high' : undefined}
 							decoding={i < 4 ? 'sync' : 'async'}
@@ -374,7 +363,7 @@ const dims = await Promise.all(
 		const item = visible[currentIndex];
 		const img = item.querySelector('img') as HTMLImageElement;
 		const caption = item.querySelector('figcaption');
-		lbImg.src = img.src;
+		lbImg.src = img.dataset.full || img.currentSrc || img.src;
 		lbImg.alt = img.alt;
 		lbCaption.textContent = caption?.textContent || '';
 		lbCounter.textContent = `${currentIndex + 1} / ${visible.length}`;

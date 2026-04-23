@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from './ResponsiveImage.astro';
+
 interface Props {
 	title: string;
 	description: string;
@@ -14,7 +16,7 @@ const heroPhoto = photos[0];
 <article class:list={['feature-card', { 'feature-card--featured': featured, 'feature-card--no-image': !heroPhoto }]}>
 	{heroPhoto && (
 		<div class="feature-card__image">
-			<img src={heroPhoto} alt={title} loading="lazy" />
+			<ResponsiveImage src={heroPhoto} alt={title} sizes="(min-width: 768px) 50vw, 100vw" />
 		</div>
 	)}
 	<div class="feature-card__content">

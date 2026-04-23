@@ -4,6 +4,8 @@ dist/
 .astro/
 # intermediate assets used only during PDF generation
 public/pdf-assets/
+# generated responsive image variants (rebuilt on deploy via prebuild)
+public/_img/
 
 # dependencies
 node_modules/

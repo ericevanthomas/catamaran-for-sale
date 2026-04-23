@@ -1,0 +1,54 @@
+---
+// Emits a responsive <img> using the build-time manifest.
+// Falls back to the original src if the image isn't in the manifest.
+import manifest from '../generated/image-manifest.json';
+
+interface Props {
+	src: string;
+	alt: string;
+	sizes?: string;
+	loading?: 'lazy' | 'eager';
+	fetchpriority?: 'high' | 'low' | 'auto';
+	decoding?: 'sync' | 'async' | 'auto';
+	class?: string;
+	width?: number;
+	height?: number;
+}
+
+const {
+	src,
+	alt,
+	sizes = '100vw',
+	loading = 'lazy',
+	fetchpriority,
+	decoding = 'async',
+	class: className,
+	width,
+	height,
+} = Astro.props;
+
+type Variant = { w: number; h: number; src: string };
+type Entry = { width: number; height: number; aspectRatio: number; variants: Variant[] };
+
+const entry = (manifest as Record<string, Entry>)[src];
+const variants = entry?.variants ?? [];
+const srcset = variants.map((v) => `${v.src} ${v.w}w`).join(', ');
+const smallest = variants[0]?.src ?? src;
+const largest = variants[variants.length - 1]?.src ?? src;
+const w = width ?? entry?.width;
+const h = height ?? entry?.height;
+---
+
+<img
+	src={smallest}
+	srcset={srcset || undefined}
+	sizes={srcset ? sizes : undefined}
+	alt={alt}
+	width={w}
+	height={h}
+	loading={loading}
+	fetchpriority={fetchpriority}
+	decoding={decoding}
+	class={className}
+	data-full={largest}
+/>

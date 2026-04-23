@@ -1,6 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import imgManifest from '../generated/image-manifest.json';
 import { getCollection, render } from 'astro:content';
+
+type Variant = { w: number; h: number; src: string };
+type ManifestEntry = { width: number; height: number; variants: Variant[] };
+const manifest = imgManifest as Record<string, ManifestEntry>;
+
+// Pick the best variant for modal display (target ~1200w).
+function displayUrl(src: string): string {
+	const entry = manifest[src];
+	if (!entry?.variants?.length) return src;
+	const v = entry.variants.find((x) => x.w >= 1200) ?? entry.variants[entry.variants.length - 1];
+	return v.src;
+}
 
 const allFeatures = await getCollection('features', ({ data }) => !data.draft);
 const features = allFeatures.sort((a, b) => a.data.order - b.data.order);
@@ -83,7 +97,12 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 							<article class="fcard" data-modal-trigger={feature.id}>
 								{feature.data.photos?.[0] && (
 									<div class="fcard__img">
-										<img src={feature.data.photos[0]} alt={feature.data.title} loading="lazy" />
+										<ResponsiveImage
+											src={feature.data.photos[0]}
+											alt={feature.data.title}
+											sizes="(min-width: 1100px) 33vw, (min-width: 700px) 50vw, 100vw"
+											loading="lazy"
+										/>
 										{feature.data.video && (
 											<span class="fcard__play">
 												<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="7 4 20 12 7 20"/></svg>
@@ -119,9 +138,9 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 					</button>
 					<div class:list={['modal__layout', { 'modal__layout--no-image': !entry.data.photos?.[0] }]}>
 						{entry.data.photos?.[0] && (
-							<div class="modal__media" data-photos={JSON.stringify(entry.data.photos)} data-captions={JSON.stringify(captionsFor(entry.data.photos))}>
+							<div class="modal__media" data-photos={JSON.stringify((entry.data.photos ?? []).map(displayUrl))} data-captions={JSON.stringify(captionsFor(entry.data.photos))}>
 								<div class="modal__hero">
-									<img src={entry.data.photos[0]} alt={photoMeta.get(entry.data.photos[0])?.alt || entry.data.title} />
+									<img src={displayUrl(entry.data.photos[0])} alt={photoMeta.get(entry.data.photos[0])?.alt || entry.data.title} loading="lazy" />
 								</div>
 								{photoMeta.get(entry.data.photos[0])?.caption && (
 									<p class="modal__caption">{photoMeta.get(entry.data.photos[0])?.caption}</p>
