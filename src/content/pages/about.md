@@ -1,21 +1,13 @@
 ---
 title: About Us
-description: Meet the family behind S/V Tropicalia — our two Caribbean cruises, how we ended up on a Voyage 500, and why we're selling.
+description: Meet the family behind S/V Tropicalia — our two cruises, why we picked a Voyage 500, and why we're selling.
 ---
 
 ## Who we are
 
-We are Eric, Alex, Leon, and Margot — a family of four who left Madison, Wisconsin five years ago to go sailing. Eric has crossed the Atlantic twice and holds a USCG 100-ton Master captain's license. Alex had never sailed before she met him, and used to get seasick on the way out of the harbor. Leon is nine. Margot is six. They have spent as much of their childhood on the water as on land.
+We are Eric, Alex, Leon, and Margot — a family of four who left Madison, Wisconsin five years ago to go sailing. Eric earned a USCG 100-ton Master captain's license and has crossed the Atlantic twice. Alex had never sailed before she met him. Leon is nine. Margot is six.
 
-## Our first cruise — S/V *Nethermead*, 2021–2022
-
-In 2021, we rented out our house, bought a sailboat called *Nethermead*, and spent ten months sailing from Miami down to Grenada and back. Leon was five and Margot was two. We had read the kids a book called *We Were Tired of Living in a House*, and we meant it. That first trip changed everything — we swam with sea turtles, made friends in every anchorage, taught the kids from the saloon table, and realized this was the life we actually wanted.
-
-You can read the whole story of that trip at [sailingnethermead.com](https://www.sailingnethermead.com/). Alex also made a podcast about it called *[6 Months or Less](https://6monthsorless.com/)*.
-
-## This cruise — S/V *Tropicalia*, 2025–2026
-
-After the first trip we came home, started planning the next one, and spent a year looking for the right catamaran. We bought *Tropicalia* — a 2010 Voyage 500 — and moved aboard. The kids are older now. Leon navigates. Margot climbs the rigging. We have cruised the Bahamas, the Turks and Caicos, Puerto Rico, and spent this past season in the US and British Virgin Islands. Our live position is on the Predictwind map on this page, and the ongoing journey is at [sailingtropicalia.com](https://sailingtropicalia.com/).
+This is our second cruise. The first was ten months aboard *Nethermead*, a monohull we sailed from Miami to Grenada and back in 2021–2022. We documented that trip at [sailingnethermead.com](https://www.sailingnethermead.com/), and Alex made a podcast about it called *[6 Months or Less](https://6monthsorless.com/)*. This time around we wanted more space, more comfort, and a multihull — so we sold *Nethermead* and bought *Tropicalia*. The current voyage is at [sailingtropicalia.com](https://sailingtropicalia.com/).
 
 ## Why we chose a Voyage 500
 
@@ -29,4 +21,4 @@ Our family is moving on to our next chapter. This boat deserves owners who will 
 
 ## What you get when you buy from us
 
-You are dealing with the people who have lived aboard and maintained every system. We will give you an honest accounting of her condition, walk you through every system in detail, and provide a thorough handover. No broker can offer that level of firsthand knowledge. We will also introduce you to the marine electricians, riggers, and mechanics we have trusted with her upgrades.
+We sold *Nethermead* ourselves, by owner, and it went very smoothly. Both sides came out ahead without a broker in the middle. We plan to do the same here. You are dealing with the people who have lived aboard and maintained every system. We will give you an honest accounting of her condition, walk you through every system in detail, and provide a thorough handover. We will also introduce you to the marine electricians, riggers, and mechanics we have trusted with her upgrades.
