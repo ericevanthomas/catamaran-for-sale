@@ -16,6 +16,13 @@ function displayUrl(src: string): string {
 	return v.src;
 }
 
+// Largest variant for the fullscreen in-modal lightbox.
+function fullUrl(src: string): string {
+	const entry = manifest[src];
+	if (!entry?.variants?.length) return src;
+	return entry.variants[entry.variants.length - 1].src;
+}
+
 const allFeatures = await getCollection('features', ({ data }) => !data.draft);
 const features = allFeatures.sort((a, b) => a.data.order - b.data.order);
 
@@ -138,24 +145,52 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 					</button>
 					<div class:list={['modal__layout', { 'modal__layout--no-image': !entry.data.photos?.[0] }]}>
 						{entry.data.photos?.[0] && (
-							<div class="modal__media" data-photos={JSON.stringify((entry.data.photos ?? []).map(displayUrl))} data-captions={JSON.stringify(captionsFor(entry.data.photos))}>
+							<div
+								class="modal__media"
+								data-photos={JSON.stringify((entry.data.photos ?? []).map(displayUrl))}
+								data-photos-full={JSON.stringify((entry.data.photos ?? []).map(fullUrl))}
+								data-captions={JSON.stringify(captionsFor(entry.data.photos))}
+							>
 								<div class="modal__hero">
 									<img src={displayUrl(entry.data.photos[0])} alt={photoMeta.get(entry.data.photos[0])?.alt || entry.data.title} loading="lazy" />
+									<button class="modal__zoom" aria-label="Zoom in">
+										<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+									</button>
+									{entry.data.photos.length > 1 && (
+										<>
+											<button class="modal__arrow modal__arrow--prev" aria-label="Previous photo">
+												<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+											</button>
+											<button class="modal__arrow modal__arrow--next" aria-label="Next photo">
+												<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
+											</button>
+											<span class="modal__counter">1 / {entry.data.photos.length}</span>
+										</>
+									)}
 								</div>
 								{photoMeta.get(entry.data.photos[0])?.caption && (
 									<p class="modal__caption">{photoMeta.get(entry.data.photos[0])?.caption}</p>
 								)}
+							</div>
+
+							<div class="modal__lightbox" hidden>
+								<button class="modal__lightbox-close" aria-label="Close zoom">
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+								</button>
 								{entry.data.photos.length > 1 && (
 									<>
-										<button class="modal__arrow modal__arrow--prev" aria-label="Previous photo">
-											<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+										<button class="modal__lightbox-arrow modal__lightbox-arrow--prev" aria-label="Previous photo">
+											<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
 										</button>
-										<button class="modal__arrow modal__arrow--next" aria-label="Next photo">
-											<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
+										<button class="modal__lightbox-arrow modal__lightbox-arrow--next" aria-label="Next photo">
+											<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
 										</button>
-										<span class="modal__counter">1 / {entry.data.photos.length}</span>
 									</>
 								)}
+								<div class="modal__lightbox-frame">
+									<img class="modal__lightbox-img" src="" alt="" />
+									<p class="modal__lightbox-caption"></p>
+								</div>
 							</div>
 						)}
 						<div class="modal__content">
@@ -433,9 +468,9 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 		border: none;
 		background: var(--color-bg);
 		padding: 0;
-		width: 90vw;
-		max-width: 900px;
-		max-height: 85vh;
+		width: 94vw;
+		max-width: 1200px;
+		max-height: 90vh;
 		margin: auto;
 		box-shadow: var(--shadow-modal);
 	}
@@ -447,7 +482,7 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 	.modal__inner {
 		position: relative;
 		overflow-y: auto;
-		max-height: 85vh;
+		max-height: 90vh;
 	}
 
 	.modal__close {
@@ -484,31 +519,47 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 		position: sticky;
 		top: 0;
 		align-self: start;
-		max-height: 85vh;
+		max-height: 90vh;
+		display: flex;
+		flex-direction: column;
 		overflow: hidden;
 	}
 
 	.modal__caption {
-		position: absolute;
-		bottom: var(--gap-s);
-		left: var(--gap-s);
-		right: var(--gap-s);
 		margin: 0;
-		padding: 10px 14px;
-		background: rgba(0, 0, 0, 0.6);
-		color: #fff;
+		padding: 12px 16px;
+		background: var(--color-bg);
+		color: var(--color-text);
 		font-size: var(--text-sm);
-		line-height: 1.4;
-		border-radius: 4px;
-		backdrop-filter: blur(6px);
-		z-index: 2;
-		pointer-events: none;
+		line-height: 1.5;
+		border-top: 1px solid var(--color-border-light);
 	}
 
 	.modal__hero {
+		position: relative;
 		width: 100%;
-		height: 100%;
+		flex: 1 1 auto;
+		min-height: 0;
 	}
+
+	.modal__zoom {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 6;
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(0, 0, 0, 0.5);
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		border-radius: 50%;
+		transition: background 0.2s;
+	}
+	.modal__zoom:hover { background: rgba(0, 0, 0, 0.75); }
 
 	.modal__hero img {
 		width: 100%;
@@ -559,8 +610,89 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 	.modal__content {
 		padding: var(--gap-m);
 		overflow-y: auto;
-		max-height: 85vh;
+		max-height: 90vh;
 	}
+
+	/* In-modal fullscreen lightbox — sits over the entire modal */
+	.modal__lightbox {
+		position: absolute;
+		inset: 0;
+		z-index: 20;
+		background: rgba(10, 15, 20, 0.96);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.modal__lightbox[hidden] { display: none; }
+
+	.modal__lightbox-frame {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		padding: 48px 56px 24px;
+		box-sizing: border-box;
+	}
+
+	.modal__lightbox-img {
+		max-width: 100%;
+		max-height: calc(100% - 48px);
+		object-fit: contain;
+		display: block;
+	}
+
+	.modal__lightbox-caption {
+		margin: 12px 0 0;
+		padding: 0 8px;
+		color: rgba(255, 255, 255, 0.92);
+		font-size: var(--text-sm);
+		line-height: 1.5;
+		text-align: center;
+		max-width: 72ch;
+	}
+	.modal__lightbox-caption:empty { display: none; }
+
+	.modal__lightbox-close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		z-index: 21;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.12);
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		border-radius: 50%;
+		transition: background 0.2s;
+	}
+	.modal__lightbox-close:hover { background: rgba(255, 255, 255, 0.22); }
+
+	.modal__lightbox-arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 21;
+		width: 44px;
+		height: 44px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.12);
+		border: none;
+		color: #fff;
+		cursor: pointer;
+		border-radius: 50%;
+		transition: background 0.2s;
+	}
+	.modal__lightbox-arrow:hover { background: rgba(255, 255, 255, 0.22); }
+	.modal__lightbox-arrow--prev { left: 12px; }
+	.modal__lightbox-arrow--next { right: 12px; }
 
 	.modal__header {
 		margin-bottom: var(--gap-m);
@@ -825,6 +957,12 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 		try { return JSON.parse(media.dataset.photos); } catch { return []; }
 	}
 
+	function getPhotosFull(modal: HTMLDialogElement): string[] {
+		const media = modal.querySelector('.modal__media') as HTMLElement;
+		if (!media?.dataset.photosFull) return [];
+		try { return JSON.parse(media.dataset.photosFull); } catch { return []; }
+	}
+
 	function getCaptions(modal: HTMLDialogElement): string[] {
 		const media = modal.querySelector('.modal__media') as HTMLElement;
 		if (!media?.dataset.captions) return [];
@@ -833,23 +971,30 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 
 	function updateCaption(modal: HTMLDialogElement, idx: number) {
 		const captions = getCaptions(modal);
-		let el = modal.querySelector('.modal__caption') as HTMLElement | null;
 		const caption = captions[idx] || '';
-		if (!caption) { if (el) el.remove(); return; }
-		if (!el) {
-			el = document.createElement('p');
-			el.className = 'modal__caption';
-			const hero = modal.querySelector('.modal__hero');
-			hero?.parentElement?.insertBefore(el, hero.nextSibling);
+		let el = modal.querySelector('.modal__caption') as HTMLElement | null;
+		if (caption) {
+			if (!el) {
+				el = document.createElement('p');
+				el.className = 'modal__caption';
+				const media = modal.querySelector('.modal__media');
+				media?.appendChild(el);
+			}
+			el.textContent = caption;
+		} else if (el) {
+			el.remove();
 		}
-		el.textContent = caption;
+		const lbCap = modal.querySelector('.modal__lightbox-caption') as HTMLElement | null;
+		if (lbCap) lbCap.textContent = caption;
 	}
 
 	function showPhoto(modal: HTMLDialogElement, index: number) {
 		const photos = getPhotos(modal);
+		const fulls = getPhotosFull(modal);
 		if (!photos.length) return;
 		const idx = ((index % photos.length) + photos.length) % photos.length;
 		const heroImg = modal.querySelector('.modal__hero img') as HTMLImageElement;
+		const lbImg = modal.querySelector('.modal__lightbox-img') as HTMLImageElement | null;
 		const counter = modal.querySelector('.modal__counter');
 		if (heroImg) {
 			heroImg.style.opacity = '0';
@@ -857,9 +1002,11 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 				heroImg.src = photos[idx];
 				heroImg.style.opacity = '1';
 				updateCaption(modal, idx);
+				if (lbImg) lbImg.src = fulls[idx] || photos[idx];
 			}, 120);
 		} else {
 			updateCaption(modal, idx);
+			if (lbImg) lbImg.src = fulls[idx] || photos[idx];
 		}
 		if (counter) counter.textContent = `${idx + 1} / ${photos.length}`;
 		modal.dataset.currentPhoto = String(idx);
@@ -868,11 +1015,16 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 	function resetGallery(modal: HTMLDialogElement) {
 		modal.dataset.currentPhoto = '0';
 		const photos = getPhotos(modal);
+		const fulls = getPhotosFull(modal);
 		const heroImg = modal.querySelector('.modal__hero img') as HTMLImageElement;
+		const lbImg = modal.querySelector('.modal__lightbox-img') as HTMLImageElement | null;
 		const counter = modal.querySelector('.modal__counter');
 		if (heroImg && photos[0]) heroImg.src = photos[0];
+		if (lbImg) lbImg.src = fulls[0] || photos[0] || '';
 		if (counter) counter.textContent = `1 / ${photos.length}`;
 		updateCaption(modal, 0);
+		const lb = modal.querySelector('.modal__lightbox') as HTMLElement | null;
+		if (lb) lb.hidden = true;
 	}
 
 	document.querySelectorAll('.modal__arrow--next').forEach(btn => {
@@ -900,6 +1052,65 @@ const description = 'Detailed breakdown of every system, feature, and upgrade ab
 			if (photos.length < 2) return;
 			const current = Number(modal.dataset.currentPhoto || 0);
 			showPhoto(modal, current + 1);
+		});
+	});
+
+	// === In-modal lightbox: zoom, arrows, close ===
+	document.querySelectorAll('.modal__zoom').forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const modal = btn.closest('dialog') as HTMLDialogElement;
+			const lb = modal.querySelector('.modal__lightbox') as HTMLElement | null;
+			if (!lb) return;
+			const current = Number(modal.dataset.currentPhoto || 0);
+			showPhoto(modal, current); // syncs lightbox img
+			lb.hidden = false;
+		});
+	});
+
+	document.querySelectorAll('.modal__lightbox-close').forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const lb = btn.closest('.modal__lightbox') as HTMLElement | null;
+			if (lb) lb.hidden = true;
+		});
+	});
+
+	document.querySelectorAll('.modal__lightbox-arrow--next').forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const modal = btn.closest('dialog') as HTMLDialogElement;
+			const current = Number(modal.dataset.currentPhoto || 0);
+			showPhoto(modal, current + 1);
+		});
+	});
+
+	document.querySelectorAll('.modal__lightbox-arrow--prev').forEach(btn => {
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			const modal = btn.closest('dialog') as HTMLDialogElement;
+			const current = Number(modal.dataset.currentPhoto || 0);
+			showPhoto(modal, current - 1);
+		});
+	});
+
+	// Keyboard: in lightbox, Esc closes it (not the modal); arrows cycle photos.
+	document.querySelectorAll('.modal').forEach(dialog => {
+		dialog.addEventListener('keydown', (e) => {
+			const key = (e as KeyboardEvent).key;
+			const modal = dialog as HTMLDialogElement;
+			const lb = modal.querySelector('.modal__lightbox') as HTMLElement | null;
+			const lbOpen = lb && !lb.hidden;
+			if (key === 'Escape' && lbOpen) {
+				e.preventDefault();
+				e.stopPropagation();
+				lb!.hidden = true;
+				return;
+			}
+			if (key === 'ArrowLeft' || key === 'ArrowRight') {
+				const current = Number(modal.dataset.currentPhoto || 0);
+				showPhoto(modal, current + (key === 'ArrowRight' ? 1 : -1));
+			}
 		});
 	});
 </script>
