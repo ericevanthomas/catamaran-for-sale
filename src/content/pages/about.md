@@ -1,30 +1,32 @@
 ---
 title: About Us
-description: Meet the family behind the Voyage 500. Our cruising history, captain credentials, and why we're selling.
+description: Meet the family behind S/V Tropicalia — our two Caribbean cruises, how we ended up on a Voyage 500, and why we're selling.
 ---
 
-## Our Story
+## Who we are
 
-We are a family of four with two young children. We are just wrapping up our sabbatical cruise to the Caribbean aboard Tropicalia, our Voyage 500 catamaran. This is the second Caribbean cruise. This boat has been our home, our classroom, and the backdrop to some of the best years of our lives. We homeschooled our kids aboard, explored dozens of islands, and learned every system on this vessel by living with them daily.
+We are Eric, Alex, Leon, and Margot — a family of four who left Madison, Wisconsin five years ago to go sailing. Eric has crossed the Atlantic twice and holds a USCG 100-ton Master captain's license. Alex had never sailed before she met him, and used to get seasick on the way out of the harbor. Leon is eight. Margot is five. They have spent as much of their childhood on the water as on land.
 
-## Why This Particular Boat
+## Our first cruise — S/V *Nethermead*, 2021–2022
 
-We spent over a year searching for the right catamaran before finding Tropicalia. The Voyage 500 stood out for several reasons: the proven Simonis Voogd hull design, the spacious 3-cabin Owner's Version layout, and the build quality of the South African factory. Tropicalia was the last Voyage 500 ever built, and her original owner was an aerospace engineer who specified her to the highest standard — including an extended rear deck, hot-and-cold showers in both sugar scoops, a bonded auxiliary dinghy gas tank, and other custom details you don't see on production hulls.
+In 2021, we rented out our house, bought a sailboat called *Nethermead*, and spent ten months sailing from the Chesapeake down through the Caribbean and back. Leon was five and Margot was two. We had read the kids a book called *We Were Tired of Living in a House*, and we meant it. That first trip changed everything — we swam with sea turtles, made friends in every anchorage, taught the kids from the saloon table, and realized this was the life we actually wanted.
 
-## Why the Hull and Build Quality Matter
+You can read the whole story of that trip at [sailingnethermead.com](https://www.sailingnethermead.com/). Alex also made a podcast about it called *[6 Months or Less](https://6monthsorless.com/)*.
 
-Compared to the newer production catamarans we looked at, this one is lower, sleeker, and built more like a boat than like flat-pack furniture. The bulkheads are fiberglassed and tabbed into the hull — not glued and screwed — so the whole structure is one piece. You don't get the creaking and flex that so many modern boats develop after a few seasons. You also get less windage, a better motion through waves (the 50-foot waterline really moves), and more bridgedeck clearance so you don't get that severe pounding under way.
+## This cruise — S/V *Tropicalia*, 2024–2026
 
-The interior is clean and practical — not a fussy show boat. No dark wood to absorb moisture or get tired. It's held up beautifully and is easy to keep clean with kids aboard.
+After the first trip we came home, started planning the next one, and spent a year looking for the right catamaran. We bought *Tropicalia* — a 2010 Voyage 500 — and moved aboard. The kids are older now. Leon navigates. Margot climbs the rigging. We have cruised the Bahamas, the Turks and Caicos, Puerto Rico, and spent this past season in the US and British Virgin Islands. Our live position is on the Predictwind map on this page, and the ongoing journey is at [sailingtropicalia.com](https://sailingtropicalia.com/).
 
-## Captain's Credentials
+## Why we chose a Voyage 500
 
-Eric holds a USCG 100-ton Master captain's license and has logged thousands of offshore miles across the Caribbean, including passages between the US East Coast and the Virgin Islands.
+We looked at a lot of catamarans before we found her. Compared to the newer production cats, she is sleeker and has a longer waterline. She has less windage, a better motion through waves, and better bridgedeck clearance — no severe pounding underway. The cockpit feels enclosed and safe with kids aboard. The galley is a real kitchen, not an afterthought. And the bulkheads and furniture are fiberglassed into the hull — not just glued — so nothing creaks or shifts.
 
-## Why We're Selling
+*Tropicalia* was custom built by [Voyage Yachts in South Africa](https://www.voyageyachts.com/) in 2010 for a private owner who specified her to a high standard — extended rear teak deck, hot-and-cold showers in both sugar scoops, a bonded auxiliary dinghy fuel system, and other details you don't see on production hulls. She is the youngest 500 in the fleet.
 
-Our family is transitioning to our next chapter ashore. This boat deserves owners who will use her as she was meant to be used. We want to find the right people and make the transition as smooth as possible.
+## Why we're selling
 
-## What You Get from a Direct Sale
+Our family is moving on to our next chapter. This boat deserves owners who will use her the way she is built to be used. We want to find the right people and make the transition as smooth as possible for them.
 
-When you buy from us, you are dealing with the people who have lived aboard this boat and maintained every system. We will give you an honest assessment of her condition, walk you through every system in detail, and provide a thorough handover orientation. No broker can offer that level of firsthand knowledge.
+## What you get when you buy from us
+
+You are dealing with the people who have lived aboard and maintained every system. We will give you an honest accounting of her condition, walk you through every system in detail, and provide a thorough handover. No broker can offer that level of firsthand knowledge. We will also introduce you to the marine electricians, riggers, and mechanics we have trusted with her upgrades.
