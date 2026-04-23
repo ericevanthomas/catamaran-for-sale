@@ -1,4 +1,6 @@
 ---
+import { marked } from 'marked';
+
 interface FAQItem {
 	question: string;
 	answer: string;
@@ -9,6 +11,7 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const mdInline = (s: string) => marked.parseInline(s, { async: false }) as string;
 ---
 
 <div class="faq-accordion">
@@ -16,7 +19,7 @@ const { items } = Astro.props;
 		<details class="faq-item">
 			<summary class="faq-question">{item.question}</summary>
 			<div class="faq-answer">
-				<p>{item.answer}</p>
+				<p set:html={mdInline(item.answer)}></p>
 			</div>
 		</details>
 	))}
@@ -66,5 +69,12 @@ const { items } = Astro.props;
 		padding-bottom: var(--space-md);
 		color: var(--color-text-muted);
 		line-height: 1.7;
+	}
+
+	.faq-answer :global(a) {
+		color: var(--color-accent);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		text-decoration-thickness: 1px;
 	}
 </style>
