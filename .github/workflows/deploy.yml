@@ -13,6 +13,13 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+      - name: Cache generated image variants
+        uses: actions/cache@v4
+        with:
+          path: public/_img
+          key: img-variants-${{ hashFiles('public/images/**') }}
+          restore-keys: |
+            img-variants-
       - run: npm ci
       - run: npm run build
       - uses: cloudflare/wrangler-action@v3
