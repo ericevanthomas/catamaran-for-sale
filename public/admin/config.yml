@@ -73,6 +73,8 @@ collections:
     folder: src/content/faq
     create: true
     slug: "{{slug}}"
+    identifier_field: question
+    summary: "{{question}}"
     sortable_fields:
       fields: [order, question]
       default:
