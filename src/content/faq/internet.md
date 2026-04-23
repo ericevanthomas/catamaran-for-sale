@@ -1,6 +1,6 @@
 ---
-question: "What internet setup does the boat have?"
-answer: "Tropicalia has Starlink satellite internet, which provides reliable broadband-speed connectivity throughout the Caribbean and US waters. The Starlink subscription would transfer to the new owner."
+question: What internet setup does the boat have?
+answer: Tropicalia has Starlink satellite internet, which provides reliable broadband-speed connectivity virtually anywhere. We also have a backup 12V Starlink mini and voltage step-up converter still in the box. I worked part time from the boat during our trip without any connectivity issues.
 order: 20
-category: "Systems & Equipment"
+category: Systems & Equipment
 ---
