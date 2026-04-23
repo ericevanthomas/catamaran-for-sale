@@ -9,7 +9,7 @@ We are Eric, Alex, Leon, and Margot — a family of four who left Madison, Wisco
 
 ## Our first cruise — S/V *Nethermead*, 2021–2022
 
-In 2021, we rented out our house, bought a sailboat called *Nethermead*, and spent ten months sailing from the Chesapeake down through the Caribbean and back. Leon was five and Margot was two. We had read the kids a book called *We Were Tired of Living in a House*, and we meant it. That first trip changed everything — we swam with sea turtles, made friends in every anchorage, taught the kids from the saloon table, and realized this was the life we actually wanted.
+In 2021, we rented out our house, bought a sailboat called *Nethermead*, and spent ten months sailing from Miami down to Grenada and back. Leon was five and Margot was two. We had read the kids a book called *We Were Tired of Living in a House*, and we meant it. That first trip changed everything — we swam with sea turtles, made friends in every anchorage, taught the kids from the saloon table, and realized this was the life we actually wanted.
 
 You can read the whole story of that trip at [sailingnethermead.com](https://www.sailingnethermead.com/). Alex also made a podcast about it called *[6 Months or Less](https://6monthsorless.com/)*.
 
