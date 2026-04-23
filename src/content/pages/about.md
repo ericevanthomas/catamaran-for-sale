@@ -7,7 +7,7 @@ description: Meet the family behind S/V Tropicalia — our two cruises, why we p
 
 We are Eric, Alex, Leon, and Margot — a family of four based in Madison, Wisconsin. Eric earned a USCG 100-ton Master captain's license and has crossed the Atlantic twice. Alex had never sailed before she met him. Leon is nine. Margot is six.
 
-We have done two year-long Caribbean cruises. The first was ten months aboard *Nethermead*, a monohull we sailed from Miami to Grenada and back in 2021–2022. We documented that trip at [sailingnethermead.com](https://www.sailingnethermead.com/), and Alex made a podcast about it called *[6 Months or Less](https://6monthsorless.com/)*. We came home, got restless, and wanted to go again — this time with the space and comfort of a catamaran. So we sold *Nethermead*, bought *Tropicalia*, and spent this past year aboard her. That voyage is at [sailingtropicalia.com](https://sailingtropicalia.com/).
+We have done two year-long Caribbean cruises. The first was ten months aboard *Nethermead*, a monohull we sailed from Miami to Grenada and back in 2021–2022. We documented that trip at [sailingnethermead.com](https://www.sailingnethermead.com/). We came home, got restless, and wanted to go again — this time with the space and comfort of a catamaran. So we sold *Nethermead*, bought *Tropicalia*, and spent this past year aboard her. That voyage is at [sailingtropicalia.com](https://sailingtropicalia.com/).
 
 ## Why we chose a Voyage 500
 
