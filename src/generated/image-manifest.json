@@ -1,33 +1,28 @@
 {
   "/images/about/family.webp": {
-    "width": 2000,
-    "height": 1500,
-    "aspectRatio": 1.3333333333333333,
+    "width": 1400,
+    "height": 1859,
+    "aspectRatio": 0.7530930607853685,
     "variants": [
       {
         "w": 400,
-        "h": 300,
+        "h": 531,
         "src": "/_img/images/about/family/400.webp"
       },
       {
         "w": 800,
-        "h": 600,
+        "h": 1062,
         "src": "/_img/images/about/family/800.webp"
       },
       {
         "w": 1200,
-        "h": 900,
+        "h": 1593,
         "src": "/_img/images/about/family/1200.webp"
       },
       {
-        "w": 1600,
-        "h": 1200,
-        "src": "/_img/images/about/family/1600.webp"
-      },
-      {
-        "w": 2000,
-        "h": 1500,
-        "src": "/_img/images/about/family/2000.webp"
+        "w": 1400,
+        "h": 1859,
+        "src": "/_img/images/about/family/1400.webp"
       }
     ]
   },
