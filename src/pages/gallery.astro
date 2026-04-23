@@ -159,18 +159,25 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 	}
 
 	.gallery {
-		column-count: 4;
-		column-gap: var(--gap-s);
+		display: flex;
+		gap: var(--gap-s);
+		align-items: flex-start;
+	}
+
+	.gallery__col {
+		flex: 1 1 0;
+		display: flex;
+		flex-direction: column;
+		gap: var(--gap-s);
+		min-width: 0;
 	}
 
 	.gallery__item {
-		margin: 0 0 var(--gap-s);
-		display: inline-block;
+		margin: 0;
 		width: 100%;
 		overflow: hidden;
 		cursor: pointer;
 		position: relative;
-		break-inside: avoid;
 	}
 
 	.gallery__item[data-hidden] { display: none; }
@@ -311,26 +318,57 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 	}
 
 	/* Responsive */
-	@media (max-width: 1100px) {
-		.gallery { column-count: 3; }
-	}
-
 	@media (max-width: 900px) {
-		.gallery { column-count: 2; }
 		.filter { top: 72px; }
 	}
 
 	@media (max-width: 600px) {
 		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
 		.page-header { padding-top: 80px; }
-		.gallery { column-count: 1; }
 	}
 </style>
 
 <script>
+	// Masonry: paint items in row-reading order across N columns.
+	// CSS columns paint top-to-bottom, so humans read the order wrong —
+	// use N flex columns and distribute items round-robin by index.
+	const gallery = document.querySelector('.gallery') as HTMLElement;
+	const items = document.querySelectorAll('.gallery__item');
+	const allItems = Array.from(items) as HTMLElement[];
+
+	function columnCount() {
+		const w = window.innerWidth;
+		if (w <= 600) return 1;
+		if (w <= 900) return 2;
+		if (w <= 1100) return 3;
+		return 4;
+	}
+
+	let currentCols = 0;
+	function layoutMasonry() {
+		const n = columnCount();
+		if (n === currentCols) return;
+		currentCols = n;
+		gallery.replaceChildren();
+		const cols: HTMLElement[] = [];
+		for (let i = 0; i < n; i++) {
+			const c = document.createElement('div');
+			c.className = 'gallery__col';
+			cols.push(c);
+			gallery.appendChild(c);
+		}
+		allItems.forEach((item, i) => cols[i % n].appendChild(item));
+	}
+
+	layoutMasonry();
+	let resizeTimer: ReturnType<typeof setTimeout>;
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimer);
+		resizeTimer = setTimeout(layoutMasonry, 120);
+	});
+
 	// Filter
 	const filterBtns = document.querySelectorAll('.filter__btn');
-	const items = document.querySelectorAll('.gallery__item');
 
 	filterBtns.forEach(btn => {
 		btn.addEventListener('click', () => {
@@ -353,7 +391,6 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 	const lbImg = lightbox.querySelector('.lightbox__img') as HTMLImageElement;
 	const lbCaption = lightbox.querySelector('.lightbox__caption') as HTMLElement;
 	const lbCounter = lightbox.querySelector('.lightbox__counter') as HTMLElement;
-	const allItems = Array.from(items);
 	let currentIndex = 0;
 
 	function getVisibleItems() {
