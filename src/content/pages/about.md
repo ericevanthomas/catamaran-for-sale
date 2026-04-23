@@ -13,7 +13,7 @@ In 2021, we rented out our house, bought a sailboat called *Nethermead*, and spe
 
 You can read the whole story of that trip at [sailingnethermead.com](https://www.sailingnethermead.com/). Alex also made a podcast about it called *[6 Months or Less](https://6monthsorless.com/)*.
 
-## This cruise — S/V *Tropicalia*, 2024–2026
+## This cruise — S/V *Tropicalia*, 2025–2026
 
 After the first trip we came home, started planning the next one, and spent a year looking for the right catamaran. We bought *Tropicalia* — a 2010 Voyage 500 — and moved aboard. The kids are older now. Leon navigates. Margot climbs the rigging. We have cruised the Bahamas, the Turks and Caicos, Puerto Rico, and spent this past season in the US and British Virgin Islands. Our live position is on the Predictwind map on this page, and the ongoing journey is at [sailingtropicalia.com](https://sailingtropicalia.com/).
 
