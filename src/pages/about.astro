@@ -13,23 +13,26 @@ const { Content } = page ? await render(page) : { Content: null };
 	description={page?.data.description ?? 'The family behind the Voyage 500.'}
 >
 
-	<section class="about-hero">
-		<div class="wrap about-hero__grid">
-			<figure class="about-hero__photo">
+	<section class="page-header">
+		<div class="wrap">
+			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
+			<h1>About Us</h1>
+			<p class="page-header__sub">The family behind S/V Tropicalia.</p>
+		</div>
+	</section>
+
+	<section class="about-body">
+		<div class="wrap about-body__grid">
+			<figure class="about-body__photo">
 				<ResponsiveImage
 					src="/images/about/family.webp"
 					alt="Eric, Alex, Leon, and Margot on a rocky shore in the British Virgin Islands"
 					sizes="(min-width: 900px) 480px, 100vw"
 					loading="eager"
-					fetchpriority="high"
 				/>
 			</figure>
-			<div class="about-hero__text">
-				<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
-				<h1>About us</h1>
-				<div class="prose">
-					{Content && <Content />}
-				</div>
+			<div class="about-body__text prose">
+				{Content && <Content />}
 			</div>
 		</div>
 	</section>
@@ -62,27 +65,46 @@ const { Content } = page ? await render(page) : { Content: null };
 		padding-right: var(--gap-l);
 	}
 
-	/* HERO — portrait photo + text, two columns */
-	.about-hero {
+	/* Page header — matches Features, Specs, Gallery, FAQ */
+	.page-header {
 		padding-top: 120px;
-		padding-bottom: var(--space-3xl);
+		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
 
-	.about-hero__grid {
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+
+	.page-header__sub {
+		font-size: var(--text-md);
+		color: var(--color-text-muted);
+		max-width: 50ch;
+		margin: 0;
+	}
+
+	/* Body: photo + text */
+	.about-body {
+		padding: var(--space-3xl) 0;
+	}
+
+	.about-body__grid {
 		display: grid;
-		grid-template-columns: 1fr 1.2fr;
+		grid-template-columns: 1fr 1.25fr;
 		gap: clamp(var(--gap-l), 6vw, 88px);
 		align-items: start;
 	}
 
-	.about-hero__photo {
+	.about-body__photo {
 		margin: 0;
 		position: sticky;
 		top: 100px;
 	}
 
-	.about-hero__photo img {
+	.about-body__photo img {
 		width: 100%;
 		height: auto;
 		display: block;
@@ -90,14 +112,14 @@ const { Content } = page ? await render(page) : { Content: null };
 		box-shadow: 0 18px 40px -20px rgba(10, 25, 40, 0.35);
 	}
 
-	.about-hero__text h1 {
-		font-size: clamp(2.25rem, 3.5vw, 3rem);
+	.about-body__text :global(h2) {
+		font-size: clamp(1.6rem, 2.4vw, 2rem);
 		font-weight: 600;
-		margin: var(--gap-s) 0 var(--gap-m);
-		letter-spacing: -0.01em;
+		margin: 0 0 var(--gap-m);
+		letter-spacing: -0.005em;
 	}
 
-	.about-hero__text .prose :global(p) {
+	.about-body__text :global(p) {
 		font-size: var(--text-md);
 		line-height: 1.75;
 		color: var(--color-text);
@@ -105,11 +127,11 @@ const { Content } = page ? await render(page) : { Content: null };
 		max-width: 58ch;
 	}
 
-	.about-hero__text .prose :global(p:last-child) {
+	.about-body__text :global(p:last-child) {
 		margin-bottom: 0;
 	}
 
-	.about-hero__text .prose :global(a) {
+	.about-body__text :global(a) {
 		color: var(--color-accent);
 		text-decoration: underline;
 		text-underline-offset: 3px;
@@ -120,7 +142,7 @@ const { Content } = page ? await render(page) : { Content: null };
 	.section {
 		padding: var(--space-3xl) 0;
 	}
-	.section--alt { background: var(--color-bg); }
+	.section--alt { background: var(--color-bg-warm); }
 
 	.widget-note {
 		color: var(--color-text-muted);
@@ -153,14 +175,11 @@ const { Content } = page ? await render(page) : { Content: null };
 	}
 
 	@media (max-width: 900px) {
-		.about-hero {
-			padding-top: 96px;
-		}
-		.about-hero__grid {
+		.about-body__grid {
 			grid-template-columns: 1fr;
 			gap: var(--gap-l);
 		}
-		.about-hero__photo {
+		.about-body__photo {
 			position: static;
 			max-width: 460px;
 			margin: 0 auto;
@@ -172,6 +191,8 @@ const { Content } = page ? await render(page) : { Content: null };
 			padding-left: var(--gap-m);
 			padding-right: var(--gap-m);
 		}
-		.about-hero { padding-top: 80px; }
+		.page-header {
+			padding-top: 80px;
+		}
 	}
 </style>
