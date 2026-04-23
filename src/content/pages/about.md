@@ -5,7 +5,7 @@ description: Meet the family behind S/V Tropicalia — our two Caribbean cruises
 
 ## Who we are
 
-We are Eric, Alex, Leon, and Margot — a family of four who left Madison, Wisconsin five years ago to go sailing. Eric has crossed the Atlantic twice and holds a USCG 100-ton Master captain's license. Alex had never sailed before she met him, and used to get seasick on the way out of the harbor. Leon is eight. Margot is five. They have spent as much of their childhood on the water as on land.
+We are Eric, Alex, Leon, and Margot — a family of four who left Madison, Wisconsin five years ago to go sailing. Eric has crossed the Atlantic twice and holds a USCG 100-ton Master captain's license. Alex had never sailed before she met him, and used to get seasick on the way out of the harbor. Leon is nine. Margot is six. They have spent as much of their childhood on the water as on land.
 
 ## Our first cruise — S/V *Nethermead*, 2021–2022
 
