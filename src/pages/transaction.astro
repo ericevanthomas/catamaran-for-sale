@@ -1,14 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { marked } from 'marked';
 
 const allPages = await getCollection('pages');
 const page = allPages.find((p) => p.id === 'transaction');
-const { Content } = page ? await render(page) : { Content: null };
+const body = page?.body ?? '';
+
+// Parse the markdown into: leading intro paragraphs, numbered steps (## N. Title),
+// and trailing non-numbered sections. Numbered headings become timeline items.
+type Section = { heading: string; body: string; num?: number };
+const sections: Section[] = [];
+let current: Section | null = null;
+for (const line of body.split('\n')) {
+	const h2 = line.match(/^##\s+(.+)$/);
+	if (h2) {
+		if (current) sections.push(current);
+		const title = h2[1];
+		const numMatch = title.match(/^(\d+)\.\s+(.+)$/);
+		current = numMatch
+			? { heading: numMatch[2], body: '', num: parseInt(numMatch[1], 10) }
+			: { heading: title, body: '' };
+	} else if (current) {
+		current.body += line + '\n';
+	}
+}
+if (current) sections.push(current);
+
+const steps = sections.filter((s) => typeof s.num === 'number') as Required<Section>[];
+const leading = sections.find((s) => s.num === undefined);
+const trailing = sections.filter((s) => s.num === undefined && s !== leading);
+
+const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 ---
 
 <BaseLayout
-	title={page?.data.title ?? 'The Transaction — Voyage 500'}
+	title={page?.data.title ?? 'How the Sale Works — Voyage 500'}
 	description={page?.data.description ?? 'How the purchase process works.'}
 >
 	<section class="page-header">
@@ -19,13 +46,47 @@ const { Content } = page ? await render(page) : { Content: null };
 		</div>
 	</section>
 
-	<section class="section">
-		<div class="wrap">
-			<div class="prose">
-				{Content && <Content />}
+	{leading && (
+		<section class="transaction-intro">
+			<div class="wrap">
+				<div class="transaction-intro__inner">
+					<h2>{leading.heading}</h2>
+					<div class="prose" set:html={mdBlock(leading.body.trim())} />
+				</div>
 			</div>
+		</section>
+	)}
+
+	<section class="timeline-section">
+		<div class="wrap">
+			<ol class="timeline" id="timeline">
+				{steps.map((step) => (
+					<li class="timeline__step">
+						<div class="timeline__marker">
+							<span class="timeline__dot">{step.num}</span>
+						</div>
+						<div class="timeline__card">
+							<h3 class="timeline__title">{step.heading}</h3>
+							<div class="prose" set:html={mdBlock(step.body.trim())} />
+						</div>
+					</li>
+				))}
+			</ol>
 		</div>
 	</section>
+
+	{trailing.length > 0 && (
+		<section class="transaction-outro">
+			<div class="wrap transaction-outro__wrap">
+				{trailing.map((t) => (
+					<div class="transaction-outro__item">
+						<h2>{t.heading}</h2>
+						<div class="prose" set:html={mdBlock(t.body.trim())} />
+					</div>
+				))}
+			</div>
+		</section>
+	)}
 
 	<section class="cta">
 		<div class="wrap cta__inner">
@@ -37,24 +98,6 @@ const { Content } = page ? await render(page) : { Content: null };
 </BaseLayout>
 
 <style>
-	.page-header {
-		padding-top: 120px;
-		padding-bottom: var(--gap-l);
-		background: var(--color-bg-warm);
-	}
-
-	.page-header h1 {
-		font-size: clamp(2.5rem, 4vw, 3.5rem);
-		font-weight: 600;
-		margin-top: var(--gap-s);
-		margin-bottom: var(--gap-s);
-	}
-
-	.page-header__sub {
-		color: var(--color-text-muted);
-		font-size: var(--text-lg);
-	}
-
 	.wrap {
 		max-width: 1280px;
 		margin: 0 auto;
@@ -62,8 +105,167 @@ const { Content } = page ? await render(page) : { Content: null };
 		padding-right: var(--gap-l);
 	}
 
-	.section {
-		padding: var(--space-3xl) 0;
+	.page-header {
+		padding-top: 120px;
+		padding-bottom: var(--gap-l);
+		background: var(--color-bg-warm);
+	}
+	.page-header h1 {
+		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-weight: 600;
+		margin-top: var(--gap-s);
+		margin-bottom: var(--gap-s);
+	}
+	.page-header__sub {
+		color: var(--color-text-muted);
+		font-size: var(--text-lg);
+		max-width: 55ch;
+	}
+
+	/* Intro */
+	.transaction-intro {
+		padding: var(--space-3xl) 0 var(--space-xl);
+	}
+	.transaction-intro__inner {
+		max-width: 720px;
+	}
+	.transaction-intro h2 {
+		font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+		font-weight: 600;
+		margin: 0 0 var(--gap-m);
+		letter-spacing: -0.005em;
+	}
+	.transaction-intro .prose :global(p) {
+		font-size: var(--text-md);
+		line-height: 1.75;
+		color: var(--color-text);
+	}
+
+	/* Timeline */
+	.timeline-section {
+		padding-bottom: var(--space-3xl);
+	}
+
+	.timeline {
+		--track-left: 24px;
+		--progress: 0%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		position: relative;
+		max-width: 820px;
+	}
+
+	/* Gray track */
+	.timeline::before {
+		content: '';
+		position: absolute;
+		left: var(--track-left);
+		top: 24px;
+		bottom: 24px;
+		width: 2px;
+		background: var(--color-border-light);
+		transform: translateX(-50%);
+	}
+
+	/* Teal fill grows with scroll progress */
+	.timeline::after {
+		content: '';
+		position: absolute;
+		left: var(--track-left);
+		top: 24px;
+		width: 2px;
+		height: var(--progress);
+		background: var(--color-accent);
+		transform: translateX(-50%);
+		transition: height 0.15s linear;
+	}
+
+	.timeline__step {
+		position: relative;
+		padding-left: calc(var(--track-left) + 40px);
+		padding-bottom: var(--size-10);
+	}
+	.timeline__step:last-child {
+		padding-bottom: 0;
+	}
+
+	.timeline__marker {
+		position: absolute;
+		left: var(--track-left);
+		top: 0;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.timeline__dot {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: var(--color-bg);
+		border: 2px solid var(--color-border-light);
+		color: var(--color-text-muted);
+		font-family: var(--font-body);
+		font-weight: 600;
+		font-size: 1rem;
+		transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s;
+	}
+
+	.timeline__step.is-reached .timeline__dot {
+		background: var(--color-accent);
+		border-color: var(--color-accent);
+		color: #fff;
+	}
+	.timeline__step.is-active .timeline__dot {
+		transform: scale(1.08);
+		box-shadow: 0 0 0 6px rgba(14, 145, 140, 0.12);
+	}
+
+	.timeline__card {
+		padding: 4px 0 0;
+	}
+
+	.timeline__title {
+		font-size: clamp(1.2rem, 2vw, 1.5rem);
+		font-weight: 600;
+		margin: 0 0 var(--gap-s);
+		color: var(--color-heading);
+	}
+
+	.timeline__card .prose :global(p) {
+		font-size: var(--text-md);
+		line-height: 1.7;
+		color: var(--color-text);
+		margin: 0 0 var(--gap-s);
+		max-width: 65ch;
+	}
+	.timeline__card .prose :global(p:last-child) { margin-bottom: 0; }
+
+	/* Outro — Why FSBO, Questions */
+	.transaction-outro {
+		padding: var(--space-2xl) 0 var(--space-3xl);
+		background: var(--color-bg-warm);
+	}
+	.transaction-outro__wrap {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(var(--gap-l), 5vw, 72px);
+	}
+	.transaction-outro h2 {
+		font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+		font-weight: 600;
+		margin: 0 0 var(--gap-s);
+	}
+	.transaction-outro .prose :global(p) {
+		font-size: var(--text-md);
+		line-height: 1.75;
+		color: var(--color-text);
+		margin: 0 0 var(--gap-s);
 	}
 
 	/* CTA */
@@ -71,31 +273,78 @@ const { Content } = page ? await render(page) : { Content: null };
 		background: var(--color-bg-dark);
 		padding: var(--size-12) 0;
 	}
-
-	.cta__inner {
-		text-align: center;
-	}
-
+	.cta__inner { text-align: center; }
 	.cta__inner h2 {
 		color: #fff;
 		font-weight: 600;
 		margin-bottom: var(--gap-s);
 	}
-
 	.cta__inner p {
-		color: rgba(255,255,255,0.4);
+		color: rgba(255,255,255,0.5);
 		font-size: var(--text-md);
 		max-width: 45ch;
 		margin: 0 auto var(--gap-m);
 	}
 
+	@media (max-width: 720px) {
+		.transaction-outro__wrap { grid-template-columns: 1fr; }
+	}
 	@media (max-width: 600px) {
-		.wrap {
-			padding-left: var(--gap-m);
-			padding-right: var(--gap-m);
-		}
-		.page-header {
-			padding-top: 80px;
-		}
+		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
+		.page-header { padding-top: 80px; }
+		.timeline { --track-left: 18px; }
+		.timeline__dot { width: 40px; height: 40px; font-size: 0.9rem; }
+		.timeline__step { padding-left: calc(var(--track-left) + 30px); }
 	}
 </style>
+
+<script>
+	// Scroll-linked timeline progress: teal line fills in, dots go active/reached.
+	const timeline = document.getElementById('timeline');
+	if (timeline) {
+		const steps = Array.from(timeline.querySelectorAll('.timeline__step')) as HTMLElement[];
+		const markers = steps.map((s) => s.querySelector('.timeline__marker') as HTMLElement);
+
+		function update() {
+			const midpoint = window.innerHeight * 0.55;
+			const rect = timeline.getBoundingClientRect();
+			const firstMarker = markers[0].getBoundingClientRect();
+			const lastMarker = markers[markers.length - 1].getBoundingClientRect();
+
+			// Progress line: from first marker center to last marker center
+			const trackTop = firstMarker.top + firstMarker.height / 2;
+			const trackBottom = lastMarker.top + lastMarker.height / 2;
+			const total = trackBottom - trackTop;
+			const scrolled = Math.max(0, Math.min(total, midpoint - trackTop));
+			const pct = total > 0 ? (scrolled / total) * 100 : 0;
+			timeline.style.setProperty('--progress', `${pct}%`);
+
+			// Active / reached step tracking
+			let activeIdx = -1;
+			steps.forEach((step, i) => {
+				const m = markers[i].getBoundingClientRect();
+				const center = m.top + m.height / 2;
+				if (center <= midpoint) {
+					step.classList.add('is-reached');
+					activeIdx = i;
+				} else {
+					step.classList.remove('is-reached');
+				}
+				step.classList.remove('is-active');
+			});
+			if (activeIdx >= 0) steps[activeIdx].classList.add('is-active');
+		}
+
+		let raf = 0;
+		function schedule() {
+			if (raf) return;
+			raf = requestAnimationFrame(() => {
+				raf = 0;
+				update();
+			});
+		}
+		window.addEventListener('scroll', schedule, { passive: true });
+		window.addEventListener('resize', schedule);
+		update();
+	}
+</script>
