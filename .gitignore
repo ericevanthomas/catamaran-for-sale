@@ -6,6 +6,8 @@ dist/
 public/pdf-assets/
 # generated responsive image variants (rebuilt on deploy via prebuild)
 public/_img/
+# scratch files from caption-rewrite batches
+scripts/.caption-*.json
 
 # dependencies
 node_modules/
