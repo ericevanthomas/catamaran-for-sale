@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# intermediate assets used only during PDF generation
+public/pdf-assets/
 
 # dependencies
 node_modules/
