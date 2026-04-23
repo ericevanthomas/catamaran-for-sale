@@ -100,7 +100,6 @@ const galleryImagesRaw = [
 	'images/gallery/PXL_20260419_220008817.RAW-01.COVER.webp',
 	// Lifestyle
 	'images/gallery/IMG_9775.webp',
-	'images/gallery/IMG_9220.webp',
 ];
 const galleryImages = await Promise.all(galleryImagesRaw.map(p => compressForPdf(p, 900, 72)));
 
