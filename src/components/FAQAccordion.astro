@@ -11,7 +11,10 @@ interface Props {
 }
 
 const { items } = Astro.props;
-const mdInline = (s: string) => marked.parseInline(s, { async: false }) as string;
+const mdInline = (s: string) => {
+	const html = marked.parseInline(s, { async: false }) as string;
+	return html.replace(/<a (?![^>]*target=)([^>]*)>/g, '<a $1 target="_blank" rel="noopener">');
+};
 ---
 
 <div class="faq-accordion">

@@ -3,7 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 
-const mdInline = (s: string) => marked.parseInline(s, { async: false }) as string;
+const mdInline = (s: string) => {
+	const html = marked.parseInline(s, { async: false }) as string;
+	return html.replace(/<a (?![^>]*target=)([^>]*)>/g, '<a $1 target="_blank" rel="noopener">');
+};
 
 const allFaqs = await getCollection('faq');
 const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
