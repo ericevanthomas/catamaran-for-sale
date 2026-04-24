@@ -10,7 +10,7 @@ photos:
 video: ''
 order: 2
 featured: true
-draft: true
+draft: false
 category: Living Spaces
 cardSize: medium
 ---
@@ -24,8 +24,8 @@ The galley is designed for serious cooking underway or at anchor.
 - Sharp Convection Microwave
 - Corian Work Surfaces with Stainless Steel Rails and Fiddles
 - Pressurized Hot and Cold Fresh Water
-- Salt Water spigot
-- Hand Operated Emergency Water Pump
+- Valve to Switch Faucet to Salt Water, Good for Cleaning Fresh Fish You Catch
+- Hand Operated Emergency Drinking Water Pump
 - Large Recessed Draining / Drip Sink
 - Stainless Steel Waste Chute w/ Countertop Lid
 - 2 x Cutlery Drawers
