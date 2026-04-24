@@ -8,7 +8,7 @@ photos:
   - /images/gallery/PXL_20260419_203705241.RAW-01.COVER.webp
 video: ''
 order: 6
-featured: true
+featured: false
 draft: false
 category: Systems & Equipment
 cardSize: large
