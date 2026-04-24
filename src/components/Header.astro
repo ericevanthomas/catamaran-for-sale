@@ -191,8 +191,10 @@ const navItems = [
 	#mobile-menu nav {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
+		align-items: stretch;
 		gap: var(--gap-m);
+		width: 100%;
+		max-width: 440px;
 	}
 
 	#mobile-menu a {
@@ -201,14 +203,27 @@ const navItems = [
 		font-weight: 500;
 		color: var(--color-heading);
 		text-decoration: none;
+		text-align: center;
 	}
 
 	.mobile-menu__cta {
-		color: var(--color-accent) !important;
+		display: block;
+		background: var(--color-accent);
+		color: #fff !important;
 		font-family: var(--font-body) !important;
-		font-size: var(--text-base) !important;
-		font-weight: 600 !important;
-		margin-top: var(--gap-m);
+		font-size: var(--text-lg) !important;
+		font-weight: 700 !important;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		padding: 18px 24px;
+		border-radius: 4px;
+		margin-top: var(--gap-l);
+		transition: background 0.2s var(--ease);
+	}
+
+	.mobile-menu__cta:hover,
+	.mobile-menu__cta:focus {
+		background: var(--color-accent-dark);
 	}
 
 	@media (max-width: 900px) {
