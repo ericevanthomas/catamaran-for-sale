@@ -1,6 +1,6 @@
 ---
-title: "How the Sale Works"
-description: "How a private catamaran sale works: the step-by-step process from initial contact through closing, including escrow, survey, and sea trial."
+title: How the Sale Works
+description: 'How a private catamaran sale works: the step-by-step process from initial contact through closing, including escrow, survey, and sea trial.'
 ---
 
 ## Buying a Boat Directly from the Owner
@@ -9,23 +9,23 @@ Private boat sales are common and straightforward. The process follows the same 
 
 ## 1. Initial Contact
 
-Reach out via our contact form, email, or phone. We are happy to answer questions, provide additional photos and videos, or schedule a video call to walk through the boat in real time. We encourage you to ask anything.
+[Reach out](/contact) to us. We are happy to answer questions, provide additional photos and videos, or schedule a video call to walk through the boat in real time. We encourage you to ask anything.
 
 ## 2. Offer & Deposit
 
-When you are ready to move forward, you submit a written offer. Once we reach agreement on terms, a refundable deposit (typically 10%) is placed into a licensed marine escrow account. This secures the boat and takes her off the market while you arrange a survey.
+When you are ready to move forward, you submit a written offer using a standard marine purchase and sale agreement, much like you would do if you were making an offered on a brokerage boat. Once we reach agreement on terms, a refundable deposit (typically 10%) is placed into a licensed marine escrow account. This secures the boat and takes her off the market while you arrange a survey.
 
 ## 3. Marine Survey
 
-You hire a licensed marine surveyor of your choice. We will make the boat fully available for haul-out and inspection. The survey is your opportunity to have an independent professional assess every aspect of the vessel. We welcome thorough inspections.
+You hire a licensed marine surveyor of your choice. We will make the boat fully available for haul-out and inspection. The survey is your opportunity to have an independent professional assess every aspect of the vessel.
 
 ## 4. Sea Trial
 
-A sea trial is included as part of the survey process. You will experience the boat under sail and power, test all systems, and get a feel for how she handles. We will be aboard to answer questions and demonstrate systems.
+A sea trial is usually included as part of the survey process. You and your surveyor will be able to experience the boat under sail and power, test all systems, and get a feel for how she handles. We will be aboard to answer questions and demonstrate systems.
 
 ## 5. Negotiation (if needed)
 
-If the survey reveals items that need attention, we negotiate in good faith. We have nothing to hide and have already disclosed everything we know about the boat's condition.
+If the survey reveals items that need attention, we negotiate in good faith.
 
 ## 6. Closing
 
