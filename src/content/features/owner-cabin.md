@@ -12,12 +12,12 @@ photos:
   - /images/gallery/PXL_20260421_151655764.webp
   - /images/gallery/PXL_20260421_151913048.webp
   - /images/gallery/PXL_20260420_203359126.webp
+  - /images/gallery/PXL_20260420_204124965.webp
   - /images/gallery/PXL_20260420_203506948.webp
   - /images/gallery/PXL_20260420_212045887.webp
   - /images/gallery/PXL_20260420_212136257.webp
   - /images/gallery/PXL_20260420_212308479.webp
   - /images/gallery/PXL_20260420_213737332.webp
-  - /images/gallery/PXL_20260420_204124965.webp
   - /images/gallery/PXL_20260420_213753089.webp
 video: ''
 order: 3
