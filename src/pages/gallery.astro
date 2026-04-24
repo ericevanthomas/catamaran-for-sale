@@ -347,6 +347,11 @@ const GALLERY_SIZES = '(max-width: 600px) 50vw, (max-width: 900px) 40vw, (max-wi
 	}
 
 	let currentCols = 0;
+	// Astro scopes styles with a data-astro-cid-* attribute. Since we create
+	// the column divs in JS, we need to copy that attribute from the parent
+	// so the scoped CSS (gap, flex-direction, etc.) actually applies.
+	const scopeAttrs = Array.from(gallery.attributes).filter(a => a.name.startsWith('data-astro-cid-'));
+
 	function layoutMasonry() {
 		const n = columnCount();
 		if (n === currentCols) return;
@@ -356,6 +361,7 @@ const GALLERY_SIZES = '(max-width: 600px) 50vw, (max-width: 900px) 40vw, (max-wi
 		for (let i = 0; i < n; i++) {
 			const c = document.createElement('div');
 			c.className = 'gallery__col';
+			for (const a of scopeAttrs) c.setAttribute(a.name, a.value);
 			cols.push(c);
 			gallery.appendChild(c);
 		}
