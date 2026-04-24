@@ -29,9 +29,9 @@ Once the survey and sea trial are complete, and if you are completely satisfied 
 
 ## 6. Closing
 
-The buyer wires the balance of the purchase price to the escrow agent, where it is held pending closing. Both parties sign the bill of sale. The documentation agent files the paperwork with the USCG to transfer ownership and remove any prior documentation. Once the transfer is confirmed, escrow releases the funds to the seller and the keys, manuals, and maintenance records pass to the new owner.
+The closing agent runs an abstract of title and lien search, prepares the bill of sale and USCG paperwork, holds the signed documents in escrow, confirms any prior liens or mortgages are satisfied, files the transfer with the USCG, and issues a new 5-year USCG Certificate of Documentation in the buyer's name. The buyer wires the balance of the purchase price into escrow, where it is held until the title transfer is confirmed and then released to the seller. Keys, manuals, and maintenance records pass to the new owner.
 
-We have closed two boats through [All Yacht Registries](https://allyachtregistries.com/) &mdash; the purchase of *Tropicalia* and the private sale of *Nethermead* &mdash; and were very satisfied with their professionalism on both transactions. They are our default recommendation, but the buyer is welcome to use any comparable closing and documentation service they prefer.
+We have closed two boats through [All Yacht Registries](https://allyachtregistries.com/) &mdash; the purchase of *Tropicalia* and the private sale of *Nethermead* &mdash; and were very satisfied with their professionalism on both transactions. Their [standard closing fee](https://allyachtregistries.com/Fees.aspx) for a pleasure vessel is $750 plus a few small line items (overnight courier, apostilles, mortgage filing if any). They are our default recommendation, but the buyer is welcome to use any comparable closing and documentation service they prefer.
 
 ## Why FSBO Works
 
