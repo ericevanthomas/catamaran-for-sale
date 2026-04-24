@@ -10,7 +10,7 @@ video: ''
 order: 6
 featured: false
 draft: false
-category: Navigation
+category: Systems & Equipment
 cardSize: large
 ---
 
