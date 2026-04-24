@@ -29,7 +29,7 @@ Once the survey and sea trial are complete, and if you are completely satisfied 
 
 ## 6. Closing
 
-Once both parties are satisfied, we close through escrow. We provide all documentation, manuals, maintenance records, and a thorough multi-day handover orientation aboard the boat. We will walk you through every system, share our cruising notes, and make sure you are comfortable before we hand over the keys.
+The buyer wires the balance of the purchase price to the escrow agent, where it is held pending closing. Both parties sign the bill of sale. The documentation agent files the paperwork with the USCG to transfer ownership and remove any prior documentation. Once the transfer is confirmed, escrow releases the funds to the seller and the keys, manuals, and maintenance records pass to the new owner.
 
 ## Why FSBO Works
 
