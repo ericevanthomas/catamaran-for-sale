@@ -156,26 +156,26 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 		max-width: 820px;
 	}
 
-	/* Gray track */
+	/* Gray track — stops at the last dot's center, not at the bottom of the list */
 	.timeline::before {
 		content: '';
 		position: absolute;
 		left: var(--track-left);
 		top: 24px;
-		bottom: 24px;
+		height: var(--line-length, calc(100% - 48px));
 		width: 2px;
 		background: var(--color-border-light);
 		transform: translateX(-50%);
 	}
 
-	/* Teal fill grows with scroll progress */
+	/* Teal fill grows with scroll progress, capped at the last dot */
 	.timeline::after {
 		content: '';
 		position: absolute;
 		left: var(--track-left);
 		top: 24px;
 		width: 2px;
-		height: var(--progress);
+		height: min(var(--progress), var(--line-length, 100%));
 		background: var(--color-accent);
 		transform: translateX(-50%);
 		transition: height 0.15s linear;
@@ -312,13 +312,15 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 			const firstMarker = markers[0].getBoundingClientRect();
 			const lastMarker = markers[markers.length - 1].getBoundingClientRect();
 
-			// Progress line: from first marker center to last marker center
+			// Track length: from first marker center to last marker center.
 			const trackTop = firstMarker.top + firstMarker.height / 2;
 			const trackBottom = lastMarker.top + lastMarker.height / 2;
 			const total = trackBottom - trackTop;
+			timeline.style.setProperty('--line-length', `${total}px`);
+
+			// Teal fill progress, capped at total.
 			const scrolled = Math.max(0, Math.min(total, midpoint - trackTop));
-			const pct = total > 0 ? (scrolled / total) * 100 : 0;
-			timeline.style.setProperty('--progress', `${pct}%`);
+			timeline.style.setProperty('--progress', `${scrolled}px`);
 
 			// Active / reached step tracking
 			let activeIdx = -1;
