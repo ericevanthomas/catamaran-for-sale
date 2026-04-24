@@ -31,6 +31,8 @@ Once the survey and sea trial are complete, and if you are completely satisfied 
 
 The buyer wires the balance of the purchase price to the escrow agent, where it is held pending closing. Both parties sign the bill of sale. The documentation agent files the paperwork with the USCG to transfer ownership and remove any prior documentation. Once the transfer is confirmed, escrow releases the funds to the seller and the keys, manuals, and maintenance records pass to the new owner.
 
+We have closed two boats through [All Yacht Registries](https://allyachtregistries.com/) &mdash; the purchase of *Tropicalia* and the private sale of *Nethermead* &mdash; and were very satisfied with their professionalism on both transactions. They are our default recommendation, but the buyer is welcome to use any comparable closing and documentation service they prefer.
+
 ## Why FSBO Works
 
 Buying directly from the owner is not unusual in the marine world. Many experienced cruisers prefer it because they deal directly with someone who knows the boat intimately. There is no telephone game through a broker, and the savings on commission can be significant for both parties.
