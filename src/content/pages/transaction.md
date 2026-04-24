@@ -25,7 +25,7 @@ A sea trial is usually included as part of the survey process. You and your surv
 
 ## 5. Acceptance of Vessel
 
-Once the survey and sea trial are complete, the buyer formally accepts the vessel. If anything unexpected turns up, we work it out in good faith.
+Once the survey and sea trial are complete, and if you are completely satisfied with what you find, you formally accept the vessel. If you are unsatisfied with the survey results, then you can walk away, and the escrow agent refunds your 10% deposit.
 
 ## 6. Closing
 
