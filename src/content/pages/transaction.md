@@ -23,9 +23,9 @@ You hire a licensed marine surveyor of your choice. We will make the boat fully 
 
 A sea trial is usually included as part of the survey process. You and your surveyor will be able to experience the boat under sail and power, test all systems, and get a feel for how she handles. We will be aboard to answer questions and demonstrate systems.
 
-## 5. Negotiation (if needed)
+## 5. Acceptance of Vessel
 
-If the survey reveals items that need attention, we negotiate in good faith.
+Once the survey and sea trial are complete, the buyer formally accepts the vessel. If anything unexpected turns up, we work it out in good faith.
 
 ## 6. Closing
 
