@@ -1,6 +1,6 @@
 ---
 title: "Voyage 500 Catamaran For Sale By Owner — 2010, $379,000"
-description: "2010 Voyage 500 catamaran for sale by owner. 50-foot 3-cabin owner's version with $80K+ in 2025 upgrades — new Yanmar SD-60 saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine Axiom, and new 6-person life raft. $379,000 USD. Arriving St. Augustine, Florida June 1, 2026."
+description: "2010 Voyage 500 catamaran for sale by owner. 50-foot 3-cabin owner's version with 2025 upgrades — new SD60 saildrives, 1,280Ah lithium, Axiom+. $379,000."
 hero:
   eyebrow: 2010 Voyage 500 · S/V Tropicalia
   headline: Voyage 500 Catamaran For Sale by Owner

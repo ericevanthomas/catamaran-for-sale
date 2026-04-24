@@ -1,6 +1,6 @@
 ---
 title: "How a Catamaran For Sale By Owner Works — Process & Closing"
-description: "The step-by-step process for buying this 2010 Voyage 500 catamaran directly from the owner — initial contact, survey, sea trial, escrow, and USCG documentation transfer handled by All Yacht Registries."
+description: "The step-by-step process for buying this 2010 Voyage 500 catamaran by owner — contact, survey, sea trial, escrow, and USCG documentation transfer."
 ---
 
 ## Buying a Boat Directly from the Owner

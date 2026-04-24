@@ -1,6 +1,6 @@
 export const SITE_TITLE = 'Voyage 500 Catamaran For Sale By Owner — 2010, $379,000';
 export const SITE_DESCRIPTION =
-	"2010 Voyage 500 sailing catamaran for sale by owner. 50-foot 3-cabin owner's version with $80K+ in 2025 upgrades — new saildrives, lithium bank, watermaker, and electronics. Priced at $379,000. Arriving St. Augustine, FL June 1, 2026.";
+	"2010 Voyage 500 sailing catamaran for sale by owner. 50-foot 3-cabin owner's version with major 2025 upgrades. Arriving St. Augustine, FL June 1, 2026.";
 export const SITE_URL = 'https://www.catamaran-for-sale.com';
 export const BOAT_NAME = 'S/V Tropicalia';
 export const BOAT_MODEL = 'Voyage 500';
