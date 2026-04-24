@@ -101,7 +101,7 @@ const faqSchema = {
 	}
 
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
@@ -247,6 +247,6 @@ const faqSchema = {
 
 	@media (max-width: 600px) {
 		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
-		.page-header { padding-top: 80px; }
+		.page-header { padding-top: clamp(80px, 14vw, 120px); }
 	}
 </style>

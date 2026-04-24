@@ -66,7 +66,7 @@ const { Content } = page ? await render(page) : { Content: null };
 
 	/* Page header — matches Features, Specs, Gallery, FAQ */
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}

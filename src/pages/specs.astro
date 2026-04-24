@@ -31,7 +31,7 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 			<p class="page-header__sub">Dimensions, tankage, propulsion, and the major equipment aboard.</p>
 			<a href="/specs-sheet.pdf" class="btn btn--outline specs-download" download>
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-				Download Specifications Sheet
+				Download Specs
 			</a>
 		</div>
 	</section>
@@ -81,7 +81,7 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 			<h2 class="s-layout__title">3-Cabin Owner's Version Layout</h2>
 			<figure class="s-layout__figure">
 				<img src="/images/layout-diagram.jpg" alt="Top-down deck plan of the Voyage 500 S/V Tropicalia — 3-cabin owner's version, with the entire starboard hull as the master suite and two guest cabins in the port hull." loading="lazy" />
-				<figcaption>Bow at the top. The entire starboard hull is the master suite — king berth amidships, office and walk-in forward, head with separate shower stall at the stern. The port hull has two ensuite guest cabins with queen berths.</figcaption>
+				<figcaption>The entire starboard hull is the master suite — king berth and walk-in closet forward, office amidships, head with separate shower aft. The port hull has two ensuite guest cabins with queen berths.</figcaption>
 			</figure>
 		</div>
 	</section>
@@ -442,13 +442,13 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 	}
 
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
 
 	.page-header h1 {
-		font-size: clamp(2.5rem, 4vw, 3.5rem);
+		font-size: clamp(2rem, 7vw, 3.5rem);
 		font-weight: 600;
 		margin-top: var(--gap-s);
 		margin-bottom: var(--gap-s);

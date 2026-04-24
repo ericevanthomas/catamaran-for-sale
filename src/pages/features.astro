@@ -264,7 +264,7 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 
 	/* Page header */
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
@@ -875,10 +875,34 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 		.modal { width: 95vw; max-height: 90vh; }
 		.modal__inner { max-height: 90vh; }
 		.modal__layout { grid-template-columns: 1fr; }
-		.modal__media { position: relative; max-height: 35vh; }
-		.modal__hero img { min-height: 200px; max-height: 35vh; }
-		.modal__arrow { opacity: 1; }
+		.modal__media { position: relative; max-height: none; }
+		.modal__hero img { min-height: 220px; max-height: 40vh; }
 		.modal__content { max-height: none; }
+
+		/* Move prev/next below the image so they don't collide with the close (X). */
+		.modal__hero { padding-bottom: 48px; background: #000; }
+		.modal__arrow {
+			top: auto;
+			bottom: 6px;
+			transform: none;
+			opacity: 1;
+			background: rgba(0,0,0,0.5);
+		}
+		.modal__arrow--prev { left: 8px; }
+		.modal__arrow--next { right: 8px; }
+		.modal__counter {
+			top: auto;
+			bottom: 14px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		/* No fullscreen lightbox on small screens — the image already fills the phone. */
+		.modal__zoom { display: none; }
+		.modal__hero img { cursor: default; }
+
+		/* Captions show directly under every image on feature-card modals. */
+		.modal__caption { display: block; }
 	}
 
 	@media (max-width: 1024px) {
@@ -886,7 +910,7 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 	}
 
 	@media (max-width: 640px) {
-		.page-header { padding-top: 80px; }
+		.page-header { padding-top: clamp(80px, 14vw, 120px); }
 		.wrap, .wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
 		.fcard {
 			grid-template-columns: 100px 1fr;

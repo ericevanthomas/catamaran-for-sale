@@ -13,8 +13,10 @@ const photos = allGallery
 
 const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean))];
 
-// Gallery columns at breakpoints: 4 → 3 → 2 → 1. Max column ~= viewport/cols.
-const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-width: 1100px) 33vw, 25vw';
+// Gallery columns at breakpoints: 4 → 3 → 2 → 1. On mobile, lie to the browser
+// about the display size so it picks a smaller srcset variant (~400w instead
+// of 800w) — the quality is still fine for a scrolling thumbnail view.
+const GALLERY_SIZES = '(max-width: 600px) 50vw, (max-width: 900px) 40vw, (max-width: 1100px) 30vw, 23vw';
 ---
 
 <BaseLayout title="Photos — 2010 Voyage 500 Catamaran For Sale By Owner" description="150+ photos of S/V Tropicalia, a 2010 Voyage 500 sailing catamaran for sale by owner. Exterior, salon, galley, owner's cabin, guest cabins, engines, electrical, sails, and sailing shots.">
@@ -88,7 +90,7 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 
 	/* Page header */
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
@@ -324,7 +326,7 @@ const GALLERY_SIZES = '(max-width: 600px) 100vw, (max-width: 900px) 50vw, (max-w
 
 	@media (max-width: 600px) {
 		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
-		.page-header { padding-top: 80px; }
+		.page-header { padding-top: clamp(80px, 14vw, 120px); }
 	}
 </style>
 

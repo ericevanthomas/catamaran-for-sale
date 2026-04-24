@@ -29,13 +29,21 @@
 	   in component styles.
 	   ============================================== */
 
-	/* Gaps — from Open Props --size scale
+	/* Gaps — scale with viewport so mobile isn't stuck with desktop padding.
 	   gap-s: between items in a grid
-	   gap-m: frame inset from viewport, section spacing
+	   gap-m: frame inset from viewport, small section spacing
 	   gap-l: internal padding of framed sections */
-	--gap-s: var(--size-2);           /* 0.5rem  = 8px  */
-	--gap-m: var(--size-5);           /* 1.5rem  = 24px */
-	--gap-l: var(--size-9);           /* 4rem    = 64px */
+	--gap-s: var(--size-2);                           /* 0.5rem  = 8px  */
+	--gap-m: clamp(1rem, 3.2vw, 1.5rem);              /* 16–24px */
+	--gap-l: clamp(1.5rem, 6vw, 4rem);                /* 24–64px */
+
+	/* Override Open Props fixed section sizes with responsive clamps so
+	   every place in the codebase that uses --size-9..--size-12 for
+	   section padding scales down on small screens. */
+	--size-9:  clamp(2rem,   6vw, 4rem);              /* was 4rem  — small section */
+	--size-10: clamp(2.5rem, 7.5vw, 5rem);            /* was 5rem  — medium section */
+	--size-11: clamp(2.75rem, 9vw, 7.5rem);           /* was 7.5rem — large section */
+	--size-12: clamp(3rem,   12vw, 10rem);            /* was 10rem — hero / page header */
 
 	/* Radii — from Open Props --radius scale
 	   radius-s: badges, small UI
@@ -224,7 +232,7 @@ p {
 
 .btn {
 	display: inline-block;
-	padding: 14px 36px;
+	padding: clamp(10px, 2.2vw, 14px) clamp(18px, 5vw, 36px);
 	font-family: var(--font-body);
 	font-size: var(--text-sm);
 	font-weight: 600;

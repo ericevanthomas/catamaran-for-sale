@@ -105,7 +105,7 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 	}
 
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
@@ -291,7 +291,7 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 	}
 	@media (max-width: 600px) {
 		.wrap { padding-left: var(--gap-m); padding-right: var(--gap-m); }
-		.page-header { padding-top: 80px; }
+		.page-header { padding-top: clamp(80px, 14vw, 120px); }
 		.timeline { --track-left: 18px; }
 		.timeline__dot { width: 40px; height: 40px; font-size: 0.9rem; }
 		.timeline__step { padding-left: calc(var(--track-left) + 30px); }

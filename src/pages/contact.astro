@@ -42,7 +42,7 @@ const { Content } = page ? await render(page) : { Content: null };
 
 <style>
 	.page-header {
-		padding-top: 120px;
+		padding-top: clamp(80px, 14vw, 120px);
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}

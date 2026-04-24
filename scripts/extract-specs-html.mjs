@@ -122,7 +122,7 @@ const galleryHtml = `
 <p class="inventory-sub">A selection of images from across the boat.</p>
 <figure class="layout-figure">
 	<img src="${layoutImage}" alt="Voyage 500 3-cabin owner's version layout" />
-	<figcaption>3-Cabin Owner's Version — bow at top. Entire starboard hull is the master suite; two ensuite guest cabins in the port hull.</figcaption>
+	<figcaption>3-Cabin Owner's Version. Entire starboard hull is the master suite — king berth and walk-in closet forward, office amidships, head with separate shower aft. Two ensuite guest cabins with queen berths in the port hull.</figcaption>
 </figure>
 <div class="photo-grid">
 ${galleryImages.map(src => `	<div class="photo-grid__item"><img src="${src}" loading="eager" /></div>`).join('\n')}

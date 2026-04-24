@@ -219,6 +219,12 @@ const navItems = [
 		.header__toggle {
 			display: flex;
 		}
+
+		/* On mobile the header sits over the hero *text* column (cream bg),
+		   not the image — so always keep the hamburger dark. */
+		.header--hero:not(.scrolled) .header__toggle span {
+			background: var(--color-heading);
+		}
 	}
 </style>
 
