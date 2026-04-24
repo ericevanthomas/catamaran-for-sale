@@ -48,12 +48,12 @@ const description = homepage?.data.description ?? '';
 			<Image
 				src={heroBow}
 				alt="Tropicalia — Voyage 500 catamaran bow in turquoise Caribbean water"
-				widths={[480, 720, 960, 1280, 1600]}
+				widths={[400, 600, 800, 1000, 1280, 1600]}
 				sizes="(min-width: 900px) 50vw, 100vw"
 				loading="eager"
 				fetchpriority="high"
 				decoding="async"
-			 quality={68}/>
+			 quality={60}/>
 		</div>
 	</section>
 
@@ -126,7 +126,7 @@ const description = homepage?.data.description ?? '';
 					<p set:html={md(whyChose?.body)}></p>
 				</div>
 				<div class="features-intro__photo">
-					<Image src={kidsCockpit} alt="Our family aboard Tropicalia" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
+					<Image src={kidsCockpit} alt="The owner's family in the cockpit of S/V Tropicalia, a 2010 Voyage 500 catamaran" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
 				</div>
 			</div>
 		</div>
@@ -185,16 +185,16 @@ const description = homepage?.data.description ?? '';
 		<div class="wrap">
 			<div class="bottom-photos__grid">
 				<div class="bottom-photos__item">
-					<Image src={tropicaliaAnchor} alt="Tropicalia at anchor in the US Virgin Islands" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
+					<Image src={tropicaliaAnchor} alt="S/V Tropicalia — 2010 Voyage 500 catamaran at anchor in the British Virgin Islands" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 				<div class="bottom-photos__item">
-					<Image src={galleyWide} alt="U-shaped galley with bar seating" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
+					<Image src={galleyWide} alt="Voyage 500 catamaran galley — U-shaped counter with propane stove, oven, and bar seating for four" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 				<div class="bottom-photos__item">
-					<Image src={masterCabinQueen} alt="Owner's cabin with queen berth" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
+					<Image src={masterCabinQueen} alt="Voyage 500 owner's cabin — king berth in the starboard hull, with new king mattress, hatches, and reading lights" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 				<div class="bottom-photos__item">
-					<Image src={interior1} alt="Salon interior" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
+					<Image src={interior1} alt="Voyage 500 catamaran salon interior — Sunbrella settee, Corian work surfaces, and panoramic windows" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
 				</div>
 			</div>
 			<div class="bottom-photos__footer">
@@ -383,12 +383,16 @@ const description = homepage?.data.description ?? '';
 	.photos__grid {
 		display: grid;
 		grid-template-columns: 1.2fr 1fr 1fr;
+		grid-auto-rows: 380px;
 		gap: 2px;
 	}
 
 	.photos__item {
 		overflow: hidden;
-		height: 380px;
+		min-height: 0;
+		min-width: 0;
+		height: 100%;
+		cursor: pointer;
 	}
 
 	.photos__item img {
@@ -397,10 +401,6 @@ const description = homepage?.data.description ?? '';
 		object-fit: cover;
 		display: block;
 		transition: transform 0.5s var(--ease);
-	}
-
-	.photos__item {
-		cursor: pointer;
 	}
 
 	.photos__item:hover img {

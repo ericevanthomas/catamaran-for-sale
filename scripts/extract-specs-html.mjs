@@ -52,9 +52,10 @@ equipHtml = equipHtml
 	.replace(/class="s-equip__section"/g, 'class="equip-section"')
 	.replace(/class="s-equip__note"/g, 'class="equip-note"');
 
-// 3) Hero image (photo #16) + end-of-doc gallery
+// 3) Hero image (photo #16) + layout diagram + end-of-doc gallery
 const heroImageRaw = 'images/gallery/PXL_20260416_172152808.webp';
 const heroImage = await compressForPdf(heroImageRaw, 1600, 78);
+const layoutImage = await compressForPdf('images/layout-diagram.jpg', 1600, 82);
 const galleryImagesRaw = [
 	// Exteriors & sailing
 	'images/gallery/IMG_0784.webp',
@@ -119,6 +120,10 @@ const galleryHtml = `
 <div class="section-break"></div>
 <h1 class="inventory-title">Photo Gallery</h1>
 <p class="inventory-sub">A selection of images from across the boat.</p>
+<figure class="layout-figure">
+	<img src="${layoutImage}" alt="Voyage 500 3-cabin owner's version layout" />
+	<figcaption>3-Cabin Owner's Version — bow at top. Entire starboard hull is the master suite; two ensuite guest cabins in the port hull.</figcaption>
+</figure>
 <div class="photo-grid">
 ${galleryImages.map(src => `	<div class="photo-grid__item"><img src="${src}" loading="eager" /></div>`).join('\n')}
 </div>
@@ -257,6 +262,24 @@ const html = `<!doctype html>
 		font-size: 9pt;
 		color: #5a6b7a;
 		margin: 4pt 0 14pt;
+	}
+	.layout-figure {
+		margin: 0 0 10pt;
+		break-inside: avoid;
+		text-align: center;
+	}
+	.layout-figure img {
+		width: 100%;
+		max-width: 6.8in;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+		border-radius: 2pt;
+	}
+	.layout-figure figcaption {
+		font-size: 8.5pt;
+		color: #5a6b7a;
+		margin-top: 4pt;
 	}
 	.photo-grid {
 		column-count: 2;

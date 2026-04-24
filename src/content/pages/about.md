@@ -1,6 +1,6 @@
 ---
-title: About Us
-description: The family behind S/V Tropicalia — who we are, our two cruises, and why we're selling.
+title: "About the Owners — 2010 Voyage 500 Catamaran For Sale"
+description: "The family selling S/V Tropicalia — two Caribbean cruises, a USCG-licensed captain-owner, and why we're selling this 2010 Voyage 500 catamaran by owner."
 ---
 
 ## Meet the family behind the boat

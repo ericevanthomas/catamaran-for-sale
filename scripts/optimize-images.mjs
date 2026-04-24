@@ -13,9 +13,11 @@ const OUT_DIR = path.join(ROOT, 'public', '_img');
 const HASH_DB = path.join(OUT_DIR, '.source-hashes.json');
 const MANIFEST_PATH = path.join(ROOT, 'src', 'generated', 'image-manifest.json');
 
-const WIDTHS = [400, 800, 1200, 1600];
-const QUALITY = 72;
+const WIDTHS = [400, 600, 800, 1200, 1600];
+const QUALITY = 68;
 const MAX_ORIGINAL_WIDTH = 2000;
+// Bump this key when WIDTHS or QUALITY changes to force regen of all variants.
+const CONFIG_TAG = `v2-w${WIDTHS.join(',')}-q${QUALITY}`;
 const IMG_EXT = /\.(jpe?g|png|webp|avif)$/i;
 
 function walk(dir, out = []) {
@@ -50,7 +52,7 @@ async function processImage(absSrc, manifest, prevHashes, newHashes, stats) {
 	const relDir = parsed.dir;
 	const base = parsed.name;
 
-	const srcHash = hashFile(absSrc);
+	const srcHash = `${CONFIG_TAG}-${hashFile(absSrc)}`;
 	newHashes[key] = srcHash;
 
 	const meta = await sharp(absSrc).metadata();

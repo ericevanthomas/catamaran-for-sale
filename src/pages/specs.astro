@@ -22,7 +22,7 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 });
 ---
 
-<BaseLayout title="Specifications & Equipment — Voyage 500 For Sale" description="Complete specifications and equipment inventory for the 2010 Voyage 500 catamaran S/V Tropicalia. Every system, every item, documented.">
+<BaseLayout title="Voyage 500 Specs & Equipment — 2010 Catamaran For Sale" description="Full specifications and equipment inventory for this 2010 Voyage 500 catamaran for sale by owner — dimensions, tankage, Yanmar engines, new 2025 saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine electronics, sails, rigging, ground tackle, safety gear. Every system documented.">
 
 	<section class="page-header">
 		<div class="wrap">
@@ -40,6 +40,7 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 	<nav class="s-jump">
 		<div class="s-jump__inner">
 			<a href="#specs">Specs</a>
+			<a href="#layout">Layout</a>
 			<a href="#interior">Interior</a>
 			<a href="#master">Master Cabin</a>
 			<a href="#guest">Guest Cabins</a>
@@ -71,6 +72,17 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 					</table>
 				</div>
 			))}
+		</div>
+	</section>
+
+	<!-- LAYOUT DIAGRAM -->
+	<section class="s-layout" id="layout">
+		<div class="wrap">
+			<h2 class="s-layout__title">3-Cabin Owner's Version Layout</h2>
+			<figure class="s-layout__figure">
+				<img src="/images/layout-diagram.jpg" alt="Top-down deck plan of the Voyage 500 S/V Tropicalia — 3-cabin owner's version, with the entire starboard hull as the master suite and two guest cabins in the port hull." loading="lazy" />
+				<figcaption>Bow at the top. The entire starboard hull is the master suite — king berth amidships, office and walk-in forward, head with separate shower stall at the stern. The port hull has two ensuite guest cabins with queen berths.</figcaption>
+			</figure>
 		</div>
 	</section>
 
@@ -548,6 +560,44 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 		font-size: var(--text-sm);
 		color: var(--color-heading);
 		font-weight: 600;
+	}
+
+	/* =============================================
+	   LAYOUT DIAGRAM
+	   ============================================= */
+	.s-layout {
+		padding: var(--gap-l) 0;
+		background: var(--color-bg-warm);
+	}
+
+	.s-layout__title {
+		font-family: var(--font-display);
+		font-size: clamp(1.6rem, 2.5vw, 2rem);
+		font-weight: 600;
+		text-align: center;
+		margin: 0 0 var(--space-lg);
+		color: var(--color-heading);
+	}
+
+	.s-layout__figure {
+		margin: 0;
+		text-align: center;
+	}
+
+	.s-layout__figure img {
+		width: 100%;
+		max-width: 1100px;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+	}
+
+	.s-layout__figure figcaption {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		max-width: 70ch;
+		margin: var(--space-md) auto 0;
+		line-height: 1.5;
 	}
 
 	/* =============================================

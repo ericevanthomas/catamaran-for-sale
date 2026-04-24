@@ -1,6 +1,6 @@
 ---
-title: Voyage 500 Catamaran For Sale
-description: 50-foot 2010 Voyage 500 sailing catamaran for sale by owner, arriving St. Augustine, Florida June 1, 2026, for $379,000. Cruise-ready with extensive upgrades.
+title: "Voyage 500 Catamaran For Sale By Owner — 2010, $379,000"
+description: "2010 Voyage 500 catamaran for sale by owner. 50-foot 3-cabin owner's version with $80K+ in 2025 upgrades — new Yanmar SD-60 saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine Axiom, and new 6-person life raft. $379,000 USD. Arriving St. Augustine, Florida June 1, 2026."
 hero:
   eyebrow: 2010 Voyage 500 · S/V Tropicalia
   headline: Voyage 500 Catamaran For Sale by Owner
@@ -14,7 +14,7 @@ hero:
   ctaLink: /contact/
 glance:
   priceDisplay: $379,000 USD
-  locationDisplay: Currently in the US Virgin Islands · Arriving St. Augustine, FL June 1, 2026
+  locationDisplay: Currently in the British Virgin Islands · Arriving St. Augustine, FL June 1, 2026
   items:
     - label: Year
       value: '2010'
@@ -23,7 +23,7 @@ glance:
     - label: Asking Price
       value: $379,000
     - label: Location
-      value: US Virgin Islands · En route to St. Augustine, FL (06/01/2026)
+      value: British Virgin Islands · En route to St. Augustine, FL (06/01/2026)
     - label: Layout
       value: 3 Cabin Owner's Version
     - label: New Batteries

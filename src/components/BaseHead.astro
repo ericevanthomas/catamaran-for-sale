@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE_TITLE, SITE_URL, BOAT_NAME, ASKING_PRICE } from '../consts';
+import { SITE_URL, BOAT_NAME, BOAT_MODEL, BOAT_YEAR, BOAT_BUILDER, ASKING_PRICE } from '../consts';
 
 interface Props {
 	title: string;
@@ -13,30 +13,61 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image, schema: extraSchema } = Astro.props;
 const ogImageURL = image ? new URL(image, Astro.url) : new URL('/og-default.jpg', Astro.site);
 
-// Product schema for the boat (every page)
+// Product schema for the boat — emitted on every page.
 const productSchema = {
 	"@context": "https://schema.org",
 	"@type": "Product",
-	"name": `${BOAT_NAME} Catamaran`,
-	"description": "Well-equipped Voyage 500 cruising catamaran for sale by owner. Cruise-ready with extensive upgrades.",
+	"@id": `${SITE_URL}#boat`,
+	"name": `${BOAT_YEAR} ${BOAT_MODEL} Catamaran — ${BOAT_NAME}`,
+	"alternateName": [`${BOAT_MODEL} Catamaran For Sale By Owner`, `${BOAT_YEAR} ${BOAT_MODEL}`],
+	"description": "2010 Voyage 500 sailing catamaran for sale by owner. 50-foot 3-cabin owner's version with extensive 2025 upgrades — new saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine Axiom and Evolution autopilot, and a new 6-person offshore life raft. Currently cruising the British Virgin Islands; arriving St. Augustine, FL June 1, 2026.",
 	"url": SITE_URL,
 	"image": ogImageURL.href,
-	"brand": {
-		"@type": "Brand",
-		"name": "Voyage Yachts"
-	},
+	"brand": { "@type": "Brand", "name": BOAT_BUILDER },
+	"manufacturer": { "@type": "Organization", "name": BOAT_BUILDER, "url": "https://www.voyageyachts.com/" },
+	"model": BOAT_MODEL,
+	"productionDate": BOAT_YEAR,
 	"category": "Sailing Catamaran",
+	"itemCondition": "https://schema.org/UsedCondition",
+	"additionalProperty": [
+		{ "@type": "PropertyValue", "name": "Length Overall", "value": "50 ft" },
+		{ "@type": "PropertyValue", "name": "Beam", "value": "27 ft" },
+		{ "@type": "PropertyValue", "name": "Draft", "value": "4 ft" },
+		{ "@type": "PropertyValue", "name": "Displacement", "value": "22,708 lb" },
+		{ "@type": "PropertyValue", "name": "Cabins", "value": "3 (Owner's Version)" },
+		{ "@type": "PropertyValue", "name": "Heads", "value": "3" },
+		{ "@type": "PropertyValue", "name": "Engines", "value": "Twin Yanmar 3JH5E, 39 hp each" },
+		{ "@type": "PropertyValue", "name": "Fuel", "value": "Diesel — 212 gal" },
+		{ "@type": "PropertyValue", "name": "Fresh Water", "value": "211 gal" },
+		{ "@type": "PropertyValue", "name": "Hull Material", "value": "Hand-laid fiberglass" },
+		{ "@type": "PropertyValue", "name": "Designer", "value": "Simonis Voogd" }
+	],
 	"offers": {
 		"@type": "Offer",
-		"price": "379000",
 		"priceCurrency": "USD",
+		"price": ASKING_PRICE,
+		"priceValidUntil": "2027-04-01",
 		"availability": "https://schema.org/InStock",
 		"itemCondition": "https://schema.org/UsedCondition",
+		"businessFunction": "https://schema.org/Sell",
+		"url": `${SITE_URL}/contact/`,
 		"seller": {
 			"@type": "Person",
-			"name": "Eric Thomas"
+			"name": "Eric Thomas",
+			"url": `${SITE_URL}/about/`
 		}
 	}
+};
+
+// WebSite schema — helps Google understand the site and can enable sitelinks search box.
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"@id": `${SITE_URL}#website`,
+	"url": SITE_URL,
+	"name": `${BOAT_MODEL} Catamaran For Sale — ${BOAT_NAME}`,
+	"description": "Direct-from-owner listing for a 2010 Voyage 500 sailing catamaran.",
+	"inLanguage": "en-US"
 };
 ---
 
@@ -79,10 +110,13 @@ const productSchema = {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={ogImageURL} />
 
-<!-- Schema.org — Product -->
+<!-- Schema.org — Product (the boat itself) -->
 <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />
 
-<!-- Schema.org — Page-specific -->
+<!-- Schema.org — WebSite -->
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+<!-- Schema.org — Page-specific (FAQPage, BreadcrumbList, etc.) -->
 {extraSchema && (
 	<script type="application/ld+json" set:html={JSON.stringify(extraSchema)} />
 )}
