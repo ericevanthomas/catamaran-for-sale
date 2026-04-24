@@ -253,6 +253,16 @@ const GALLERY_SIZES = '(max-width: 600px) 50vw, (max-width: 900px) 40vw, (max-wi
 		max-width: 100%;
 		max-height: 80vh;
 		object-fit: contain;
+		user-select: none;
+		-webkit-user-select: none;
+		-webkit-user-drag: none;
+		-webkit-tap-highlight-color: transparent;
+		-webkit-touch-callout: none;
+	}
+
+	.lightbox,
+	.lightbox * {
+		-webkit-tap-highlight-color: transparent;
 	}
 
 	.lightbox__close {
