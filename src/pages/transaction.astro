@@ -40,8 +40,8 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 >
 	<section class="page-header">
 		<div class="wrap">
-			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
-			<h1>{page?.data.title ?? 'How the Sale Works'}</h1>
+			<h1 class="eyebrow page-header__h1">Voyage 500 Catamaran For Sale</h1>
+			<p class="page-title">How the Sale Works</p>
 		</div>
 	</section>
 
@@ -109,9 +109,17 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 		padding-bottom: var(--gap-l);
 		background: var(--color-bg-warm);
 	}
-	.page-header h1 {
+	.page-header__h1 {
+		display: block;
+		margin: 0;
+	}
+	.page-title {
+		font-family: var(--font-display);
 		font-size: clamp(2.5rem, 4vw, 3.5rem);
 		font-weight: 600;
+		color: var(--color-heading);
+		line-height: 1.15;
+		letter-spacing: -0.01em;
 		margin-top: var(--gap-s);
 		margin-bottom: var(--gap-s);
 	}
