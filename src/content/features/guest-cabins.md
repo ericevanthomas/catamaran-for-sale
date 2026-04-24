@@ -2,15 +2,15 @@
 title: Guest Cabins
 description: Two port-side cabins, each with queen beds, en suite heads with electric flush toilets, and full ventilation.
 photos:
-  - /images/gallery/PXL_20260419_221536620.RAW-01.COVER.webp
-  - /images/gallery/PXL_20260420_203359126.webp
-  - /images/gallery/PXL_20260420_203506948.webp
+  - /images/gallery/PXL_20260421_140901397.webp
+  - /images/gallery/PXL_20260421_140908958.webp
+  - /images/gallery/PXL_20260421_141026778.webp
+  - /images/gallery/PXL_20260421_141239247.webp
+  - /images/gallery/PXL_20260420_211125377.webp
+  - /images/gallery/PXL_20260420_211451476.webp
+  - /images/gallery/PXL_20260420_211509516.webp
   - /images/gallery/PXL_20260420_211543813.webp
-  - /images/gallery/PXL_20260420_211047929.webp
-  - /images/gallery/PXL_20260421_151739315.webp
-  - /images/gallery/PXL_20260421_151758165.webp
-  - /images/gallery/PXL_20260421_151835060.webp
-  - /images/gallery/PXL_20260421_151913048.webp
+  - /images/gallery/PXL_20260420_211646801.webp
 video: ''
 order: 4
 featured: false
