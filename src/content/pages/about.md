@@ -1,6 +1,6 @@
 ---
 title: "About the Owners — 2010 Voyage 500 Catamaran For Sale"
-description: "The family selling S/V Tropicalia — two Caribbean cruises, a USCG-licensed captain-owner, and why we're selling this 2010 Voyage 500 by owner."
+description: "The family selling S/V Tropicalia at $379,000 — two Caribbean cruises, a USCG-licensed captain-owner, and why we're selling this 2010 Voyage 500 by owner."
 ---
 
 ## Meet the family behind the boat
