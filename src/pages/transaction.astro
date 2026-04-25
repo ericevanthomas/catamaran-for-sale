@@ -283,6 +283,10 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 	.transaction-outro__item--full {
 		grid-column: 1 / -1;
 	}
+	/* Lift the global .prose 65ch cap so the cards can use the full row. */
+	.transaction-outro__item--full .prose {
+		max-width: none;
+	}
 
 	.transaction-outro :global(.forms-grid) {
 		display: grid;
