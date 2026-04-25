@@ -77,12 +77,15 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 	{trailing.length > 0 && (
 		<section class="transaction-outro">
 			<div class="wrap transaction-outro__wrap">
-				{trailing.map((t) => (
-					<div class="transaction-outro__item">
-						<h2>{t.heading}</h2>
-						<div class="prose" set:html={mdBlock(t.body.trim())} />
-					</div>
-				))}
+				{trailing.map((t) => {
+					const isFull = t.body.includes('forms-grid');
+					return (
+						<div class:list={['transaction-outro__item', { 'transaction-outro__item--full': isFull }]}>
+							<h2>{t.heading}</h2>
+							<div class="prose" set:html={mdBlock(t.body.trim())} />
+						</div>
+					);
+				})}
 			</div>
 		</section>
 	)}
@@ -277,7 +280,7 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 	}
 
 	/* Items that embed a forms grid go full-width across the 2-col layout. */
-	.transaction-outro__item:has(:global(.forms-grid)) {
+	.transaction-outro__item--full {
 		grid-column: 1 / -1;
 	}
 
