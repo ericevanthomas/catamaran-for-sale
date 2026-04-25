@@ -37,6 +37,15 @@ We have closed two boats through [All Yacht Registries](https://allyachtregistri
 
 Buying directly from the owner is not unusual in the marine world. Many experienced cruisers prefer it because they deal directly with someone who knows the boat intimately. There is no telephone game through a broker, and the savings on commission can be significant for both parties.
 
+If you want to read through the standard paperwork ahead of time, <a href="https://www.yachtsite.com/sales-forms/" target="_blank" rel="noopener">YachtSite's Sales Forms page</a> is a useful public resource &mdash; downloadable PDFs of the same templates a broker would walk you through, with a plain-language summary of how each step works. The forms most relevant to a sale like this one:
+
+- <a href="http://yachtsite.com/files/PSA-FSBO.pdf" target="_blank" rel="noopener">Yacht Purchase and Sale Agreement</a> (the offer)
+- <a href="http://yachtsite.com/files/Acceptance-of-Vessel.pdf" target="_blank" rel="noopener">Acceptance of Vessel</a> &middot; <a href="http://yachtsite.com/files/Conditional-Acceptance-of-Vessel.pdf" target="_blank" rel="noopener">Conditional Acceptance</a> &middot; <a href="http://yachtsite.com/files/Rejection-of-Vessel.pdf" target="_blank" rel="noopener">Rejection of Vessel</a>
+- <a href="http://yachtsite.com/files/cg_bill_of_sale.pdf" target="_blank" rel="noopener">USCG Bill of Sale</a> &middot; <a href="http://yachtsite.com/files/Dinghy-Bill-Of-Sale.pdf" target="_blank" rel="noopener">Dinghy Bill of Sale</a> &middot; <a href="https://yachtsite.com/files/Seller-Warranty-Boat-Title.pdf" target="_blank" rel="noopener">Warranty of Title</a>
+- <a href="https://yachtsite.com/files/Florida-POA-Vessel.pdf" target="_blank" rel="noopener">Florida Power of Attorney</a> &middot; <a href="https://yachtsite.com/files/Florida-Boat-Sales-And-Use-Tax.pdf" target="_blank" rel="noopener">Florida Boat Sales &amp; Use Tax pamphlet</a>
+
+None of this is legal advice &mdash; it is a starting point if you want to see what the documents look like before we talk.
+
 ## Questions?
 
 If you have any concerns about the process, we are happy to discuss them. We want you to feel confident every step of the way.
