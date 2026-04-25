@@ -276,6 +276,68 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 		margin: 0 0 var(--gap-s);
 	}
 
+	/* Items that embed a forms grid go full-width across the 2-col layout. */
+	.transaction-outro__item:has(:global(.forms-grid)) {
+		grid-column: 1 / -1;
+	}
+
+	.transaction-outro :global(.forms-grid) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--gap-m);
+		margin: var(--gap-m) 0;
+	}
+	.transaction-outro :global(.forms-card) {
+		background: #fff;
+		border: 1px solid var(--color-border-light);
+		border-radius: 8px;
+		padding: clamp(1rem, 2.4vw, 1.5rem);
+	}
+	.transaction-outro :global(.forms-card h4) {
+		font-family: var(--font-body);
+		font-size: var(--text-xs);
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		color: var(--color-accent);
+		margin: 0 0 var(--gap-s);
+	}
+	.transaction-outro :global(.forms-card ul) {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	.transaction-outro :global(.forms-card li) {
+		padding: 5px 0;
+		border-bottom: 1px solid var(--color-border-light);
+		font-size: var(--text-sm);
+	}
+	.transaction-outro :global(.forms-card li:last-child) {
+		border-bottom: none;
+	}
+	.transaction-outro :global(.forms-card a) {
+		color: var(--color-heading);
+		text-decoration: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		transition: color 0.15s;
+	}
+	.transaction-outro :global(.forms-card a::before) {
+		content: "↗";
+		font-size: 0.85em;
+		color: var(--color-accent);
+	}
+	.transaction-outro :global(.forms-card a:hover) {
+		color: var(--color-accent);
+	}
+
+	@media (max-width: 900px) {
+		.transaction-outro :global(.forms-grid) {
+			grid-template-columns: 1fr;
+		}
+	}
+
 	/* CTA */
 	.cta {
 		background: var(--color-bg-dark);
