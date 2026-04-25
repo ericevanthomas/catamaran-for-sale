@@ -37,6 +37,10 @@ We have closed two boats through [All Yacht Registries](https://allyachtregistri
 
 Buying directly from the owner is not unusual in the marine world. Many experienced cruisers prefer it because they deal directly with someone who knows the boat intimately. There is no telephone game through a broker, and the savings on commission can be significant for both parties.
 
+## Questions?
+
+If you have any concerns about the process, we are happy to discuss them. We want you to feel confident every step of the way.
+
 ## Sales Forms & Resources
 
 If you want to read through the standard paperwork ahead of time, <a href="https://www.yachtsite.com/sales-forms/" target="_blank" rel="noopener">YachtSite's Sales Forms page</a> is a useful public resource &mdash; downloadable PDFs of the same templates a broker would walk you through, with a plain-language summary of how each step works. The forms most relevant to a sale like this one:
@@ -69,7 +73,3 @@ If you want to read through the standard paperwork ahead of time, <a href="https
 </div>
 
 None of this is legal advice &mdash; it is a starting point if you want to see what the documents look like before we talk.
-
-## Questions?
-
-If you have any concerns about the process, we are happy to discuss them. We want you to feel confident every step of the way.
