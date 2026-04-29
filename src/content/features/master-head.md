@@ -1,15 +1,17 @@
 ---
-title: "Master Head & Shower"
-description: "Large head in the owner's cabin with a separate spacious shower stall and a composting toilet — dry, odor-free, and zero blackwater plumbing in the starboard hull."
+title: Master Head & Shower
+description: Large head in the owner's cabin with a separate spacious shower stall and a new electric toilet with freshwater flush.
 photos:
-  - /images/gallery/PXL_20260421_141239247.webp
+  - /images/gallery/PXL_20260420_203506948.webp
   - /images/gallery/PXL_20260420_203359126.webp
-  - /images/gallery/PXL_20260421_142707024.webp
+  - /images/gallery/PXL_20260420_203359126.webp
+  - /images/gallery/PXL_20260420_204124965.webp
+video: ''
 order: 15
 featured: false
 draft: true
-cardSize: "small"
-category: "Living Spaces"
+category: Living Spaces
+cardSize: small
 ---
 
 The previous owners converted the owner's cabin head to a composting toilet, which means no blackwater tank on the starboard side, no joker valves, and no smells.
