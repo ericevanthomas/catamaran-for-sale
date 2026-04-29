@@ -4,4 +4,7 @@ answer: "Nothing major. We have tried our best to take great care of Tropicalia 
 order: 15
 category: Condition & History
 tags: []
+download:
+  url: /documents/known-issues-disclosure.pdf
+  label: Download Known Issues & Disclosure
 ---

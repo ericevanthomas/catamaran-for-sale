@@ -51,6 +51,12 @@ const faq = defineCollection({
 			'Ownership & Documentation',
 		]).default('About the Boat'),
 		tags: z.array(z.string()).optional(),
+		download: z
+			.object({
+				url: z.string(),
+				label: z.string(),
+			})
+			.optional(),
 	}),
 });
 

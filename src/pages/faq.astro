@@ -69,11 +69,20 @@ const faqSchema = {
 					{items.map((item) => (
 						<details class="faq-item">
 							<summary class="faq-item__q">
-								{item.question}
+								<span class="faq-item__qtext">
+									{item.question}
+									{item.download && <span class="faq-item__pill">PDF</span>}
+								</span>
 								<span class="faq-item__icon">+</span>
 							</summary>
 							<div class="faq-item__a">
 								<p set:html={mdInline(item.answer)}></p>
+								{item.download && (
+									<a href={item.download.url} class="faq-download faq-download--inline" target="_blank" rel="noopener">
+										<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+										<span>{item.download.label}</span>
+									</a>
+								)}
 							</div>
 						</details>
 					))}
@@ -162,6 +171,46 @@ const faqSchema = {
 		background: var(--color-accent-dark);
 	}
 	.faq-download svg {
+		flex-shrink: 0;
+	}
+
+	/* Inline variant inside an open FAQ accordion */
+	.faq-item__a a.faq-download--inline {
+		display: inline-flex;
+		margin-top: var(--gap-m);
+		margin-bottom: 0;
+		padding: 8px 14px;
+		font-size: 13px;
+		color: #fff;
+		text-decoration: none;
+	}
+	.faq-item__a a.faq-download--inline:hover {
+		color: #fff;
+		background: var(--color-accent-dark);
+	}
+
+	/* PDF marker pill on question titles that have a download */
+	.faq-item__qtext {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--gap-s);
+		flex: 1;
+		min-width: 0;
+	}
+
+	.faq-item__pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2px 8px;
+		border-radius: 999px;
+		background: var(--color-accent);
+		color: #fff;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.6px;
+		text-transform: uppercase;
+		line-height: 1.4;
 		flex-shrink: 0;
 	}
 

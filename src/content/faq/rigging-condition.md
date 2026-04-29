@@ -6,4 +6,7 @@ answer: |-
   When we were considering the boat, we fully expected to replace the entire standing rigging as our first project, but we commissioned a [rigging report](/documents/rigging-report.pdf), which came out clean. Our insurers did not require new rigging, and our plans involved short island hopping, so we opted not to replace it right away. We've had no issues and would be very confident doing the same type of Caribbean trip on this rig. However, if we were to plan an ocean crossing, we would have it replaced.
 order: 12
 category: Condition & History
+download:
+  url: /documents/rigging-report.pdf
+  label: Download Rigging Report
 ---
