@@ -4,15 +4,24 @@ import { Image } from 'astro:assets';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import { getCollection } from 'astro:content';
 import { marked } from 'marked';
-
-const md = (s?: string) => s ? marked.parseInline(s, { async: false }) as string : '';
-
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import heroBow from '../assets/home/hero-bow-edited.webp';
 import kidsCockpit from '../assets/home/kids-cockpit.webp';
 import tropicaliaAnchor from '../assets/home/tropicalia-anchor.webp';
 import galleyWide from '../assets/home/galley-wide.webp';
 import masterCabinQueen from '../assets/home/master-cabin-queen.webp';
 import interior1 from '../assets/home/interior-1.webp';
+
+const md = (s?: string) => s ? marked.parseInline(s, { async: false }) as string : '';
+
+const ropeSvg = readFileSync(
+	resolve(process.cwd(), 'public/images/icons/rope-circle.svg'),
+	'utf-8'
+)
+	.replace(/<\?xml[^?]*\?>/g, '')
+	.replace(/<!--[\s\S]*?-->/g, '')
+	.trim();
 
 const allPages = await getCollection('pages');
 const homepage = allPages.find((p) => p.id === 'homepage');
@@ -36,6 +45,20 @@ const description = homepage?.data.description ?? '';
 	<section class="hero">
 		<div class="hero__text">
 			<div class="hero__text-inner">
+				<a href="/transaction/#sale-pending" class="sale-stamp" aria-label="Sale Pending — learn more about the sale process">
+					<span class="sale-stamp__rope" aria-hidden="true">
+						<span class="sale-stamp__rope-spin" set:html={ropeSvg}></span>
+					</span>
+					<span class="sale-stamp__inner">
+						<span class="sale-stamp__title"><i>Sale</i><br/><i>Pending</i></span>
+						<span class="sale-stamp__rule" aria-hidden="true"></span>
+						<span class="sale-stamp__link">
+							<span>Learn</span>
+							<span>More</span>
+						</span>
+					</span>
+				</a>
+
 				<p class="eyebrow">{hero?.eyebrow}</p>
 				<h1>{(hero?.headlineLines ?? ['Voyage 500', 'Catamaran', 'For Sale']).map((line: string, i: number, arr: string[]) => (
 					<>{line}{i < arr.length - 1 && <br />}</>
@@ -824,8 +847,129 @@ const description = homepage?.data.description ?? '';
 	.feat-row { text-decoration: none; color: inherit; }
 
 	/* =============================================
-	   HERO BADGE — rotating rope circle
+	   SALE STAMP — hand-drawn rope notation (top of left column)
+	   Slow ambient rotation; on hover the rope speeds up + tightens
+	   into focus. Type stays still — only the rope moves.
 	   ============================================= */
+	.sale-stamp {
+		display: inline-grid;
+		place-items: center;
+		position: relative;
+		width: 122px;
+		aspect-ratio: 1 / 1;
+		margin: 0 0 var(--gap-m);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	/* Two-layer rope:
+	   - Outer (.sale-stamp__rope): hover-triggered one-shot rubbery kick
+	   - Inner (.sale-stamp__rope-spin): continuous ambient rotation
+	   The two transforms compose, so the kick rides on top of the slow spin
+	   without interrupting it. After the 0.75s kick, the outer is back at 0
+	   and the inner keeps drifting at base speed. */
+	.sale-stamp__rope {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-heading);
+		opacity: 0.62;
+		pointer-events: none;
+		transform-origin: 50% 50%;
+	}
+
+	.sale-stamp__rope-spin {
+		display: block;
+		width: 100%;
+		height: 100%;
+		animation: sale-stamp-spin 45s linear infinite;
+		transform-origin: 50% 50%;
+		will-change: transform;
+	}
+
+	.sale-stamp__rope-spin :global(svg) {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	.sale-stamp__rope-spin :global(svg path) {
+		fill: currentColor;
+	}
+
+	@keyframes sale-stamp-spin {
+		to { transform: rotate(360deg); }
+	}
+
+	/* Wind-up + burst: pull back counter-clockwise, then one sustained
+	   clockwise burst that completes a full revolution and lands back at
+	   visual zero. Only one direction change (the wind-up). After the kick,
+	   the outer is at 0 (= 360) and the slow inner rotation continues. */
+	.sale-stamp:hover .sale-stamp__rope {
+		animation: sale-stamp-kick 0.75s forwards;
+	}
+
+	@keyframes sale-stamp-kick {
+		0%   { transform: rotate(0deg);    animation-timing-function: cubic-bezier(0.4, 0, 0.5, 1); }
+		28%  { transform: rotate(-16deg);  animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1); }
+		100% { transform: rotate(360deg); }
+	}
+
+	.sale-stamp__inner {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		gap: 6px;
+		width: 64%;
+	}
+
+	.sale-stamp__title {
+		font-family: var(--font-display);
+		font-size: 17px;
+		font-weight: 500;
+		line-height: 1.02;
+		color: var(--color-heading);
+		letter-spacing: -0.005em;
+	}
+	.sale-stamp__title i {
+		font-style: italic;
+	}
+
+	.sale-stamp__rule {
+		display: block;
+		width: 20px;
+		height: 1px;
+		background: var(--color-text-muted);
+		opacity: 0.55;
+	}
+
+	.sale-stamp__link {
+		font-family: var(--font-body);
+		font-size: 8.5px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1.4px;
+		color: var(--color-accent);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		line-height: 1.35;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.sale-stamp__rope-spin,
+		.sale-stamp:hover .sale-stamp__rope { animation: none; }
+	}
+
+	@media (max-width: 600px) {
+		.sale-stamp { width: 110px; }
+		.sale-stamp__title { font-size: 15px; }
+	}
 </style>
 
 <script>
