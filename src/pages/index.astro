@@ -35,7 +35,7 @@ const bottomCta = homepage?.data.bottomCta;
 const alternatingSections = homepage?.data.alternatingSections ?? [];
 const topPhotos = homepage?.data.topPhotos ?? [];
 
-const title = 'Voyage 500 Catamaran For Sale by Owner';
+const title = homepage?.data.title ?? '2010 Voyage 500 Catamaran — S/V Tropicalia (Sold)';
 const description = homepage?.data.description ?? '';
 ---
 
@@ -45,12 +45,12 @@ const description = homepage?.data.description ?? '';
 	<section class="hero">
 		<div class="hero__text">
 			<div class="hero__text-inner">
-				<a href="/transaction/#sale-pending" class="sale-stamp" aria-label="Sale Pending — learn more about the sale process">
+				<a href="/transaction/" class="sale-stamp" aria-label="Sold — this boat has sold">
 					<span class="sale-stamp__rope" aria-hidden="true">
 						<span class="sale-stamp__rope-spin" set:html={ropeSvg}></span>
 					</span>
 					<span class="sale-stamp__inner">
-						<span class="sale-stamp__title"><i>Sale</i><br/><i>Pending</i></span>
+						<span class="sale-stamp__title"><i>Sold</i></span>
 						<span class="sale-stamp__rule" aria-hidden="true"></span>
 						<span class="sale-stamp__link">
 							<span>Learn</span>

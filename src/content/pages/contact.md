@@ -1,6 +1,6 @@
 ---
-title: "Contact the Owner — 2010 Voyage 500 Catamaran For Sale"
-description: "Contact the owners about this 2010 Voyage 500 catamaran for sale by owner ($379,000). Video tours and in-person viewings in the BVI or St. Augustine, FL."
+title: "Contact — S/V Tropicalia, 2010 Voyage 500"
+description: "Contact the owners of S/V Tropicalia, a 2010 Voyage 500 catamaran. This boat has sold. Reach out with questions about the boat or the FSBO sale process."
 ---
 
-Interested in the boat? We'd love to hear from you. Reach out with any questions and we'll get back to you promptly.
+S/V Tropicalia has sold. If you have questions about the boat, the Voyage 500, or the FSBO sale process, feel free to reach out and we will get back to you.

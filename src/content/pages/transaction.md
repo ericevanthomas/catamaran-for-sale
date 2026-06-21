@@ -1,6 +1,6 @@
 ---
-title: "How a Catamaran For Sale By Owner Works — Process & Closing"
-description: "The step-by-step process for buying this 2010 Voyage 500 catamaran by owner ($379,000) — contact, survey, sea trial, escrow, and USCG documentation."
+title: "How a Catamaran FSBO Sale Works — Process & Closing"
+description: "The step-by-step process for buying a catamaran directly from the owner — contact, survey, sea trial, escrow, and USCG documentation. S/V Tropicalia has sold."
 ---
 
 ## Buying a Boat Directly from the Owner

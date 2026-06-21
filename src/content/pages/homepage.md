@@ -1,29 +1,29 @@
 ---
-title: "Voyage 500 Catamaran For Sale By Owner — 2010, $379,000"
-description: "2010 Voyage 500 catamaran for sale by owner. 50-foot 3-cabin owner's version with 2025 upgrades — new SD60 saildrives, 1,280Ah lithium, Axiom+. $379,000."
+title: "2010 Voyage 500 Catamaran — S/V Tropicalia (Sold)"
+description: "S/V Tropicalia — 2010 Voyage 500 catamaran, 50-foot 3-cabin owner's version with 2025 upgrades — new SD60 saildrives, 1,280Ah lithium, Axiom+. This boat has sold."
 hero:
   eyebrow: 2010 Voyage 500 · S/V Tropicalia
-  headline: Voyage 500 Catamaran For Sale by Owner
+  headline: 2010 Voyage 500 Catamaran — Sold
   headlineLines:
     - Voyage 500
     - Catamaran
-    - For Sale
+    - Sold
   subheadline: A 50-foot bluewater catamaran with a long waterline, fiberglassed bulkheads, an owner's hull, and a galley that cooked our family a full Thanksgiving dinner.
   image: /images/hero-bow-edited.webp
-  ctaText: Inquire About This Boat
+  ctaText: Contact Us
   ctaLink: /contact/
 glance:
-  priceDisplay: $379,000 USD
-  locationDisplay: Currently in the British Virgin Islands · Arriving St. Augustine, FL June 1, 2026
+  priceDisplay: Sold
+  locationDisplay: S/V Tropicalia has found her new owners. This site is preserved for reference.
   items:
     - label: Year
       value: '2010'
     - label: Length
       value: 50 ft
-    - label: Asking Price
-      value: $379,000
+    - label: Status
+      value: Sold
     - label: Location
-      value: British Virgin Islands · En route to St. Augustine, FL (06/01/2026)
+      value: St. Augustine, FL
     - label: Layout
       value: 3 Cabin Owner's Version
     - label: New Batteries
@@ -96,10 +96,10 @@ highlights:
     - Onboard dinghy-gas refill system from the starboard sugar scoop
     - USCG Documented & Duty Paid
 bottomCta:
-  headline: Buy Direct from the Owner
-  body: Deal directly with the people who know this boat inside and out, without any markup for commission. Secure transaction, escrow, and USCG documentation transfer handled by a neutral third party.
+  headline: S/V Tropicalia Has Found Her New Home
+  body: This boat has sold. The site is preserved here as a reference. If you have questions about the boat, the sale process, or the Voyage 500, feel free to reach out.
   primaryText: Get in Touch
   primaryLink: /contact/
-  secondaryText: How Does a FSBO Sale Work?
+  secondaryText: How the Sale Worked
   secondaryLink: /transaction/
 ---

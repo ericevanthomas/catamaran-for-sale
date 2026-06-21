@@ -1,5 +1,6 @@
 ---
-// Form handler TBD — Cloudflare Pages Function or Formspree
+import { TURNSTILE_SITE_KEY } from '../consts';
+const hasTurnstile = Boolean(TURNSTILE_SITE_KEY);
 ---
 
 <form class="contact-form" method="POST" action="/api/contact">
@@ -24,9 +25,19 @@
 		<label for="website">Website</label>
 		<input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
 	</div>
+	<!-- Cloudflare Turnstile — rendered when TURNSTILE_SITE_KEY is configured -->
+	{hasTurnstile && (
+		<div class="contact-form__turnstile">
+			<div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light"></div>
+		</div>
+	)}
 	<button type="submit" class="btn btn--primary">Send Message</button>
 	<p class="contact-form__status" role="status" aria-live="polite"></p>
 </form>
+
+{hasTurnstile && (
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+)}
 
 <script>
 	const form = document.querySelector<HTMLFormElement>('.contact-form');
@@ -36,6 +47,14 @@
 	form?.addEventListener('submit', async (e) => {
 		e.preventDefault();
 		if (!status || !button) return;
+
+		// If Turnstile is present, verify the token exists before submitting
+		const turnstileInput = form.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]');
+		if (turnstileInput !== null && !turnstileInput.value) {
+			status.textContent = 'Please wait for the security check to complete.';
+			status.className = 'contact-form__status contact-form__status--err';
+			return;
+		}
 
 		status.textContent = 'Sending…';
 		status.className = 'contact-form__status contact-form__status--pending';
@@ -117,6 +136,10 @@
 		width: 1px;
 		height: 1px;
 		overflow: hidden;
+	}
+
+	.contact-form__turnstile {
+		margin-bottom: var(--gap-m);
 	}
 
 	.contact-form__status {

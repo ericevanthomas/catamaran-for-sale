@@ -1,6 +1,7 @@
 // Cloudflare Pages Function — POST /api/contact
 // Receives the contact form, validates, stores in KV, and forwards via Resend.
-// Env vars required: RESEND_API_KEY, NOTIFY_EMAIL, FROM_EMAIL. Optional: CONTACT_SUBMISSIONS (KV).
+// Env vars required: RESEND_API_KEY, NOTIFY_EMAIL, FROM_EMAIL. Optional: CONTACT_SUBMISSIONS (KV), TURNSTILE_SECRET_KEY.
+// Spam prevention: honeypot field + Cloudflare Turnstile (when TURNSTILE_SECRET_KEY is set).
 
 interface Env {
 	CONTACT_SUBMISSIONS?: KVNamespace;
@@ -8,6 +9,7 @@ interface Env {
 	NOTIFY_EMAIL: string;
 	FROM_EMAIL: string;
 	DOMAIN?: string;
+	TURNSTILE_SECRET_KEY?: string; // Cloudflare Turnstile secret key
 }
 
 interface ContactBody {
@@ -16,6 +18,7 @@ interface ContactBody {
 	phone?: string;
 	message?: string;
 	website?: string; // honeypot — real users leave this blank
+	'cf-turnstile-response'?: string; // Cloudflare Turnstile token
 }
 
 function json(body: unknown, status = 200) {
@@ -51,6 +54,32 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 	// Honeypot — silently succeed for bots that fill the hidden field
 	if (data.website && data.website.trim() !== '') {
 		return json({ ok: true });
+	}
+
+	// Cloudflare Turnstile verification — runs when TURNSTILE_SECRET_KEY is configured
+	if (env.TURNSTILE_SECRET_KEY) {
+		const token = data['cf-turnstile-response'] ?? '';
+		if (!token) {
+			return json({ ok: false, error: 'Security check missing. Please refresh and try again.' }, 400);
+		}
+		const ip = request.headers.get('cf-connecting-ip') ?? '';
+		const verifyForm = new FormData();
+		verifyForm.append('secret', env.TURNSTILE_SECRET_KEY);
+		verifyForm.append('response', token);
+		if (ip) verifyForm.append('remoteip', ip);
+		try {
+			const verifyResp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+				method: 'POST',
+				body: verifyForm,
+			});
+			const verifyData = await verifyResp.json() as { success: boolean };
+			if (!verifyData.success) {
+				return json({ ok: false, error: 'Security check failed. Please refresh and try again.' }, 400);
+			}
+		} catch (e) {
+			console.error('Turnstile verification failed', e);
+			return json({ ok: false, error: 'Security check unavailable. Please try again shortly.' }, 500);
+		}
 	}
 
 	const name = (data.name ?? '').trim();

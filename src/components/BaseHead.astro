@@ -19,8 +19,8 @@ const productSchema = {
 	"@type": "Product",
 	"@id": `${SITE_URL}#boat`,
 	"name": `${BOAT_YEAR} ${BOAT_MODEL} Catamaran — ${BOAT_NAME}`,
-	"alternateName": [`${BOAT_MODEL} Catamaran For Sale By Owner`, `${BOAT_YEAR} ${BOAT_MODEL}`],
-	"description": "2010 Voyage 500 sailing catamaran for sale by owner. 50-foot 3-cabin owner's version with extensive 2025 upgrades — new saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine Axiom and Evolution autopilot, and a new 6-person offshore life raft. Currently cruising the British Virgin Islands; arriving St. Augustine, FL June 1, 2026.",
+	"alternateName": [`${BOAT_MODEL} Catamaran`, `${BOAT_YEAR} ${BOAT_MODEL}`],
+	"description": "2010 Voyage 500 sailing catamaran S/V Tropicalia. Sold 2026. 50-foot 3-cabin owner's version with extensive 2025 upgrades — new saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine Axiom and Evolution autopilot, and a new 6-person offshore life raft.",
 	"url": SITE_URL,
 	"image": ogImageURL.href,
 	"brand": { "@type": "Brand", "name": BOAT_BUILDER },
@@ -47,7 +47,7 @@ const productSchema = {
 		"priceCurrency": "USD",
 		"price": ASKING_PRICE,
 		"priceValidUntil": "2027-04-01",
-		"availability": "https://schema.org/InStock",
+		"availability": "https://schema.org/SoldOut",
 		"itemCondition": "https://schema.org/UsedCondition",
 		"businessFunction": "https://schema.org/Sell",
 		"url": `${SITE_URL}/contact/`,
@@ -65,8 +65,8 @@ const websiteSchema = {
 	"@type": "WebSite",
 	"@id": `${SITE_URL}#website`,
 	"url": SITE_URL,
-	"name": `${BOAT_MODEL} Catamaran For Sale — ${BOAT_NAME}`,
-	"description": "Direct-from-owner listing for a 2010 Voyage 500 sailing catamaran.",
+	"name": `${BOAT_MODEL} Catamaran — ${BOAT_NAME}`,
+	"description": "S/V Tropicalia, a 2010 Voyage 500 sailing catamaran. Sold 2026. Site preserved for reference.",
 	"inLanguage": "en-US"
 };
 ---
