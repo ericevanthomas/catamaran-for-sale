@@ -9,4 +9,5 @@ export const BOAT_BUILDER = 'Voyage Yachts';
 export const CONTACT_PHONE = '';
 export const ASKING_PRICE = '0';
 export const ASKING_PRICE_DISPLAY = 'Sold';
+// Turnstile site key — set PUBLIC_TURNSTILE_SITE_KEY in Cloudflare Pages env vars
 export const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
