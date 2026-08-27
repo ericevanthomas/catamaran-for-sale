@@ -27,3 +27,27 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: d16ec3605dcb1943fa23f47f39841077
           command: pages deploy dist --project-name catamaran-for-sale
+      # Zone edge-caches HTML for 5m (Cache Rule "Edge-cache HTML 5m"), so a deploy
+      # self-heals within that window even if this is skipped. Best-effort by design:
+      # if CLOUDFLARE_API_TOKEN lacks Zone->Cache Purge this warns instead of failing.
+      # Portable across repos - the zone is resolved by name, nothing is hardcoded.
+      - name: Purge Cloudflare cache (best-effort)
+        continue-on-error: true
+        env:
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ZONE_NAME: catamaran-for-sale.com
+        run: |
+          zid=$(curl -sS -H "Authorization: Bearer $CF_API_TOKEN" \
+            "https://api.cloudflare.com/client/v4/zones?name=$CF_ZONE_NAME" \
+            | python3 -c 'import sys,json; r=(json.load(sys.stdin) or {}).get("result") or []; print(r[0]["id"] if r else "")')
+          if [ -z "$zid" ]; then
+            echo "::warning::Could not resolve zone $CF_ZONE_NAME (token needs Zone->Zone Read). Edge TTL is 5m, so the deploy goes live within 5 minutes."
+            exit 0
+          fi
+          resp=$(curl -sS -X POST -H "Authorization: Bearer $CF_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            "https://api.cloudflare.com/client/v4/zones/$zid/purge_cache" \
+            --data '{"purge_everything":true}')
+          echo "$resp" | grep -q '"success":true' \
+            && echo "cache purged for $CF_ZONE_NAME" \
+            || echo "::warning::Cache purge skipped (token lacks Zone->Cache Purge). Edge TTL is 5m, so the deploy goes live within 5 minutes."
