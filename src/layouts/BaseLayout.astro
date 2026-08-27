@@ -17,7 +17,10 @@ const { title, description, image, schema } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} image={image} schema={schema} />
-	</head>
+	  <!-- Remodeler Pilot analytics (first-party, DNT-respecting) -->
+  <script defer src="https://rp-dashboard-cw0.pages.dev/t.js" data-site="catamaran"></script>
+  <script defer src="https://rp-dashboard-cw0.pages.dev/rec.js" data-site="catamaran"></script>
+</head>
 	<body>
 		<Header />
 		<main>
