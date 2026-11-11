@@ -62,10 +62,21 @@ database_id = "a04176fd-4b43-4d0c-a2ca-1479abd9722b"
 # live   = fire repository_dispatch when the rules say to.
 #
 # It ships as "shadow" on purpose: a Worker that starts publishing the moment it
-# is installed is a Worker that publishes something nobody looked at. Watch it
-# over an editing session — `npx wrangler tail`, or
-# `SELECT last_note FROM publish_state` — then set "live" and deploy again.
-MODE = "shadow"
+# is installed is a Worker that publishes something nobody looked at.
+#
+# 2026-11-11: live, after a shadow session on this site. The Worker was deployed,
+# the cron registered on the first attempt (`*/5 * * * *`, confirmed against the
+# schedules API rather than assumed), and a hand tick returned:
+#
+#   {"ok":true,"mode":"shadow","acted":false,
+#    "note":"editing in progress — last edit 108s ago, waiting for 300s of quiet"}
+#
+# which is the right answer reached for the right reason, with publish_state
+# carrying last_tick_at, live_watermark and that note. /status also proved the
+# whole GitHub App chain without posting anything: key imported, installation
+# 180997497 found on ericevanthomas/catamaran-for-sale, token exchanged,
+# `dispatch_configured: true`.
+MODE = "live"
 
 # The tenant slug this site IS, the same value wrangler.prod.toml sets as
 # RP_SITE. It only labels logs and /status here, but it labels them with the

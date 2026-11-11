@@ -14,6 +14,15 @@
 // engine hours, tank capacities and a price, so "mostly moved" is not a state
 // anybody can inspect by looking at the page.
 //
+// ⚠️ IT IS A MIGRATION CHECK, NOT A MONITOR, and it stops being green the first
+// time the owner publishes a change — which is the system working. The snapshot
+// is dated: it is what the markdown and the templates said on 2026-11-11, and
+// the whole point of the migration is that the database is allowed to move away
+// from it. So this is run against a freshly seeded database (it was, on both
+// the staging twin and production, with 2,569 of 2,569 leaf values identical),
+// and after that a difference here means "somebody edited the site", not "the
+// content is wrong". It is deliberately NOT part of `npm run check`.
+//
 // It compares LEAF BY LEAF and prints the paths, not a boolean. A diff that
 // says "not equal" sends somebody reading 190 KB of JSON; a diff that says
 // `specs.11.value: "3,323 & 3,213 hours" → "3,323 and 3,213 hours"` is the bug.
