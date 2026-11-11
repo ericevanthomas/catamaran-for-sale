@@ -56,14 +56,20 @@ bucket_name = "rp-catamaran-staging-media"
 # a mismatch is a bare 404 with no hint about which half was wrong
 # (PROVISIONING.md, "the editor keypair — the one that fails silently").
 #
-# ⚠️ STAGING ANSWERS TO THE SAME SLUG AS PRODUCTION, and that is a decision
-# rather than an oversight. There is one dashboard account for this tenant and
-# one vault of brand marks; giving staging a second slug would mean a second
-# registry entry and a second account for a host nobody but us ever opens. The
-# consequence is that a voucher minted for `catamaran` is good on both hosts,
-# which is fine because only we can reach the staging one — and the DATABASES
-# are still separate, so an edit made on staging cannot touch the live site.
-RP_SITE = "catamaran"
+# ⚠️ `catamaran-staging` IS NOT A DASHBOARD ACCOUNT, AND THAT IS THE POINT.
+# No voucher can carry this slug, so no handoff can open the editor on this
+# host: /api/edit-session answers a deliberate 404 rather than minting a
+# session. That is the fleet's staging standard — oasis-upholstery-staging does
+# the same — and it is what stops a noindex host with a real tenant's slug from
+# being an editable second copy of a client's site.
+#
+# It was `catamaran` for the first few hours of this site's life, deliberately,
+# so that the editor could be exercised on a noindex host before anything
+# reached the live one. It earned its keep: the empty-shape-map bug in
+# src/pages/rp-approvals.json.js was found that way. Changed to the standard
+# once production was proved, because consistency across the fleet is worth
+# more than the convenience, and `npm run check:tenants` holds every site to it.
+RP_SITE = "catamaran-staging"
 # Whose approved Privacy Policy and Terms this site would publish. Named
 # explicitly rather than defaulted so the row is not silently RP_SITE on a site
 # that has no legal pages of its own.
