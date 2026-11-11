@@ -1,24 +1,32 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 import { marked } from 'marked';
+import site from '../config/site.config.js';
 
 const mdInline = (s: string) => {
 	const html = marked.parseInline(s, { async: false }) as string;
 	return html.replace(/<a (?![^>]*target=)([^>]*)>/g, '<a $1 target="_blank" rel="noopener">');
 };
 
-const allFaqs = await getCollection('faq');
-const faqs = allFaqs.sort((a, b) => a.data.order - b.data.order);
+// The questions are `faq` rows; WHICH of them this page shows, and in what
+// order, is the `block_pick` set on the `faq:list` block — a picker over the
+// pool, never a retype (EDITOR-RULES §4.1). assemble() has already resolved the
+// picks, so `site.faqs` is the page's list in the page's order, and the sort
+// below is on the question's own `order` number, which is a different fact.
+type Faq = typeof site.faqs[number];
+const c = site.pageCopy.faq;
+// In PICK ORDER, not sorted here. `site.faqs` is already the `block_pick` set
+// resolved in its own order, which is what makes the editor's question picker a
+// control that changes the page.
+const faqs = site.faqs;
 
-// Group by category
-const categoryOrder = ['About the Boat', 'Condition & History', 'Systems & Equipment', 'The Sale', 'Viewing & Location', 'Ownership & Documentation'];
+const categoryOrder = c.categoryOrder;
 const grouped = faqs.reduce((acc, faq) => {
-	const cat = faq.data.category || 'General';
+	const cat = faq.category || 'General';
 	if (!acc[cat]) acc[cat] = [];
-	acc[cat].push(faq.data);
+	acc[cat].push(faq);
 	return acc;
-}, {} as Record<string, Array<{ question: string; answer: string }>>);
+}, {} as Record<string, Faq[]>);
 
 const sortedCategories = Object.entries(grouped).sort(([a], [b]) => {
 	const ai = categoryOrder.indexOf(a);
@@ -27,11 +35,10 @@ const sortedCategories = Object.entries(grouped).sort(([a], [b]) => {
 });
 
 // FAQPage schema for SEO
-const allItems = faqs.map(f => f.data);
 const faqSchema = {
 	"@context": "https://schema.org",
 	"@type": "FAQPage",
-	"mainEntity": allItems.map((f) => ({
+	"mainEntity": faqs.map((f) => ({
 		"@type": "Question",
 		"name": f.question,
 		"acceptedAnswer": {
@@ -42,43 +49,48 @@ const faqSchema = {
 };
 ---
 
-<BaseLayout
-	title="FAQ — 2010 Voyage 500 S/V Tropicalia"
-	description="Common questions about S/V Tropicalia, a 2010 Voyage 500 catamaran — condition, engine hours, 2025 upgrades, survey, and the FSBO sale process."
-	schema={faqSchema}
->
-	<section class="page-header">
+<BaseLayout title={c.title} description={c.description} schema={faqSchema}>
+	<section class="page-header" data-rp-section="faqHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
-			<h1>Frequently Asked Questions</h1>
-			<p class="page-header__sub">Everything you need to know about the boat, the sale, and the process.</p>
+			<p class="eyebrow" data-rp-field="pageCopy.faq.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</p>
+			<h1 data-rp-field="pageCopy.faq.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</h1>
+			<p class="page-header__sub" data-rp-field="pageCopy.faq.sub" data-rp-kind="text" data-rp-label="Opening line">{c.sub}</p>
 		</div>
 	</section>
 
-	<section class="faq-section">
+	{/* WHICH questions appear, and in what order, is the picker: the container
+	    carries `ids`, the pool is `faqs` in rp-records.json, and the save writes
+	    `block_pick` on the `faq:list` block. The GROUP HEADINGS are not fields —
+	    each one is the name of a category the questions are filed under, so
+	    renaming it here would empty the group rather than rename it. Changing a
+	    question's group is a field on the question. */}
+	<section class="faq-section" data-rp-section="faqList" data-rp-section-name="The questions"
+		data-rp-field="faqIds" data-rp-kind="ids" data-rp-record="faqs" data-rp-label="Questions">
 		<div class="wrap">
 			{sortedCategories.map(([category, items]) => (
 				<div class="faq-group">
-					<h2 class="faq-group__title">{category}</h2>
-					{category === 'Condition & History' && (
-						<a href="/documents/known-issues-disclosure.pdf" class="faq-download" target="_blank" rel="noopener">
+					<h2 class="faq-group__title" data-rp-auto data-rp-label="The group these questions are filed under">{category}</h2>
+					{category === c.disclosureCategory && (
+						<a href={c.disclosureHref} class="faq-download" target="_blank" rel="noopener"
+							data-rp-field="pageCopy.faq.disclosureLabel" data-rp-kind="text" data-rp-label="Download link">
 							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-							<span>Download Known Issues &amp; Disclosure</span>
+							<span>{c.disclosureLabel}</span>
 						</a>
 					)}
 					{items.map((item) => (
-						<details class="faq-item">
+						<details class="faq-item" data-rp-item={`faqs.${item.id}`}>
 							<summary class="faq-item__q">
 								<span class="faq-item__qtext">
-									{item.question}
-									{item.download && <span class="faq-item__pill">PDF</span>}
+									<span data-rp-field={`faqs.${item.id}.question`} data-rp-kind="text" data-rp-label="Question">{item.question}</span>
+									{item.download && <span class="faq-item__pill" data-rp-field="pageCopy.faq.pillLabel" data-rp-kind="text" data-rp-label="Badge">{c.pillLabel}</span>}
 								</span>
-								<span class="faq-item__icon">+</span>
+								<span class="faq-item__icon" aria-hidden="true">+</span>
 							</summary>
 							<div class="faq-item__a">
-								<p set:html={mdInline(item.answer)}></p>
+								<p data-rp-field={`faqs.${item.id}.answer`} data-rp-kind="rich" data-rp-label="Answer" set:html={mdInline(item.answer)}></p>
 								{item.download && (
-									<a href={item.download.url} class="faq-download faq-download--inline" target="_blank" rel="noopener">
+									<a href={item.download.url} class="faq-download faq-download--inline" target="_blank" rel="noopener"
+										data-rp-fixed="document" data-rp-label="The document this answer offers">
 										<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
 										<span>{item.download.label}</span>
 									</a>
@@ -91,11 +103,11 @@ const faqSchema = {
 		</div>
 	</section>
 
-	<section class="faq-cta">
+	<section class="faq-cta" data-rp-section="faqCta" data-rp-section-name="The invitation">
 		<div class="wrap faq-cta__inner">
-			<h2>Still have questions?</h2>
-			<p>We are happy to answer anything about the boat, the sale process, or arrange a video call to walk through the details.</p>
-			<a href="/contact/" class="btn btn--primary">Contact Us</a>
+			<h2 data-rp-field="pageCopy.faq.ctaHeading" data-rp-kind="text" data-rp-label="Heading">{c.ctaHeading}</h2>
+			<p data-rp-field="pageCopy.faq.ctaBody" data-rp-kind="rich" data-rp-label="Paragraph">{c.ctaBody}</p>
+			<a href={c.ctaHref} class="btn btn--primary" data-rp-field="pageCopy.faq.ctaLabel" data-rp-kind="text" data-rp-label="Button">{c.ctaLabel}</a>
 		</div>
 	</section>
 

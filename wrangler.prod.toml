@@ -1,0 +1,97 @@
+# Cloudflare Pages config for catamaran-for-sale.com — PRODUCTION.
+#
+# This is the second of two projects built from this one repo, and they are
+# deliberately separate (the pattern rp-launch set on 2026-10-16):
+#
+#   wrangler.toml       → catamaran-for-sale-staging.pages.dev
+#                                                     D1 rp-catamaran-staging
+#                                                     R2 rp-catamaran-staging-media
+#                         STAYS noindex on all three signals, forever.
+#
+#   wrangler.prod.toml  → www.catamaran-for-sale.com  D1 rp-catamaran
+#   (this file)                                       R2 rp-catamaran-media
+#                         Indexable. Built with RP_TARGET=prod.
+#
+# ⚠️ Each project has its OWN database and its OWN bucket, because a site's
+# data never shares a store with another's (rp-tenant-isolation-law). Nothing
+# is copied between the two projects and nothing ever should be.
+#
+# ⚠️ NEVER `wrangler pages deploy` FROM THE REPO ROOT FOR PRODUCTION.
+#
+# Pages finds its config by walking up from the working directory and refuses a
+# custom path ("Pages does not support custom paths for the Wrangler
+# configuration file"), so a deploy run at the root would read wrangler.toml
+# and hand the production project STAGING's D1 and STAGING's R2. Use:
+#
+#     npm run deploy:prod
+#
+# which is `RP_TARGET=prod` + the gates + scripts/deploy-prod.mjs. That script
+# copies THIS file into a scratch directory and runs wrangler from there, so
+# the repo's wrangler.toml is never moved and is still the staging config even
+# if the deploy fails halfway. It also refuses to push a dist/ that still
+# carries the noindex signals. A plain `npm run deploy` is the staging one and
+# always will be.
+#
+# ⚠️ TWO CUSTOM DOMAINS ARE ALREADY ATTACHED to this project —
+# catamaran-for-sale.com and www.catamaran-for-sale.com — and they are left
+# exactly as they are. The apex 301s to www, which is the canonical host
+# (astro.config.mjs `site`, and the dashboard registry's site_url).
+name = "catamaran-for-sale"
+compatibility_date = "2026-04-17"
+pages_build_output_dir = "dist"
+
+# D1 — this tenant's own vault, the same database the dashboard reads and the
+# tracking pixel writes to. The site's content lives here as rows: `setting`
+# for the site's own facts, `block` + `block_pick` for the sections and which
+# records they show, `faq` for the question pool, `asset` + `media` for the
+# photographs. scripts/_assemble.mjs turns them back into the object the pages
+# render (see CONTENT.md).
+[[d1_databases]]
+binding = "DB"
+database_name = "rp-catamaran"
+database_id = "a04176fd-4b43-4d0c-a2ca-1479abd9722b"
+
+# R2 — this tenant's own bucket, for photographs uploaded through the editor.
+# ⚠️ The ~160 photographs this site already ships are NOT in here and are not
+# being moved: they are build outputs under /_img/, keyed by the content hash
+# of their source (scripts/optimize-images.mjs), and their public URLs are
+# already content-addressed. Re-uploading them would change every <img> on the
+# site to say the same thing in a different place. They are registered in
+# `media` and `asset` so the editor's library can show and pick them, with the
+# URLs they already have. NEW uploads go here, through /api/media.
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "rp-catamaran-media"
+
+[vars]
+# ⚠️ A `pages deploy` REPLACES the project's plain-text variables with this
+# block. Every plain-text var the live project had on 2026-11-11 was read off
+# the Cloudflare API and is repeated here for exactly that reason — DOMAIN,
+# NOTIFY_EMAIL and PUBLIC_TURNSTILE_SITE_KEY were set in the dashboard UI and
+# nowhere else, so the first deploy carrying a [vars] block would have deleted
+# all three and broken the contact form's notification email. The secrets
+# beside them (RESEND_API_KEY, FROM_EMAIL, TURNSTILE_SECRET_KEY) are secrets
+# and a deploy leaves those alone.
+
+# The tenant slug this site IS, and the name the dashboard's voucher has to
+# carry for this site to accept it. `catamaran` is the slug of this account in
+# rp-dashboard/src/config/clients.js, which is what mints the voucher, so no
+# `editor_site` override is needed.
+RP_SITE = "catamaran"
+RP_LEGAL_SITE = "catamaran"
+# Where someone goes to prove who they are. Neither value below is a secret:
+# one is a URL, the other is the PUBLIC half of the dashboard's editor keypair,
+# which can CHECK a voucher and can never write one. ⚠️ A Pages var does
+# nothing until a NEW DEPLOYMENT: a site that ships without RP_EDITOR_VERIFY_KEY
+# fails with a deliberate 404 that says nothing about which half was wrong.
+RP_DASH = "https://app.remodelerpilot.com"
+RP_EDITOR_VERIFY_KEY = "MCowBQYDK2VwAyEA4Eg6O1ZWw/my52lamZvK8qxofA2MYqHMvUjcJK6RsrQ="
+
+# ── the contact form, as the live project already had it ───────────────────
+DOMAIN = "catamaran-for-sale.com"
+NOTIFY_EMAIL = "eric@electromagneticweb.com,ericevanthomas@gmail.com"
+PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAADpGxAv48QfGXpQr"
+# Who hears about a client request raised from the editor, and about a lead
+# taken by the platform endpoint. It lives HERE and not only in the Pages
+# project because a deploy replaces the plain-text variables with this block.
+RP_NOTIFY = "eric@electromagneticweb.com"

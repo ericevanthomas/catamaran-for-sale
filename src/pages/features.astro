@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
 import imgManifest from '../generated/image-manifest.json';
 import { getCollection, render } from 'astro:content';
+import site from '../config/site.config.js';
 import { marked } from 'marked';
 
 const mdInline = (s?: string) => (s ? (marked.parseInline(s, { async: false }) as string) : '');
@@ -29,21 +30,29 @@ function fullUrl(src: string): string {
 const allFeatures = await getCollection('features', ({ data }) => !data.draft);
 const features = allFeatures.sort((a, b) => a.data.order - b.data.order);
 
-// Build photo-metadata lookup from the Photo Library collection.
-// Key: image path (e.g., /images/gallery/foo.webp) → { caption, alt }
+// ⚠️ WHERE EACH CARD SITS IN THE CONTENT, by id. The page filters out drafts and
+// then sorts, and the cards are regrouped into category sections after that, so
+// no loop index on this page is the card's position in `site.features` — which
+// is the position the editor addresses it by. One lookup, built once, used by
+// every address on the page.
+const at = new Map(site.features.map((f, n) => [f.id, n]));
+
+// Build photo-metadata lookup from the gallery, so a modal's caption is the
+// photograph's own description rather than the card's. Both are content rows
+// now: the gallery is `block` children of `gallery:photos` and this is the same
+// lookup by public path it always was.
 const photoMeta = new Map<string, { caption: string; alt: string }>();
-for (const p of await getCollection('gallery')) {
-	photoMeta.set(p.data.image, {
-		caption: p.data.caption ?? '',
-		alt: p.data.alt ?? '',
-	});
+for (const p of site.gallery) {
+	photoMeta.set(p.image, { caption: p.caption ?? '', alt: p.alt ?? '' });
 }
 
 function captionsFor(paths: string[] | undefined): string[] {
 	return (paths ?? []).map((p) => mdInline(photoMeta.get(p)?.caption ?? ''));
 }
 
-// Pre-render markdown bodies for modals
+// Pre-render markdown bodies for modals. The markdown comes out of a `block`
+// row now and still goes through Astro's own processor, so the HTML inside a
+// modal is the HTML it was (src/lib/prose.js).
 const featureEntries = await Promise.all(
 	features.map(async (f) => {
 		const rendered = f.body ? await render(f) : null;
@@ -52,16 +61,8 @@ const featureEntries = await Promise.all(
 );
 
 // Group features by category, preserving order
-const categoryOrder = [
-	'Living Spaces',
-	'Systems & Equipment',
-	'Navigation',
-	'Electrical',
-	'Sailing Performance',
-	'Recent Upgrades',
-	'Safety',
-	'Dinghy & Tender',
-];
+const c = site.pageCopy.features;
+const categoryOrder = c.categoryOrder;
 const grouped = new Map<string, typeof features>();
 for (const cat of categoryOrder) {
 	const items = features.filter(f => f.data.category === cat);
@@ -69,29 +70,31 @@ for (const cat of categoryOrder) {
 }
 // Catch any uncategorized
 const uncategorized = features.filter(f => !f.data.category || !categoryOrder.includes(f.data.category));
-if (uncategorized.length) grouped.set('Other', uncategorized);
+if (uncategorized.length) grouped.set(c.otherLabel, uncategorized);
 
 function slugify(s: string) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''); }
 
-const title = 'Features & Systems — 2010 Voyage 500 S/V Tropicalia';
-const description = "Every system, feature, and 2025 upgrade aboard S/V Tropicalia, a 2010 Voyage 500 catamaran — new saildrives, lithium bank, watermaker, electronics, owner's cabin, guest cabins, galley, deck gear, and safety equipment. With photos and detailed writeups.";
+const title = c.title;
+const description = c.description;
 ---
 
 <BaseLayout title={title} description={description}>
 
-	<section class="page-header">
+	<section class="page-header" data-rp-section="featuresHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
-			<h1>Features &amp; Systems</h1>
-			<p class="page-header__sub">The major systems and spaces aboard Tropicalia. Click any card for photos and notes.</p>
+			<p class="eyebrow" data-rp-field="pageCopy.features.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</p>
+			<h1 data-rp-field="pageCopy.features.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</h1>
+			<p class="page-header__sub" data-rp-field="pageCopy.features.sub" data-rp-kind="text" data-rp-label="Opening line">{c.sub}</p>
 		</div>
 	</section>
 
 	<!-- Sticky category nav — scrolls to sections -->
-	<nav class="catnav" id="catnav">
+	{/* Each link is a category some card is filed under, so it counts itself:
+	    the way to remove one is to stop filing cards under it. */}
+	<nav class="catnav" id="catnav" data-rp-section="featuresNav" data-rp-section-name="The category bar">
 		<div class="wrap catnav__inner">
 			{[...grouped.keys()].map((cat) => (
-				<a href={`#${slugify(cat)}`} class="catnav__link">{cat}</a>
+				<a href={`#${slugify(cat)}`} class="catnav__link" data-rp-auto data-rp-label="A category cards are filed under">{cat}</a>
 			))}
 		</div>
 	</nav>
@@ -99,12 +102,12 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 	<!-- Feature sections grouped by category -->
 	<div class="features-page">
 		{[...grouped.entries()].map(([category, items]) => (
-			<section class="cat-section" id={slugify(category)}>
+			<section class="cat-section" id={slugify(category)} data-rp-section={`features-${slugify(category)}`} data-rp-section-name={`The ${category} cards`}>
 				<div class="wrap">
-					<h2 class="cat-section__title">{category}</h2>
+					<h2 class="cat-section__title" data-rp-auto data-rp-label="The category these cards are filed under">{category}</h2>
 					<div class="cat-section__grid">
 						{items.map((feature) => (
-							<article class="fcard" data-modal-trigger={feature.id}>
+							<article class="fcard" data-modal-trigger={feature.id} data-rp-item={`features.${at.get(feature.id)}`}>
 								{feature.data.photos?.[0] && (
 									<div class="fcard__img">
 										<ResponsiveImage
@@ -112,6 +115,8 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 											alt={feature.data.title}
 											sizes="(min-width: 1100px) 33vw, (min-width: 700px) 50vw, 100vw"
 											loading="lazy"
+											data-rp-fixed="photo"
+											data-rp-label="The card's photograph"
 										/>
 										{feature.data.video && (
 											<span class="fcard__play">
@@ -119,14 +124,14 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 											</span>
 										)}
 										{feature.data.photos.length > 1 && (
-											<span class="fcard__photo-count">{feature.data.photos.length}</span>
+											<span class="fcard__photo-count" data-rp-ordinal>{feature.data.photos.length}</span>
 										)}
 									</div>
 								)}
 								<div class="fcard__body">
-									<h3 class="fcard__title">{feature.data.title}</h3>
-									<p class="fcard__desc">{feature.data.description}</p>
-									<span class="fcard__more">View details →</span>
+									<h3 class="fcard__title" data-rp-field={`features.${at.get(feature.id)}.title`} data-rp-kind="text" data-rp-label="Title">{feature.data.title}</h3>
+									<p class="fcard__desc" data-rp-field={`features.${at.get(feature.id)}.description`} data-rp-kind="rich" data-rp-label="Card text">{feature.data.description}</p>
+									<span class="fcard__more" data-rp-field="pageCopy.features.cardMore" data-rp-kind="text" data-rp-label="Card link">{c.cardMore}</span>
 								</div>
 							</article>
 						))}
@@ -141,7 +146,7 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 		const related = featureEntries.filter(f => f.id !== entry.id && f.data.category === entry.data.category);
 		const ContentComponent = entry.RenderedContent;
 		return (
-			<dialog class="modal" id={`modal-${entry.id}`}>
+			<dialog class="modal" id={`modal-${entry.id}`} data-rp-item={`features.${at.get(entry.id)}`}>
 				<div class="modal__inner">
 					<button class="modal__close" aria-label="Close">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -155,7 +160,13 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 								data-captions={JSON.stringify(captionsFor(entry.data.photos))}
 							>
 								<div class="modal__hero">
-									<img src={displayUrl(entry.data.photos[0])} alt={photoMeta.get(entry.data.photos[0])?.alt || entry.data.title} loading="lazy" />
+									{/* The photographs a card shows, and the order it shows them
+									    in, are the card's own list and changing them is a build
+									    (src/config/editable.js). Their DESCRIPTIONS are the
+									    photographs' own and are edited on /gallery, which is why
+									    this one is marked fixed rather than left bare. */}
+									<img src={displayUrl(entry.data.photos[0])} alt={photoMeta.get(entry.data.photos[0])?.alt || entry.data.title} loading="lazy"
+										data-rp-fixed="photo" data-rp-label="The card's photographs" />
 									<button class="modal__zoom" aria-label="Zoom in">
 										<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
 									</button>
@@ -167,12 +178,17 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 											<button class="modal__arrow modal__arrow--next" aria-label="Next photo">
 												<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
 											</button>
-											<span class="modal__counter">1 / {entry.data.photos.length}</span>
+											<span class="modal__counter" data-rp-ordinal>1 / {entry.data.photos.length}</span>
 										</>
 									)}
 								</div>
+								{/* The caption belongs to the PHOTOGRAPH, not to this card,
+								    which is why it is addressed in the gallery and read
+								    here. Editing it on /gallery changes it everywhere the
+								    photograph appears, which is what a description of a
+								    photograph should do. */}
 								{photoMeta.get(entry.data.photos[0])?.caption && (
-									<p class="modal__caption" set:html={mdInline(photoMeta.get(entry.data.photos[0])?.caption)} />
+									<p class="modal__caption" data-rp-auto data-rp-label="The photograph's own caption, from the gallery" set:html={mdInline(photoMeta.get(entry.data.photos[0])?.caption)} />
 								)}
 							</div>
 
@@ -198,9 +214,9 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 						)}
 						<div class="modal__content">
 							<div class="modal__header">
-								{entry.data.category && <span class="card__cat">{entry.data.category}</span>}
-								<h2>{entry.data.title}</h2>
-								<p class="modal__desc">{entry.data.description}</p>
+								{entry.data.category && <span class="card__cat" data-rp-auto data-rp-label="The category this card is filed under">{entry.data.category}</span>}
+								<h2 data-rp-field={`features.${at.get(entry.id)}.title`} data-rp-kind="text" data-rp-label="Title">{entry.data.title}</h2>
+								<p class="modal__desc" data-rp-field={`features.${at.get(entry.id)}.description`} data-rp-kind="rich" data-rp-label="Card text">{entry.data.description}</p>
 							</div>
 							{entry.data.quote && (
 								<div class="modal__section">
@@ -209,8 +225,11 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 											{entry.data.quote.speaker === 'eric' ? 'E' : 'A'}
 										</div>
 										<blockquote class="quote__text">
-											<p>{entry.data.quote.text}</p>
-											<figcaption class="quote__name">
+											<p data-rp-field={`features.${at.get(entry.id)}.quote.text`} data-rp-kind="rich" data-rp-label="Quote">{entry.data.quote.text}</p>
+											{/* Who said it: the speaker decides the avatar and the
+											    colour of the card, so it is a choice in the
+											    content rather than a line of text to retype. */}
+											<figcaption class="quote__name" data-rp-auto data-rp-label="Who said it">
 												— {entry.data.quote.speaker === 'eric' ? 'Eric' : 'Alex'}
 											</figcaption>
 										</blockquote>
@@ -219,7 +238,7 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 							)}
 							{entry.data.video && (
 								<div class="modal__section">
-									<h3 class="modal__label">Video</h3>
+									<h3 class="modal__label" data-rp-field="pageCopy.features.videoLabel" data-rp-kind="text" data-rp-label="Label">{c.videoLabel}</h3>
 									<div class="modal__video">
 										<iframe src={entry.data.video} allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
 									</div>
@@ -227,16 +246,18 @@ const description = "Every system, feature, and 2025 upgrade aboard S/V Tropical
 							)}
 							{ContentComponent && (
 								<div class="modal__section">
-									<h3 class="modal__label">Details</h3>
-									<div class="modal__prose">
+									<h3 class="modal__label" data-rp-field="pageCopy.features.detailsLabel" data-rp-kind="text" data-rp-label="Label">{c.detailsLabel}</h3>
+									<div class="modal__prose" data-rp-field={`features.${at.get(entry.id)}.body`} data-rp-kind="rich" data-rp-label="Details">
 										<ContentComponent />
 									</div>
 								</div>
 							)}
 							{related.length > 0 && (
 								<div class="modal__section">
-									<h3 class="modal__label">Related</h3>
-									<div class="modal__related">
+									<h3 class="modal__label" data-rp-field="pageCopy.features.relatedLabel" data-rp-kind="text" data-rp-label="Label">{c.relatedLabel}</h3>
+									{/* The related cards fill themselves from the category, and
+									    each one shows that card's own title. */}
+									<div class="modal__related" data-rp-auto data-rp-label="The other cards in this category">
 										{related.map((rel) => (
 											<button class="modal__rel-card" data-modal-trigger={rel.id}>
 												<span>{rel.data.title}</span>

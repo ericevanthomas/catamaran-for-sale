@@ -1,9 +1,33 @@
-name: Deploy to Cloudflare Pages
+# Build www.catamaran-for-sale.com and put it on Cloudflare.
+#
+# ⚠️ WHY THIS EXISTS AT ALL. Until this workflow, this site could only be
+# published from one laptop. A tenant whose site can only be built on one
+# machine cannot auto-publish, whatever its publisher Worker decides — so this
+# is the prerequisite for everything else: it is the thing
+# rp-catamaran-publisher can ask.
+#
+# `repository_dispatch` with type `publish` is the fleetwide trigger — the same
+# mechanism electromagneticweb.com, the Fourlakes demo and www.remodelerpilot.com
+# use. It is NOT a Cloudflare Pages deploy hook, and it cannot be: every RP
+# Pages project is DIRECT UPLOAD (the API reports `source: null`) and Cloudflare
+# only issues deploy hooks for projects it builds itself.
+name: Deploy production
 
 on:
   push:
     branches: [main]
+  # Fired by publisher/src/index.ts when a saved edit moves ahead of what the
+  # live site is serving and the debounce says it is time to ship.
+  repository_dispatch:
+    types: [publish]
   workflow_dispatch:
+
+concurrency:
+  # Someone publishing twice in a minute is ONE build. Without this, two
+  # overlapping deploys race and whichever finishes last wins, which may be the
+  # one built from the older content.
+  group: deploy-catamaran-prod
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -13,6 +37,14 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+
+      # ⚠️ KEEP THIS. Regenerating the responsive variants is six WebP widths
+      # for each of 163 photographs, and it is by some distance the longest step
+      # in this build. scripts/optimize-images.mjs keys each variant directory on
+      # the SHA-1 of its source file, so a restored cache is reused exactly and a
+      # changed photograph is the only one re-rendered. The key is the hash of
+      # public/images, so adding one picture does not throw the other 162 away.
       - name: Cache generated image variants
         uses: actions/cache@v4
         with:
@@ -20,17 +52,109 @@ jobs:
           key: img-variants-${{ hashFiles('public/images/**') }}
           restore-keys: |
             img-variants-
+
       - run: npm ci
-      - run: npm run build
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: d16ec3605dcb1943fa23f47f39841077
-          command: pages deploy dist --project-name catamaran-for-sale
-      # Zone edge-caches HTML for 5m (Cache Rule "Edge-cache HTML 5m"), so a deploy
-      # self-heals within that window even if this is skipped. Best-effort by design:
-      # if CLOUDFLARE_API_TOKEN lacks Zone->Cache Purge this warns instead of failing.
-      # Portable across repos - the zone is resolved by name, nothing is hardcoded.
+
+      # ── say which secret is missing, in one line, before anything else ────
+      #
+      # Without this the two failures are unreadable. A missing RP_BUILD_KEY
+      # makes scripts/_content-source.mjs fall back to its wrangler lane — the
+      # laptop one — which in CI can only fail, and the build then reports
+      # "could not read the current watermark via wrangler remote", which sends
+      # whoever reads it looking for a Cloudflare token. That is the wrong
+      # answer: a Cloudflare token with D1 rights is the ONE thing this workflow
+      # must never hold. A missing CLOUDFLARE_API_TOKEN surfaces minutes later
+      # as a wrangler authentication error at the very last step, after a full
+      # build and a four-minute image pass.
+      - name: Check the two secrets are set
+        env:
+          RP_BUILD_KEY: ${{ secrets.RP_BUILD_KEY }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          missing=0
+          if [ -z "$RP_BUILD_KEY" ]; then
+            echo "::error::RP_BUILD_KEY is not set on this repository. It is the key this build reads the site's own content with (functions/api/artifact.ts). Set the SAME value on both sides: 'gh secret set RP_BUILD_KEY -R ericevanthomas/catamaran-for-sale' and 'npx wrangler pages secret put RP_BUILD_KEY --project-name catamaran-for-sale'."
+            missing=1
+          fi
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::error::CLOUDFLARE_API_TOKEN is not set on this repository. It uploads the build to Pages and must be scoped to Cloudflare Pages:Edit ONLY — never D1, because D1 token permissions are account-scoped and a token that can read rp-catamaran can read every client's database."
+            missing=1
+          fi
+          [ "$missing" -eq 0 ] || exit 1
+
+      # ── build the PRODUCTION site, from the live site's own content ────────
+      #
+      # `npm run build:prod` is optimize-images → pull → check-fresh → astro →
+      # stamp → noindex guard, exactly as it is on the laptop.
+      #
+      # RP_ARTIFACT_URL + RP_BUILD_KEY switch scripts/_content-source.mjs onto
+      # its `http` lane, so the pull and the freshness guard read this site's own
+      # /api/artifact instead of shelling out to wrangler.
+      #
+      # ⚠️ NOT a Cloudflare token with D1 rights. D1 permissions on an API token
+      # are scoped to an ACCOUNT, not to a database, so a token here that can
+      # read `rp-catamaran` can also read every other client's `leads` table —
+      # names, emails, phone numbers — and it would break tenant isolation for
+      # the whole fleet from one repository secret. The site is already bound to
+      # its own database and to nothing else, so CI asks the site.
+      #
+      # ⚠️ RP_ARTIFACT_URL IS THE TENANT ON THIS LANE. RP_TARGET=prod (inside
+      # build:prod) picks wrangler.prod.toml for the BINDINGS; over HTTP the HOST
+      # decides whose content is read. Pointing this at
+      # catamaran-for-sale-staging.pages.dev would render staging's edits on the
+      # live site, and the build would pass.
+      - name: Build production from the live content
+        env:
+          RP_ARTIFACT_URL: https://www.catamaran-for-sale.com
+          RP_BUILD_KEY: ${{ secrets.RP_BUILD_KEY }}
+        run: npm run build:prod
+
+      # The same gates `npm run deploy:prod` runs between the build and the
+      # upload: every rendered element still has an address or an explanation,
+      # every section still carries the fingerprint its approval is bound to, and
+      # every editable address still lands in a row. All three are offline.
+      - run: npm run check
+
+      # ── upload ────────────────────────────────────────────────────────────
+      #
+      # ⚠️ NOT `wrangler pages deploy` DIRECTLY, and not cloudflare/wrangler-action,
+      # which is what this workflow used until 2026-11-11 — and which was safe
+      # only because this repository had no wrangler.toml at all. It has two now,
+      # and the one at the root is STAGING's.
+      # Pages finds its configuration by walking up from the working directory and
+      # refuses a custom path, so a deploy run at the repository root would read
+      # wrangler.toml — which is STAGING — and hand the production project
+      # staging's D1 and staging's R2. scripts/deploy-prod.mjs is the one path
+      # that gets this right, and it is also what the laptop runs: one script,
+      # two callers, no second way to deploy production that could drift.
+      #
+      # It then refuses a dist/ that still carries the staging noindex signals,
+      # and after the upload it probes /api/artifact until it answers as an
+      # endpoint rather than a static file, because "wrangler said Success" is
+      # not the same claim as "the Functions shipped".
+      #
+      # RP_DEPLOY_BRANCH: a `repository_dispatch` checkout is a DETACHED HEAD, so
+      # wrangler's branch detection would say `HEAD` and publish a PREVIEW
+      # deployment — uploaded, green, and invisible to every visitor. That is not
+      # hypothetical here: the first hand deploy of this site went to a preview
+      # for exactly this reason, because the working branch was not `main`.
+      - name: Deploy to catamaran-for-sale
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: d16ec3605dcb1943fa23f47f39841077
+          RP_DEPLOY_BRANCH: main
+        run: node scripts/deploy-prod.mjs
+
+      # ── let people see it ────────────────────────────────────────────────
+      #
+      # The zone edge-caches HTML for five minutes (the Cache Rule "Edge-cache
+      # HTML 5m"), so a deploy self-heals within that window even if this is
+      # skipped — but five minutes is most of the time a client spends wondering
+      # whether their change worked. Best-effort by design: if the token lacks
+      # Zone → Cache Purge this warns instead of failing, because the content is
+      # already deployed either way. Carried over from the workflow this
+      # replaced; the zone is resolved by name, so nothing here is hardcoded to
+      # one site.
       - name: Purge Cloudflare cache (best-effort)
         continue-on-error: true
         env:
@@ -51,3 +175,14 @@ jobs:
           echo "$resp" | grep -q '"success":true' \
             && echo "cache purged for $CF_ZONE_NAME" \
             || echo "::warning::Cache purge skipped (token lacks Zone->Cache Purge). Edge TTL is 5m, so the deploy goes live within 5 minutes."
+
+      # What asked for this run, in the run's own log. A publish triggered by the
+      # Worker carries the watermark it was trying to ship, so a deploy that
+      # shipped the wrong content can be read back to the decision that asked for
+      # it rather than guessed at.
+      - name: Say what asked for this
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          echo "publish requested for watermark: ${{ github.event.client_payload.watermark }}"
+          echo "site: ${{ github.event.client_payload.site }}"
+          echo "asked at: ${{ github.event.client_payload.asked_at }}"

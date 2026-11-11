@@ -3,7 +3,7 @@
 // Falls back to the original src if the image isn't in the manifest.
 import manifest from '../generated/image-manifest.json';
 
-interface Props {
+interface Props extends Record<string, unknown> {
 	src: string;
 	alt: string;
 	sizes?: string;
@@ -25,7 +25,37 @@ const {
 	class: className,
 	width,
 	height,
+	// The editor's own attributes go on the <img>, and that is what lets a
+	// photograph be editable without changing the page's structure. The first
+	// attempt wrapped the <img> in a <div> to carry them, which would have
+	// collapsed the gallery grid — `.gallery__item` is the sized box and the
+	// <img> fills it, so an unstyled wrapper between the two has no height.
+	...rest
 } = Astro.props;
+
+// ⚠️ ONLY `data-rp-*`, AND SPREADING `rest` WHOLE IS A VISIBLE BUG.
+//
+// Astro passes a parent's scope marker (`data-astro-cid-…`) into a child
+// component as an ordinary prop, so that a component can choose to adopt its
+// caller's styles. Spreading `rest` adopts it by accident — and on this site
+// that changed the page.
+//
+// `.photos__item img { height: 100%; object-fit: cover }` in index.astro
+// compiles to `img[data-astro-cid-j7pv25f6]`, and this element has never
+// carried that marker, so the rule has never applied: the home page's three
+// photographs and its three story rows render at their intrinsic height (462px
+// at this width) and overflow a 409px box that clips them. Pass the marker
+// through and the rule starts matching, the images shrink to fit their boxes,
+// and six photographs on the live home page are suddenly cropped differently.
+//
+// That is probably what whoever wrote the CSS intended. It is NOT what the site
+// has been serving, and a content migration is not the place to change how the
+// home page looks — so the marker is filtered out and the rendering is left
+// exactly as it was. Flagged 2026-11-11; making those rules apply is a design
+// decision with a before and an after, and it is Eric's.
+const editorAttrs = Object.fromEntries(
+	Object.entries(rest).filter(([k]) => k.startsWith('data-rp-')),
+);
 
 type Variant = { w: number; h: number; src: string };
 type Entry = { width: number; height: number; aspectRatio: number; variants: Variant[] };
@@ -51,4 +81,5 @@ const h = height ?? entry?.height;
 	decoding={decoding}
 	class={className}
 	data-full={largest}
+	{...editorAttrs}
 />

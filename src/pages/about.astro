@@ -1,57 +1,67 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
-import { getCollection, render } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+import site from '../config/site.config.js';
 
-const allPages = await getCollection('pages');
-const page = allPages.find((p) => p.id === 'about');
+// The prose is still markdown and still goes through Astro's own processor —
+// the body just comes out of a `block` row now instead of
+// src/content/pages/about.md (src/lib/prose.js). Everything around it that used
+// to be typed into this template is `pageCopy.about`.
+const page = await getEntry('prose', 'about');
 const { Content } = page ? await render(page) : { Content: null };
+const c = site.pageCopy.about;
 ---
 
-<BaseLayout
-	title={page?.data.title ?? 'About Us — Voyage 500'}
-	description={page?.data.description ?? 'The family behind the Voyage 500.'}
->
+<BaseLayout title={c.title} description={c.description}>
 
-	<section class="page-header">
+	<section class="page-header" data-rp-section="aboutHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<h1 class="eyebrow page-header__h1">About S/V Tropicalia</h1>
-			<p class="page-title">About Us</p>
+			<h1 class="eyebrow page-header__h1" data-rp-field="pageCopy.about.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</h1>
+			<p class="page-title" data-rp-field="pageCopy.about.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</p>
 		</div>
 	</section>
 
-	<section class="about-body">
+	<section class="about-body" data-rp-section="aboutBody" data-rp-section-name="Who you are">
 		<div class="wrap about-body__grid">
-			<figure class="about-body__photo">
+			{/* The photograph goes through <ResponsiveImage>, so the FILE could be
+			    swapped by a picker; its description is a field. Marked `fixed`
+			    rather than left bare because /about has exactly one photograph
+			    and choosing a different one is a decision about the page, not a
+			    caption fix — the drawer says so and offers to do it. */}
+			<figure class="about-body__photo" data-rp-fixed="photo" data-rp-label="The family photograph">
 				<ResponsiveImage
-					src="/images/about/family.webp"
-					alt="Eric, Alex, Leon, and Margot on a rocky shore in the British Virgin Islands"
+					src={c.photo}
+					alt={c.photoAlt}
 					sizes="(min-width: 900px) 480px, 100vw"
 					loading="eager"
 				/>
 			</figure>
-			<div class="about-body__text prose">
+			<div class="about-body__text prose" data-rp-field="prose.about" data-rp-kind="rich" data-rp-label="About us">
 				{Content && <Content />}
 			</div>
 		</div>
 	</section>
 
-	<section class="section section--alt">
+	<section class="section section--alt" data-rp-section="aboutPosition" data-rp-section-name="Where the boat is">
 		<div class="wrap">
-			<p class="eyebrow">Current Position</p>
-			<h2>Where we are now</h2>
-			<p class="widget-note">Tropicalia's live location via Predictwind.</p>
-			<div class="predictwind-widget">
-				<iframe src="https://forecast.predictwind.com/tracking/display/SV-Tropicalia/" width="100%" height="500" frameborder="0" loading="lazy" allow="geolocation"></iframe>
+			<p class="eyebrow" data-rp-field="pageCopy.about.positionEyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.positionEyebrow}</p>
+			<h2 data-rp-field="pageCopy.about.positionHeading" data-rp-kind="text" data-rp-label="Heading">{c.positionHeading}</h2>
+			<p class="widget-note" data-rp-field="pageCopy.about.positionNote" data-rp-kind="text" data-rp-label="Note">{c.positionNote}</p>
+			{/* A third-party tracking page. The address is not a field: it is a
+			    Predictwind URL tied to the boat's own tracker, and a typo in it
+			    is a blank panel with nothing to say why. */}
+			<div class="predictwind-widget" data-rp-fixed="embed" data-rp-label="The live tracker">
+				<iframe src={c.positionEmbed} width="100%" height="500" frameborder="0" loading="lazy" allow="geolocation"></iframe>
 			</div>
 		</div>
 	</section>
 
-	<section class="cta">
+	<section class="cta" data-rp-section="aboutCta" data-rp-section-name="The invitation">
 		<div class="wrap cta__inner">
-			<h2>Want to know more?</h2>
-			<p>Happy to answer any questions about our time aboard, the boat's history, or anything else.</p>
-			<a href="/contact/" class="btn btn--primary">Get in Touch</a>
+			<h2 data-rp-field="pageCopy.about.ctaHeading" data-rp-kind="text" data-rp-label="Heading">{c.ctaHeading}</h2>
+			<p data-rp-field="pageCopy.about.ctaBody" data-rp-kind="rich" data-rp-label="Paragraph">{c.ctaBody}</p>
+			<a href={c.ctaHref} class="btn btn--primary" data-rp-field="pageCopy.about.ctaLabel" data-rp-kind="text" data-rp-label="Button">{c.ctaLabel}</a>
 		</div>
 	</section>
 </BaseLayout>

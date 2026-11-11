@@ -1,0 +1,485 @@
+{
+  "page": "/",
+  "sections": [
+    {
+      "section": "header",
+      "name": "The bar at the top",
+      "els": [
+        {
+          "el": "nav.items.0.label",
+          "field": "nav.items.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "nav.*.*.label"
+        },
+        {
+          "el": "nav.ctaLabel",
+          "field": "nav.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "nav.ctaLabel"
+        }
+      ],
+      "shape": "104c524b94f0"
+    },
+    {
+      "section": "hero",
+      "name": "The opening",
+      "els": [
+        {
+          "el": "saleStamp.title",
+          "field": "saleStamp.title",
+          "kind": "text",
+          "label": "Stamp",
+          "shape": "saleStamp.title"
+        },
+        {
+          "el": "saleStamp.linkWords.0",
+          "field": "saleStamp.linkWords.0",
+          "kind": "text",
+          "label": "Word",
+          "shape": "saleStamp.linkWords.*"
+        },
+        {
+          "el": "hero.eyebrow",
+          "field": "hero.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "hero.eyebrow"
+        },
+        {
+          "el": "hero.headlineLines.0",
+          "field": "hero.headlineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "hero.headlineLines.*"
+        },
+        {
+          "el": "glance.priceDisplay",
+          "field": "glance.priceDisplay",
+          "kind": "text",
+          "label": "Price line",
+          "shape": "glance.priceDisplay"
+        },
+        {
+          "el": "glance.locationDisplay",
+          "field": "glance.locationDisplay",
+          "kind": "text",
+          "label": "Status line",
+          "shape": "glance.locationDisplay"
+        },
+        {
+          "el": "hero.ctaText",
+          "field": "hero.ctaText",
+          "kind": "text",
+          "label": "Button",
+          "shape": "hero.ctaText"
+        },
+        {
+          "el": "photo",
+          "locked": true,
+          "explain": "photo",
+          "shape": "photo"
+        }
+      ],
+      "shape": "27a515a4299a"
+    },
+    {
+      "section": "glance",
+      "name": "At a glance",
+      "els": [
+        {
+          "el": "glance.items.0.label",
+          "field": "glance.items.0.label",
+          "kind": "text",
+          "label": "Label",
+          "shape": "glance.*.*.label"
+        },
+        {
+          "el": "glance.items.0.value",
+          "field": "glance.items.0.value",
+          "kind": "text",
+          "label": "Value",
+          "shape": "glance.*.*.value"
+        },
+        {
+          "el": "glance.note",
+          "field": "glance.note",
+          "kind": "rich",
+          "label": "Note",
+          "shape": "glance.note"
+        },
+        {
+          "el": "glance.linkText",
+          "field": "glance.linkText",
+          "kind": "text",
+          "label": "Link",
+          "shape": "glance.linkText"
+        }
+      ],
+      "shape": "4f88458e9796"
+    },
+    {
+      "section": "topPhotos",
+      "name": "The three photographs",
+      "els": [
+        {
+          "el": "topPhotos.0.image",
+          "field": "topPhotos.0.image",
+          "kind": "image",
+          "label": "Photograph",
+          "shape": "topPhotos.*.image"
+        },
+        {
+          "el": "photosMore.label",
+          "field": "photosMore.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "photosMore.label"
+        }
+      ],
+      "shape": "873e12bc2f24"
+    },
+    {
+      "section": "whyChose",
+      "name": "Why you chose this boat",
+      "els": [
+        {
+          "el": "whyChose.eyebrow",
+          "field": "whyChose.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "whyChose.eyebrow"
+        },
+        {
+          "el": "whyChose.heading",
+          "field": "whyChose.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "whyChose.heading"
+        },
+        {
+          "el": "whyChose.body",
+          "field": "whyChose.body",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "whyChose.body"
+        },
+        {
+          "el": "photo",
+          "locked": true,
+          "explain": "photo",
+          "shape": "photo"
+        }
+      ],
+      "shape": "1964a13a6406"
+    },
+    {
+      "section": "alternating-0",
+      "name": "Story row 1",
+      "els": [
+        {
+          "el": "alternatingSections.0.image",
+          "field": "alternatingSections.0.image",
+          "kind": "image",
+          "label": "Photograph",
+          "shape": "alternatingSections.*.image"
+        },
+        {
+          "el": "alternatingSections.0.eyebrow",
+          "field": "alternatingSections.0.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "alternatingSections.*.eyebrow"
+        },
+        {
+          "el": "alternatingSections.0.heading",
+          "field": "alternatingSections.0.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "alternatingSections.*.heading"
+        },
+        {
+          "el": "alternatingSections.0.body",
+          "field": "alternatingSections.0.body",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "alternatingSections.*.body"
+        }
+      ],
+      "shape": "8b4c2adc8b99"
+    },
+    {
+      "section": "alternating-1",
+      "name": "Story row 2",
+      "els": [
+        {
+          "el": "alternatingSections.1.image",
+          "field": "alternatingSections.1.image",
+          "kind": "image",
+          "label": "Photograph",
+          "shape": "alternatingSections.*.image"
+        },
+        {
+          "el": "alternatingSections.1.eyebrow",
+          "field": "alternatingSections.1.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "alternatingSections.*.eyebrow"
+        },
+        {
+          "el": "alternatingSections.1.heading",
+          "field": "alternatingSections.1.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "alternatingSections.*.heading"
+        },
+        {
+          "el": "alternatingSections.1.body",
+          "field": "alternatingSections.1.body",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "alternatingSections.*.body"
+        }
+      ],
+      "shape": "8b4c2adc8b99"
+    },
+    {
+      "section": "alternating-2",
+      "name": "Story row 3",
+      "els": [
+        {
+          "el": "alternatingSections.2.image",
+          "field": "alternatingSections.2.image",
+          "kind": "image",
+          "label": "Photograph",
+          "shape": "alternatingSections.*.image"
+        },
+        {
+          "el": "alternatingSections.2.eyebrow",
+          "field": "alternatingSections.2.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "alternatingSections.*.eyebrow"
+        },
+        {
+          "el": "alternatingSections.2.heading",
+          "field": "alternatingSections.2.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "alternatingSections.*.heading"
+        },
+        {
+          "el": "alternatingSections.2.body",
+          "field": "alternatingSections.2.body",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "alternatingSections.*.body"
+        }
+      ],
+      "shape": "8b4c2adc8b99"
+    },
+    {
+      "section": "featuresCta",
+      "name": "The link to the features",
+      "els": [
+        {
+          "el": "featuresCta.label",
+          "field": "featuresCta.label",
+          "kind": "text",
+          "label": "Button",
+          "shape": "featuresCta.label"
+        }
+      ],
+      "shape": "519c92f66d1c"
+    },
+    {
+      "section": "upgrades",
+      "name": "Recent upgrades",
+      "els": [
+        {
+          "el": "upgradesSection.eyebrow",
+          "field": "upgradesSection.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "upgradesSection.eyebrow"
+        },
+        {
+          "el": "upgradesSection.heading",
+          "field": "upgradesSection.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "upgradesSection.heading"
+        },
+        {
+          "el": "upgradesSection.items.0.title",
+          "field": "upgradesSection.items.0.title",
+          "kind": "text",
+          "label": "Upgrade",
+          "shape": "upgradesSection.*.*.title"
+        },
+        {
+          "el": "upgradesSection.items.0.body",
+          "field": "upgradesSection.items.0.body",
+          "kind": "rich",
+          "label": "What it is",
+          "shape": "upgradesSection.*.*.body"
+        }
+      ],
+      "shape": "a0c7890240b8"
+    },
+    {
+      "section": "bottomPhotos",
+      "name": "The four photographs",
+      "els": [
+        {
+          "el": "photo",
+          "locked": true,
+          "explain": "photo",
+          "shape": "photo"
+        },
+        {
+          "el": "bottomPhotosMore.label",
+          "field": "bottomPhotosMore.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "bottomPhotosMore.label"
+        }
+      ],
+      "shape": "f0b9036c3825"
+    },
+    {
+      "section": "highlights",
+      "name": "Key equipment",
+      "els": [
+        {
+          "el": "highlights.eyebrow",
+          "field": "highlights.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "highlights.eyebrow"
+        },
+        {
+          "el": "highlights.heading",
+          "field": "highlights.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "highlights.heading"
+        },
+        {
+          "el": "highlights.bullets.0",
+          "field": "highlights.bullets.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "highlights.*.*"
+        }
+      ],
+      "shape": "af5f1d1d6b52"
+    },
+    {
+      "section": "bottomCta",
+      "name": "The invitation",
+      "els": [
+        {
+          "el": "bottomCta.headline",
+          "field": "bottomCta.headline",
+          "kind": "text",
+          "label": "Headline",
+          "shape": "bottomCta.headline"
+        },
+        {
+          "el": "bottomCta.body",
+          "field": "bottomCta.body",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "bottomCta.body"
+        },
+        {
+          "el": "bottomCta.primaryText",
+          "field": "bottomCta.primaryText",
+          "kind": "text",
+          "label": "Button",
+          "shape": "bottomCta.primaryText"
+        },
+        {
+          "el": "bottomCta.secondaryText",
+          "field": "bottomCta.secondaryText",
+          "kind": "text",
+          "label": "Button",
+          "shape": "bottomCta.secondaryText"
+        }
+      ],
+      "shape": "e0e41584f3fd"
+    },
+    {
+      "section": "footer",
+      "name": "The bar at the bottom",
+      "els": [
+        {
+          "el": "brand.footerLogo",
+          "field": "brand.footerLogo",
+          "kind": "text",
+          "label": "Name",
+          "shape": "brand.footerLogo"
+        },
+        {
+          "el": "brand.footerTaglineLines.0",
+          "field": "brand.footerTaglineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "brand.footerTaglineLines.*"
+        },
+        {
+          "el": "footer.contactHeading",
+          "field": "footer.contactHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.contactHeading"
+        },
+        {
+          "el": "footer.contactLinks.0.label",
+          "field": "footer.contactLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.contactLinks.*.label"
+        },
+        {
+          "el": "footer.resourcesHeading",
+          "field": "footer.resourcesHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.resourcesHeading"
+        },
+        {
+          "el": "footer.resourceLinks.0.label",
+          "field": "footer.resourceLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.resourceLinks.*.label"
+        },
+        {
+          "el": "footer.disclaimer",
+          "field": "footer.disclaimer",
+          "kind": "rich",
+          "label": "Disclaimer",
+          "shape": "footer.disclaimer"
+        },
+        {
+          "el": "footer.copyrightName",
+          "field": "footer.copyrightName",
+          "kind": "text",
+          "label": "Name",
+          "shape": "footer.copyrightName"
+        },
+        {
+          "el": "footer.copyrightSuffix",
+          "field": "footer.copyrightSuffix",
+          "kind": "text",
+          "label": "Line",
+          "shape": "footer.copyrightSuffix"
+        }
+      ],
+      "shape": "0a67472b7278"
+    }
+  ]
+}

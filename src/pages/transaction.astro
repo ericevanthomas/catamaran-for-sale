@@ -1,11 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
 import { marked } from 'marked';
+import site from '../config/site.config.js';
 
-const allPages = await getCollection('pages');
-const page = allPages.find((p) => p.id === 'transaction');
-const body = page?.body ?? '';
+// ⚠️ THIS PAGE RENDERS ITS MARKDOWN WITH `marked`, NOT WITH ASTRO'S PROCESSOR,
+// and it always has: it splits the document on `## ` headings into a numbered
+// timeline and renders each piece separately, which a content collection cannot
+// do for it. So it reads the body straight out of the content rather than
+// through src/lib/prose.js. Putting it through Astro's processor now would
+// change its HTML, and the point of the migration is that the words moved and
+// the page did not.
+const c = site.pageCopy.transaction;
+const body = site.prose.transaction;
 
 // Parse the markdown into: leading intro paragraphs, numbered steps (## N. Title),
 // and trailing non-numbered sections. Numbered headings become timeline items.
@@ -34,39 +40,38 @@ const trailing = sections.filter((s) => s.num === undefined && s !== leading);
 const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 ---
 
-<BaseLayout
-	title={page?.data.title ?? 'How the Sale Works — Voyage 500'}
-	description={page?.data.description ?? 'How the purchase process works.'}
->
-	<section class="page-header">
+<BaseLayout title={c.title} description={c.description}>
+	<section class="page-header" data-rp-section="transactionHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<h1 class="eyebrow page-header__h1">2010 Voyage 500 — S/V Tropicalia</h1>
-			<p class="page-title">How the Sale Works</p>
+			<h1 class="eyebrow page-header__h1" data-rp-field="pageCopy.transaction.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</h1>
+			<p class="page-title" data-rp-field="pageCopy.transaction.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</p>
 		</div>
 	</section>
 
-	<section class="status-callout" id="sold">
+	<section class="status-callout" id="sold" data-rp-section="transactionStatus" data-rp-section-name="Whether she is still for sale">
 		<div class="wrap">
 			<div class="status-callout__inner">
 				<div class="status-callout__badge">
 					<span class="status-callout__dot" aria-hidden="true"></span>
-					<span class="status-callout__label">Current Status</span>
+					<span class="status-callout__label" data-rp-field="pageCopy.transaction.statusLabel" data-rp-kind="text" data-rp-label="Label">{c.statusLabel}</span>
 				</div>
-				<h2 class="status-callout__title">Sold</h2>
-				<p class="status-callout__body">
-					<em>Tropicalia</em> has sold. The survey, sea trial, and closing process described below are complete. She has a new family aboard.
-				</p>
-				<p class="status-callout__body status-callout__body--soft">
-					If you have questions about the boat or the FSBO sale process, feel free to <a href="/contact/">reach out</a>.
-				</p>
+				<h2 class="status-callout__title" data-rp-field="pageCopy.transaction.statusTitle" data-rp-kind="text" data-rp-label="Status">{c.statusTitle}</h2>
+				<p class="status-callout__body" data-rp-field="pageCopy.transaction.statusBody" data-rp-kind="rich" data-rp-label="Paragraph" set:html={c.statusBody} />
+				<p class="status-callout__body status-callout__body--soft" data-rp-field="pageCopy.transaction.statusSoft" data-rp-kind="rich" data-rp-label="Paragraph" set:html={c.statusSoft} />
 			</div>
 		</div>
 	</section>
 
+	{/* ⚠️ THE WHOLE PAGE IS ONE MARKDOWN DOCUMENT, split on its `## ` headings
+	    into an intro, a numbered timeline and the sections after it. So every
+	    piece of it is addressed as `prose.transaction` — one field, edited in
+	    one drawer — rather than pretending each heading is its own row. Giving
+	    the pieces separate addresses would mean a client renumbering the steps
+	    by hand, and a step whose number and whose position disagreed. */}
 	{leading && (
-		<section class="transaction-intro">
+		<section class="transaction-intro" data-rp-section="transactionIntro" data-rp-section-name="How a private sale works">
 			<div class="wrap">
-				<div class="transaction-intro__inner">
+				<div class="transaction-intro__inner" data-rp-field="prose.transaction" data-rp-kind="rich" data-rp-label="How the sale works">
 					<h2>{leading.heading}</h2>
 					<div class="prose" set:html={mdBlock(leading.body.trim())} />
 				</div>
@@ -74,13 +79,13 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 		</section>
 	)}
 
-	<section class="timeline-section">
+	<section class="timeline-section" data-rp-section="transactionSteps" data-rp-section-name="The steps">
 		<div class="wrap">
-			<ol class="timeline" id="timeline">
+			<ol class="timeline" id="timeline" data-rp-field="prose.transaction" data-rp-kind="rich" data-rp-label="How the sale works">
 				{steps.map((step) => (
 					<li class="timeline__step">
 						<div class="timeline__marker">
-							<span class="timeline__dot">{step.num}</span>
+							<span class="timeline__dot" data-rp-ordinal>{step.num}</span>
 						</div>
 						<div class="timeline__card">
 							<h3 class="timeline__title">{step.heading}</h3>
@@ -93,7 +98,8 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 	</section>
 
 	{trailing.length > 0 && (
-		<section class="transaction-outro">
+		<section class="transaction-outro" data-rp-section="transactionOutro" data-rp-section-name="The rest of the page"
+			data-rp-field="prose.transaction" data-rp-kind="rich" data-rp-label="How the sale works">
 			<div class="wrap transaction-outro__wrap">
 				{trailing.map((t) => {
 					const isFull = t.body.includes('forms-grid');
@@ -108,11 +114,11 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 		</section>
 	)}
 
-	<section class="cta">
+	<section class="cta" data-rp-section="transactionCta" data-rp-section-name="The invitation">
 		<div class="wrap cta__inner">
-			<h2>Ready to get started?</h2>
-			<p>Reach out anytime. We are happy to answer questions, share additional photos, or set up a video walkthrough.</p>
-			<a href="/contact/" class="btn btn--primary">Contact Us</a>
+			<h2 data-rp-field="pageCopy.transaction.ctaHeading" data-rp-kind="text" data-rp-label="Heading">{c.ctaHeading}</h2>
+			<p data-rp-field="pageCopy.transaction.ctaBody" data-rp-kind="rich" data-rp-label="Paragraph">{c.ctaBody}</p>
+			<a href={c.ctaHref} class="btn btn--primary" data-rp-field="pageCopy.transaction.ctaLabel" data-rp-kind="text" data-rp-label="Button">{c.ctaLabel}</a>
 		</div>
 	</section>
 </BaseLayout>
@@ -212,7 +218,15 @@ const mdBlock = (s: string) => marked.parse(s, { async: false }) as string;
 		color: var(--color-text-muted);
 		font-size: var(--text-sm);
 	}
-	.status-callout__body a {
+	/* ⚠️ :global(a), because the link in this paragraph comes from CONTENT.
+	   `statusSoft` is a rich field rendered with set:html, so the <a> inside it
+	   is a string Astro never compiled and therefore never stamped with this
+	   file's `data-astro-cid-…` attribute. Scoped as `.status-callout__body a`
+	   the rule compiles to `a[data-astro-cid-…]` and stopped matching the
+	   moment the words moved into the database — the link rendered unstyled,
+	   and nothing threw. The before/after HTML diff is what caught it.
+	   Any rule that has to style markup a content field provides needs this. */
+	.status-callout__body :global(a) {
 		color: var(--color-accent);
 		text-decoration: underline;
 		text-underline-offset: 3px;

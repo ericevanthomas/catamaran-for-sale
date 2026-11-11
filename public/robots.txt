@@ -1,60 +1,16 @@
-# Default: allow all crawlers
+# ⚠️⚠️ STAGING NOINDEX MANDATE — one of THREE signals, re-asserted every build.
+#
+# This file is the committed state, and the committed state is the SAFE one: a
+# build that forgets to say which target it is for comes out noindex. The other
+# two signals are `X-Robots-Tag` in public/_headers and a `noindex, nofollow`
+# meta tag from src/components/BaseHead.astro.
+#
+# scripts/target-noindex.mjs asserts all three on a staging build, and on a
+# PRODUCTION build replaces this file in dist/ with public/robots.prod.txt — the
+# real one, with the AI-crawler allow list — and asserts afterwards that it did.
+# `npm run deploy:prod` then refuses to upload a dist/ that still carries any of
+# the three. Nothing here is edited by a deploy; the repo stays noindex.
+#
+# Eric's standing rule: no staging site is ever indexable (staging-noindex-mandate).
 User-agent: *
-Allow: /
-
-# Explicit allow for major AI crawlers (retrieval + ranking + training)
-User-agent: GPTBot
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: Claude-Web
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Perplexity-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: Meta-ExternalAgent
-Allow: /
-
-User-agent: cohere-ai
-Allow: /
-
-User-agent: DuckAssistBot
-Allow: /
-
-User-agent: YouBot
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-Sitemap: https://www.catamaran-for-sale.com/sitemap-index.xml
+Disallow: /

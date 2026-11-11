@@ -1,71 +1,127 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
+import site from '../config/site.config.js';
 
-const allSpecs = await getCollection('specs');
+const c = site.pageCopy.specs;
+const groupOrder = c.groupOrder;
 
-const groupOrder = ['Dimensions', 'Engines & Propulsion', 'Tankage', 'Accommodations', 'Performance', 'Construction'];
-
-const specsByGroup = allSpecs
-	.sort((a, b) => a.data.order - b.data.order)
+// ⚠️ EACH ROW CARRIES ITS OWN POSITION, for the same reason the gallery does:
+// the table is grouped and sorted, so the loop index is not the row's position
+// in the content, and a specification is addressed by position. Editing by the
+// loop index would put a corrected engine-hour figure on a different row.
+const specsByGroup = site.specs
+	.map((s, n) => ({ ...s, n }))
+	.sort((a, b) => a.order - b.order)
 	.reduce((groups, spec) => {
-		const group = spec.data.group;
-		if (!groups[group]) groups[group] = [];
-		groups[group].push(spec.data);
+		if (!groups[spec.group]) groups[spec.group] = [];
+		groups[spec.group].push(spec);
 		return groups;
-	}, {} as Record<string, Array<{ label: string; value: string }>>);
+	}, {} as Record<string, Array<{ label: string; value: string; n: number }>>);
 
 const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 	const ai = groupOrder.indexOf(a);
 	const bi = groupOrder.indexOf(b);
 	return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
 });
+
+// ── the equipment inventory ────────────────────────────────────────────────
+//
+// 214 lines of part numbers, engine hours, tank capacities and service dates,
+// in sixteen sections. They were written straight into this template, which
+// means nobody but us could correct one — on the page where being wrong matters
+// most, because a buyer reads a specification as a promise.
+//
+// They are `block` rows now: one per section, each with its own children. A
+// line's stored value is the exact inner HTML it already had, `<span>` badges
+// and `&amp;` entities included, so set:html below reproduces the list byte for
+// byte rather than approximately.
+//
+// An `<h3>` sits in the same flow as the lines (one section has "Steering
+// System" halfway down), so a section's items are a single ordered list of
+// `{ t: 'li' | 'h3' }` and consecutive lines are regrouped into a `<ul>` here.
+// Storing two parallel lists instead would make "move this line above that
+// sub-heading" impossible to express.
+// ⚠️ THE "New" BADGE IS A FIELD, NOT MARKUP IN THE LINE, and it is a field
+// because of how Astro scopes CSS. The badge started life as
+// `<span class="s-equip__badge s-equip__badge--new">New</span>` typed inside 34
+// of these list items. Stored as inner HTML and rendered with set:html it comes
+// out WITHOUT Astro's `data-astro-cid-…` attribute — Astro can only add that to
+// elements it compiles, not to a string — and the rule in this file's <style>
+// block is `.s-equip__badge[data-astro-cid-…]`, so all 34 badges rendered
+// unstyled. The before/after HTML diff is what caught it; nothing on the page
+// would have thrown.
+//
+// Lifting it out fixes the painting and is also the better model: "this item is
+// new" is a fact about the item, not a span, and it means a line's stored value
+// is plain words — so src/config/editable.js can give it a `text` rule and a
+// client cannot put markup on this page by typing it.
+type EquipItem = { t: 'li' | 'h3'; v: string; badge?: string };
+// ⚠️ EACH ITEM KEEPS ITS INDEX IN THE SECTION'S LIST. The grouping below turns
+// one flat list into alternating sub-headings and <ul> runs, so a line's
+// position inside its run is not its position in the content — and that is the
+// position the editor addresses it by. Carrying `i` through is what makes
+// editing the fourth line of the second run write the fourth line of the second
+// run, rather than the second line of the section.
+const runs = (items: EquipItem[]) => {
+	const out: Array<{ t: 'h3'; v: string; i: number } | { t: 'ul'; lines: Array<EquipItem & { i: number }> }> = [];
+	items.forEach((it, i) => {
+		if (it.t === 'h3') { out.push({ t: 'h3', v: it.v, i }); return; }
+		const last = out[out.length - 1];
+		if (last && last.t === 'ul') last.lines.push({ ...it, i });
+		else out.push({ t: 'ul', lines: [{ ...it, i }] });
+	});
+	return out;
+};
+const equipment = site.equipment.map((s) => ({ ...s, runs: runs(s.items as EquipItem[]) }));
 ---
 
-<BaseLayout title="Voyage 500 Specs & Equipment — 2010 Catamaran S/V Tropicalia" description="Full specs and equipment for S/V Tropicalia, a 2010 Voyage 500 catamaran — Yanmar engines, new SD60 saildrives, 1,280Ah lithium bank, Axiom+. Sold 2026; site preserved for reference.">
+<BaseLayout title={c.title} description={c.description}>
 
-	<section class="page-header">
+	<section class="page-header" data-rp-section="specsHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
-			<h1>Specifications &amp; Equipment</h1>
-			<p class="page-header__sub">Dimensions, tankage, propulsion, and the major equipment aboard.</p>
-			<a href="/specs-sheet.pdf" class="btn btn--outline specs-download" target="_blank" rel="noopener">
+			<p class="eyebrow" data-rp-field="pageCopy.specs.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</p>
+			<h1 data-rp-field="pageCopy.specs.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</h1>
+			<p class="page-header__sub" data-rp-field="pageCopy.specs.sub" data-rp-kind="text" data-rp-label="Opening line">{c.sub}</p>
+			{/* The link points at a PDF built from these same specifications, so
+			    its destination is not a field. The words on the button are. */}
+			<a href={c.downloadHref} class="btn btn--outline specs-download" target="_blank" rel="noopener"
+				data-rp-field="pageCopy.specs.downloadLabel" data-rp-kind="text" data-rp-label="Button">
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-				Download Specs
+				{c.downloadLabel}
 			</a>
 		</div>
 	</section>
 
 	<!-- Quick-jump nav -->
-	<nav class="s-jump">
+	{/* The jump bar. Each destination is an anchor in this page's own markup, so
+	    the LABEL is a field and the `href` is not: a typo in one scrolls
+	    nowhere and nothing says why. */}
+	<nav class="s-jump" data-rp-section="specsJump" data-rp-section-name="The jump bar">
 		<div class="s-jump__inner">
-			<a href="#specs">Specs</a>
-			<a href="#layout">Layout</a>
-			<a href="#interior">Interior</a>
-			<a href="#master">Master Cabin</a>
-			<a href="#guest">Guest Cabins</a>
-			<a href="#galley">Galley</a>
-			<a href="#deck">Deck</a>
-			<a href="#electronics">Electronics</a>
-			<a href="#ac-electrical">AC Electrical</a>
-			<a href="#dc-electrical">DC Electrical</a>
-			<a href="#plumbing">Plumbing</a>
-			<a href="#safety">Safety</a>
+			{c.jump.map((j: { href: string; label: string }, i: number) => (
+				<a href={j.href} data-rp-field={`pageCopy.specs.jump.${i}.label`} data-rp-kind="text" data-rp-label="Link">{j.label}</a>
+			))}
 		</div>
 	</nav>
 
 	<!-- SPECS TABLES -->
-	<section class="s-specs" id="specs">
+	{/* ⚠️ THE FACTS A BUYER RELIES ON. Every one of them is editable, because
+	    the owner is the only person who knows when one changes, and the limits
+	    in src/config/editable.js are generous because a value here is often a
+	    sentence. The GROUP heading counts itself: it is the name of a group the
+	    rows are filed under, so renaming it here would empty the group. */}
+	<section class="s-specs" id="specs" data-rp-section="specsTable" data-rp-section-name="The specifications"
+		data-rp-list="specs" data-rp-label="The table">
 		<div class="wrap s-specs__inner">
 			{sortedGroups.map(([group, specs]) => (
 				<div class="s-specs__group">
-					<h2 class="s-specs__group-title">{group}</h2>
+					<h2 class="s-specs__group-title" data-rp-auto data-rp-label="The group these rows are filed under">{group}</h2>
 					<table class="s-specs__table">
 						<tbody>
 							{specs.map((spec) => (
-								<tr>
-									<td class="s-specs__label">{spec.label}</td>
-									<td class="s-specs__value">{spec.value}</td>
+								<tr data-rp-item={`specs.${spec.n}`}>
+									<td class="s-specs__label" data-rp-field={`specs.${spec.n}.label`} data-rp-kind="text" data-rp-label="Label">{spec.label}</td>
+									<td class="s-specs__value" data-rp-field={`specs.${spec.n}.value`} data-rp-kind="text" data-rp-label="Value">{spec.value}</td>
 								</tr>
 							))}
 						</tbody>
@@ -76,358 +132,52 @@ const sortedGroups = Object.entries(specsByGroup).sort(([a], [b]) => {
 	</section>
 
 	<!-- LAYOUT DIAGRAM -->
-	<section class="s-layout" id="layout">
+	<section class="s-layout" id="layout" data-rp-section="specsLayout" data-rp-section-name="The deck plan">
 		<div class="wrap">
-			<h2 class="s-layout__title">3-Cabin Owner's Version Layout</h2>
+			<h2 class="s-layout__title" data-rp-field="pageCopy.specs.layout.heading" data-rp-kind="text" data-rp-label="Heading">{c.layout.heading}</h2>
 			<figure class="s-layout__figure">
-				<img src="/images/layout-diagram.jpg" alt="Top-down deck plan of the Voyage 500 S/V Tropicalia — 3-cabin owner's version, with the entire starboard hull as the master suite and two guest cabins in the port hull." loading="lazy" />
-				<figcaption>The entire starboard hull is the master suite — king berth and walk-in closet forward, office amidships, head with separate shower aft. The port hull has two ensuite guest cabins with queen berths.</figcaption>
+				{/* A drawn deck plan rather than a photograph: replacing it means
+				    drawing another one, so the file is fixed and its description
+				    and caption are fields. */}
+				<img src={c.layout.image} alt={c.layout.alt} loading="lazy"
+					data-rp-fixed="diagram" data-rp-label="The deck plan drawing" />
+				<figcaption data-rp-field="pageCopy.specs.layout.caption" data-rp-kind="rich" data-rp-label="Caption">{c.layout.caption}</figcaption>
 			</figure>
 		</div>
 	</section>
 
 	<!-- EQUIPMENT INVENTORY -->
-	<section class="s-equip">
+	{/* ⚠️ 214 LINES OF EQUIPMENT, ALL EDITABLE. Each line is addressed by the
+	    position of its section and its own position in that section, which is
+	    what `n` and the inner index carry; a sub-heading inside a section is
+	    part of the same list, so it is addressed the same way. Adding or
+	    removing a SECTION is a build, because a section's id is what the jump
+	    bar above points at. */}
+	<section class="s-equip" data-rp-section="specsEquipment" data-rp-section-name="The equipment inventory">
 		<div class="wrap s-equip__inner">
-
-			<!-- INTERIOR / SALON -->
-			<div class="s-equip__section" id="interior">
-				<h2>Interior / Salon</h2>
-				<p class="s-equip__note">3-Cabin Owner's Version. 6'3" minimum headroom throughout. Custom upholstery and interior finishings.</p>
-				<ul>
-					<li>Mabru air conditioner 12,000 BTU plumbed to owner's cabin and salon — high-efficiency 12V DC, soft start (May 2022)</li>
-					<li>Mabru air conditioner 17,000 BTU 120V plumbed to port hull and salon (June 2024) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Fire TV with 12V boost antenna</li>
-					<li>Infinity PRV 315.2 Bluetooth marine audio system</li>
-					<li>Skar 500W RMS amplifier</li>
-					<li>2 x BOSS 6x9 salon speakers</li>
-					<li>2 x Skar speakers facing stern (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>2 x JBL wake-tower speakers on mast spreader (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>2 x Skar 6" cockpit speakers in traveler's arch (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Re-upholstered couches and bar stools throughout</li>
-					<li>Blue Sunbrella upholstered settee with seating for 10 (2022)</li>
-					<li>4 x movable blue Sunbrella upholstered bar stools (2022)</li>
-					<li>3 x movable blue Sunbrella upholstered lower stools (2022)</li>
-					<li>Coffee table with Corian worktop</li>
-					<li>Bar top with stool seating for 4</li>
-					<li>Corian work surfaces</li>
-					<li>Storage underneath settee seating</li>
-					<li>4 x storage cabinets with sliding smoked-Perspex door</li>
-					<li>Nav / chart table with storage underneath</li>
-					<li>AC breaker and indicator panels at nav station</li>
-					<li>Steering system, 12V, and AC component access panels below nav station</li>
-					<li>Escape hatch in main center-forward salon</li>
-					<li>Overhead and bulkhead-mounted LED spot lights (white or red)</li>
-					<li>New salon lighting and fixtures</li>
-				</ul>
-			</div>
-
-			<!-- MASTER CABIN -->
-			<div class="s-equip__section" id="master">
-				<h2>Master Cabin (Starboard Hull)</h2>
-				<ul>
-					<li>King berth with new king mattress (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Hanging and storage cupboards with shelves</li>
-					<li>Bedside bookshelf and storage locker</li>
-					<li>Full-length dressing mirror</li>
-					<li>LED reading and overhead lights</li>
-					<li>2 x circulation fans</li>
-					<li>2 x overhead opening hatches</li>
-					<li>Stainless steel clothes and towel rail</li>
-					<li>Remote generator start / stop</li>
-					<li>Large head with separate shower stall</li>
-					<li>Dometic Masterflush electric head (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-				</ul>
-			</div>
-
-			<!-- GUEST CABINS -->
-			<div class="s-equip__section" id="guest">
-				<h2>Guest Cabins (Port Hull)</h2>
-				<ul>
-					<li>2 x queen-size custom beds with split mattresses</li>
-					<li>2 x ensuite heads with Jabsco Quiet Flush electric toilets</li>
-					<li>2 x pressurized hot and cold fresh-water showers and sinks</li>
-					<li>2 x integrated hand basins with extendable mixer</li>
-					<li>2 x vanity cabinets with mirror and stainless steel towel rails</li>
-					<li>2 x toiletries storage cupboards</li>
-					<li>2 x dressing mirrors</li>
-					<li>Hanging and storage cupboards with shelves</li>
-					<li>Storage and book shelves</li>
-					<li>LED overhead lights</li>
-					<li>Red LED night lights in heads</li>
-					<li>LED bulkhead-mounted reading lights</li>
-					<li>12V ventilation fans</li>
-					<li>Large overhead opening hatches with Nicro solar ventilation fans</li>
-				</ul>
-			</div>
-
-			<!-- GALLEY -->
-			<div class="s-equip__section" id="galley">
-				<h2>Galley</h2>
-				<ul>
-					<li>12V Adler Barbour freezer — XL with two access doors, air-cooled, digital control</li>
-					<li>12V Adler Barbour refrigerator with digital controls</li>
-					<li>Alpes Inox propane stove — 4-burner stainless steel</li>
-					<li>Alpes Inox propane oven with fan-driven air circulation and electric rotisserie</li>
-					<li>Sharp convection microwave</li>
-					<li>Corian work surfaces with stainless steel rails and fiddles</li>
-					<li>Pressurized hot and cold fresh water</li>
-					<li>Salt water spigot</li>
-					<li>Hand-operated emergency drinking-water pump</li>
-					<li>Large recessed draining / drip sink</li>
-					<li>Stainless steel waste chute with countertop lid</li>
-					<li>4 x cutlery drawers</li>
-					<li>Crockery storage cupboard</li>
-					<li>Pots and pans storage cupboard</li>
-					<li>Grocery stowage cupboards</li>
-					<li>All stainless hardware removed and refurbished</li>
-				</ul>
-			</div>
-
-			<!-- DECK & EQUIPMENT -->
-			<div class="s-equip__section" id="deck">
-				<h2>Deck &amp; Equipment</h2>
-				<ul>
-					<li>Lofrans 3x 12V 1700W windlass (2014)</li>
-					<li>2 x Andersen 52ST winch — 12V electric</li>
-					<li>2 x Andersen 46ST winch — 12V electric</li>
-					<li>11 x 11" aluminum mooring cleats and bollard</li>
-					<li>Teak walkway between trampolines with integral anchor-chain guide system</li>
-					<li>Teak aft platform with integral dinghy chocks</li>
-					<li>Harken mast hardware — Battcar track, cars, and blocks</li>
-					<li>Spinlock clutches</li>
-					<li>Trampolines — offshore 3/8" polyester open net by Sunrise Yacht Products</li>
-					<li>Boom extension for dinghy-lift halyard — acts as secondary main halyard</li>
-					<li>Zodiac 12.5' dinghy — new Hypalon tubes, new 25hp Suzuki outboard with electric start and tilt, &lt;100 hrs</li>
-					<li>New weather shield between saloon top and bimini (2022)</li>
-					<li>All new outdoor cockpit cushions (2022)</li>
-					<li>Cockpit floor holds sanded, repainted, grate flooring added, drainage plumbing replaced</li>
-					<li>Aft platform extended by first owner — walk past dinghy and large swim platform</li>
-					<li>Carbon-fiber vinyl wrap around front windows</li>
-					<li>Carbon-fiber vinyl wrap on bow and stern aluminum crossbeams</li>
-					<li>Underwater light on starboard sugar scoop</li>
-					<li>New steaming light on mast</li>
-					<li>New deck light on mast</li>
-					<li>New VHF antenna on mast</li>
-				</ul>
-
-				<h3>Steering System</h3>
-				<ul>
-					<li>Lewmar stainless steel wheel helm with wheel-disconnect feature</li>
-					<li>2 x dual-chain and Lewmar cable-in-conduit system</li>
-					<li>2 x Lewmar steering quadrants</li>
-				</ul>
-			</div>
-
-			<!-- ELECTRONICS -->
-			<div class="s-equip__section" id="electronics">
-				<h2>Electronics &amp; Navigation</h2>
-				<ul>
-					<li>Raymarine Axiom+ 12" MFD chartplotter (2025) — North America and Caribbean cartography, integrated with radar, AIS, and autopilot <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Garmin chartplotter with Panoptix forward-looking sonar and side sonar (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Raymarine RD418HD radome (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Raymarine ST60 Tridata and wind indicator</li>
-					<li>Raymarine Evolution EV-200 sail autopilot (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Orca Display and Orca Core navigation system (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Raymarine RAY55E VHF radio with remote speaker in salon</li>
-					<li>Suunto bulkhead-mount magnetic compass</li>
-					<li>2 x Raymarine GPS with external antenna</li>
-					<li>Raymarine GPS unit</li>
-					<li>Raymarine AIS650 Class B transponder with dedicated antenna</li>
-					<li>Handheld Icom VHF radio</li>
-					<li>Masthead Windex</li>
-					<li>Quick QNC chain counter and remote control at the helm (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Starlink satellite internet — pole-mounted, motor-actuated 110V unit, plus 12V Starlink Mini with voltage booster as backup</li>
-				</ul>
-			</div>
-
-			<!-- AC ELECTRICAL -->
-			<div class="s-equip__section" id="ac-electrical">
-				<h2>AC Electrical (220VAC/120VAC)</h2>
-				<ul>
-					<li>Original as-built schematic, wiring, and cabling diagrams</li>
-					<li>Cummins Onan 4kW marine genset, 220V / 50 Hz, 4,830 hrs</li>
-					<li>Victron 3000W 230V inverter / charger (2024) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Victron MultiPlus 12/3000 120/50 inverter (2022) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Victron Cerbo GX Touch 50 power management display and control (2022) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>30A AC shore power receptacle and cable</li>
-					<li>AC outlets throughout cabins, galley, and salon</li>
-					<li>Offshore Marine G170 galvanic isolator</li>
-					<li>AC distribution panel, switches, and current breakers</li>
-				</ul>
-			</div>
-
-			<!-- DC ELECTRICAL -->
-			<div class="s-equip__section" id="dc-electrical">
-				<h2>DC Electrical &amp; Battery Bank</h2>
-				<ul>
-					<li>1,280Ah 12V LiFePO4 house bank — 4 x LiTime 320Ah Mini Bluetooth batteries in parallel, 200A BMS per battery, Bluetooth monitoring, professionally installed by marine electricians in St. Augustine with extra safety cutoffs (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Victron shunt for battery state-of-charge monitoring</li>
-					<li>2 x 400W (800W total) solar panels on bimini (2022)</li>
-					<li>Victron SmartSolar MPPT 150/85 VE.Can charge controller</li>
-					<li>2 x engine-start batteries, 12V 65Ah</li>
-					<li>House bank and engine-start batteries can be linked via crossover switch</li>
-					<li>2 x 120A AMPLE alternators with smart regulators (rebuilt 2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>3 x battery isolator switches</li>
-					<li>500A over-volt battery protection relay</li>
-					<li>D400 12V wind generator</li>
-					<li>Photocell auto-anchor-light control</li>
-					<li>12V distribution panel, circuit breakers, and fuses</li>
-					<li>12V LED masthead anchor and tri-color navigation lights</li>
-					<li>12V LED lights in cabins, salon, and cockpit (red and white)</li>
-				</ul>
-			</div>
-
-			<!-- PLUMBING -->
-			<div class="s-equip__section" id="plumbing">
-				<h2>Plumbing &amp; Water Systems</h2>
-				<ul>
-					<li>Rainman AC-140 high-output watermaker — up to 37 GPH, two 40" Dow Filmtec membranes, plumbed into the boat (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>211 gal fresh water tankage</li>
-					<li>Pressurized hot and cold fresh water throughout</li>
-					<li>Dometic Masterflush electric head in owner's cabin (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>2 x Jabsco Quiet Flush electric toilets in guest heads</li>
-					<li>Dometic electric holding-tank discharge pump (2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Salt water spigot at galley</li>
-					<li>Hand-operated emergency drinking-water pump</li>
-				</ul>
-			</div>
-
-			<!-- SAFETY -->
-			<div class="s-equip__section" id="safety">
-				<h2>Safety Equipment</h2>
-				<ul>
-					<li>New 6-person Offshore Commander life raft — valise model <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>New ACR GlobalFix V5 AIS RLS EPIRB survival kit <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Stocked ditch bag <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>4 new easyOne auto-deploy AIS offshore personal beacons on life jackets <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>In-date flares <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Fireboy Xintex automated fire extinguishing system with LED indicator panel</li>
-					<li>Additional fire extinguishers throughout</li>
-					<li>Carbon monoxide detectors</li>
-					<li>High-water alarms</li>
-				</ul>
-			</div>
-
-			<!-- ENGINE & MECHANICAL -->
-			<div class="s-equip__section" id="engine-mechanical">
-				<h2>Engine &amp; Mechanical</h2>
-				<p class="s-equip__note">Both Yanmar engines have been removed and fully serviced by the first owner. All water hoses and belts replaced, high-output alternators rebuilt, new stainless motor mounts, heat exchangers cleaned and serviced, both engine rooms fully updated and painted.</p>
-				<ul>
-					<li>2 x Yanmar 3JH5E diesel engines, 39 hp each — port 3,323 hrs, starboard 3,213 hrs</li>
-					<li>Yanmar SD60 saildrives (new 2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>2 x Brunton 460mm (18") Autoprop self-pitching propellers — bronze, folding, professionally serviced 2025 <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>2 x 80 amp Yanmar alternators for engine-start batteries</li>
-					<li>2 x 120 amp AMPLE secondary high-output alternators (rebuilt July 2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>2 x WS500 smart engine regulators (Oct 2021)</li>
-					<li>3 x Racor 500FG diesel fuel filter systems</li>
-					<li>Fuel transfer pump</li>
-					<li>Thermal / sound insulation in each engine compartment</li>
-					<li>Thermostat-controlled engine-room ventilation fans</li>
-				</ul>
-			</div>
-
-			<!-- SAILS & RIGGING -->
-			<div class="s-equip__section" id="sails-rigging">
-				<h2>Sails &amp; Rigging</h2>
-				<ul>
-					<li>Mainsail — fully battened, large roach, 2 reef points, 11.9oz high-modulus cross-cut Dacron with 2-ply leech</li>
-					<li>Genoa — 130% furling, foam luff and UV cover, 8.3oz high-modulus cross-cut Dacron</li>
-					<li>Jib / Storm Jib — furling, self-tacking, UV cover, 8.3oz high-modulus cross-cut Dacron</li>
-					<li>Harken Batt Car System</li>
-					<li>Harken 5:1 control on full-width curved track</li>
-					<li>Profurl furlers</li>
-					<li>Anodized aluminum mast, boom, crossbeam, and double compression post</li>
-					<li>Triple-spreader mast, intermediate and cap shrouds, forestay and inner forestay</li>
-					<li>Hella mast-mounted LED anchor &amp; tri-color light (new 2021)</li>
-					<li>LED steaming light and deck flood light</li>
-					<li>2 x spreader lights (new 2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Shakespeare masthead VHF antenna (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Bow sprit attachment point</li>
-					<li>Stainless steel wire rigging with swaged fittings</li>
-					<li>Double-purchase main halyard + dinghy-lift halyard (secondary main halyard)</li>
-					<li>2 x flag halyards, spinnaker halyard, Code Zero / screecher halyard</li>
-					<li>2 x reefing lines and luff pendants</li>
-					<li>Spinlock clutches</li>
-				</ul>
-			</div>
-
-			<!-- GROUND TACKLE -->
-			<div class="s-equip__section" id="ground-tackle">
-				<h2>Ground Tackle</h2>
-				<ul>
-					<li>Lofrans X3 windlass 12V 1700W with remote control (fully serviced 2021)</li>
-					<li>Quick QNC chain counter / control for anchor (new 2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Rocna 40kg (88 lb) main anchor with 200 ft of 10mm G4 hot-dipped galvanized chain (Nov 2019, re-galvanized Oct 2021)</li>
-					<li>Delta 40kg (88 lb) spare anchor with 165 ft of 10mm G4 galvanized chain spliced to 150 ft of plaited 25mm (1") nylon rode</li>
-					<li>Fortress FX37 aluminum spare anchor with 10mm G4 chain leader on 150 ft of 3-strand 16mm (5/8") nylon rope</li>
-					<li>2 x 3-strand nylon anchor bridles with stainless thimbles</li>
-					<li>2 x stainless steel chain hooks with spring retainer / lock</li>
-					<li>Floating anchor buoy with weighted line</li>
-					<li>Anchor tipper / guide with polyethylene-lined extended flanges on crossbeam</li>
-					<li>2 x 250mm (10") cylindrical fenders</li>
-					<li>6 x 200mm (8") cylindrical fenders</li>
-					<li>2 x 400mm (16") ball fenders</li>
-					<li>2 x dinghy fenders</li>
-					<li>8 x plaited 25mm (1") mooring lines (black)</li>
-				</ul>
-			</div>
-
-			<!-- TENDER -->
-			<div class="s-equip__section" id="tender">
-				<h2>Tender</h2>
-				<ul>
-					<li>Zodiac 12.5' YL380DL center console dinghy — new Hypalon tubes</li>
-					<li>Suzuki 25hp 4-stroke outboard with electric start and power trim (&lt;100 hrs)</li>
-					<li>Tachometer / speedometer</li>
-					<li>Running lights</li>
-					<li>Bilge pump</li>
-					<li>Onboard dinghy-gas refill system from the starboard sugar scoop (plumbed to 25 gal saddle tank)</li>
-				</ul>
-			</div>
-
-			<!-- TANKAGE -->
-			<div class="s-equip__section" id="tankage">
-				<h2>Tankage</h2>
-				<ul>
-					<li>3 x diesel tanks — 212 gal total</li>
-					<li>25 gal gasoline (petrol) saddle tank plumbed to the transom for dinghy refueling</li>
-					<li>3 x water tanks — 211 gal total</li>
-					<li>~25 gal in-keel holding tank with deck pump-out and overboard discharge</li>
-					<li>2 x 24 L (6.4 gal) portable gas fuel tanks</li>
-					<li>2 x 25 L (6.5 gal) diesel jerry cans</li>
-					<li>6 x 30 L (8 gal) diesel jerry cans</li>
-					<li>2 x 20 L (5.5 gal) water jerry cans</li>
-				</ul>
-			</div>
-
-			<!-- ADDITIONAL EQUIPMENT & MAINTENANCE -->
-			<div class="s-equip__section" id="additional">
-				<h2>Additional Equipment &amp; Maintenance</h2>
-				<ul>
-					<li>Equipment and instruction manuals</li>
-					<li>Spares, organized and labeled</li>
-					<li>Replaced all cockpit locker latches (Oct 2021)</li>
-					<li>New hatch covers (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Replaced shade film on sliding panel above helm on hardtop (Oct 2021)</li>
-					<li>Ceramic film added to all salon windows and sliding door (2022)</li>
-					<li>Mar Pro Premium antifouling bottom paint (Jan 2023, touch-ups Feb 2025) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Serviced escape hatch hinges, seals, and latches</li>
-					<li>Bimini top fully sanded and re-gelcoated (2023) <span class="s-equip__badge s-equip__badge--new">New</span></li>
-					<li>Courtesy lights — engine room, lazarette, red hull steps, blue sugar-scoop steps</li>
-					<li>Multi-color LED spreader lights</li>
-					<li>12V outlets in office, nav area, cockpit, and windlass locker</li>
-					<li>USB DC outlets in office, nav area, and cockpit</li>
-				</ul>
-			</div>
-
+			{equipment.map((sec, n) => (
+				<div class="s-equip__section" id={sec.id} data-rp-item={`equipment.${n}`}>
+					<h2 data-rp-field={`equipment.${n}.heading`} data-rp-kind="text" data-rp-label="Heading">{sec.heading}</h2>
+					{sec.note && <p class="s-equip__note" data-rp-field={`equipment.${n}.note`} data-rp-kind="rich" data-rp-label="Note">{sec.note}</p>}
+					{sec.runs.map((run) => (
+						run.t === 'h3'
+							? <h3 data-rp-field={`equipment.${n}.items.${run.i}.v`} data-rp-kind="text" data-rp-label="Sub-heading">{run.v}</h3>
+							: <ul data-rp-list={`equipment.${n}.items`} data-rp-label="The list">{run.lines.map((line) => (
+									<li data-rp-item={`equipment.${n}.items.${line.i}`}>
+										<span data-rp-field={`equipment.${n}.items.${line.i}.v`} data-rp-kind="text" data-rp-label="Line">{line.v}</span>
+										{line.badge && <Fragment>{' '}<span class="s-equip__badge s-equip__badge--new" data-rp-field={`equipment.${n}.items.${line.i}.badge`} data-rp-kind="text" data-rp-label="Badge">{line.badge}</span></Fragment>}
+									</li>
+								))}</ul>
+					))}
+				</div>
+			))}
 		</div>
 	</section>
 
-	<section class="s-cta-link">
+	<section class="s-cta-link" data-rp-section="specsCta" data-rp-section-name="The link to the features">
 		<div class="wrap s-cta-link__inner">
-			<p>For photos, videos, and detailed write-ups on each system, see the Features page.</p>
-			<a href="/features/" class="btn btn--primary">View Features &amp; Systems</a>
+			<p data-rp-field="pageCopy.specs.ctaBody" data-rp-kind="rich" data-rp-label="Paragraph">{c.ctaBody}</p>
+			<a href={c.ctaHref} class="btn btn--primary" data-rp-field="pageCopy.specs.ctaLabel" data-rp-kind="text" data-rp-label="Button">{c.ctaLabel}</a>
 		</div>
 	</section>
 

@@ -1,23 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { getCollection, render } from 'astro:content';
-import { CONTACT_PHONE } from '../consts';
+import { getEntry, render } from 'astro:content';
+import site from '../config/site.config.js';
 
-const allPages = await getCollection('pages');
-const page = allPages.find((p) => p.id === 'contact');
+const page = await getEntry('prose', 'contact');
 const { Content } = page ? await render(page) : { Content: null };
+const c = site.pageCopy.contact;
+const phone = site.contact.phone;
 ---
 
-<BaseLayout
-	title={page?.data.title ?? 'Contact — Voyage 500'}
-	description={page?.data.description ?? 'Get in touch about the Voyage 500.'}
->
-	<section class="page-header">
+<BaseLayout title={c.title} description={c.description}>
+	<section class="page-header" data-rp-section="contactHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<h1 class="eyebrow page-header__h1">S/V Tropicalia — 2010 Voyage 500</h1>
-			<p class="page-title">Contact the Owner</p>
-			<p class="page-header__sub">We would love to hear from you.</p>
+			<h1 class="eyebrow page-header__h1" data-rp-field="pageCopy.contact.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</h1>
+			<p class="page-title" data-rp-field="pageCopy.contact.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</p>
+			<p class="page-header__sub" data-rp-field="pageCopy.contact.sub" data-rp-kind="text" data-rp-label="Opening line">{c.sub}</p>
 		</div>
 	</section>
 
@@ -25,15 +23,15 @@ const { Content } = page ? await render(page) : { Content: null };
 		<div class="wrap">
 			<div class="contact-layout">
 				<div class="contact-form-col">
-					<div class="prose">
+					<div class="prose" data-rp-field="prose.contact" data-rp-kind="rich" data-rp-label="Opening line">
 						{Content && <Content />}
 					</div>
 					<ContactForm />
 				</div>
-				<div class="contact-info-col">
-					<h3>Owner Direct</h3>
-					<p>No broker. No commission. You'll reach us directly through this form — usually within a day.</p>
-					{CONTACT_PHONE && <p><a href={`tel:${CONTACT_PHONE}`}>{CONTACT_PHONE}</a></p>}
+				<div class="contact-info-col" data-rp-section="contactAside" data-rp-section-name="Beside the form">
+					<h3 data-rp-field="pageCopy.contact.sideHeading" data-rp-kind="text" data-rp-label="Heading">{c.sideHeading}</h3>
+					<p data-rp-field="pageCopy.contact.sideBody" data-rp-kind="rich" data-rp-label="Paragraph">{c.sideBody}</p>
+					{phone && <p><a href={`tel:${phone}`} data-rp-field="contact.phone" data-rp-kind="text" data-rp-label="Phone">{phone}</a></p>}
 				</div>
 			</div>
 		</div>

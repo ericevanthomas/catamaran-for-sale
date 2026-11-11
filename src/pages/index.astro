@@ -2,16 +2,39 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
-import { getCollection } from 'astro:content';
 import { marked } from 'marked';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import site from '../config/site.config.js';
 import heroBow from '../assets/home/hero-bow-edited.webp';
 import kidsCockpit from '../assets/home/kids-cockpit.webp';
 import tropicaliaAnchor from '../assets/home/tropicalia-anchor.webp';
 import galleyWide from '../assets/home/galley-wide.webp';
 import masterCabinQueen from '../assets/home/master-cabin-queen.webp';
 import interior1 from '../assets/home/interior-1.webp';
+
+// ⚠️ SIX PHOTOGRAPHS ON THIS PAGE GO THROUGH ASTRO'S OWN IMAGE SERVICE, not
+// through <ResponsiveImage>, and they still do. `<Image>` with a static import
+// emits hashed /_astro/ files at widths and a quality chosen per placement; the
+// rest of the site uses the /_img/ pipeline in scripts/optimize-images.mjs.
+// Moving these onto the other pipeline would have changed every src and srcset
+// on the home page — a visible rewrite of the page to make a sentence about
+// tidiness true — so the two pipelines stay side by side.
+//
+// What that costs is that the FILE is chosen in this template and cannot be
+// swapped by the owner; what it does not cost is the words. The ALT TEXT is
+// content and comes out of the database like everything else, and these entries
+// are mapped `data-rp-fixed` in mappings/index.json so pressing one opens a
+// drawer that says why and offers to have us change it, rather than doing
+// nothing (EDITOR-RULES: no element is dead).
+const IMPORTED: Record<string, ImageMetadata> = {
+	'/images/hero-bow-edited.webp': heroBow,
+	'/images/home/kids-cockpit.webp': kidsCockpit,
+	'/images/home/tropicalia-anchor.webp': tropicaliaAnchor,
+	'/images/home/galley-wide.webp': galleyWide,
+	'/images/home/master-cabin-queen.webp': masterCabinQueen,
+	'/images/home/interior-1.webp': interior1,
+};
 
 const md = (s?: string) => s ? marked.parseInline(s, { async: false }) as string : '';
 
@@ -23,80 +46,91 @@ const ropeSvg = readFileSync(
 	.replace(/<!--[\s\S]*?-->/g, '')
 	.trim();
 
-const allPages = await getCollection('pages');
-const homepage = allPages.find((p) => p.id === 'homepage');
+const hero = site.hero;
+const glance = site.glance;
+const whyChose = site.whyChose;
+const upgradesSection = site.upgradesSection;
+const highlights = site.highlights;
+const bottomCta = site.bottomCta;
+const alternatingSections = site.alternatingSections;
+const topPhotos = site.topPhotos;
+const bottomPhotos = site.bottomPhotos;
+const stamp = site.saleStamp;
 
-const hero = homepage?.data.hero;
-const glance = homepage?.data.glance;
-const whyChose = homepage?.data.whyChose;
-const upgradesSection = homepage?.data.upgradesSection;
-const highlights = homepage?.data.highlights;
-const bottomCta = homepage?.data.bottomCta;
-const alternatingSections = homepage?.data.alternatingSections ?? [];
-const topPhotos = homepage?.data.topPhotos ?? [];
-
-const title = homepage?.data.title ?? '2010 Voyage 500 Catamaran — S/V Tropicalia (Sold)';
-const description = homepage?.data.description ?? '';
+const title = site.pageCopy.home.title;
+const description = site.pageCopy.home.description;
 ---
 
 <BaseLayout title={title} description={description}>
 
 	<!-- HERO — split screen -->
-	<section class="hero">
+	<section class="hero" data-rp-section="hero" data-rp-section-name="The opening">
 		<div class="hero__text">
 			<div class="hero__text-inner">
-				<a href="/transaction/" class="sale-stamp" aria-label="Sold — this boat has sold">
+				<a href={stamp.href} class="sale-stamp" aria-label={stamp.ariaLabel}>
 					<span class="sale-stamp__rope" aria-hidden="true">
 						<span class="sale-stamp__rope-spin" set:html={ropeSvg}></span>
 					</span>
 					<span class="sale-stamp__inner">
-						<span class="sale-stamp__title"><i>Sold</i></span>
+						<span class="sale-stamp__title"><i data-rp-field="saleStamp.title" data-rp-kind="text" data-rp-label="Stamp">{stamp.title}</i></span>
 						<span class="sale-stamp__rule" aria-hidden="true"></span>
 						<span class="sale-stamp__link">
-							<span>Learn</span>
-							<span>More</span>
+							{stamp.linkWords.map((w: string, i: number) => (
+								<span data-rp-field={`saleStamp.linkWords.${i}`} data-rp-kind="text" data-rp-label="Word">{w}</span>
+							))}
 						</span>
 					</span>
 				</a>
 
-				<p class="eyebrow">{hero?.eyebrow}</p>
-				<h1>{(hero?.headlineLines ?? ['Voyage 500', 'Catamaran', 'For Sale']).map((line: string, i: number, arr: string[]) => (
-					<>{line}{i < arr.length - 1 && <br />}</>
+				<p class="eyebrow" data-rp-field="hero.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{hero.eyebrow}</p>
+				{/* Three lines with a break between them, because the type is set
+				    to break there. The one-line `hero.headline` beside it in the
+				    content is what the share cards and the structured data use,
+				    and it is editable where it is rendered — in the page title —
+				    so neither is a field that saves and appears to do nothing. */}
+				<h1>{hero.headlineLines.map((line: string, i: number, arr: string[]) => (
+					<>
+						<span data-rp-field={`hero.headlineLines.${i}`} data-rp-kind="text" data-rp-label="Line">{line}</span>
+						{i < arr.length - 1 && <br />}
+					</>
 				))}</h1>
-				<p class="hero__sub">{glance?.priceDisplay}<br />{glance?.locationDisplay}</p>
-				<a href={hero?.ctaLink ?? '/contact/'} class="btn btn--primary">{hero?.ctaText ?? 'Inquire About This Boat'}</a>
+				<p class="hero__sub">
+					<span data-rp-field="glance.priceDisplay" data-rp-kind="text" data-rp-label="Price line">{glance.priceDisplay}</span><br />
+					<span data-rp-field="glance.locationDisplay" data-rp-kind="text" data-rp-label="Status line">{glance.locationDisplay}</span>
+				</p>
+				<a href={hero.ctaLink} class="btn btn--primary" data-rp-field="hero.ctaText" data-rp-kind="text" data-rp-label="Button">{hero.ctaText}</a>
 			</div>
 		</div>
 		<div class="hero__image">
 			<Image
-				src={heroBow}
-				alt="Tropicalia — Voyage 500 catamaran bow in turquoise Caribbean water"
+				src={IMPORTED[hero.photo]}
+				alt={hero.photoAlt}
 				widths={[400, 600, 800, 1000, 1280, 1600]}
 				sizes="(min-width: 900px) 50vw, 100vw"
 				loading="eager"
 				fetchpriority="high"
 				decoding="async"
-			 quality={60}/>
+			 quality={60} data-rp-fixed="photo" data-rp-label="The opening photograph"/>
 		</div>
 	</section>
 
 	<!-- AT A GLANCE -->
-	<section class="glance">
+	<section class="glance" data-rp-section="glance" data-rp-section-name="At a glance">
 		<div class="wrap">
-			<div class="glance__grid">
-				{(glance?.items ?? []).map((item: { label: string; value: string }) => (
-					<div class="glance__item">
-						<span class="glance__label">{item.label}</span>
-						<span class="glance__value">{item.value}</span>
+			<div class="glance__grid" data-rp-list="glance.items" data-rp-label="The table">
+				{glance.items.map((item: { label: string; value: string }, i: number) => (
+					<div class="glance__item" data-rp-item={`glance.items.${i}`}>
+						<span class="glance__label" data-rp-field={`glance.items.${i}.label`} data-rp-kind="text" data-rp-label="Label">{item.label}</span>
+						<span class="glance__value" data-rp-field={`glance.items.${i}.value`} data-rp-kind="text" data-rp-label="Value">{item.value}</span>
 					</div>
 				))}
 			</div>
-			{(glance?.note || glance?.linkText) && (
+			{(glance.note || glance.linkText) && (
 				<div class="glance__footer">
-					{glance?.note && <p class="glance__note">{glance.note}</p>}
-					{glance?.linkText && glance?.linkUrl && (
+					{glance.note && <p class="glance__note" data-rp-field="glance.note" data-rp-kind="rich" data-rp-label="Note">{glance.note}</p>}
+					{glance.linkText && glance.linkUrl && (
 						<div class="glance__links">
-							<a href={glance.linkUrl}>{glance.linkText} →</a>
+							<a href={glance.linkUrl}><span data-rp-field="glance.linkText" data-rp-kind="text" data-rp-label="Link">{glance.linkText}</span> →</a>
 						</div>
 					)}
 				</div>
@@ -105,21 +139,25 @@ const description = homepage?.data.description ?? '';
 	</section>
 
 	<!-- PHOTOS -->
-	<section class="photos">
-		<div class="photos__grid">
+	<section class="photos" data-rp-section="topPhotos" data-rp-section-name="The three photographs">
+		<div class="photos__grid" data-rp-list="topPhotos" data-rp-label="The three photographs">
 			{topPhotos.map((photo: { image: string; alt: string }, i: number) => (
-				<div class:list={['photos__item', { 'photos__item--wide': i === 0 }]} data-photo-idx={i}>
+				<div class:list={['photos__item', { 'photos__item--wide': i === 0 }]} data-photo-idx={i}
+					data-rp-item={`topPhotos.${i}`}>
 					<ResponsiveImage
 						src={photo.image}
 						alt={photo.alt}
 						sizes={i === 0 ? '(min-width: 900px) 66vw, 100vw' : '(min-width: 900px) 33vw, 100vw'}
 						loading="lazy"
+						data-rp-field={`topPhotos.${i}.image`}
+						data-rp-kind="image"
+						data-rp-label="Photograph"
 					/>
 				</div>
 			))}
 		</div>
 		<div class="photos__footer">
-			<a href="/gallery/" class="photos__more">View More Photos →</a>
+			<a href={site.photosMore.href} class="photos__more" data-rp-field="photosMore.label" data-rp-kind="text" data-rp-label="Link">{site.photosMore.label}</a>
 		</div>
 		<!-- Photo lightbox -->
 		<dialog class="lightbox" id="photo-lightbox">
@@ -133,23 +171,23 @@ const description = homepage?.data.description ?? '';
 				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
 			</button>
 			<div class="lightbox__img-wrap">
-				<img class="lightbox__img" src="" alt="" />
+				<img class="lightbox__img" src="" alt="" data-rp-auto data-rp-label="The photograph you are looking at" />
 			</div>
 			<div class="lightbox__counter"></div>
 		</dialog>
 	</section>
 
 	<!-- WHY WE CHOSE THIS BOAT — intro -->
-	<section class="features-intro">
+	<section class="features-intro" data-rp-section="whyChose" data-rp-section-name="Why you chose this boat">
 		<div class="wrap">
 			<div class="features-intro__grid">
 				<div class="features-intro__text">
-					<p class="eyebrow">{whyChose?.eyebrow}</p>
-					<h2>{whyChose?.heading}</h2>
-					<p set:html={md(whyChose?.body)}></p>
+					<p class="eyebrow" data-rp-field="whyChose.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{whyChose.eyebrow}</p>
+					<h2 data-rp-field="whyChose.heading" data-rp-kind="text" data-rp-label="Heading">{whyChose.heading}</h2>
+					<p data-rp-field="whyChose.body" data-rp-kind="rich" data-rp-label="Paragraph" set:html={md(whyChose.body)}></p>
 				</div>
 				<div class="features-intro__photo">
-					<Image src={kidsCockpit} alt="The owner's family in the cockpit of S/V Tropicalia, a 2010 Voyage 500 catamaran" widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68}/>
+					<Image src={IMPORTED[whyChose.photo]} alt={whyChose.photoAlt} widths={[480, 720, 960, 1280]} sizes="(min-width: 900px) 50vw, 100vw" loading="lazy"  quality={68} data-rp-fixed="photo" data-rp-label="The family photograph"/>
 				</div>
 			</div>
 		</div>
@@ -157,7 +195,9 @@ const description = homepage?.data.description ?? '';
 
 	<!-- ALTERNATING STORY SECTIONS — full-bleed -->
 	{alternatingSections.map((section: { eyebrow: string; heading: string; body: string; image: string }, i: number) => (
-		<section class:list={['feat-row', { 'feat-row--reverse': i % 2 === 1 }]}>
+		<section class:list={['feat-row', { 'feat-row--reverse': i % 2 === 1 }]}
+			data-rp-section={`alternating-${i}`} data-rp-section-name={`Story row ${i + 1}`}
+			data-rp-item={`alternatingSections.${i}`}>
 			<div class="feat-row__image">
 				{section.image && (
 					<ResponsiveImage
@@ -165,37 +205,40 @@ const description = homepage?.data.description ?? '';
 						alt={section.heading}
 						sizes="(min-width: 900px) 50vw, 100vw"
 						loading="lazy"
+						data-rp-field={`alternatingSections.${i}.image`}
+						data-rp-kind="image"
+						data-rp-label="Photograph"
 					/>
 				)}
 			</div>
 			<div class="feat-row__content">
 				<div class="feat-row__inner">
-					<span class="card__cat">{section.eyebrow}</span>
-					<h3>{section.heading}</h3>
-					<p set:html={md(section.body)}></p>
+					<span class="card__cat" data-rp-field={`alternatingSections.${i}.eyebrow`} data-rp-kind="text" data-rp-label="Eyebrow">{section.eyebrow}</span>
+					<h3 data-rp-field={`alternatingSections.${i}.heading`} data-rp-kind="text" data-rp-label="Heading">{section.heading}</h3>
+					<p data-rp-field={`alternatingSections.${i}.body`} data-rp-kind="rich" data-rp-label="Paragraph" set:html={md(section.body)}></p>
 				</div>
 			</div>
 		</section>
 	))}
 
-	<section class="features-cta">
+	<section class="features-cta" data-rp-section="featuresCta" data-rp-section-name="The link to the features">
 		<div class="wrap features-cta__inner">
-			<a href="/features/" class="btn btn--outline">View More Features</a>
+			<a href={site.featuresCta.href} class="btn btn--outline" data-rp-field="featuresCta.label" data-rp-kind="text" data-rp-label="Button">{site.featuresCta.label}</a>
 		</div>
 	</section>
 
 	<!-- RECENT UPGRADES — dark -->
-	{upgradesSection?.items && upgradesSection.items.length > 0 && (
-		<section class="upgrades">
+	{upgradesSection.items.length > 0 && (
+		<section class="upgrades" data-rp-section="upgrades" data-rp-section-name="Recent upgrades">
 			<div class="wrap">
-				<p class="upgrades__eyebrow">{upgradesSection.eyebrow}</p>
-				<h2 class="upgrades__heading">{upgradesSection.heading}</h2>
-				<div class="upgrades__grid">
-					{upgradesSection.items.map((item: { title: string; body: string }) => (
-						<div class="upgrades__item">
+				<p class="upgrades__eyebrow" data-rp-field="upgradesSection.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{upgradesSection.eyebrow}</p>
+				<h2 class="upgrades__heading" data-rp-field="upgradesSection.heading" data-rp-kind="text" data-rp-label="Heading">{upgradesSection.heading}</h2>
+				<div class="upgrades__grid" data-rp-list="upgradesSection.items" data-rp-label="The upgrades">
+					{upgradesSection.items.map((item: { title: string; body: string }, i: number) => (
+						<div class="upgrades__item" data-rp-item={`upgradesSection.items.${i}`}>
 							<svg class="upgrades__icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-							<h3>{item.title}</h3>
-							<p set:html={md(item.body)}></p>
+							<h3 data-rp-field={`upgradesSection.items.${i}.title`} data-rp-kind="text" data-rp-label="Upgrade">{item.title}</h3>
+							<p data-rp-field={`upgradesSection.items.${i}.body`} data-rp-kind="rich" data-rp-label="What it is" set:html={md(item.body)}></p>
 						</div>
 					))}
 				</div>
@@ -204,41 +247,35 @@ const description = homepage?.data.description ?? '';
 	)}
 
 	<!-- BOTTOM PHOTO STRIP -->
-	<section class="bottom-photos">
+	<section class="bottom-photos" data-rp-section="bottomPhotos" data-rp-section-name="The four photographs">
 		<div class="wrap">
 			<div class="bottom-photos__grid">
-				<div class="bottom-photos__item">
-					<Image src={tropicaliaAnchor} alt="S/V Tropicalia — 2010 Voyage 500 catamaran at anchor in the British Virgin Islands" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
-				</div>
-				<div class="bottom-photos__item">
-					<Image src={galleyWide} alt="Voyage 500 catamaran galley — U-shaped counter with propane stove, oven, and bar seating for four" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
-				</div>
-				<div class="bottom-photos__item">
-					<Image src={masterCabinQueen} alt="Voyage 500 owner's cabin — king berth in the starboard hull, with new king mattress, hatches, and reading lights" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
-				</div>
-				<div class="bottom-photos__item">
-					<Image src={interior1} alt="Voyage 500 catamaran salon interior — Sunbrella settee, Corian work surfaces, and panoramic windows" widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}/>
-				</div>
+				{bottomPhotos.map((photo: { image: string; alt: string }, i: number) => (
+					<div class="bottom-photos__item" data-rp-item={`bottomPhotos.${i}`}>
+						<Image src={IMPORTED[photo.image]} alt={photo.alt} widths={[720, 1080, 1280]} sizes="(min-width: 1280px) 1200px, 100vw" loading="lazy" quality={72}
+							data-rp-fixed="photo" data-rp-label="One of the four photographs"/>
+					</div>
+				))}
 			</div>
 			<div class="bottom-photos__footer">
-				<a href="/gallery/" class="bottom-photos__more">View More Photos →</a>
+				<a href={site.bottomPhotosMore.href} class="bottom-photos__more" data-rp-field="bottomPhotosMore.label" data-rp-kind="text" data-rp-label="Link">{site.bottomPhotosMore.label}</a>
 			</div>
 		</div>
 	</section>
 
 	<!-- KEY EQUIPMENT — what cruisers look for -->
-	{highlights?.bullets && (
-		<section class="highlights">
+	{highlights.bullets.length > 0 && (
+		<section class="highlights" data-rp-section="highlights" data-rp-section-name="Key equipment">
 			<div class="wrap">
 				<div class="highlights__header">
-					<p class="eyebrow">{highlights.eyebrow ?? 'Cruise-Ready'}</p>
-					<h2>{highlights.heading ?? 'Key Equipment'}</h2>
+					<p class="eyebrow" data-rp-field="highlights.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{highlights.eyebrow}</p>
+					<h2 data-rp-field="highlights.heading" data-rp-kind="text" data-rp-label="Heading">{highlights.heading}</h2>
 				</div>
-				<div class="highlights__grid">
-					{highlights.bullets.map((bullet: string) => (
-						<div class="highlights__item">
+				<div class="highlights__grid" data-rp-list="highlights.bullets" data-rp-label="The list">
+					{highlights.bullets.map((bullet: string, i: number) => (
+						<div class="highlights__item" data-rp-item={`highlights.bullets.${i}`}>
 							<svg class="highlights__check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-							<span>{bullet}</span>
+							<span data-rp-field={`highlights.bullets.${i}`} data-rp-kind="text" data-rp-label="Line">{bullet}</span>
 						</div>
 					))}
 				</div>
@@ -247,13 +284,13 @@ const description = homepage?.data.description ?? '';
 	)}
 
 	<!-- CTA — dark -->
-	<section class="cta">
+	<section class="cta" data-rp-section="bottomCta" data-rp-section-name="The invitation">
 		<div class="wrap cta__inner">
-			<h2>{bottomCta?.headline ?? 'Buy Direct from the Owner'}</h2>
-			<p set:html={md(bottomCta?.body)}></p>
+			<h2 data-rp-field="bottomCta.headline" data-rp-kind="text" data-rp-label="Headline">{bottomCta.headline}</h2>
+			<p data-rp-field="bottomCta.body" data-rp-kind="rich" data-rp-label="Paragraph" set:html={md(bottomCta.body)}></p>
 			<div class="cta__buttons">
-				<a href={bottomCta?.primaryLink ?? '/contact/'} class="btn btn--primary">{bottomCta?.primaryText ?? 'Get in Touch'}</a>
-				<a href={bottomCta?.secondaryLink ?? '/transaction/'} class="btn btn--outline cta__outline">{bottomCta?.secondaryText ?? 'How Does a FSBO Sale Work?'}</a>
+				<a href={bottomCta.primaryLink} class="btn btn--primary" data-rp-field="bottomCta.primaryText" data-rp-kind="text" data-rp-label="Button">{bottomCta.primaryText}</a>
+				<a href={bottomCta.secondaryLink} class="btn btn--outline cta__outline" data-rp-field="bottomCta.secondaryText" data-rp-kind="text" data-rp-label="Button">{bottomCta.secondaryText}</a>
 			</div>
 		</div>
 	</section>

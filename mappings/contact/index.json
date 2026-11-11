@@ -1,0 +1,201 @@
+{
+  "page": "/contact/",
+  "sections": [
+    {
+      "section": "header",
+      "name": "The bar at the top",
+      "els": [
+        {
+          "el": "nav.items.0.label",
+          "field": "nav.items.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "nav.*.*.label"
+        },
+        {
+          "el": "nav.ctaLabel",
+          "field": "nav.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "nav.ctaLabel"
+        }
+      ],
+      "shape": "104c524b94f0"
+    },
+    {
+      "section": "contactHeader",
+      "name": "The opening",
+      "els": [
+        {
+          "el": "pageCopy.contact.eyebrow",
+          "field": "pageCopy.contact.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "pageCopy.*.eyebrow"
+        },
+        {
+          "el": "pageCopy.contact.h1",
+          "field": "pageCopy.contact.h1",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.*.h1"
+        },
+        {
+          "el": "pageCopy.contact.sub",
+          "field": "pageCopy.contact.sub",
+          "kind": "text",
+          "label": "Opening line",
+          "shape": "pageCopy.*.sub"
+        },
+        {
+          "el": "prose.contact",
+          "field": "prose.contact",
+          "kind": "rich",
+          "label": "Opening line",
+          "shape": "prose.contact"
+        }
+      ],
+      "shape": "ecae2963040f"
+    },
+    {
+      "section": "contactForm",
+      "name": "The enquiry form",
+      "els": [
+        {
+          "el": "copy.form.nameLabel",
+          "field": "copy.form.nameLabel",
+          "kind": "text",
+          "label": "Label",
+          "shape": "copy.*.nameLabel"
+        },
+        {
+          "el": "copy.form.emailLabel",
+          "field": "copy.form.emailLabel",
+          "kind": "text",
+          "label": "Label",
+          "shape": "copy.*.emailLabel"
+        },
+        {
+          "el": "copy.form.phoneLabel",
+          "field": "copy.form.phoneLabel",
+          "kind": "text",
+          "label": "Label",
+          "shape": "copy.*.phoneLabel"
+        },
+        {
+          "el": "copy.form.phoneOptional",
+          "field": "copy.form.phoneOptional",
+          "kind": "text",
+          "label": "Note",
+          "shape": "copy.*.phoneOptional"
+        },
+        {
+          "el": "copy.form.messageLabel",
+          "field": "copy.form.messageLabel",
+          "kind": "text",
+          "label": "Label",
+          "shape": "copy.*.messageLabel"
+        },
+        {
+          "el": "copy.form.submitLabel",
+          "field": "copy.form.submitLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "copy.*.submitLabel"
+        }
+      ],
+      "shape": "0ed57146deec"
+    },
+    {
+      "section": "contactAside",
+      "name": "Beside the form",
+      "els": [
+        {
+          "el": "pageCopy.contact.sideHeading",
+          "field": "pageCopy.contact.sideHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.*.sideHeading"
+        },
+        {
+          "el": "pageCopy.contact.sideBody",
+          "field": "pageCopy.contact.sideBody",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "pageCopy.*.sideBody"
+        }
+      ],
+      "shape": "4b45e80e7fba"
+    },
+    {
+      "section": "footer",
+      "name": "The bar at the bottom",
+      "els": [
+        {
+          "el": "brand.footerLogo",
+          "field": "brand.footerLogo",
+          "kind": "text",
+          "label": "Name",
+          "shape": "brand.footerLogo"
+        },
+        {
+          "el": "brand.footerTaglineLines.0",
+          "field": "brand.footerTaglineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "brand.footerTaglineLines.*"
+        },
+        {
+          "el": "footer.contactHeading",
+          "field": "footer.contactHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.contactHeading"
+        },
+        {
+          "el": "footer.contactLinks.0.label",
+          "field": "footer.contactLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.contactLinks.*.label"
+        },
+        {
+          "el": "footer.resourcesHeading",
+          "field": "footer.resourcesHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.resourcesHeading"
+        },
+        {
+          "el": "footer.resourceLinks.0.label",
+          "field": "footer.resourceLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.resourceLinks.*.label"
+        },
+        {
+          "el": "footer.disclaimer",
+          "field": "footer.disclaimer",
+          "kind": "rich",
+          "label": "Disclaimer",
+          "shape": "footer.disclaimer"
+        },
+        {
+          "el": "footer.copyrightName",
+          "field": "footer.copyrightName",
+          "kind": "text",
+          "label": "Name",
+          "shape": "footer.copyrightName"
+        },
+        {
+          "el": "footer.copyrightSuffix",
+          "field": "footer.copyrightSuffix",
+          "kind": "text",
+          "label": "Line",
+          "shape": "footer.copyrightSuffix"
+        }
+      ],
+      "shape": "0a67472b7278"
+    }
+  ]
+}

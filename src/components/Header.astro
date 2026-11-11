@@ -1,28 +1,32 @@
 ---
-const pathname = Astro.url.pathname;
+// The bar at the top, out of this tenant's own database.
+//
+// ⚠️ THE LABELS ARE CONTENT; THE DESTINATIONS ARE NOT, and that is why they are
+// mapped differently in src/config/editable.js. A label is a word the owner may
+// want changed. An href points at a route this repository builds, so a typo in
+// one is a link to a 404 that nothing would catch until a visitor found it —
+// which is the same reasoning rp-launch's header already carries.
+import site from '../config/site.config.js';
 
-const navItems = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Features', href: '/features/' },
-	{ label: 'Specs', href: '/specs/' },
-	{ label: 'Gallery', href: '/gallery/' },
-	{ label: 'About', href: '/about/' },
-	{ label: 'FAQ', href: '/faq/' },
-];
+const pathname = Astro.url.pathname;
+const navItems = site.nav.items;
 ---
 
-<header id="main-header" class:list={[{ 'header--hero': pathname === '/' }]}>
+<header id="main-header" class:list={[{ 'header--hero': pathname === '/' }]}
+	data-rp-section="header" data-rp-section-name="The bar at the top">
 	<div class="header__inner">
 		<nav class="header__nav">
-			{navItems.map(item => (
+			{navItems.map((item, i) => (
 				<a
 					href={item.href}
 					class:list={['header__link', { 'header__link--active': pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href)) }]}
+					data-rp-field={`nav.items.${i}.label`} data-rp-kind="text" data-rp-label="Link"
 				>
 					{item.label}
 				</a>
 			))}
-			<a href="/contact/" class="header__cta">Contact</a>
+			<a href={site.nav.ctaHref} class="header__cta"
+				data-rp-field="nav.ctaLabel" data-rp-kind="text" data-rp-label="Button">{site.nav.ctaLabel}</a>
 		</nav>
 		<button class="header__toggle" aria-label="Toggle navigation" aria-expanded="false">
 			<span></span>
@@ -32,12 +36,12 @@ const navItems = [
 </header>
 
 <!-- Mobile menu -->
-<div id="mobile-menu">
+<div id="mobile-menu" data-rp-auto data-rp-label="The menu on a phone">
 	<nav>
 		{navItems.map(item => (
 			<a href={item.href}>{item.label}</a>
 		))}
-		<a href="/contact/" class="mobile-menu__cta">Contact</a>
+		<a href={site.nav.ctaHref} class="mobile-menu__cta">{site.nav.ctaLabel}</a>
 	</nav>
 </div>
 

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
-import { SITE_URL, BOAT_NAME, BOAT_MODEL, BOAT_YEAR, BOAT_BUILDER, ASKING_PRICE } from '../consts';
+import site from '../config/site.config.js';
+import { IS_PROD } from '../lib/target.js';
 
 interface Props {
 	title: string;
@@ -11,49 +12,50 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image, schema: extraSchema } = Astro.props;
-const ogImageURL = image ? new URL(image, Astro.url) : new URL('/og-default.jpg', Astro.site);
+const ogImageURL = image ? new URL(image, Astro.url) : new URL(site.seo.ogImage, Astro.site);
+
+const SITE_URL = site.seo.siteUrl;
+const p = site.seo.product;
 
 // Product schema for the boat — emitted on every page.
+//
+// ⚠️ ITS SPECIFICATION LIST IS NOT THE SPECS TABLE, and the two say some things
+// differently on purpose: this one says "Fuel: Diesel — 212 gal" where the table
+// says "Diesel Fuel: 212 gal total across 3 tanks". They are the same fact
+// written for two readers — a crawler and a buyer — and both were already on the
+// page. Deriving one from the other would have changed what one of them says, so
+// both moved into the database as what they are: `seo.product.properties` here,
+// `specs` there.
 const productSchema = {
 	"@context": "https://schema.org",
 	"@type": "Product",
 	"@id": `${SITE_URL}#boat`,
-	"name": `${BOAT_YEAR} ${BOAT_MODEL} Catamaran — ${BOAT_NAME}`,
-	"alternateName": [`${BOAT_MODEL} Catamaran`, `${BOAT_YEAR} ${BOAT_MODEL}`],
-	"description": "2010 Voyage 500 sailing catamaran S/V Tropicalia. Sold 2026. 50-foot 3-cabin owner's version with extensive 2025 upgrades — new saildrives, 1,280Ah lithium bank, Rainman watermaker, Raymarine Axiom and Evolution autopilot, and a new 6-person offshore life raft.",
+	"name": p.name,
+	"alternateName": p.alternateName,
+	"description": p.description,
 	"url": SITE_URL,
 	"image": ogImageURL.href,
-	"brand": { "@type": "Brand", "name": BOAT_BUILDER },
-	"manufacturer": { "@type": "Organization", "name": BOAT_BUILDER, "url": "https://www.voyageyachts.com/" },
-	"model": BOAT_MODEL,
-	"productionDate": BOAT_YEAR,
-	"category": "Sailing Catamaran",
-	"itemCondition": "https://schema.org/UsedCondition",
-	"additionalProperty": [
-		{ "@type": "PropertyValue", "name": "Length Overall", "value": "50 ft" },
-		{ "@type": "PropertyValue", "name": "Beam", "value": "27 ft" },
-		{ "@type": "PropertyValue", "name": "Draft", "value": "4 ft" },
-		{ "@type": "PropertyValue", "name": "Displacement", "value": "22,708 lb" },
-		{ "@type": "PropertyValue", "name": "Cabins", "value": "3 (Owner's Version)" },
-		{ "@type": "PropertyValue", "name": "Heads", "value": "3" },
-		{ "@type": "PropertyValue", "name": "Engines", "value": "Twin Yanmar 3JH5E, 39 hp each" },
-		{ "@type": "PropertyValue", "name": "Fuel", "value": "Diesel — 212 gal" },
-		{ "@type": "PropertyValue", "name": "Fresh Water", "value": "211 gal" },
-		{ "@type": "PropertyValue", "name": "Hull Material", "value": "Hand-laid fiberglass" },
-		{ "@type": "PropertyValue", "name": "Designer", "value": "Simonis Voogd" }
-	],
+	"brand": { "@type": "Brand", "name": site.brand.builder },
+	"manufacturer": { "@type": "Organization", "name": p.manufacturerName, "url": p.manufacturerUrl },
+	"model": site.brand.model,
+	"productionDate": site.brand.year,
+	"category": p.category,
+	"itemCondition": p.itemCondition,
+	"additionalProperty": p.properties.map((prop: { name: string; value: string }) => ({
+		"@type": "PropertyValue", "name": prop.name, "value": prop.value,
+	})),
 	"offers": {
 		"@type": "Offer",
-		"priceCurrency": "USD",
-		"price": ASKING_PRICE,
-		"priceValidUntil": "2027-04-01",
-		"availability": "https://schema.org/SoldOut",
-		"itemCondition": "https://schema.org/UsedCondition",
+		"priceCurrency": p.priceCurrency,
+		"price": p.price,
+		"priceValidUntil": p.priceValidUntil,
+		"availability": p.availability,
+		"itemCondition": p.itemCondition,
 		"businessFunction": "https://schema.org/Sell",
 		"url": `${SITE_URL}/contact/`,
 		"seller": {
 			"@type": "Person",
-			"name": "Eric Thomas",
+			"name": p.sellerName,
 			"url": `${SITE_URL}/about/`
 		}
 	}
@@ -65,16 +67,23 @@ const websiteSchema = {
 	"@type": "WebSite",
 	"@id": `${SITE_URL}#website`,
 	"url": SITE_URL,
-	"name": `${BOAT_MODEL} Catamaran — ${BOAT_NAME}`,
-	"description": "S/V Tropicalia, a 2010 Voyage 500 sailing catamaran. Sold 2026. Site preserved for reference.",
-	"inLanguage": "en-US"
+	"name": site.seo.website.name,
+	"description": site.seo.website.description,
+	"inLanguage": site.seo.website.inLanguage
 };
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
+{/* ⚠️ THE STAGING NOINDEX MANDATE, SIGNAL ONE OF THREE. The other two are
+    X-Robots-Tag in public/_headers and Disallow in the robots.txt endpoint, and
+    scripts/target-noindex.mjs ASSERTS all three on a staging build and asserts
+    their removal on a production one — in both directions, because a production
+    page quietly carrying noindex is the same size of mistake. The default here
+    is staging, so a build that forgets to say which target it is for comes out
+    noindex (src/lib/target.js). */}
+<meta name="robots" content={IS_PROD ? site.seo.robots : 'noindex, nofollow'} />
 <!-- Preload the two critical font subsets (Cormorant 400 latin + Raleway 400 latin).
      Pulled out of the CSS @font-face chain so they fetch alongside the HTML. -->
 <link rel="preload" href="/fonts/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2" as="font" type="font/woff2" crossorigin />
@@ -97,7 +106,7 @@ const websiteSchema = {
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Catamaran For Sale" />
+<meta property="og:site_name" content={site.seo.ogSiteName} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -106,7 +115,7 @@ const websiteSchema = {
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="2010 Voyage 500 sailing catamaran S/V Tropicalia at anchor in the British Virgin Islands" />
+<meta property="og:image:alt" content={site.seo.ogImageAlt} />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->

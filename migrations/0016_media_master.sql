@@ -1,0 +1,12 @@
+-- Do we hold a lossless original for this photo?
+--
+-- The client's delivery copy (WebP, retina width) uploads first and the box
+-- says it is done, because from their side it is: the photo is on the page.
+-- The untouched original follows in the background, silently, and may take
+-- minutes on a slow line or may never finish if they close the tab. This
+-- column is how we know which photos we can actually re-encode later when a
+-- new codec is worth adopting (Eric, 2026-09-30).
+--
+--   NULL / 'pending'  the original has not landed yet
+--   'stored'          we hold the untouched original
+ALTER TABLE media ADD COLUMN master TEXT;

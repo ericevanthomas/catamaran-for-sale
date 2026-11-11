@@ -1,0 +1,145 @@
+{
+  "page": "/gallery/",
+  "sections": [
+    {
+      "section": "header",
+      "name": "The bar at the top",
+      "els": [
+        {
+          "el": "nav.items.0.label",
+          "field": "nav.items.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "nav.*.*.label"
+        },
+        {
+          "el": "nav.ctaLabel",
+          "field": "nav.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "nav.ctaLabel"
+        }
+      ],
+      "shape": "104c524b94f0"
+    },
+    {
+      "section": "galleryHeader",
+      "name": "The opening",
+      "els": [
+        {
+          "el": "pageCopy.gallery.eyebrow",
+          "field": "pageCopy.gallery.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "pageCopy.*.eyebrow"
+        },
+        {
+          "el": "pageCopy.gallery.h1",
+          "field": "pageCopy.gallery.h1",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.*.h1"
+        },
+        {
+          "el": "pageCopy.gallery.sub",
+          "field": "pageCopy.gallery.sub",
+          "kind": "text",
+          "label": "Opening line",
+          "shape": "pageCopy.*.sub"
+        }
+      ],
+      "shape": "0312b3a80495"
+    },
+    {
+      "section": "gallery",
+      "name": "The photographs",
+      "els": [
+        {
+          "el": "gallery.0.image",
+          "field": "gallery.0.image",
+          "kind": "image",
+          "label": "Photograph",
+          "shape": "gallery.*.image"
+        },
+        {
+          "el": "gallery.0.caption",
+          "field": "gallery.0.caption",
+          "kind": "rich",
+          "label": "Caption",
+          "shape": "gallery.*.caption"
+        }
+      ],
+      "shape": "92f527eec054"
+    },
+    {
+      "section": "footer",
+      "name": "The bar at the bottom",
+      "els": [
+        {
+          "el": "brand.footerLogo",
+          "field": "brand.footerLogo",
+          "kind": "text",
+          "label": "Name",
+          "shape": "brand.footerLogo"
+        },
+        {
+          "el": "brand.footerTaglineLines.0",
+          "field": "brand.footerTaglineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "brand.footerTaglineLines.*"
+        },
+        {
+          "el": "footer.contactHeading",
+          "field": "footer.contactHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.contactHeading"
+        },
+        {
+          "el": "footer.contactLinks.0.label",
+          "field": "footer.contactLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.contactLinks.*.label"
+        },
+        {
+          "el": "footer.resourcesHeading",
+          "field": "footer.resourcesHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.resourcesHeading"
+        },
+        {
+          "el": "footer.resourceLinks.0.label",
+          "field": "footer.resourceLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.resourceLinks.*.label"
+        },
+        {
+          "el": "footer.disclaimer",
+          "field": "footer.disclaimer",
+          "kind": "rich",
+          "label": "Disclaimer",
+          "shape": "footer.disclaimer"
+        },
+        {
+          "el": "footer.copyrightName",
+          "field": "footer.copyrightName",
+          "kind": "text",
+          "label": "Name",
+          "shape": "footer.copyrightName"
+        },
+        {
+          "el": "footer.copyrightSuffix",
+          "field": "footer.copyrightSuffix",
+          "kind": "text",
+          "label": "Line",
+          "shape": "footer.copyrightSuffix"
+        }
+      ],
+      "shape": "0a67472b7278"
+    }
+  ]
+}
