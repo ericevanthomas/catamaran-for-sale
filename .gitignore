@@ -30,3 +30,6 @@ pnpm-debug.log*
 .idea/
 # intermediate HTML used only during PDF generation
 public/specs-sheet.html
+
+# the scratch directory the content seeder and the production deploy write into
+.wrangler/

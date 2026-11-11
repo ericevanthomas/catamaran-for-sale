@@ -1,0 +1,124 @@
+# rp-catamaran-publisher — the thing that notices this site was edited.
+#
+# ONE PER CLIENT, bound to that client's own D1, exactly like the site it serves
+# (rp-tenant-isolation-law: a client's data lives in that client's own database,
+# and never in a shared store with key prefixes). It holds no Cloudflare API
+# credential and cannot query anybody else's data: the D1 binding below is the
+# only database it can see.
+#
+# ⚠️ THIS WATCHES PRODUCTION. One repository builds two Pages projects, and
+# wrangler.toml at the repository root is the STAGING one —
+# catamaran-for-sale-staging, database `rp-catamaran-staging`, noindex forever.
+# Everything in this file is production's: www.catamaran-for-sale.com and
+# `rp-catamaran`. Reading the root config as production's is how that has gone
+# wrong before on the sibling repo (rp-launch, 2026-11-11).
+#
+# Staging has no publisher and is not getting one. It is published by hand, by
+# us, and an automatic deploy of a noindex staging site serves nobody.
+#
+# ── deploying it ───────────────────────────────────────────────────────────
+#   cd publisher
+#   npx wrangler deploy                        # creates rp-catamaran-publisher
+#   npx wrangler secret put RP_PUBLISHER_KEY   # ~/.claude/credentials/rp-publisher-key-catamaran.txt
+#   npx wrangler secret put GH_APP_PRIVATE_KEY # the fleet's PKCS#8 app key
+#
+# ⚠️ On a brand-new Worker the first `wrangler deploy` uploads the code and then
+# fails on the trigger step with "This Worker does not exist on your account
+# [code: 10007]", leaving the cron UNREGISTERED. Run it a second time and CHECK:
+#   GET /accounts/<acct>/workers/scripts/rp-catamaran-publisher/schedules
+# must list `*/5 * * * *`. A Worker with no schedule is a Worker that never
+# decides anything, and nothing says so.
+name = "rp-catamaran-publisher"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+workers_dev = true
+
+# Every five minutes. Not per-save, and deliberately not faster.
+#
+# A save is not an event worth a deploy — someone fixing a specification saves
+# twenty times in five minutes and that is ONE rebuild. The tick looks at the
+# state of the world and decides; see QUIET_SECONDS below for the debounce that
+# turns a burst of saves into a single trigger.
+[triggers]
+crons = ["*/5 * * * *"]
+
+# This tenant's own database — the one wrangler.prod.toml binds for the
+# production site's functions, and the one the dashboard and the tracking pixel
+# already write to. The binding is DB there, so it is DB here too.
+#
+# ⚠️ CHECK THE BINDING NAME AGAINST THIS REPO'S, not against the repo this file
+# was copied from. publisher/src/index.ts came from electromagneticweb on
+# 2026-10-30 carrying `DB_EMW`; every tick threw on its first query,
+# `publish_state` in rp-fourlakes was still entirely NULL twelve days and ~3,400
+# ticks later, and nobody saw it, because a scheduled handler that throws is
+# silent unless someone is tailing it.
+[[d1_databases]]
+binding = "DB"
+database_name = "rp-catamaran"
+database_id = "a04176fd-4b43-4d0c-a2ca-1479abd9722b"
+
+[vars]
+# shadow = decide everything, log it, write last_note, post NOTHING.
+# live   = fire repository_dispatch when the rules say to.
+#
+# It ships as "shadow" on purpose: a Worker that starts publishing the moment it
+# is installed is a Worker that publishes something nobody looked at. Watch it
+# over an editing session — `npx wrangler tail`, or
+# `SELECT last_note FROM publish_state` — then set "live" and deploy again.
+MODE = "shadow"
+
+# The tenant slug this site IS, the same value wrangler.prod.toml sets as
+# RP_SITE. It only labels logs and /status here, but it labels them with the
+# name every other surface uses for this tenant.
+RP_SITE = "catamaran"
+
+# Where to read what is actually published. The build stamps the watermark it
+# carried into /rp-build.json (scripts/stamp-build.mjs), so this URL is the
+# ground truth for "has the edit reached production" — a question a build
+# reporting in cannot honestly answer, because a build is not a deploy.
+#
+# ⚠️ It must be the PRODUCTION hostname, and the CANONICAL one: the apex 301s to
+# www. Pointed at catamaran-for-sale-staging.pages.dev the Worker would read
+# STAGING's watermark, conclude production was current whenever staging was, and
+# quietly stop publishing anything.
+SITE_URL = "https://www.catamaran-for-sale.com"
+
+# The repository whose workflow builds and deploys this site, and the
+# `repository_dispatch` event type .github/workflows/deploy.yml listens for.
+# Both are public facts about the repo, so they are committed; the key that
+# lets this Worker fire the event is a secret and is not in this file.
+#
+# Not a Cloudflare Pages deploy hook: catamaran-for-sale is a DIRECT UPLOAD
+# project (the API reports `source: null`), and Cloudflare only issues deploy
+# hooks for projects it builds itself. Every RP Pages project is direct upload,
+# which is why repository_dispatch is the fleetwide mechanism.
+GITHUB_REPO = "ericevanthomas/catamaran-for-sale"
+GITHUB_EVENT_TYPE = "publish"
+
+# The GitHub App that fires it. ONE app for the whole fleet — "Remodeler Pilot
+# Publisher", id 5717306, owned by ericevanthomas, contents:write and
+# metadata:read and nothing else — so this var holds the SAME value in every
+# publisher Worker. The id is a public identifier rather than a secret, which is
+# why it is committed; the private key is the secret half.
+#
+# ⚠️ ADDING A CLIENT ADDS NO CREDENTIAL. The Worker asks the repository which
+# installation covers it and mints its own hour-long token scoped to that one
+# repository, so standing up this client was "install the app on the repo" and
+# nothing else.
+GH_APP_ID = "5717306"
+
+# ── the debounce ───────────────────────────────────────────────────────────
+# QUIET_SECONDS      how long after the LAST edit before we ask for a build. A
+#                    trailing debounce: every save pushes the deadline out, so a
+#                    session of twenty saves fires once.
+# MAX_DEFER_SECONDS  the ceiling on that. Someone who edits steadily for an hour
+#                    would otherwise never see a deploy, so once the OLDEST
+#                    unpublished edit is this old we build regardless.
+# COOLDOWN_SECONDS   having asked for a build of exactly this content, do not
+#                    ask again for this long. A build and deploy takes a couple
+#                    of minutes and the live site does not catch up until it
+#                    lands, so without this the Worker would re-fire on every
+#                    tick in between and queue four deploys for one edit.
+QUIET_SECONDS = "300"
+MAX_DEFER_SECONDS = "1800"
+COOLDOWN_SECONDS = "1200"

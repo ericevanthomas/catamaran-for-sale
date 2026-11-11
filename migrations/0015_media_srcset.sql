@@ -1,0 +1,12 @@
+-- Responsive variants for an uploaded photo.
+--
+-- Photos that SHIP with the site get their variants from
+-- scripts/build-image-variants.mjs at build time, and components read them out
+-- of src/config/image-variants.json. An uploaded photo has no build to run, so
+-- the variants are made in the browser before the upload and the resulting
+-- srcset is recorded here (2026-09-30).
+--
+-- Without this the page would be responsive for the rest of the session and
+-- then quietly fall back to one file on the next reload, which is the kind of
+-- half-working that is worse than not doing it.
+ALTER TABLE media ADD COLUMN srcset TEXT;

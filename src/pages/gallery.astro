@@ -1,17 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ResponsiveImage from '../components/ResponsiveImage.astro';
-import { getCollection } from 'astro:content';
 import { marked } from 'marked';
+import site from '../config/site.config.js';
 
 const md = (s?: string) => (s ? (marked.parseInline(s, { async: false }) as string) : '');
 
-const allGallery = await getCollection('gallery');
-const photos = allGallery
-	.filter((p) => p.data.inGallery !== false)
-	.sort((a, b) => a.data.order - b.data.order);
+const c = site.pageCopy.gallery;
+// ⚠️ THE ROW'S OWN POSITION TRAVELS WITH IT. This list is filtered (a
+// photograph can be held back with `inGallery: false`) and then sorted, so the
+// loop index below is NOT the photograph's position in the content — and the
+// editor addresses a gallery photograph by position, because a photograph has
+// no id of its own here (src/config/editable.js explains why). Addressing it by
+// the loop index would mean editing the caption of whichever picture happens to
+// be in that slot after a filter, which is the §4.3 failure wearing a different
+// hat. `n` is the index in `site.gallery` and it is what every address uses.
+const photos = site.gallery
+	.map((p, n) => ({ ...p, n }))
+	.filter((p) => p.inGallery !== false)
+	.sort((a, b) => a.order - b.order);
 
-const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean))];
+// ⚠️ None of the 155 photographs carries a category today, so the filter bar
+// below renders nothing — exactly as it did before the move. It is left in
+// place because a category is a field a client can fill in, and the bar appears
+// the moment one of them does.
+const categories = [...new Set(photos.map((p) => p.category).filter(Boolean))];
 
 // Gallery columns at breakpoints: 4 → 3 → 2 → 1. On mobile, lie to the browser
 // about the display size so it picks a smaller srcset variant (~400w instead
@@ -19,41 +32,49 @@ const categories = [...new Set(photos.map((p) => p.data.category).filter(Boolean
 const GALLERY_SIZES = '(max-width: 600px) 50vw, (max-width: 900px) 40vw, (max-width: 1100px) 30vw, 23vw';
 ---
 
-<BaseLayout title="Photos — 2010 Voyage 500 S/V Tropicalia" description="150+ photos of S/V Tropicalia, a 2010 Voyage 500 catamaran. Exterior, salon, galley, cabins, systems, and sailing shots.">
+<BaseLayout title={c.title} description={c.description}>
 
-	<section class="page-header">
+	<section class="page-header" data-rp-section="galleryHeader" data-rp-section-name="The opening">
 		<div class="wrap">
-			<p class="eyebrow">Voyage 500 · S/V Tropicalia</p>
-			<h1>Photo Gallery</h1>
-			<p class="page-header__sub">Browse all photos. Click any image to view full size.</p>
+			<p class="eyebrow" data-rp-field="pageCopy.gallery.eyebrow" data-rp-kind="text" data-rp-label="Eyebrow">{c.eyebrow}</p>
+			<h1 data-rp-field="pageCopy.gallery.h1" data-rp-kind="text" data-rp-label="Heading">{c.h1}</h1>
+			<p class="page-header__sub" data-rp-field="pageCopy.gallery.sub" data-rp-kind="text" data-rp-label="Opening line">{c.sub}</p>
 		</div>
 	</section>
 
 	{categories.length > 0 && (
 		<nav class="filter">
 			<div class="wrap filter__inner">
-				<button class="filter__btn filter__btn--active" data-filter="all">All</button>
+				<button class="filter__btn filter__btn--active" data-filter="all"
+					data-rp-field="pageCopy.gallery.allLabel" data-rp-kind="text" data-rp-label="Filter">{c.allLabel}</button>
+				{/* Each button is a category some photograph is filed under, so it
+				    counts itself: the way to remove one is to stop filing
+				    photographs under it, not to rename the button. */}
 				{categories.map((cat) => (
-					<button class="filter__btn" data-filter={cat}>{cat}</button>
+					<button class="filter__btn" data-filter={cat} data-rp-auto data-rp-label="A category photographs are filed under">{cat}</button>
 				))}
 			</div>
 		</nav>
 	)}
 
-	<section class="gallery-section">
+	<section class="gallery-section" data-rp-section="gallery" data-rp-section-name="The photographs">
 		<div class="wrap">
-			<div class="gallery">
+			<div class="gallery" data-rp-list="gallery" data-rp-label="The gallery">
 				{photos.map((photo, i) => (
-					<figure class="gallery__item" data-category={photo.data.category} data-index={i}>
+					<figure class="gallery__item" data-category={photo.category} data-index={i}
+						data-rp-item={`gallery.${photo.n}`}>
 						<ResponsiveImage
-							src={photo.data.image}
-							alt={photo.data.alt}
+							src={photo.image}
+							alt={photo.alt}
 							sizes={GALLERY_SIZES}
 							loading={i < 4 ? 'eager' : 'lazy'}
 							fetchpriority={i === 0 ? 'high' : undefined}
 							decoding={i < 4 ? 'sync' : 'async'}
+							data-rp-field={`gallery.${photo.n}.image`}
+							data-rp-kind="image"
+							data-rp-label="Photograph"
 						/>
-						{photo.data.caption && <figcaption class="gallery__caption" set:html={md(photo.data.caption)} />}
+						{photo.caption && <figcaption class="gallery__caption" data-rp-field={`gallery.${photo.n}.caption`} data-rp-kind="rich" data-rp-label="Caption" set:html={md(photo.caption)} />}
 					</figure>
 				))}
 			</div>
@@ -72,7 +93,9 @@ const GALLERY_SIZES = '(max-width: 600px) 50vw, (max-width: 900px) 40vw, (max-wi
 			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 6 15 12 9 18"/></svg>
 		</button>
 		<div class="lightbox__img-wrap">
-			<img class="lightbox__img" src="" alt="" />
+			{/* Filled in by the page as somebody steps through the photographs;
+			    it carries whichever one they are looking at. */}
+			<img class="lightbox__img" src="" alt="" data-rp-auto data-rp-label="The photograph you are looking at" />
 			<div class="lightbox__caption"></div>
 		</div>
 		<div class="lightbox__counter"></div>

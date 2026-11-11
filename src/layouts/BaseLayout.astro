@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { TRACKING } from '../lib/target.js';
 
 interface Props {
 	title: string;
@@ -17,9 +18,19 @@ const { title, description, image, schema } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} image={image} schema={schema} />
-	  <!-- Remodeler Pilot analytics (first-party, DNT-respecting) -->
-  <script defer src="https://rp-dashboard-cw0.pages.dev/t.js" data-site="catamaran"></script>
-  <script defer src="https://rp-dashboard-cw0.pages.dev/rec.js" data-site="catamaran"></script>
+		{/* Remodeler Pilot analytics (first-party, DNT-respecting), writing into
+		    this tenant's own D1 through the dashboard. PROD ONLY: a staging host
+		    filing visits into the live vault poisons the numbers Eric reads, and
+		    nobody would notice for weeks (src/lib/target.js). */}
+		{TRACKING && (
+			<script
+				is:inline
+				defer
+				src={`${TRACKING.host}/t.js`}
+				data-site={TRACKING.site}
+				data-record={TRACKING.record ? 'on' : undefined}
+			></script>
+		)}
 </head>
 	<body>
 		<Header />
@@ -27,5 +38,42 @@ const { title, description, image, schema } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		{/* The editor, for the one person in a thousand who is signed in.
+
+		    `rp_edit_on` is a hint, not a credential: the real session is an
+		    HttpOnly signed cookie the browser cannot read, and the API re-checks
+		    it on every write. A forged hint loads the editor, gets a 401 and
+		    removes it again. `rp_editor_device` is the year-long memory that puts
+		    the R button in front of someone who typed their own address.
+
+		    A visitor with neither cookie makes NO request for either file: the
+		    check is the whole cost. It is written as one line on purpose — this
+		    block inlines into every page, so every character of it ships nine
+		    times, and the reasoning belongs here in the source rather than in the
+		    markup a visitor downloads (Eric, 2026-09-30). */}
+		{/* ⚠️ THE EDITOR IS SERVED CENTRALLY, from ONE deployment that every
+		    client site loads. It used to be a copy in each site's own public/,
+		    synced by nobody: an improvement reached a site only when the files
+		    were copied in and that site was deployed, so on 2026-10-30 the demo
+		    had the day's build while RP's own marketing site and EMW were eleven
+		    days behind. Worse, it meant working on the editor required deploying
+		    a CLIENT SITE.
+
+		    Scripts only. The API calls still go to this site's own /api/*,
+		    against this site's own database, so the trust boundary has not moved
+		    an inch. There is deliberately NO public/rp-edit.js in this repo —
+		    PROVISIONING.md row 8: a stale local copy is dead weight that looks
+		    authoritative. */}
+		{/* ⚠️ THE FILE LIST IS CENTRAL TOO, as of 2026-11-11, and that is why
+		    this is one line and names one file. Serving the files centrally was
+		    only half of it: each site's snippet still decided WHICH files to
+		    fetch, so the list lived in three repos and drifted the moment one of
+		    them was updated and the others were not. /v1/boot.js is that list
+		    now, and it appends everything else.
+
+		    THE GATE STAYS HERE, inline, because that is the part that cannot be
+		    moved: a visitor with neither cookie must make ZERO requests, boot.js
+		    included. */}
+		<script is:inline>if(/rp_edit_on=1|rp_editor_device=1/.test(document.cookie)){var b=document.createElement('script');b.src='https://rp-editor.pages.dev/v1/boot.js';document.head.appendChild(b)}</script>
 	</body>
 </html>

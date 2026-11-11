@@ -1,0 +1,92 @@
+# Cloudflare Pages config for catamaran-for-sale.com — STAGING ONLY.
+#
+# ⚠️ NOTHING IN THIS FILE DESCRIBES www.catamaran-for-sale.com. Production is
+# the `catamaran-for-sale` Pages project and reads wrangler.prod.toml, so the
+# database, the bucket and the vars below are STAGING's and are deliberately
+# not production's. Read this file as production's and you will conclude the
+# live site writes to an empty database.
+#
+# That reading has gone wrong before on the sibling repo (rp-launch,
+# 2026-11-11): a deploy run from the repository root read the staging config
+# and handed the production project staging's D1. `npm run deploy:prod` is the
+# ONLY thing that sends production's values, and scripts/deploy-prod.mjs is
+# what makes that safe — it copies wrangler.prod.toml into a scratch directory
+# and runs wrangler from there, so this file is never moved and is still the
+# staging config even if a deploy fails halfway.
+#
+# ⚠️ This project deploys to catamaran-for-sale-staging.pages.dev and nothing
+# else. No custom domain is attached and none may be attached without Eric
+# saying so (feedback-ask-before-account-config). It stays noindex on all
+# three signals, forever (staging-noindex-mandate).
+name = "catamaran-for-sale-staging"
+compatibility_date = "2026-04-17"
+pages_build_output_dir = "dist"
+
+# D1 — STAGING's own database. Bound as `DB` in functions, the same binding
+# name production uses, so no source file knows which of the two it is talking
+# to. The NAME is the only thing that changes, which is the whole point.
+#
+# Tenant isolation law (rp-tenant-isolation-law, ⚠️⚠️⚠️): anything belonging to
+# one site lives in that site's OWN database and OWN bucket, never a shared
+# store with key prefixes. `rp-catamaran-staging` and
+# `rp-catamaran-staging-media` were created in the same step, the way the law
+# requires, and the staging database is a SCHEMA TWIN of `rp-catamaran` — all
+# 111 tables, replayed from the production vault's own DDL — so a migration
+# tested here is tested against the shape production actually has.
+[[d1_databases]]
+binding = "DB"
+database_name = "rp-catamaran-staging"
+database_id = "26409108-22d3-4c5d-b946-6c0acd826569"
+
+# R2 — STAGING's own uploads. `binding` stays MEDIA in every copy of the kit so
+# the code never changes; `bucket_name` changes with the site.
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "rp-catamaran-staging-media"
+
+[vars]
+# ⚠️ A `pages deploy` REPLACES the project's plain-text variables with this
+# block. Anything that has to survive a deploy belongs here; anything secret
+# belongs in `wrangler pages secret put` instead, which a deploy leaves alone.
+# RP_SERVICE_KEY, RP_BUILD_KEY, RESEND_API_KEY, FROM_EMAIL and
+# TURNSTILE_SECRET_KEY are secrets and are not here on purpose.
+
+# The tenant slug this site IS. The editor voucher carries the slug of the
+# dashboard account it was launched from and this site compares it to RP_SITE;
+# a mismatch is a bare 404 with no hint about which half was wrong
+# (PROVISIONING.md, "the editor keypair — the one that fails silently").
+#
+# ⚠️ STAGING ANSWERS TO THE SAME SLUG AS PRODUCTION, and that is a decision
+# rather than an oversight. There is one dashboard account for this tenant and
+# one vault of brand marks; giving staging a second slug would mean a second
+# registry entry and a second account for a host nobody but us ever opens. The
+# consequence is that a voucher minted for `catamaran` is good on both hosts,
+# which is fine because only we can reach the staging one — and the DATABASES
+# are still separate, so an edit made on staging cannot touch the live site.
+RP_SITE = "catamaran"
+# Whose approved Privacy Policy and Terms this site would publish. Named
+# explicitly rather than defaulted so the row is not silently RP_SITE on a site
+# that has no legal pages of its own.
+RP_LEGAL_SITE = "catamaran"
+# Where someone goes to prove who they are. Neither value below is a secret:
+# one is a URL, the other is the PUBLIC half of the dashboard's editor keypair,
+# which can CHECK a voucher and can never write one. Its private half is
+# RP_EDITOR_SIGN_KEY on the rp-dashboard Pages project; both halves are kept in
+# ~/.claude/credentials/rp-editor-signing.txt.
+RP_DASH = "https://app.remodelerpilot.com"
+RP_EDITOR_VERIFY_KEY = "MCowBQYDK2VwAyEA4Eg6O1ZWw/my52lamZvK8qxofA2MYqHMvUjcJK6RsrQ="
+
+# ── the contact form ──────────────────────────────────────────────────────
+# functions/api/contact.ts reads these at request time. They are repeated from
+# the live project because a deploy replaces this block: a value set in the
+# Cloudflare dashboard alone disappears at the next deploy, which is how the
+# fleet has lost vars before (rp-key-rotation-surfaces).
+#
+# NOTIFY_EMAIL is OURS on staging, not the owner's: a test submission from a
+# noindex host has no business reaching the people who sold the boat.
+DOMAIN = "catamaran-for-sale-staging.pages.dev"
+NOTIFY_EMAIL = "eric@electromagneticweb.com"
+PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAADpGxAv48QfGXpQr"
+# Where a client request raised from the editor is filed, and who hears about a
+# lead the platform endpoint takes.
+RP_NOTIFY = "eric@electromagneticweb.com"

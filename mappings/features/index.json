@@ -1,0 +1,253 @@
+{
+  "page": "/features/",
+  "sections": [
+    {
+      "section": "header",
+      "name": "The bar at the top",
+      "els": [
+        {
+          "el": "nav.items.0.label",
+          "field": "nav.items.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "nav.*.*.label"
+        },
+        {
+          "el": "nav.ctaLabel",
+          "field": "nav.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "nav.ctaLabel"
+        }
+      ],
+      "shape": "104c524b94f0"
+    },
+    {
+      "section": "featuresHeader",
+      "name": "The opening",
+      "els": [
+        {
+          "el": "pageCopy.features.eyebrow",
+          "field": "pageCopy.features.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "pageCopy.*.eyebrow"
+        },
+        {
+          "el": "pageCopy.features.h1",
+          "field": "pageCopy.features.h1",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.*.h1"
+        },
+        {
+          "el": "pageCopy.features.sub",
+          "field": "pageCopy.features.sub",
+          "kind": "text",
+          "label": "Opening line",
+          "shape": "pageCopy.*.sub"
+        }
+      ],
+      "shape": "0312b3a80495"
+    },
+    {
+      "section": "featuresNav",
+      "name": "The category bar",
+      "els": [],
+      "shape": "e3b0c44298fc"
+    },
+    {
+      "section": "features-living-spaces",
+      "name": "The Living Spaces cards",
+      "els": [
+        {
+          "el": "photo",
+          "locked": true,
+          "explain": "photo",
+          "shape": "photo"
+        },
+        {
+          "el": "features.0.title",
+          "field": "features.0.title",
+          "kind": "text",
+          "label": "Title",
+          "shape": "features.*.title"
+        },
+        {
+          "el": "features.0.description",
+          "field": "features.0.description",
+          "kind": "rich",
+          "label": "Card text",
+          "shape": "features.*.description"
+        },
+        {
+          "el": "pageCopy.features.cardMore",
+          "field": "pageCopy.features.cardMore",
+          "kind": "text",
+          "label": "Card link",
+          "shape": "pageCopy.*.cardMore"
+        }
+      ],
+      "shape": "581aeaf56b5c"
+    },
+    {
+      "section": "features-systems-equipment",
+      "name": "The Systems & Equipment cards",
+      "els": [
+        {
+          "el": "photo",
+          "locked": true,
+          "explain": "photo",
+          "shape": "photo"
+        },
+        {
+          "el": "features.4.title",
+          "field": "features.4.title",
+          "kind": "text",
+          "label": "Title",
+          "shape": "features.*.title"
+        },
+        {
+          "el": "features.4.description",
+          "field": "features.4.description",
+          "kind": "rich",
+          "label": "Card text",
+          "shape": "features.*.description"
+        },
+        {
+          "el": "pageCopy.features.cardMore",
+          "field": "pageCopy.features.cardMore",
+          "kind": "text",
+          "label": "Card link",
+          "shape": "pageCopy.*.cardMore"
+        }
+      ],
+      "shape": "581aeaf56b5c"
+    },
+    {
+      "section": "features-electrical",
+      "name": "The Electrical cards",
+      "els": [
+        {
+          "el": "photo",
+          "locked": true,
+          "explain": "photo",
+          "shape": "photo"
+        },
+        {
+          "el": "features.6.title",
+          "field": "features.6.title",
+          "kind": "text",
+          "label": "Title",
+          "shape": "features.*.title"
+        },
+        {
+          "el": "features.6.description",
+          "field": "features.6.description",
+          "kind": "rich",
+          "label": "Card text",
+          "shape": "features.*.description"
+        },
+        {
+          "el": "pageCopy.features.cardMore",
+          "field": "pageCopy.features.cardMore",
+          "kind": "text",
+          "label": "Card link",
+          "shape": "pageCopy.*.cardMore"
+        },
+        {
+          "el": "pageCopy.features.detailsLabel",
+          "field": "pageCopy.features.detailsLabel",
+          "kind": "text",
+          "label": "Label",
+          "shape": "pageCopy.*.detailsLabel"
+        },
+        {
+          "el": "features.0.body",
+          "field": "features.0.body",
+          "kind": "rich",
+          "label": "Details",
+          "shape": "features.*.body"
+        },
+        {
+          "el": "pageCopy.features.relatedLabel",
+          "field": "pageCopy.features.relatedLabel",
+          "kind": "text",
+          "label": "Label",
+          "shape": "pageCopy.*.relatedLabel"
+        }
+      ],
+      "shape": "ca7fbd9dcab3"
+    },
+    {
+      "section": "footer",
+      "name": "The bar at the bottom",
+      "els": [
+        {
+          "el": "brand.footerLogo",
+          "field": "brand.footerLogo",
+          "kind": "text",
+          "label": "Name",
+          "shape": "brand.footerLogo"
+        },
+        {
+          "el": "brand.footerTaglineLines.0",
+          "field": "brand.footerTaglineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "brand.footerTaglineLines.*"
+        },
+        {
+          "el": "footer.contactHeading",
+          "field": "footer.contactHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.contactHeading"
+        },
+        {
+          "el": "footer.contactLinks.0.label",
+          "field": "footer.contactLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.contactLinks.*.label"
+        },
+        {
+          "el": "footer.resourcesHeading",
+          "field": "footer.resourcesHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.resourcesHeading"
+        },
+        {
+          "el": "footer.resourceLinks.0.label",
+          "field": "footer.resourceLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.resourceLinks.*.label"
+        },
+        {
+          "el": "footer.disclaimer",
+          "field": "footer.disclaimer",
+          "kind": "rich",
+          "label": "Disclaimer",
+          "shape": "footer.disclaimer"
+        },
+        {
+          "el": "footer.copyrightName",
+          "field": "footer.copyrightName",
+          "kind": "text",
+          "label": "Name",
+          "shape": "footer.copyrightName"
+        },
+        {
+          "el": "footer.copyrightSuffix",
+          "field": "footer.copyrightSuffix",
+          "kind": "text",
+          "label": "Line",
+          "shape": "footer.copyrightSuffix"
+        }
+      ],
+      "shape": "0a67472b7278"
+    }
+  ]
+}

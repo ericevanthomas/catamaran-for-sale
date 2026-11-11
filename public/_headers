@@ -1,7 +1,21 @@
-/fonts/*
-  Cache-Control: public, max-age=31536000, immutable
+# ⚠️⚠️ STAGING NOINDEX MANDATE — one of THREE signals, re-asserted every build.
+#
+# The other two are `Disallow: /` in robots.txt and a `noindex, nofollow` meta
+# tag from src/components/BaseHead.astro. They are deliberately in three places
+# so that taking them off is a deliberate act, and taking them off is now
+# exactly one deliberate act: `RP_TARGET=prod`. scripts/target-noindex.mjs
+# removes this block on a production build and FAILS the build if it cannot
+# find it, because a signal it could not find is a signal it cannot promise it
+# removed. Cloudflare Pages also serves a platform noindex header on
+# *.pages.dev, but that header is invisible from any config we control, so it
+# is never relied on.
+/*
+  X-Robots-Tag: noindex, nofollow
 
 /images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_img/*
   Cache-Control: public, max-age=31536000, immutable
 
 /favicon.*
@@ -9,3 +23,13 @@
 
 /apple-touch-icon*
   Cache-Control: public, max-age=3600, must-revalidate
+
+# One block for the fonts, not two. Session replay runs in an iframe on the
+# dashboard origin and web fonts are CORS-gated, so without the allow-origin
+# header the client sees their own site in a fallback face. That header was
+# added on 2026-08 in a SECOND `/fonts/*` block below the first one, which
+# meant two rules for one path and no way to tell from the file which of them
+# Cloudflare would apply. Merged 2026-11-11.
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=31536000, immutable

@@ -1,0 +1,124 @@
+{
+  "page": "/404",
+  "sections": [
+    {
+      "section": "header",
+      "name": "The bar at the top",
+      "els": [
+        {
+          "el": "nav.items.0.label",
+          "field": "nav.items.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "nav.*.*.label"
+        },
+        {
+          "el": "nav.ctaLabel",
+          "field": "nav.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "nav.ctaLabel"
+        }
+      ],
+      "shape": "104c524b94f0"
+    },
+    {
+      "section": "notFound",
+      "name": "The page nobody meant to find",
+      "els": [
+        {
+          "el": "pageCopy.notFound.h1",
+          "field": "pageCopy.notFound.h1",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.notFound.h1"
+        },
+        {
+          "el": "pageCopy.notFound.body",
+          "field": "pageCopy.notFound.body",
+          "kind": "text",
+          "label": "Line",
+          "shape": "pageCopy.notFound.body"
+        },
+        {
+          "el": "pageCopy.notFound.ctaLabel",
+          "field": "pageCopy.notFound.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "pageCopy.notFound.ctaLabel"
+        }
+      ],
+      "shape": "c5d64ab26825"
+    },
+    {
+      "section": "footer",
+      "name": "The bar at the bottom",
+      "els": [
+        {
+          "el": "brand.footerLogo",
+          "field": "brand.footerLogo",
+          "kind": "text",
+          "label": "Name",
+          "shape": "brand.footerLogo"
+        },
+        {
+          "el": "brand.footerTaglineLines.0",
+          "field": "brand.footerTaglineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "brand.footerTaglineLines.*"
+        },
+        {
+          "el": "footer.contactHeading",
+          "field": "footer.contactHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.contactHeading"
+        },
+        {
+          "el": "footer.contactLinks.0.label",
+          "field": "footer.contactLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.contactLinks.*.label"
+        },
+        {
+          "el": "footer.resourcesHeading",
+          "field": "footer.resourcesHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.resourcesHeading"
+        },
+        {
+          "el": "footer.resourceLinks.0.label",
+          "field": "footer.resourceLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.resourceLinks.*.label"
+        },
+        {
+          "el": "footer.disclaimer",
+          "field": "footer.disclaimer",
+          "kind": "rich",
+          "label": "Disclaimer",
+          "shape": "footer.disclaimer"
+        },
+        {
+          "el": "footer.copyrightName",
+          "field": "footer.copyrightName",
+          "kind": "text",
+          "label": "Name",
+          "shape": "footer.copyrightName"
+        },
+        {
+          "el": "footer.copyrightSuffix",
+          "field": "footer.copyrightSuffix",
+          "kind": "text",
+          "label": "Line",
+          "shape": "footer.copyrightSuffix"
+        }
+      ],
+      "shape": "0a67472b7278"
+    }
+  ]
+}

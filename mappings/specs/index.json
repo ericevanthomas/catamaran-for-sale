@@ -1,0 +1,249 @@
+{
+  "page": "/specs/",
+  "sections": [
+    {
+      "section": "header",
+      "name": "The bar at the top",
+      "els": [
+        {
+          "el": "nav.items.0.label",
+          "field": "nav.items.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "nav.*.*.label"
+        },
+        {
+          "el": "nav.ctaLabel",
+          "field": "nav.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "nav.ctaLabel"
+        }
+      ],
+      "shape": "104c524b94f0"
+    },
+    {
+      "section": "specsHeader",
+      "name": "The opening",
+      "els": [
+        {
+          "el": "pageCopy.specs.eyebrow",
+          "field": "pageCopy.specs.eyebrow",
+          "kind": "text",
+          "label": "Eyebrow",
+          "shape": "pageCopy.*.eyebrow"
+        },
+        {
+          "el": "pageCopy.specs.h1",
+          "field": "pageCopy.specs.h1",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.*.h1"
+        },
+        {
+          "el": "pageCopy.specs.sub",
+          "field": "pageCopy.specs.sub",
+          "kind": "text",
+          "label": "Opening line",
+          "shape": "pageCopy.*.sub"
+        },
+        {
+          "el": "pageCopy.specs.downloadLabel",
+          "field": "pageCopy.specs.downloadLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "pageCopy.*.downloadLabel"
+        }
+      ],
+      "shape": "9712efae3376"
+    },
+    {
+      "section": "specsJump",
+      "name": "The jump bar",
+      "els": [
+        {
+          "el": "pageCopy.specs.jump.0.label",
+          "field": "pageCopy.specs.jump.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "pageCopy.*.jump.*.label"
+        }
+      ],
+      "shape": "9bf5557beed2"
+    },
+    {
+      "section": "specsTable",
+      "name": "The specifications",
+      "els": [
+        {
+          "el": "specs.0.label",
+          "field": "specs.0.label",
+          "kind": "text",
+          "label": "Label",
+          "shape": "specs.*.label"
+        },
+        {
+          "el": "specs.0.value",
+          "field": "specs.0.value",
+          "kind": "text",
+          "label": "Value",
+          "shape": "specs.*.value"
+        }
+      ],
+      "shape": "01813ca81ab0"
+    },
+    {
+      "section": "specsLayout",
+      "name": "The deck plan",
+      "els": [
+        {
+          "el": "pageCopy.specs.layout.heading",
+          "field": "pageCopy.specs.layout.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "pageCopy.*.layout.heading"
+        },
+        {
+          "el": "diagram",
+          "locked": true,
+          "explain": "diagram",
+          "shape": "diagram"
+        },
+        {
+          "el": "pageCopy.specs.layout.caption",
+          "field": "pageCopy.specs.layout.caption",
+          "kind": "rich",
+          "label": "Caption",
+          "shape": "pageCopy.*.layout.caption"
+        }
+      ],
+      "shape": "df803c70aeab"
+    },
+    {
+      "section": "specsEquipment",
+      "name": "The equipment inventory",
+      "els": [
+        {
+          "el": "equipment.0.heading",
+          "field": "equipment.0.heading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "equipment.*.heading"
+        },
+        {
+          "el": "equipment.0.note",
+          "field": "equipment.0.note",
+          "kind": "rich",
+          "label": "Note",
+          "shape": "equipment.*.note"
+        },
+        {
+          "el": "equipment.0.items.0.v",
+          "field": "equipment.0.items.0.v",
+          "kind": "text",
+          "label": "Line",
+          "shape": "equipment.*.items.*.v"
+        },
+        {
+          "el": "equipment.0.items.1.badge",
+          "field": "equipment.0.items.1.badge",
+          "kind": "text",
+          "label": "Badge",
+          "shape": "equipment.*.items.*.badge"
+        }
+      ],
+      "shape": "bc517d1e997d"
+    },
+    {
+      "section": "specsCta",
+      "name": "The link to the features",
+      "els": [
+        {
+          "el": "pageCopy.specs.ctaBody",
+          "field": "pageCopy.specs.ctaBody",
+          "kind": "rich",
+          "label": "Paragraph",
+          "shape": "pageCopy.*.ctaBody"
+        },
+        {
+          "el": "pageCopy.specs.ctaLabel",
+          "field": "pageCopy.specs.ctaLabel",
+          "kind": "text",
+          "label": "Button",
+          "shape": "pageCopy.*.ctaLabel"
+        }
+      ],
+      "shape": "cb0bc9a10024"
+    },
+    {
+      "section": "footer",
+      "name": "The bar at the bottom",
+      "els": [
+        {
+          "el": "brand.footerLogo",
+          "field": "brand.footerLogo",
+          "kind": "text",
+          "label": "Name",
+          "shape": "brand.footerLogo"
+        },
+        {
+          "el": "brand.footerTaglineLines.0",
+          "field": "brand.footerTaglineLines.0",
+          "kind": "text",
+          "label": "Line",
+          "shape": "brand.footerTaglineLines.*"
+        },
+        {
+          "el": "footer.contactHeading",
+          "field": "footer.contactHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.contactHeading"
+        },
+        {
+          "el": "footer.contactLinks.0.label",
+          "field": "footer.contactLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.contactLinks.*.label"
+        },
+        {
+          "el": "footer.resourcesHeading",
+          "field": "footer.resourcesHeading",
+          "kind": "text",
+          "label": "Heading",
+          "shape": "footer.resourcesHeading"
+        },
+        {
+          "el": "footer.resourceLinks.0.label",
+          "field": "footer.resourceLinks.0.label",
+          "kind": "text",
+          "label": "Link",
+          "shape": "footer.resourceLinks.*.label"
+        },
+        {
+          "el": "footer.disclaimer",
+          "field": "footer.disclaimer",
+          "kind": "rich",
+          "label": "Disclaimer",
+          "shape": "footer.disclaimer"
+        },
+        {
+          "el": "footer.copyrightName",
+          "field": "footer.copyrightName",
+          "kind": "text",
+          "label": "Name",
+          "shape": "footer.copyrightName"
+        },
+        {
+          "el": "footer.copyrightSuffix",
+          "field": "footer.copyrightSuffix",
+          "kind": "text",
+          "label": "Line",
+          "shape": "footer.copyrightSuffix"
+        }
+      ],
+      "shape": "0a67472b7278"
+    }
+  ]
+}

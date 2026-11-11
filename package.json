@@ -8,11 +8,29 @@
   "scripts": {
     "predev": "node scripts/optimize-images.mjs",
     "dev": "astro dev",
-    "prebuild": "node scripts/optimize-images.mjs",
-    "build": "astro build",
     "optimize-images": "node scripts/optimize-images.mjs",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+
+    "prebuild": "node scripts/optimize-images.mjs",
+    "build": "node scripts/pull-content.mjs && node scripts/check-fresh.mjs && astro build && node scripts/stamp-build.mjs && node scripts/target-noindex.mjs",
+    "prebuild:prod": "node scripts/optimize-images.mjs",
+    "build:prod": "RP_TARGET=prod node scripts/pull-content.mjs && RP_TARGET=prod node scripts/check-fresh.mjs && RP_TARGET=prod astro build && RP_TARGET=prod node scripts/stamp-build.mjs && RP_TARGET=prod node scripts/target-noindex.mjs",
+
+    "content": "node scripts/pull-content.mjs",
+    "check:fresh": "node scripts/check-fresh.mjs",
+    "check:editable": "node scripts/check-editable.mjs",
+    "check:mapping": "node scripts/check-mapping.mjs",
+    "check:resolve": "node --experimental-strip-types scripts/check-resolve.mjs",
+    "check:content": "node scripts/check-content-roundtrip.mjs",
+    "map": "node scripts/check-mapping.mjs --write",
+    "check": "npm run check:editable && npm run check:mapping && npm run check:resolve",
+
+    "seed:content": "node scripts/seed-content.mjs",
+    "seed:media": "node scripts/seed-media.mjs",
+
+    "deploy": "npm run build && npm run check && npx wrangler pages deploy dist --project-name catamaran-for-sale-staging --branch main",
+    "deploy:prod": "npm run build:prod && npm run check && node scripts/deploy-prod.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
@@ -21,5 +39,9 @@
     "marked": "^18.0.2",
     "open-props": "^1.7.23",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "parse5": "^8.0.0",
+    "wrangler": "^4.0.0"
   }
 }
