@@ -10,6 +10,10 @@ interface Env {
 	FROM_EMAIL: string;
 	DOMAIN?: string;
 	TURNSTILE_SECRET_KEY?: string; // Cloudflare Turnstile secret key
+	// This tenant's own database, bound as DB in wrangler.prod.toml. Optional
+	// in the type because a preview deployment may not have it, and an enquiry
+	// must never be lost to a missing binding.
+	DB?: D1Database;
 }
 
 interface ContactBody {
@@ -99,7 +103,53 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
 	const id = crypto.randomUUID();
 	const record = { id, submittedAt, name, email, phone, message };
 
-	// Best-effort KV archive — never blocks the email
+	// ── where an enquiry is kept ───────────────────────────────────────────
+	//
+	// ⚠️ THE KV ARCHIVE BELOW HAS NEVER RUN. `CONTACT_SUBMISSIONS` is not bound
+	// on this Pages project and never has been (checked against the Cloudflare
+	// API, 2026-11-11), so every enquiry this site has ever taken existed only
+	// as an email. If that email bounced, was filtered, or was deleted, the
+	// enquiry was gone. The block is left in place because binding a namespace
+	// would make it work; it is simply not the archive anybody had.
+	//
+	// The archive is the `leads` table in this tenant's own database, which is
+	// where the dashboard's Inbox and Live View read from — the same table
+	// functions/api/lead.ts writes, with the same columns in the same order, so
+	// an enquiry taken by this form and one taken by the platform endpoint are
+	// the same kind of row.
+	//
+	// Best-effort and last: it runs AFTER validation and BEFORE the email, and a
+	// failure is logged and swallowed. An enquiry that is recorded but not
+	// emailed is recoverable; one that is neither is not; and refusing to send
+	// the email because a write failed would turn a database hiccup into a lost
+	// customer.
+	if (env.DB) {
+		try {
+			const url = new URL(request.url);
+			await env.DB.prepare(
+				`INSERT INTO leads
+				   (id, created_at, name, email, phone, message, source_path, referrer,
+				    utm_source, utm_medium, utm_campaign, gclid,
+				    status, emailed, crm_synced, spam)
+				 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new', 0, 0, 0)`,
+			)
+				.bind(
+					id, submittedAt, name, email, phone || null, message,
+					url.searchParams.get('path') || '/contact/',
+					request.headers.get('referer') || null,
+					url.searchParams.get('utm_source') || null,
+					url.searchParams.get('utm_medium') || null,
+					url.searchParams.get('utm_campaign') || null,
+					url.searchParams.get('gclid') || null,
+				)
+				.run();
+		} catch (e) {
+			console.error('lead write failed', String(e).slice(0, 200));
+		}
+	}
+
+	// Best-effort KV archive — never blocks the email. Dead unless a namespace
+	// is bound; see above.
 	if (env.CONTACT_SUBMISSIONS) {
 		try {
 			await env.CONTACT_SUBMISSIONS.put(`submission:${submittedAt}:${id}`, JSON.stringify(record));
