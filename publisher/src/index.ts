@@ -1,57 +1,68 @@
-// rp-catamaran-publisher — an edit reaches www.catamaran-for-sale.com without
+// rp-<slug>-publisher — a client's edit reaches their live site without anyone
 // running a command.
 //
 // The editor saves; functions/api/edit.ts writes the row to D1 and the browser
 // shows the change immediately, which is why this has been easy to forget. But
-// the BUILT site only moves when something builds it, and until 2026-11-11 that
-// something was Eric remembering to run `npm run deploy:prod` on one laptop.
-// The editor menu meanwhile said "Everything is already live". This Worker, and
-// the workflow it asks, are what make that sentence true.
+// the BUILT site only moves when something builds it, and until this existed
+// that something was a person remembering. This Worker is that something.
 //
-// Ported from electromagneticweb/publisher/src/index.ts, which is the evolved
-// one. Three things are different here, and all three are facts about this
-// repository rather than decisions:
+// ONE PER CLIENT. Copy it with the kit and change nothing in this file: the
+// client is named in publisher/wrangler.toml, in four lines that change
+// together (`name`, `database_name`, `database_id`, `SITE_URL`).
 //
-//   1. The binding is `DB`, because every function in this repo spells it that
-//      way (wrangler.toml and wrangler.prod.toml both).
-//   2. There is no `posts` table and no composer on this site, so the watermark
-//      is the FIVE-table one scripts/_watermark.mjs defines here: content,
-//      media, content_log, posts and posts_log. rp-launch folds three because
-//      its copy of that module only defines three; this site runs the kit's,
-//      and functions/api/artifact.ts and functions/api/publish.ts fold five
-//      too, so all three readers compute the same key.
-//   3. The build pulls over HTTP from the site's own /api/artifact rather than
-//      through wrangler, so this Worker serves no content at all — see below.
+// ── ⚠️ 2026-11-11: this file was the EMW one, and it could not run ─────────
+// On 2026-10-30 the kit took electromagneticweb's publisher wholesale, because
+// it was the evolved one. What came with it was EMW's DATABASE BINDING
+// (`DB_EMW`, which does not exist here — publisher/wrangler.toml binds `DB`) and
+// EMW's five-table watermark, which asks for `posts` and `posts_log` through
+// SQL keys that scripts/_watermark.mjs in THIS repo does not define.
 //
-// ── one repo, two Pages projects, and only ONE of them is this ─────────────
-// ⚠️ SITE_URL and the D1 binding in publisher/wrangler.toml are PRODUCTION's:
-// www.catamaran-for-sale.com and `rp-catamaran`. wrangler.toml at the
-// repository root describes STAGING (catamaran-for-sale-staging,
-// `rp-catamaran-staging`), and reading it as production's is how that has gone
-// wrong before on the sibling repo. This Worker watches production and nothing
-// else; staging is published by hand on purpose and has no publisher.
+// So every tick threw on its first database call. rp-fourlakes-publisher has
+// been deployed and on a five-minute cron since 2026-10-30 and `publish_state`
+// in rp-fourlakes was still entirely NULL twelve days later: no tick, no note,
+// nothing — about 3,400 failures that nobody saw, because a Worker whose
+// scheduled handler throws is silent unless someone is tailing it.
+//
+// Two lessons, both already written down elsewhere and both re-learned here:
+// a binding name is a tenant-shaped detail, and `MODE = "shadow"` proves a
+// Worker DECIDES correctly, which is not the same as proving it RUNS.
 //
 // ── the trigger is repository_dispatch, fleetwide ──────────────────────────
-// Not a Cloudflare Pages deploy hook. All three RP Pages projects are DIRECT
-// UPLOAD (the API reports `source: null`), and Cloudflare only issues deploy
-// hooks for projects it builds itself, so there is no hook to create for any of
-// them. GitHub Actions is the one mechanism that works everywhere, so it is the
-// one mechanism all three use.
+// Not a Cloudflare Pages deploy hook. Every RP Pages project is DIRECT UPLOAD
+// (the API reports `source: null` for rp-test-site, rp-launch-prod and
+// electromagneticweb alike), and Cloudflare only issues deploy hooks for
+// projects it builds itself, so there is no hook to create for any of them.
+// GitHub Actions is the one mechanism that works everywhere, so it is the one
+// mechanism all three use.
 //
-// ── and a triggered build has to PULL ──────────────────────────────────────
-// This is the consequence most likely to be missed. src/config/overrides.json
-// and media.json are COMMITTED, so a build that just ran `astro build` would
-// faithfully rebuild last week's content and publish it under a green
-// deployment — turning a visible staleness ("I haven't deployed yet") into an
-// invisible one, which is worse than no pipeline at all.
+// ── and a triggered build has to READ THE DATABASE ────────────────────────
+// This is the consequence most likely to be missed. src/config/*.json are
+// COMMITTED, so a build that just ran `astro build` would faithfully rebuild
+// last week's content and publish it under a green deployment — turning a
+// visible staleness ("I haven't deployed yet") into an invisible one, which is
+// worse than no pipeline at all.
 //
-// So .github/workflows/deploy.yml pulls on every run and then refuses to build
-// what it cannot prove is current (scripts/check-fresh.mjs). It reads the
-// content from the SITE's own /api/artifact, not through wrangler: a Cloudflare
-// token with D1 rights is scoped to an ACCOUNT rather than to a database, so one
-// in a repository secret would read every client's `leads` table and break
-// tenant isolation for the whole fleet. This Worker therefore has no /artifact
-// endpoint — one fewer thing holding a key to one client's copy.
+// So .github/workflows/deploy.yml reads the content on every run and refuses to
+// build what it cannot prove is current (scripts/check-fresh.mjs).
+//
+// ⚠️ HOW it reads was the open question in this repo until 2026-11-12. It used
+// to shell out to wrangler (scripts/build-site-data.mjs), which needs a
+// Cloudflare API token with D1 rights in the repository's secrets, and D1
+// permissions on a token are scoped to an ACCOUNT, not to a database, so that
+// one secret would read every client's `leads` table and break tenant isolation
+// for the whole fleet. The kit now answers it the way rp-launch and
+// electromagneticweb do: the SITE serves its own content over one keyed endpoint
+// (functions/api/artifact.ts), bound to one database and holding no credential
+// at all, and the workflow reads it with RP_BUILD_KEY. Proved on a runner with
+// no Cloudflare credential of any kind.
+//
+// ⚠️ SO THE REASON MODE STAYS "shadow" HAS CHANGED, and it is now one thing:
+// ericevanthomas/rp-site-kit has no CLOUDFLARE_API_TOKEN, so the workflow
+// builds correctly and cannot UPLOAD. A live tick would fire a dispatch, the
+// build would go green, the upload would fail, and the client would have been
+// promised automatic delivery that never arrives. Flipping MODE to "live" is
+// the only remaining step once that token exists, and the token must be
+// Pages:Edit ONLY. See PROVISIONING.md, blocker 2.
 //
 // ── the credential: ONE GitHub App, not a PAT per client ───────────────────
 // 2026-11-11. This Worker used to hold a fine-grained GitHub PAT per
@@ -99,13 +110,12 @@ export interface Env {
   GH_APP_PRIVATE_KEY?: string;   // secret — PKCS#8 PEM, see github-app.ts
 }
 
-// Three tables, not five. This site has no composer and no `posts` table, and
-// scripts/_watermark.mjs here defines the key over content, media, content_log,
-// posts and posts_log; the sentence below was written for the three-table copy
-// and the reasoning is unchanged by the other two. It reads: content, media and
-// content_log only — so the watermark this Worker computes is byte-identical to
-// the one the build stamps into /rp-build.json, which is the only reason the
-// comparison in `decide` means anything.
+// Three tables, not five. The kit has no composer and no `posts` table, and
+// scripts/_watermark.mjs HERE defines the key over content, media and
+// content_log only. That is what makes the watermark this Worker computes
+// byte-identical to the one the build stamps into /rp-build.json, which is the
+// only reason the comparison in `decide` means anything — and asking for the two
+// tables EMW has is what made every tick throw for twelve days.
 type Wm = {
   max_ts: string | null;
   content_n: number; media_n: number; log_n: number;
@@ -147,10 +157,11 @@ function authed(request: Request, env: Env): boolean {
 
 // ── reading the database ───────────────────────────────────────────────────
 //
-// One query per table, each tolerant of the table not existing. `rp-rp` has no
-// `media` table at all — the photo library was never used on this site — which
-// scripts/_content-source.mjs has always treated as "no photos" rather than an
-// error, and a UNION over all three would fail whole instead of reporting the
+// One query per table, each tolerant of the table not existing. A client's
+// database before the migrations are applied has none of them, and a client who
+// has never opened the photo library has no `media` rows — which
+// scripts/_content-source.mjs has always treated as "no photos yet" rather than
+// an error, and a UNION over all three would fail whole instead of reporting the
 // tables that are there.
 async function one(db: D1Database, sql: string): Promise<{ n: number; t: string | null } | null> {
   try {
@@ -163,15 +174,15 @@ async function one(db: D1Database, sql: string): Promise<{ n: number; t: string 
 }
 
 async function watermark(db: D1Database): Promise<Wm> {
+  // ⚠️ POSTS, since 2026-11-11, when the composer and /api/post arrived in this
+  // kit. A blog post is a change to the site exactly as a headline edit is, and
+  // a watermark that could not see one meant an afternoon of writing read as an
+  // idle site. `one()` already tolerates the tables being absent, which is the
+  // state of a client whose migrations/0023_posts.sql has not been applied.
   const [content, media, log, posts, posts_log] = await Promise.all([
     one(db, SQL.content), one(db, SQL.media), one(db, SQL.log),
     one(db, SQL.posts), one(db, SQL.posts_log),
   ]);
-  // ⚠️ ALL FIVE, to match functions/api/artifact.ts and functions/api/publish.ts
-  // on this site. A dirty signal computed two slightly different ways is worse
-  // than none: the Worker would compare its own three-table key against the
-  // five-table one the build stamped into /rp-build.json, find them unequal for
-  // ever, and request a build every cooldown window for the rest of time.
   return fold({ content, media, log, posts, posts_log }) as Wm;
 }
 
@@ -183,11 +194,11 @@ async function readState(db: D1Database): Promise<State> {
     ).first<State>();
     if (r) return r;
   } catch (e) {
-    // The table is created by migrations/0004_publish_state.sql. Missing means
+    // The table is created by migrations/0017_publish_state.sql. Missing means
     // the migration has not been applied, which is worth saying out loud rather
     // than behaving as though the debounce were working.
     if (!/no such table/i.test(String(e))) throw e;
-    throw new Error('publish_state is missing — apply migrations/0004_publish_state.sql');
+    throw new Error('publish_state is missing — apply migrations/0017_publish_state.sql');
   }
   await db.prepare('INSERT OR IGNORE INTO publish_state (id) VALUES (1)').run();
   return { triggered_watermark: null, triggered_at: null, live_watermark: null, live_seen_at: null, last_tick_at: null, last_note: null };
@@ -202,12 +213,11 @@ async function readState(db: D1Database): Promise<State> {
  * its "3 edits pending" and gives the debounce its ceiling — the age of the
  * OLDEST pending edit is what stops a long editing session deferring forever.
  *
- * One log, because this site has one way to change: the inline editor. EMW
- * counts posts_log here as well, since a post written in its composer is a
- * change to the site exactly as a headline edit is. If a composer ever ships
- * here, this is the function that has to learn about it, or an afternoon of
- * writing would read as an idle site right up to the moment the ceiling never
- * fired.
+ * TWO logs since 2026-11-11, which is the day the paragraph that used to be
+ * here came true: the composer and /api/post shipped into this kit, so a post
+ * written here is a change to the site exactly as a headline edit is. Counting
+ * only content_log would have read an afternoon of writing as an idle site,
+ * right up to the moment the ceiling never fired.
  */
 async function pending(db: D1Database, since: string | null) {
   if (!since) return { n: null as number | null, oldest: null as string | null };
@@ -221,10 +231,11 @@ async function pending(db: D1Database, since: string | null) {
       throw e;
     }
   };
-  const c = await count('content_log');
-  // ISO 8601 sorts lexicographically, so the earliest is a plain string min —
-  // which with one log is simply the one MIN(ts) the query returned.
-  return { n: c.n, oldest: c.t };
+  const [c, p] = await Promise.all([count('content_log'), count('posts_log')]);
+  // ISO 8601 sorts lexicographically, so the earliest is a plain string min
+  // over the two logs' own minimums.
+  const stamps = [c.t, p.t].filter((t): t is string => typeof t === 'string' && !!t);
+  return { n: c.n + p.n, oldest: stamps.length ? stamps.reduce((a, b) => (b < a ? b : a)) : null };
 }
 
 // ── reading the live site ──────────────────────────────────────────────────
@@ -300,7 +311,7 @@ function decide(env: Env, wm: Wm, st: State, live: Live, pend: { n: number | nul
     return {
       act: false,
       note: `${env.SITE_URL}/rp-build.json does not give a watermark — the live site cannot say what it is serving. ` +
-            'Deploy once with this pipeline in place (npm run deploy:prod) to establish it. ' +
+            'Deploy once with this pipeline in place (npm run deploy) to establish it. ' +
             'Not triggering: a Worker that deploys a site it cannot measure is a Worker that publishes something nobody looked at.',
     };
   }
@@ -359,10 +370,61 @@ function decide(env: Env, wm: Wm, st: State, live: Live, pend: { n: number | nul
   return { act: true, note: `requesting a build of ${key} — ${why}${pend.n ? `, ${pend.n} edit${pend.n === 1 ? '' : 's'} pending` : ''}` };
 }
 
+/**
+ * A scheduled post whose day has come, published.
+ *
+ * ⚠️ IT RUNS IN SHADOW MODE TOO, and that is deliberate. MODE is about whether
+ * this Worker may ASK FOR A DEPLOY; the flip is not a deploy, it is the
+ * client's own record reaching the state they asked for. Holding it back in
+ * shadow would mean a schedule that silently did nothing on a site whose
+ * publisher is not live yet — and the flip moving `touched_at` is exactly what
+ * makes the next build carry it, whenever that build happens.
+ *
+ * ⚠️ THE HOUR COMES FROM `extra.publish_at`, NOT FROM `published_at`. The
+ * latter is the DISPLAY date, stored at noon UTC so the printed date is the
+ * day the client picked whatever timezone reads it (src/lib/posts.js); writing
+ * a real instant there would move the date on the page. The composer writes
+ * the instant into `extra` instead (functions/api/post.ts), and this is the
+ * only thing that reads it.
+ *
+ * The fallback is for a row scheduled before the hour existed: noon UTC on its
+ * published_at, which is the promise that was made at the time.
+ *
+ * `deleted_at IS NULL` because a scheduled post that was thrown away is still a
+ * row with a future date on it. Without this it was flipped to published on its
+ * day: invisible on the site, which excludes trashed rows at build time, but the
+ * record was quietly rewritten, so restoring it later brought it back as
+ * Published instead of Scheduled. Found 2026-11-12 while fixing the drawer that
+ * listed binned posts twice.
+ *
+ * The cron is every five minutes, so that is the real resolution of any
+ * schedule here. Do not draw a minute picker on top of it.
+ */
+async function due(db: D1Database, nowIso: string): Promise<number> {
+  try {
+    const r = await db.prepare(
+      `UPDATE posts SET status = 'published', touched_at = ?1, touched_by = 'schedule'
+         WHERE status = 'scheduled'
+           AND deleted_at IS NULL
+           AND COALESCE(json_extract(extra, '$.publish_at'), published_at) IS NOT NULL
+           AND COALESCE(json_extract(extra, '$.publish_at'), published_at) <= ?1`,
+    ).bind(nowIso).run();
+    return r.meta?.changes ?? 0;
+  } catch (e) {
+    // A site whose database predates the posts table is not an error here.
+    if (!/no such table/i.test(String(e))) console.error('due failed: ' + String(e).slice(0, 200));
+    return 0;
+  }
+}
+
 async function tick(env: Env): Promise<Record<string, unknown>> {
   const isLive = env.MODE === 'live';
   const now = Date.now();
   const nowIso = new Date(now).toISOString();
+
+  // Before the watermark is read, so a post that went live on this tick is
+  // part of what the watermark says and the deploy decision below sees it.
+  const flipped = await due(env.DB, nowIso);
 
   const wm = await watermark(env.DB);
   const key = wmKey(wm);
@@ -423,12 +485,25 @@ async function tick(env: Env): Promise<Record<string, unknown>> {
     note = `[shadow] would have fired repository_dispatch — ${v.note}${can}`;
   }
 
+  // ⚠️ THE MODE IS IN EVERY NOTE, not only in the ones where shadow changed
+  // the outcome. It used to be: a shadow tick that WOULD have acted said
+  // "[shadow] would have fired…", and a shadow tick with nothing to do said
+  // plain "current — the live site carries …". That is honest about the tick
+  // and silent about the Worker, and on 2026-11-11 something started reading
+  // this column — functions/api/publish.ts, to tell the client whether a saved
+  // change reaches their site by itself. It saw an unprefixed note from a
+  // shadow Worker and reported automatic delivery, which is the exact kind of
+  // claim that whole change was made to stop. One line, and the state says what
+  // the Worker IS rather than only what it just did.
+  const stamped = isLive || /^\s*\[shadow\]/.test(note) ? note : `[shadow] ${note}`;
+
   await env.DB.prepare(
     `UPDATE publish_state SET live_watermark = ?1, live_seen_at = ?2, last_tick_at = ?3, last_note = ?4 WHERE id = 1`,
-  ).bind(live?.watermark ?? null, live ? nowIso : st.live_seen_at, nowIso, note).run();
+  ).bind(live?.watermark ?? null, live ? nowIso : st.live_seen_at, nowIso, stamped).run();
 
-  console.log(`${nowIso} ${isLive ? '' : '[shadow] '}${env.RP_SITE || '?'} ${note}`);
-  return { ok: true, mode: isLive ? 'live' : 'shadow', watermark: key, live: live?.watermark ?? null, acted: v.act, posted, note };
+  console.log(`${nowIso} ${isLive ? '' : '[shadow] '}${env.RP_SITE || '?'} ${note}`
+    + (flipped ? ` (+${flipped} scheduled post${flipped === 1 ? '' : 's'} published)` : ''));
+  return { ok: true, mode: isLive ? 'live' : 'shadow', watermark: key, live: live?.watermark ?? null, acted: v.act, posted, note, flipped };
 }
 
 // ── the surfaces ───────────────────────────────────────────────────────────
@@ -448,9 +523,13 @@ export default {
 
     try {
       // What the live site is compared against, and what a person checks by
-      // hand. There is deliberately no /artifact here: CI reads the content
-      // from the SITE's own /api/artifact, so nothing needs this Worker to serve
-      // content and nothing but the schedule needs it to hold a key at all.
+      // hand. There is deliberately no /artifact here any more, and it is not
+      // coming back: the SITE serves its own content now
+      // (functions/api/artifact.ts), bound to one database and keyed with
+      // RP_BUILD_KEY, so nothing needs this Worker to serve content. The dead
+      // `worker` lane in scripts/_content-source.mjs that used to call this
+      // removed route was deleted on 2026-11-12 rather than left as a third
+      // mechanism for somebody to find at 2am.
       if (url.pathname === '/watermark' && request.method === 'GET') {
         const wm = await watermark(env.DB);
         return json({ site: env.RP_SITE || null, watermark: wmKey(wm), wm, last_edit_at: wm.max_ts });
