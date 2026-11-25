@@ -13,6 +13,7 @@ import { readSessionFull, type EditorEnv } from '../_editor-session';
 interface Env extends EditorEnv {
   RESEND_API_KEY?: string;
   RP_NOTIFY?: string;
+  RP_REQUEST_TO?: string;
 }
 
 const json = (body: unknown, status = 200) =>
@@ -109,7 +110,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env, waitUnti
   // Mailing Eric a copy of a note Eric just wrote is the digest he keeps
   // telling us not to send.
   if (env.RESEND_API_KEY && kind !== MAPPING) {
-    const to = env.RP_NOTIFY || 'eric@electromagneticweb.com';
+    // Staff mail goes to Eric's Remodeler Pilot address (Eric, 2026-11-25).
+    // Its own var, not RP_NOTIFY, which is also who hears about a lead.
+    const to = env.RP_REQUEST_TO || 'eric@remodelerpilot.com';
     const site = env.RP_SITE || 'site';
     const where = row.anchor_label ? `${row.anchor_label} — ${row.path}` : row.path;
     waitUntil(fetch('https://api.resend.com/emails', {
